@@ -1,0 +1,17 @@
+.tl-table-item-year  th {
+    text-align: center;
+}
+.tl-table-item-header  {
+    border-bottom:1px solid #ddd;
+    vertical-align: middle;
+}
+.tl-table-item-date  {}
+.tl-table-item-title  {
+    font-size: 120%;
+    padding-left:15px;
+    padding-right:15px;
+}
+.tl-table-item-content {
+    padding-top:10px;
+    padding-bottom:10px;
+}
