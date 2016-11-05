@@ -4,7 +4,7 @@
 <table class='table table-bordered' id="sortable-timelines">
     <thead>
         <tr class="head">
-            <th class="center"><{$smarty.const._AM_WGTIMELINES_TIMELINE_ID}></th>
+            <th class="center">&nbsp;</th>
             <th class="center"><{$smarty.const._AM_WGTIMELINES_TIMELINE_NAME}></th>
             <th class="center"><{$smarty.const._AM_WGTIMELINES_TIMELINE_TEMPLATE}></th>
             <th class="center"><{$smarty.const._AM_WGTIMELINES_TIMELINE_SORTBY}></th>

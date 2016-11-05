@@ -23,7 +23,6 @@ CREATE TABLE `wgtimelines_timelines` (
   PRIMARY KEY (`tl_id`)
 ) ENGINE=InnoDB;
 
-
 #
 # Structure table for `wgtimelines_items` 10
 #
@@ -52,12 +51,7 @@ CREATE TABLE `wgtimelines_templates` (
   `tpl_desc` TEXT NOT NULL,
   `tpl_file` VARCHAR(100) NOT NULL DEFAULT '',
   `tpl_options` VARCHAR(100) NOT NULL DEFAULT '',
-  `tpl_imgposition` VARCHAR(100) NOT NULL DEFAULT '',
-  `tpl_imgstyle` VARCHAR(100) NOT NULL DEFAULT '',
-  `tpl_tabletype` VARCHAR(100) NOT NULL DEFAULT '',
-  `tpl_imgposition_p` VARCHAR(100) NOT NULL DEFAULT '',
-  `tpl_bgcolor` VARCHAR(100) NOT NULL DEFAULT '#eeeeee',
-  `tpl_fontcolor` VARCHAR(100) NOT NULL DEFAULT '#000000',
+  `tpl_weight` INT(8) NOT NULL DEFAULT '0',
   PRIMARY KEY (`tpl_id`)
 ) ENGINE=InnoDB;
 

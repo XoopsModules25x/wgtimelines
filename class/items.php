@@ -125,8 +125,12 @@ class WgtimelinesItems extends XoopsObject
 		$itemDate = $this->isNew() ? 0 : $this->getVar('item_date');
 		$form->addElement(new XoopsFormTextDateSelect( _AM_WGTIMELINES_ITEM_DATE, 'item_date', '', $this->getVar('item_date') ));
 		// Form Text ItemYear
-        $itemYear = $this->isNew() ? time() : $this->getVar('item_year');
-		$form->addElement(new XoopsFormText( _AM_WGTIMELINES_ITEM_YEAR, 'item_year', 50, 255, formatTimestamp($itemYear, 'Y') ));
+        if ( $this->isNew() ) {
+            $itemYear = formatTimestamp(time(), 'Y');
+        } else {
+            $itemYear = $this->getVar('item_year');
+        }
+		$form->addElement(new XoopsFormText( _AM_WGTIMELINES_ITEM_YEAR, 'item_year', 50, 255, $itemYear ));
 		// Form Text ItemWeight
         $itemsHandler = $wgtimelines->getHandler('items');
 		$itemWeight = $this->isNew() ? ($itemsHandler->getCountItems() + 1) : $this->getVar('item_weight');
@@ -155,7 +159,8 @@ class WgtimelinesItems extends XoopsObject
 		$timeline_obj = $timelines->get($this->getVar('item_tl_id'));
 		$ret['tl_name'] = $timeline_obj->getVar('tl_name');
 		$ret['title'] = $this->getVar('item_title');
-		$ret['content'] = strip_tags($this->getVar('item_content'));
+		$ret['content'] = strip_tags($this->getVar('item_content', 'n'));
+        $ret['content_admin'] = $this->getVar('item_content', 'e');
 		$ret['image'] = $this->getVar('item_image');
         if ($this->getVar('item_date') > 0) {
             $ret['date'] = formatTimeStamp($this->getVar('item_date'), 's');

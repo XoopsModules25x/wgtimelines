@@ -90,3 +90,10 @@
 .img-timeline {
   padding: 10px 0px;
 }
+.img-timeline-top {
+  margin-bottom: 15px;
+}
+.img-timeline-bottom {
+  margin-top: 15px;
+}
+

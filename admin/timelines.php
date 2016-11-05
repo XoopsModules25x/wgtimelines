@@ -138,11 +138,22 @@ switch($op) {
 			if(!$GLOBALS['xoopsSecurity']->check()) {
 				redirect_header('timelines.php', 3, implode(', ', $GLOBALS['xoopsSecurity']->getErrors()));
 			}
-			if($timelinesHandler->delete($timelinesObj)) {
-				redirect_header('timelines.php', 3, _AM_WGTIMELINES_FORM_DELETE_OK);
-			} else {
-				$GLOBALS['xoopsTpl']->assign('error', $timelinesObj->getHtmlErrors());
-			}
+            // delete all items first
+            $crit_items = new CriteriaCompo();
+            $crit_items->add(new Criteria('item_tl_id', $tlId));
+            $itemsCount = $itemsHandler->getCount($crit_items);
+            if ($itemsCount > 0) {
+                if(!$itemsHandler->deleteAll($crit_items, true)) {
+                    $GLOBALS['xoopsTpl']->assign('error', $itemsHandler->getHtmlErrors());
+                    break;
+                }
+            }
+            // if successful then delete timeline
+            if($timelinesHandler->delete($timelinesObj)) {
+                redirect_header('timelines.php', 3, _AM_WGTIMELINES_FORM_DELETE_OK);
+            } else {
+                $GLOBALS['xoopsTpl']->assign('error', $timelinesObj->getHtmlErrors());
+            }
 		} else {
 			xoops_confirm(array('ok' => 1, 'tl_id' => $tlId, 'op' => 'delete'), $_SERVER['REQUEST_URI'], sprintf(_AM_WGTIMELINES_FORM_SURE_DELETE, $timelinesObj->getVar('tl_name')));
 		}

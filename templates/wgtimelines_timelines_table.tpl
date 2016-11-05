@@ -12,7 +12,7 @@
                     </tr>
                 <{/if}>
                 <tr>
-                    <{if $imgposition=='right' || $item.alternate == 1}>
+                    <{if $panel_pos=='right' || $item.alternate == 1}>
                         <{if $item.image}>
                         <td class='col-sm-6'>
                         <{else}>

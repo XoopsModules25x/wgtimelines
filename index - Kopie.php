@@ -22,7 +22,8 @@
  */
 include __DIR__ . '/header.php';
 // get timeline id
-$tl_id = XoopsRequest::getInt('tl_id', 0);
+$tl_id  = XoopsRequest::getInt('tl_id', 0);
+$tpl_id = XoopsRequest::getInt('tpl_id', 0);
 $timeline_rows = $timelinesHandler->getCountTimelines();
 if ( $tl_id == 0 ) {
     if ($timeline_rows > 0) {
@@ -33,10 +34,24 @@ if ( $tl_id == 0 ) {
         }
     }
 }
+
+// only for test
+$templatesCount = $templatesHandler->getCountTemplates();
+$templatesAll = $templatesHandler->getAllTemplates();
+if($templatesCount > 0) {
+    foreach(array_keys($templatesAll) as $i) {
+        $template = $templatesAll[$i]->getValuesTemplates();
+        echo '<a href="index.php?tl_id='.$tl_id.'&tpl_id='.$template['id'].'">'.$template['name'].'</a> ';
+        // $GLOBALS['xoopsTpl']->append('templates_list', $template);
+        unset($template);
+    }
+}
+        
 if ($timeline_rows > 0) {
     // get timeline
     $timeline_obj = $timelinesHandler->get($tl_id);
     $tl_template  = $timeline_obj->getVar('tl_template');
+    if ($tpl_id > 0)  $tl_template  = $tpl_id; //only for testing
     $tl_name      = $timeline_obj->getVar('tl_name');
     $tl_sortby    = $timeline_obj->getVar('tl_sortby');
 
@@ -46,7 +61,6 @@ if ($timeline_rows > 0) {
     $options      = $template['options'];
 
     $GLOBALS['xoopsOption']['template_main'] = $template['file'];
-
     include_once XOOPS_ROOT_PATH .'/header.php';
 
     // get pagenav options
@@ -119,18 +133,26 @@ if ($timeline_rows > 0) {
             $pagenav = new XoopsPageNav($itemsCount, $limit, $start, 'start', 'op=list&limit=' . $limit);
             $GLOBALS['xoopsTpl']->assign('pagenav', $pagenav->renderNav(4));
         }
+    } else {
+        $GLOBALS['xoopsOption']['template_main'] = 'wgtimelines_index.tpl';
+        $GLOBALS['xoopsTpl']->assign('error', _MA_WGTIMELINES_TIMELINE_NO_ITEMS);
     }
     // Breadcrumbs
     if ( $wgtimelines->getConfig('breadcrumbs') ) {
         $xoBreadcrumbs[] = array('title' => $tl_name);
         $GLOBALS['xoopsTpl']->assign('breadcrumbs', 1);
     }
+    // Keywords
+    wgtimelinesMetaKeywords($wgtimelines->getConfig('keywords').', '. implode(',', $keywords));
+    unset($keywords);
+    // Description
+    wgtimelinesMetaDescription(_MA_WGTIMELINES_TIMELINES_DESC);
+    $GLOBALS['xoopsTpl']->assign('xoops_mpageurl', WGTIMELINES_URL.'/timelines.php');
+    $GLOBALS['xoopsTpl']->assign('wgtimelines_upload_url', WGTIMELINES_UPLOAD_URL);
+} else {
+    $GLOBALS['xoopsOption']['template_main'] = 'wgtimelines_index.tpl';
+    include_once XOOPS_ROOT_PATH .'/header.php';
+    $GLOBALS['xoopsTpl']->assign('error', _MA_WGTIMELINES_TIMELINE_NO_TL);
 }
-// Keywords
-wgtimelinesMetaKeywords($wgtimelines->getConfig('keywords').', '. implode(',', $keywords));
-unset($keywords);
-// Description
-wgtimelinesMetaDescription(_MA_WGTIMELINES_TIMELINES_DESC);
-$GLOBALS['xoopsTpl']->assign('xoops_mpageurl', WGTIMELINES_URL.'/timelines.php');
-$GLOBALS['xoopsTpl']->assign('wgtimelines_upload_url', WGTIMELINES_UPLOAD_URL);
+
 include __DIR__ . '/footer.php';

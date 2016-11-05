@@ -41,11 +41,13 @@ define('_MA_WGTIMELINES_TIMELINE_WEIGHT', "Weight");
 define('_MA_WGTIMELINES_TIMELINE_TEMPLATE', "Template");
 define('_MA_WGTIMELINES_TIMELINE_SUBMITTER', "Submitter");
 define('_MA_WGTIMELINES_TIMELINE_DATE_CREATE', "Date_create");
+define('_MA_WGTIMELINES_TIMELINE_NO_TL', "There are no timelines available. Please create first one.");
 // Item
 define('_MA_WGTIMELINES_ITEM', "Item");
 define('_MA_WGTIMELINES_ITEMS', "Items");
 define('_MA_WGTIMELINES_ITEMS_TITLE', "Items title");
 define('_MA_WGTIMELINES_ITEMS_DESC', "Items description");
+define('_MA_WGTIMELINES_TIMELINE_NO_ITEMS', "There are no items for this timeline available. Please create first one.");
 // Caption of Item
 define('_MA_WGTIMELINES_ITEM_ID', "Id");
 define('_MA_WGTIMELINES_ITEM_TL_ID', "Timeline");
