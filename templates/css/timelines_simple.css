@@ -61,7 +61,7 @@
 .timeline > li > .timeline-panel:before {
 	position: absolute;
 	top: 16px;
-	right: -15px;
+	right: -16px;
 	display: inline-block;
 	border-top: 15px solid transparent;
 	border-left: 15px solid #dcdcdc;
@@ -107,7 +107,7 @@
 .timeline > li.timeline-inverted > .timeline-panel:after {
 	border-left-width: 0;
 	border-right-width: 14px;
-	left: -14px;
+	left: -13px;
 	right: auto;
 }
 .timeline-badge {
