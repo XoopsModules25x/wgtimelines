@@ -50,7 +50,7 @@ CREATE TABLE `wgtimelines_templates` (
   `tpl_name` VARCHAR(100) NOT NULL DEFAULT '',
   `tpl_desc` TEXT NOT NULL,
   `tpl_file` VARCHAR(100) NOT NULL DEFAULT '',
-  `tpl_options` VARCHAR(100) NOT NULL DEFAULT '',
+  `tpl_options` TEXT NOT NULL,
   `tpl_weight` INT(8) NOT NULL DEFAULT '0',
   PRIMARY KEY (`tpl_id`)
 ) ENGINE=InnoDB;
