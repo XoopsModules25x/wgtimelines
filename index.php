@@ -107,7 +107,7 @@ if ($timeline_rows > 0) {
         }
         $GLOBALS['xoopsTpl']->assign('items', $items);
         unset($items);
-        $GLOBALS['xoopsTpl']->assign('timeline_name', $tl_name);
+        if ($wgtimelines->getConfig('tl_name') == 1) $GLOBALS['xoopsTpl']->assign('timeline_name', $tl_name);
         // set template options
         foreach ($options as $option) {
             if ($option['valid'] > 0) $GLOBALS['xoopsTpl']->assign($option['name'], $option['value']);
@@ -126,11 +126,13 @@ if ($timeline_rows > 0) {
         $GLOBALS['xoopsTpl']->assign('breadcrumbs', 1);
     }
 }
+
+$GLOBALS['xoopsTpl']->assign('welcome', $wgtimelines->getConfig('welcome'));
 // Keywords
 wgtimelinesMetaKeywords($wgtimelines->getConfig('keywords').', '. implode(',', $keywords));
 unset($keywords);
 // Description
-wgtimelinesMetaDescription(_MA_WGTIMELINES_TIMELINES_DESC);
+wgtimelinesMetaDescription(_MA_WGTIMELINES_DESC);
 $GLOBALS['xoopsTpl']->assign('xoops_mpageurl', WGTIMELINES_URL.'/timelines.php');
 $GLOBALS['xoopsTpl']->assign('wgtimelines_upload_url', WGTIMELINES_UPLOAD_URL);
 include __DIR__ . '/footer.php';

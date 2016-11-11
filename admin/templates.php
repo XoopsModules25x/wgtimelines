@@ -232,7 +232,7 @@ switch($op) {
 		$templateMain = 'wgtimelines_admin_templates.tpl';
 		$GLOBALS['xoopsTpl']->assign('navigation', $adminMenu->addNavigation('templates.php'));
 		$adminMenu->addItemButton(_AM_WGTIMELINES_TEMPLATES_LIST, 'templates.php', 'list');
-        if ($op == 'edit-master') $adminMenu->addItemButton(_AM_WGTIMELINES_ADD_TEMPLATE, 'templates.php?op=new', 'add');
+        if ($op == 'edit-master') $adminMenu->addItemButton(_AM_WGTIMELINES_TEMPLATE_ADD, 'templates.php?op=new', 'add');
 		$GLOBALS['xoopsTpl']->assign('buttons', $adminMenu->renderButton());
 		// Get Form
 		$templatesObj = $templatesHandler->get($tplId);

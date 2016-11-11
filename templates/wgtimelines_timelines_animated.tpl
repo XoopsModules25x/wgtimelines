@@ -12,11 +12,14 @@
     color: <{$fontcolor}>;
 }
 </style>
-<{if count($items) > 0}>
-	<div class="page-header">
-        <h2 id="timeline"><{$timeline_name}></h2>
-    </div>
 
+<{if count($items) > 0}>
+    <{if $timeline_name || $welcome}>
+        <div class="page-header">
+            <h2><{$welcome}></h2>
+            <h3 id="timeline"><{$timeline_name}></h3>
+        </div>
+    <{/if}>
 	<section id="cd-timeline" class="cd-container">
         <{foreach item=item from=$items}>
             <div class="cd-timeline-block">

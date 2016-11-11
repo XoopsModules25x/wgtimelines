@@ -13,9 +13,12 @@
 </style>
 <{if count($items) > 0}>
     <div class="container-timeline">
-        <div class="page-header">
-            <h2 id="timeline"><{$timeline_name}></h2>
-        </div>
+        <{if $timeline_name || $welcome}>
+            <div class="page-header">
+                <h2><{$welcome}></h2>
+                <h3 id="timeline"><{$timeline_name}></h3>
+            </div>
+        <{/if}>
         <ul class="timeline">
         <{foreach item=item from=$items}>
             <li class="<{if $item.inverted > 0}>timeline-inverted<{/if}>">

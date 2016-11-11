@@ -17,9 +17,14 @@
   }
 }
 </style>
+<{if $welcome}>
+    <h2 class="timeline-welcome"><{$welcome}></h2>
+<{/if}>
 <{if count($items) > 0}>
     <div class="timeline">
-        <h2 class="timeline-header"><{$timeline_name}></h2>
+        <{if $timeline_name}>
+            <h3 class="timeline-header"><{$timeline_name}></h3>
+        <{/if}>
         <ul>
         <{foreach item=item from=$items}>
             <li>

@@ -161,6 +161,14 @@ $modversion['config'][$c] = array(
     'default'     => 'dhtmltextarea'
 );
 ++$c;
+// Welcome text
+$modversion['config'][$c]['name'] = 'welcome';
+$modversion['config'][$c]['title'] = '_MI_WGTIMELINES_WELCOME';
+$modversion['config'][$c]['description'] = '_MI_WGTIMELINES_WELCOME_DESC';
+$modversion['config'][$c]['formtype'] = 'textarea';
+$modversion['config'][$c]['valuetype'] = 'text';
+$modversion['config'][$c]['default'] = _MI_WGTIMELINES_WELCOME_DEFAULT;
+++$c;
 // Admin pager
 $modversion['config'][$c]['name'] = 'adminpager';
 $modversion['config'][$c]['title'] = '_MI_WGTIMELINES_ADMIN_PAGER';
@@ -181,6 +189,14 @@ $modversion['config'][$c]['default'] = 10;
 $modversion['config'][$c]['name'] = 'breadcrumbs';
 $modversion['config'][$c]['title'] = '_MI_WGTIMELINES_BREADCRUMBS';
 $modversion['config'][$c]['description'] = '_MI_WGTIMELINES_BREADCRUMBS_DESC';
+$modversion['config'][$c]['formtype'] = 'yesno';
+$modversion['config'][$c]['valuetype'] = 'int';
+$modversion['config'][$c]['default'] = 1;
+++$c;
+// Timeline name
+$modversion['config'][$c]['name'] = 'tl_name';
+$modversion['config'][$c]['title'] = '_MI_WGTIMELINES_TIMELINE_NAME';
+$modversion['config'][$c]['description'] = '_MI_WGTIMELINES_TIMELINE_NAME_DESC';
 $modversion['config'][$c]['formtype'] = 'yesno';
 $modversion['config'][$c]['valuetype'] = 'int';
 $modversion['config'][$c]['default'] = 1;

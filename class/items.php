@@ -136,10 +136,10 @@ class WgtimelinesItems extends XoopsObject
 		$itemWeight = $this->isNew() ? ($itemsHandler->getCountItems() + 1) : $this->getVar('item_weight');
         $form->addElement(new XoopsFormHidden('item_weight', $itemWeight));
 		// Form Select User
-		$form->addElement(new XoopsFormSelectUser( _AM_WGTIMELINES_ITEM_SUBMITTER, 'item_submitter', false, $this->getVar('item_submitter') ));
+		$form->addElement(new XoopsFormSelectUser( _AM_WGTIMELINES_SUBMITTER, 'item_submitter', false, $this->getVar('item_submitter') ));
 		// Form Text Date Select
 		$itemDate_create = $this->isNew() ? 0 : $this->getVar('item_date_create');
-		$form->addElement(new XoopsFormTextDateSelect( _AM_WGTIMELINES_ITEM_DATE_CREATE, 'item_date_create', '', $itemDate_create ));
+		$form->addElement(new XoopsFormTextDateSelect( _AM_WGTIMELINES_DATE_CREATE, 'item_date_create', '', $itemDate_create ));
 		// To Save
 		$form->addElement(new XoopsFormHidden('op', 'save'));
 		$form->addElement(new XoopsFormButton('', 'submit', _SUBMIT, 'submit'));

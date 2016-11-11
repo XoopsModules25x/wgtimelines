@@ -10,8 +10,8 @@
             <th class="center"><{$smarty.const._AM_WGTIMELINES_ITEM_IMAGE}></th>
             <th class="center"><{$smarty.const._AM_WGTIMELINES_ITEM_DATE}></th>
             <th class="center"><{$smarty.const._AM_WGTIMELINES_ITEM_YEAR}></th>
-            <th class="center"><{$smarty.const._AM_WGTIMELINES_ITEM_SUBMITTER}></th>
-            <th class="center"><{$smarty.const._AM_WGTIMELINES_ITEM_DATE_CREATE}></th>
+            <th class="center"><{$smarty.const._AM_WGTIMELINES_SUBMITTER}></th>
+            <th class="center"><{$smarty.const._AM_WGTIMELINES_DATE_CREATE}></th>
             <th class="center width5"><{$smarty.const._AM_WGTIMELINES_FORM_ACTION}></th>
         </tr>
     </thead>

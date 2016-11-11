@@ -9,8 +9,8 @@
             <th class="center"><{$smarty.const._AM_WGTIMELINES_TIMELINE_TEMPLATE}></th>
             <th class="center"><{$smarty.const._AM_WGTIMELINES_TIMELINE_SORTBY}></th>
             <th class="center"><{$smarty.const._AM_WGTIMELINES_TIMELINE_ONLINE}></th>
-            <th class="center"><{$smarty.const._AM_WGTIMELINES_TIMELINE_SUBMITTER}></th>
-            <th class="center"><{$smarty.const._AM_WGTIMELINES_TIMELINE_DATE_CREATE}></th>
+            <th class="center"><{$smarty.const._AM_WGTIMELINES_SUBMITTER}></th>
+            <th class="center"><{$smarty.const._AM_WGTIMELINES_DATE_CREATE}></th>
             <th class="center width5"><{$smarty.const._AM_WGTIMELINES_FORM_ACTION}></th>
         </tr>
     </thead>

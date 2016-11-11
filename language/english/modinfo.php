@@ -53,4 +53,9 @@ define('_MI_WGTIMELINES_FACEBOOK_COMMENTS', "Facebook comments");
 define('_MI_WGTIMELINES_FACEBOOK_COMMENTS_DESC', "Allow Facebook comments in the single page");
 define('_MI_WGTIMELINES_DISQUS_COMMENTS', "Disqus comments");
 define('_MI_WGTIMELINES_DISQUS_COMMENTS_DESC', "Allow Disqus comments in the single page");
+define('_MI_WGTIMELINES_WELCOME', "Welcome message");
+define('_MI_WGTIMELINES_WELCOME_DESC', "This welcome message will be shown on the top of your timeline");
+define('_MI_WGTIMELINES_WELCOME_DEFAULT', "Welcome to timeline on " . $xoopsConfig['sitename']);
+define('_MI_WGTIMELINES_TIMELINE_NAME', "Show name timeline");
+define('_MI_WGTIMELINES_TIMELINE_NAME_DESC', "Please decide, whether the name of the timeline should be shown on the top of the timeline");
 // ---------------- End ----------------

@@ -104,10 +104,10 @@ class WgtimelinesTimelines extends XoopsObject
 		$tlOnline = $this->isNew() ? 0 : $this->getVar('tl_online');
 		$form->addElement(new XoopsFormRadioYN( _AM_WGTIMELINES_TIMELINE_ONLINE, 'tl_online', $tlOnline));
 		// Form Select User
-		$form->addElement(new XoopsFormSelectUser( _AM_WGTIMELINES_TIMELINE_SUBMITTER, 'tl_submitter', false, $this->getVar('tl_submitter') ));
+		$form->addElement(new XoopsFormSelectUser( _AM_WGTIMELINES_SUBMITTER, 'tl_submitter', false, $this->getVar('tl_submitter') ));
 		// Form Text Date Select
 		$tlDate_create = $this->isNew() ? 0 : $this->getVar('tl_date_create');
-		$form->addElement(new XoopsFormTextDateSelect( _AM_WGTIMELINES_TIMELINE_DATE_CREATE, 'tl_date_create', '', $tlDate_create ), true);
+		$form->addElement(new XoopsFormTextDateSelect( _AM_WGTIMELINES_DATE_CREATE, 'tl_date_create', '', $tlDate_create ), true);
 		// To Save
 		$form->addElement(new XoopsFormHidden('op', 'save'));
 		$form->addElement(new XoopsFormButton('', 'submit', _SUBMIT, 'submit'));

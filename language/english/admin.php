@@ -36,10 +36,8 @@ define('_AM_WGTIMELINES_FORM_OK', "Successfully saved");
 define('_AM_WGTIMELINES_FORM_DELETE_OK', "Successfully deleted");
 define('_AM_WGTIMELINES_FORM_SURE_DELETE', "Are you sure to delete: <b><span style='color : Red;'>%s </span></b>");
 define('_AM_WGTIMELINES_FORM_SURE_RENEW', "Are you sure to update: <b><span style='color : Red;'>%s </span></b>");
-// Buttons
-define('_AM_WGTIMELINES_ADD_TIMELINE', "Add New Timeline");
-define('_AM_WGTIMELINES_ADD_ITEM', "Add New Item");
-define('_AM_WGTIMELINES_ADD_TEMPLATE', "Add New Template");
+define('_AM_WGTIMELINES_SUBMITTER', "Submitter");
+define('_AM_WGTIMELINES_DATE_CREATE', "Date create");
 // Lists
 define('_AM_WGTIMELINES_TIMELINES_LIST', "List of Timelines");
 define('_AM_WGTIMELINES_ITEMS_LIST', "List of Items");
@@ -51,27 +49,23 @@ define('_AM_WGTIMELINES_TIMELINE_EDIT', "Edit Timeline");
 // Elements of Timeline
 define('_AM_WGTIMELINES_TIMELINE_ID', "Id");
 define('_AM_WGTIMELINES_TIMELINE_NAME', "Name");
-define('_AM_WGTIMELINES_TIMELINE_TEMPLATE', "Templates");
+define('_AM_WGTIMELINES_TIMELINE_TEMPLATE', "Template");
 define('_AM_WGTIMELINES_TIMELINE_SORTBY', "Sort by");
 define('_AM_WGTIMELINES_TIMELINE_SORTBY_ASC', "Year/Date ascending");
 define('_AM_WGTIMELINES_TIMELINE_SORTBY_DESC', "Year/Date descending");
 define('_AM_WGTIMELINES_TIMELINE_ONLINE', "Online");
-define('_AM_WGTIMELINES_TIMELINE_SUBMITTER', "Submitter");
-define('_AM_WGTIMELINES_TIMELINE_DATE_CREATE', "Date create");
 // Item add/edit
 define('_AM_WGTIMELINES_ITEM_ADD', "Add Item");
 define('_AM_WGTIMELINES_ITEM_EDIT', "Edit Item");
 // Elements of Item
 define('_AM_WGTIMELINES_ITEM_ID', "Id");
-define('_AM_WGTIMELINES_ITEM_TL_ID', "Timelines");
+define('_AM_WGTIMELINES_ITEM_TL_ID', "Timeline");
 define('_AM_WGTIMELINES_ITEM_TITLE', "Title");
 define('_AM_WGTIMELINES_ITEM_CONTENT', "Content");
 define('_AM_WGTIMELINES_ITEM_IMAGE', "Image");
-define('_AM_WGTIMELINES_FORM_UPLOAD_IMAGE_ITEMS', "Image in uploads images");
+define('_AM_WGTIMELINES_FORM_UPLOAD_IMAGE_ITEMS', "Images in ../uploads/wgtimelines/images/items");
 define('_AM_WGTIMELINES_ITEM_DATE', "Date");
 define('_AM_WGTIMELINES_ITEM_YEAR', "Year");
-define('_AM_WGTIMELINES_ITEM_SUBMITTER', "Submitter");
-define('_AM_WGTIMELINES_ITEM_DATE_CREATE', "Date create");
 // Template add/edit
 define('_AM_WGTIMELINES_TEMPLATE_ADD', "Add Template");
 define('_AM_WGTIMELINES_TEMPLATE_EDIT', "Edit Template");
@@ -131,8 +125,6 @@ define('_AM_WGTIMELINES_TEMPLATE_BOXSHADOW_V', "Vertical");
 define('_AM_WGTIMELINES_TEMPLATE_BOXSHADOW_BLUR', "Blur");
 define('_AM_WGTIMELINES_TEMPLATE_BOXSHADOW_SPREAD', "Spread");
 define('_AM_WGTIMELINES_TEMPLATE_BOXSHADOW_COLOR', "Shadow color");
-
-
 // General
 define('_AM_WGTIMELINES_FORM_UPLOAD', "Upload file");
 define('_AM_WGTIMELINES_FORM_IMAGE_PATH', "Files in %s ");

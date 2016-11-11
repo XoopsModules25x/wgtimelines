@@ -2,7 +2,8 @@
 <link rel="stylesheet" href="<{$wgtimelines_url}>/templates/css/timelines_table.css">
 <{if count($items) > 0}>
 <div class="table-responsive">
-    <h2><{$timeline_name}></h2>
+    <{if $welcome}><h2><{$welcome}></h2><{/if}>
+    <{if $timeline_name}><h3><{$timeline_name}></h3><{/if}>    
     <table class="table table-<{$table_type}>">
 		<tbody>  
             <{foreach item=item from=$items}>
