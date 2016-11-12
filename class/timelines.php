@@ -148,7 +148,7 @@ class WgtimelinesTimelines extends XoopsObject
 	public function toArrayTimelines()
 	{
 		$ret = array();
-		$vars = $this->getVars();
+		$vars =& $this->getVars();
 		foreach(array_keys($vars) as $var) {
 			$ret[$var] = $this->getVar('"{$var}"');
 		}

@@ -128,7 +128,7 @@ class WgtimelinesHelper
      * @param string $name
      * @return mixed
      */
-    public function &getHandler($name)
+    public function getHandler($name)
     {
         if (!isset($this->handler[$name . '_handler'])) {
             $this->initHandler($name);

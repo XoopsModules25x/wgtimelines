@@ -211,7 +211,7 @@ class WgtimelinesTemplates extends XoopsObject
 	public function toArrayTemplates()
 	{
 		$ret = array();
-		$vars = $this->getVars();
+		$vars =& $this->getVars();
 		foreach(array_keys($vars) as $var) {
 			$ret[$var] = $this->getVar('"{$var}"');
 		}
