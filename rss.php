@@ -27,7 +27,7 @@ if (function_exists('mb_http_output')) {
     mb_http_output('pass');
 }
 //header ('Content-Type:text/xml; charset=UTF-8');
-$wgtimelines->geConfig('utf8') = false;
+$wgtimelines->getConfig('utf8') = false;
 
 $tpl = new XoopsTpl();
 $tpl->xoops_setCaching(2); //1 = Cache global, 2 = Cache individual (for template)
