@@ -115,7 +115,7 @@ class WgtimelinesItems extends XoopsObject
 		}
 		$imageSelect->setExtra("onchange='showImgSelected(\"image1\", \"item_image\", \"".$imageDirectory."\", \"\", \"".XOOPS_URL."\")'");
 		$imageTray->addElement($imageSelect, false);
-		$imageTray->addElement(new XoopsFormLabel('', "<br /><img src='".XOOPS_URL . '/' . $imageDirectory . '/' . $itemImage . "' name='image1' id='image1' alt='' style='max-width:100px' />"));
+		$imageTray->addElement(new XoopsFormLabel('', "<br /><img src='".XOOPS_URL . '/' . $imageDirectory . '/' . $itemImage . "' name='image1' id='image1' alt='' style='max-width:100px;' />"));
 		// Form File
 		$fileSelectTray = new XoopsFormElementTray('', '<br />' );
 		$fileSelectTray->addElement(new XoopsFormFile( _AM_WGTIMELINES_FORM_UPLOAD_IMAGE_ITEMS, 'attachedfile', $wgtimelines->getConfig('maxsize') ));

@@ -13,7 +13,7 @@
         <ul class="timeline">
         <{foreach item=item from=$items}>
             <li class="<{if $item.inverted > 0}>timeline-inverted<{/if}>">
-                <div class="timeline-badge" style="background-color:<{$bgcolor}>"></div>
+                <div class="timeline-badge" style="background-color:<{$bgcolor}>;"></div>
                 <div class="timeline-panel">
                     <{if $item.title || $item.image}>
                         <div class="timeline-heading">

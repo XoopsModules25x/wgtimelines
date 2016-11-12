@@ -100,7 +100,7 @@ define('_AM_WGTIMELINES_TEMPLATE_TABLECONDENSED', 'Condensed');
 define('_AM_WGTIMELINES_TEMPLATE_BGCOLOR', 'Background Color');
 define('_AM_WGTIMELINES_TEMPLATE_FONTCOLOR', 'Font Color');
 define('_AM_WGTIMELINES_TEMPLATE_NONE', 'None');
-define('_AM_WGTIMELINES_TEMPLATE_NOTAPPL', " <span style='color:#ff0000; font-size:80%'>(For this template not apllicable)</span>");
+define('_AM_WGTIMELINES_TEMPLATE_NOTAPPL', " <span style='color:#ff0000; font-size:80%;'>(For this template not apllicable)</span>");
 // General
 define('_AM_WGTIMELINES_FORM_UPLOAD', 'Upload file');
 define('_AM_WGTIMELINES_FORM_IMAGE_PATH', 'Files in %s ');
