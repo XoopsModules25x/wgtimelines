@@ -123,7 +123,7 @@ class WgtimelinesItems extends XoopsObject
 		$form->addElement($imageTray);
 		// Form Text Date Select
 		$itemDate = $this->isNew() ? 0 : $this->getVar('item_date');
-		$form->addElement(new XoopsFormTextDateSelect( _AM_WGTIMELINES_ITEM_DATE, 'item_date', '', $this->getVar('item_date') ));
+		$form->addElement(new XoopsFormTextDateSelect( _AM_WGTIMELINES_ITEM_DATE, 'item_date', '', $itemDate));
 		// Form Text ItemYear
         if ( $this->isNew() ) {
             $itemYear = formatTimestamp(time(), 'Y');

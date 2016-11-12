@@ -104,33 +104,33 @@ class WgtimelinesTemplates extends XoopsObject
             switch ($option['name']) {
                 case 'panel_pos':
                     if ($option['valid'] > 0) {
-                        $tplImgpositionSelect = new XoopsFormSelect( _AM_WGTIMELINES_TEMPLATE_IMGPOS, 'panel_pos', $option['value']);
-                        $tplImgpositionSelect->addOption('none', _AM_WGTIMELINES_TEMPLATE_NONE);
-                        $tplImgpositionSelect->addOption('left', _AM_WGTIMELINES_TEMPLATE_IMGPOS_LEFT);
-                        $tplImgpositionSelect->addOption('right', _AM_WGTIMELINES_TEMPLATE_IMGPOS_RIGHT);
-                        $tplImgpositionSelect->addOption('alternate', _AM_WGTIMELINES_TEMPLATE_IMGPOS_ALTERNATE);
-                        $form->addElement($tplImgpositionSelect);
+                        $tplIpSel = new XoopsFormSelect( _AM_WGTIMELINES_TEMPLATE_IMGPOS, 'panel_pos', $option['value']);
+                        $tplIpSel->addOption('none', _AM_WGTIMELINES_TEMPLATE_NONE);
+                        $tplIpSel->addOption('left', _AM_WGTIMELINES_TEMPLATE_IMGPOS_LEFT);
+                        $tplIpSel->addOption('right', _AM_WGTIMELINES_TEMPLATE_IMGPOS_RIGHT);
+                        $tplIpSel->addOption('alternate', _AM_WGTIMELINES_TEMPLATE_IMGPOS_ALTERNATE);
+                        $form->addElement($tplIpSel);
                     }
                     break;
                 case 'tabletype':
                     if ($option['valid'] > 0) {
-                        $tplTabletypeSelect = new XoopsFormSelect( _AM_WGTIMELINES_TEMPLATE_TABLETYPE , 'tabletype', $option['value']);
-                        $tplTabletypeSelect->addOption('none', _AM_WGTIMELINES_TEMPLATE_NONE);
-                        $tplTabletypeSelect->addOption('bordered', _AM_WGTIMELINES_TEMPLATE_TABLEBORDERED);
-                        $tplTabletypeSelect->addOption('striped', _AM_WGTIMELINES_TEMPLATE_TABLESTRIPED);
-                        $tplTabletypeSelect->addOption('hover', _AM_WGTIMELINES_TEMPLATE_TABLEHOVER);
-                        $tplTabletypeSelect->addOption('condensed', _AM_WGTIMELINES_TEMPLATE_TABLECONDENSED);
-                        $form->addElement($tplTabletypeSelect);
+                        $tplTtSel = new XoopsFormSelect( _AM_WGTIMELINES_TEMPLATE_TABLETYPE , 'tabletype', $option['value']);
+                        $tplTtSel->addOption('none', _AM_WGTIMELINES_TEMPLATE_NONE);
+                        $tplTtSel->addOption('bordered', _AM_WGTIMELINES_TEMPLATE_TABLEBORDERED);
+                        $tplTtSel->addOption('striped', _AM_WGTIMELINES_TEMPLATE_TABLESTRIPED);
+                        $tplTtSel->addOption('hover', _AM_WGTIMELINES_TEMPLATE_TABLEHOVER);
+                        $tplTtSel->addOption('condensed', _AM_WGTIMELINES_TEMPLATE_TABLECONDENSED);
+                        $form->addElement($tplTtSel);
                     }
                     break;
                 case 'imgstyle':
                     if ($option['valid'] > 0) {
-                        $tplImgstyleSelect = new XoopsFormSelect( _AM_WGTIMELINES_TEMPLATE_IMGSTYLE, 'imgstyle', $option['value']);
-                        $tplImgstyleSelect->addOption('none', _AM_WGTIMELINES_TEMPLATE_NONE);
-                        $tplImgstyleSelect->addOption('img-rounded', _AM_WGTIMELINES_TEMPLATE_IMGSTYLE_ROUNDED);
-                        $tplImgstyleSelect->addOption('img-circle', _AM_WGTIMELINES_TEMPLATE_IMGSTYLE_CIRCLE);
-                        $tplImgstyleSelect->addOption('img-thumbnail', _AM_WGTIMELINES_TEMPLATE_IMGSTYLE_THUMB);
-                        $form->addElement($tplImgstyleSelect);
+                        $tplIsSel = new XoopsFormSelect( _AM_WGTIMELINES_TEMPLATE_IMGSTYLE, 'imgstyle', $option['value']);
+                        $tplIsSel->addOption('none', _AM_WGTIMELINES_TEMPLATE_NONE);
+                        $tplIsSel->addOption('img-rounded', _AM_WGTIMELINES_TEMPLATE_IMGSTYLE_ROUNDED);
+                        $tplIsSel->addOption('img-circle', _AM_WGTIMELINES_TEMPLATE_IMGSTYLE_CIRCLE);
+                        $tplIsSel->addOption('img-thumbnail', _AM_WGTIMELINES_TEMPLATE_IMGSTYLE_THUMB);
+                        $form->addElement($tplIsSel);
                     }
                     break;
                 case 'bgcolor':
@@ -140,11 +140,11 @@ class WgtimelinesTemplates extends XoopsObject
                     break;
                 case 'panel_imgpos':
                     if ($option['valid'] > 0) {
-                        $tplImgpositionSelect2 = new XoopsFormSelect( _AM_WGTIMELINES_TEMPLATE_IMGPOS, 'panel_imgpos', $option['value']);
-                        $tplImgpositionSelect2->addOption('none', _AM_WGTIMELINES_TEMPLATE_NONE);
-                        $tplImgpositionSelect2->addOption('top', _AM_WGTIMELINES_TEMPLATE_IMGPOS_TOP);
-                        $tplImgpositionSelect2->addOption('bottom', _AM_WGTIMELINES_TEMPLATE_IMGPOS_BOTTOM);
-                        $form->addElement($tplImgpositionSelect2);
+                        $tplIpSel2 = new XoopsFormSelect( _AM_WGTIMELINES_TEMPLATE_IMGPOS, 'panel_imgpos', $option['value']);
+                        $tplIpSel2->addOption('none', _AM_WGTIMELINES_TEMPLATE_NONE);
+                        $tplIpSel2->addOption('top', _AM_WGTIMELINES_TEMPLATE_IMGPOS_TOP);
+                        $tplIpSel2->addOption('bottom', _AM_WGTIMELINES_TEMPLATE_IMGPOS_BOTTOM);
+                        $form->addElement($tplIpSel2);
                     }
                     break;
                 case 'fontcolor':
@@ -302,74 +302,74 @@ class WgtimelinesTemplates extends XoopsObject
                     break;
                 case 'orientation':
                     if ($option['valid'] > 0) {
-                        $tplOrientation = new XoopsFormSelect( _AM_WGTIMELINES_TEMPLATE_ORIENTATION, 'orientation', $option['value']);
-                        $tplOrientation->addOption('vertical', _AM_WGTIMELINES_TEMPLATE_ORIENTATION_V);
-                        $tplOrientation->addOption('horizontal', _AM_WGTIMELINES_TEMPLATE_ORIENTATION_H);
-                        $form->addElement($tplOrientation);
+                        $tplOr = new XoopsFormSelect( _AM_WGTIMELINES_TEMPLATE_ORIENTATION, 'orientation', $option['value']);
+                        $tplOr->addOption('vertical', _AM_WGTIMELINES_TEMPLATE_ORIENTATION_V);
+                        $tplOr->addOption('horizontal', _AM_WGTIMELINES_TEMPLATE_ORIENTATION_H);
+                        $form->addElement($tplOr);
                     }
                     break;
                 case 'datesspeed':
                     if ($option['valid'] > 0) {
-                        $datesspeed = new XoopsFormSelect( _AM_WGTIMELINES_TEMPLATE_DATESSPEED, 'datesspeed', $option['value']);
-                        $datesspeed->addOption('100', '100');
-                        $datesspeed->addOption('200', '200');
-                        $datesspeed->addOption('300', '300');
-                        $datesspeed->addOption('400', '400');
-                        $datesspeed->addOption('500', '500');
-                        $datesspeed->addOption('600', '600');
-                        $datesspeed->addOption('700', '700');
-                        $datesspeed->addOption('800', '800');
-                        $datesspeed->addOption('900', '900');
-                        $datesspeed->addOption('1000', '1000');
-                        $form->addElement($datesspeed);
+                        $dspeed = new XoopsFormSelect( _AM_WGTIMELINES_TEMPLATE_DATESSPEED, 'datesspeed', $option['value']);
+                        $dspeed->addOption('100', '100');
+                        $dspeed->addOption('200', '200');
+                        $dspeed->addOption('300', '300');
+                        $dspeed->addOption('400', '400');
+                        $dspeed->addOption('500', '500');
+                        $dspeed->addOption('600', '600');
+                        $dspeed->addOption('700', '700');
+                        $dspeed->addOption('800', '800');
+                        $dspeed->addOption('900', '900');
+                        $dspeed->addOption('1000', '1000');
+                        $form->addElement($dspeed);
                     }
                     break;    
                 case 'issuesspeed':
                     if ($option['valid'] > 0) {
-                        $datesspeed = new XoopsFormSelect( _AM_WGTIMELINES_TEMPLATE_ISSUESSPEED, 'issuesspeed', $option['value']);
-                        $datesspeed->addOption('100', '100');
-                        $datesspeed->addOption('200', '200');
-                        $datesspeed->addOption('300', '300');
-                        $datesspeed->addOption('400', '400');
-                        $datesspeed->addOption('500', '500');
-                        $datesspeed->addOption('600', '600');
-                        $datesspeed->addOption('700', '700');
-                        $datesspeed->addOption('800', '800');
-                        $datesspeed->addOption('900', '900');
-                        $datesspeed->addOption('1000', '1000');
-                        $form->addElement($datesspeed);
+                        $ispeed = new XoopsFormSelect( _AM_WGTIMELINES_TEMPLATE_ISSUESSPEED, 'issuesspeed', $option['value']);
+                        $ispeed->addOption('100', '100');
+                        $ispeed->addOption('200', '200');
+                        $ispeed->addOption('300', '300');
+                        $ispeed->addOption('400', '400');
+                        $ispeed->addOption('500', '500');
+                        $ispeed->addOption('600', '600');
+                        $ispeed->addOption('700', '700');
+                        $ispeed->addOption('800', '800');
+                        $ispeed->addOption('900', '900');
+                        $ispeed->addOption('1000', '1000');
+                        $form->addElement($ispeed);
                     }
                     break;      
                 case 'issuestransparency':
                     if ($option['valid'] > 0) {
-                        $datesspeed = new XoopsFormSelect( _AM_WGTIMELINES_TEMPLATE_ISSUESTRANSPARENCY, 'issuestransparency', $option['value']);
-                        $datesspeed->addOption('0.1', '0.1');
-                        $datesspeed->addOption('0.2', '0.2');
-                        $datesspeed->addOption('0.3', '0.3');
-                        $datesspeed->addOption('0.4', '0.4');
-                        $datesspeed->addOption('0.5', '0.5');
-                        $datesspeed->addOption('0.6', '0.6');
-                        $datesspeed->addOption('0.7', '0.7');
-                        $datesspeed->addOption('0.8', '0.8');
-                        $datesspeed->addOption('0.9', '0.9');
-                        $datesspeed->addOption('1', '1');
-                        $form->addElement($datesspeed);
+                        $itrans = new XoopsFormSelect( _AM_WGTIMELINES_TEMPLATE_ISSUESTRANSPARENCY, 'issuestransparency', $option['value']);
+                        $itrans->addOption('0.1', '0.1');
+                        $itrans->addOption('0.2', '0.2');
+                        $itrans->addOption('0.3', '0.3');
+                        $itrans->addOption('0.4', '0.4');
+                        $itrans->addOption('0.5', '0.5');
+                        $itrans->addOption('0.6', '0.6');
+                        $itrans->addOption('0.7', '0.7');
+                        $itrans->addOption('0.8', '0.8');
+                        $itrans->addOption('0.9', '0.9');
+                        $itrans->addOption('1', '1');
+                        $form->addElement($itrans);
                     }
                     break;     
                 case 'issuestransparencyspeed':
                     if ($option['valid'] > 0) {
-                        $datesspeed = new XoopsFormSelect( _AM_WGTIMELINES_TEMPLATE_ISSUESTRANSPARENCYSPEED, 'issuestransparencyspeed', $option['value']);
-                        $datesspeed->addOption('100', '100');
-                        $datesspeed->addOption('200', '200');
-                        $datesspeed->addOption('300', '300');
-                        $datesspeed->addOption('400', '400');
-                        $datesspeed->addOption('500', '500');
-                        $datesspeed->addOption('600', '600');
-                        $datesspeed->addOption('700', '700');
-                        $datesspeed->addOption('800', '800');
-                        $datesspeed->addOption('900', '900');
-                        $datesspeed->addOption('1000', '1000');
-                        $form->addElement($datesspeed);
+                        $itspeed = new XoopsFormSelect( _AM_WGTIMELINES_TEMPLATE_ISSUESTRANSPARENCYSPEED, 'issuestransparencyspeed', $option['value']);
+                        $itspeed->addOption('100', '100');
+                        $itspeed->addOption('200', '200');
+                        $itspeed->addOption('300', '300');
+                        $itspeed->addOption('400', '400');
+                        $itspeed->addOption('500', '500');
+                        $itspeed->addOption('600', '600');
+                        $itspeed->addOption('700', '700');
+                        $itspeed->addOption('800', '800');
+                        $itspeed->addOption('900', '900');
+                        $itspeed->addOption('1000', '1000');
+                        $form->addElement($itspeed);
                     }
                     break;       
                 case 'autoplay':
@@ -388,18 +388,18 @@ class WgtimelinesTemplates extends XoopsObject
                     break;
                 case 'autoplaypause':
                     if ($option['valid'] > 0) {
-                        $datesspeed = new XoopsFormSelect( _AM_WGTIMELINES_TEMPLATE_AUTOPLAY_PAUSE, 'autoplaypause', $option['value']);
-                        $datesspeed->addOption('1000', '1000');
-                        $datesspeed->addOption('2000', '2000');
-                        $datesspeed->addOption('3000', '3000');
-                        $datesspeed->addOption('4000', '4000');
-                        $datesspeed->addOption('5000', '5000');
-                        $datesspeed->addOption('6000', '6000');
-                        $datesspeed->addOption('7000', '7000');
-                        $datesspeed->addOption('8000', '8000');
-                        $datesspeed->addOption('9000', '9000');
-                        $datesspeed->addOption('10000', '10000');
-                        $form->addElement($datesspeed);
+                        $atp = new XoopsFormSelect( _AM_WGTIMELINES_TEMPLATE_AUTOPLAY_PAUSE, 'autoplaypause', $option['value']);
+                        $atp->addOption('1000', '1000');
+                        $atp->addOption('2000', '2000');
+                        $atp->addOption('3000', '3000');
+                        $atp->addOption('4000', '4000');
+                        $atp->addOption('5000', '5000');
+                        $atp->addOption('6000', '6000');
+                        $atp->addOption('7000', '7000');
+                        $atp->addOption('8000', '8000');
+                        $atp->addOption('9000', '9000');
+                        $atp->addOption('10000', '10000');
+                        $form->addElement($atp);
                     }
                     break;           
                 case 'arrowkeys':

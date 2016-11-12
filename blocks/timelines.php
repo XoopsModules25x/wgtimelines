@@ -28,7 +28,7 @@ function b_wgtimelines_timelines_show($options)
     $myts = MyTextSanitizer::getInstance();
     $GLOBALS['xoopsTpl']->assign('wgtimelines_upload_url', WGTIMELINES_UPLOAD_URL);
     $block       = array();
-    $typeBlock   = $options[0];
+    // $typeBlock   = $options[0];
     $lenghtTitle = $options[1];
     $wgtimelines = WgtimelinesHelper::getInstance();
     $timelinesHandler = $wgtimelines->getHandler('timelines');
@@ -43,7 +43,9 @@ function b_wgtimelines_timelines_show($options)
     foreach(array_keys($timelinesAll) as $i)
     {
         $block[$i]['id'] = $myts->htmlSpecialChars($timelinesAll[$i]->getVar('tl_id'));
-        $block[$i]['name'] = $myts->htmlSpecialChars($timelinesAll[$i]->getVar('tl_name'));
+        $tl_name = $myts->htmlSpecialChars($timelinesAll[$i]->getVar('tl_name'));
+        if ($lenghtTitle > 0) $tl_name = substr($tl_name, 0, $lenghtTitle);
+        $block[$i]['name'] = $tl_name;
         $block[$i]['url'] = WGTIMELINES_URL;
     }
     return $block;
