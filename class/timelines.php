@@ -135,7 +135,7 @@ class WgtimelinesTimelines extends XoopsObject
 		$tl_template = $templates->get($this->getVar('tl_template'));
 		$ret['template'] = $tl_template->getVar('tpl_name');
 		$ret['submitter'] = XoopsUser::getUnameFromId($this->getVar('tl_submitter'));
-		$ret['date_create'] = formatTimeStamp($this->getVar('tl_date_create'), 's');
+		$ret['date_create'] = formatTimestamp($this->getVar('tl_date_create'), 's');
 		return $ret;
 	}
 

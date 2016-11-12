@@ -36,7 +36,7 @@ function b_wgtimelines_timelines_show($options)
     array_shift($options);
     array_shift($options);
     $criteria->add(new Criteria('tl_online', 1));
-    $criteria->SetSort('tl_weight');
+    $criteria->setSort('tl_weight');
     $criteria->setOrder('ASC');
     $timelinesAll = $timelinesHandler->getAll($criteria);
 	unset($criteria);

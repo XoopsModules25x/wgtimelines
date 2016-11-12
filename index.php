@@ -76,10 +76,10 @@ if ($timeline_rows > 0) {
         $criteria->setLimit( $limit );
     }
     if ($tl_sortby == 1) {
-        $criteria->SetSort('item_year DESC, item_date');
+        $criteria->setSort('item_year DESC, item_date');
         $criteria->setOrder('DESC');
     } else {
-        $criteria->SetSort('item_year ASC, item_date');
+        $criteria->setSort('item_year ASC, item_date');
         $criteria->setOrder('ASC');
     }
     $itemsCount = $itemsHandler->getCount($criteria);

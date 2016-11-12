@@ -93,7 +93,7 @@ switch($op) {
 		if($timelinesHandler->insert($timelinesObj)) {
 			$newCatId = $timelinesObj->getNewInsertedIdTimelines();
 			$permId = isset($_REQUEST['tl_id']) ? $tlId : $newTlId;
-			$gpermHandler = xoops_gethandler('groupperm');
+			$gpermHandler = xoops_getHandler('groupperm');
 			// Permission to view
 			if(isset($_POST['groups_view'])) {
 				foreach($_POST['groups_view'] as $onegroupId) {
