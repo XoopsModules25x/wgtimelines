@@ -17,7 +17,7 @@
   width: 5px;
   left: 0;
 }
-.timeline h2 {
+.timeline h3 {
   margin: 0 auto 1em;
   padding: 0.5em;
   text-align: center;
@@ -89,4 +89,14 @@
 }
 .img-timeline {
   padding: 10px 0px;
+}
+.img-timeline-top {
+  margin-bottom: 15px;
+}
+.img-timeline-bottom {
+  margin-top: 15px;
+}
+.timeline-welcome {
+  margin: 30px 0;
+  text-align: left;
 }

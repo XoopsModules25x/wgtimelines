@@ -7,12 +7,7 @@
             <th class="center"><{$smarty.const._AM_WGTIMELINES_TEMPLATE_NAME}></th>
             <th class="center"><{$smarty.const._AM_WGTIMELINES_TEMPLATE_DESC}></th>
             <th class="center"><{$smarty.const._AM_WGTIMELINES_TEMPLATE_FILE}></th>
-            <th class="center"><{$smarty.const._AM_WGTIMELINES_TEMPLATE_IMGPOS}></th>
-            <th class="center"><{$smarty.const._AM_WGTIMELINES_TEMPLATE_IMGSTYLE}></th>
-            <th class="center"><{$smarty.const._AM_WGTIMELINES_TEMPLATE_TABLETYPE}></th>
-            <th class="center"><{$smarty.const._AM_WGTIMELINES_TEMPLATE_BGCOLOR}></th>
-            <th class="center"><{$smarty.const._AM_WGTIMELINES_TEMPLATE_FONTCOLOR}></th>
-            <th class="center"><{$smarty.const._AM_WGTIMELINES_TEMPLATE_IMGPOS_PANEL}></th>
+            <th class="center"><{$smarty.const._AM_WGTIMELINES_TEMPLATE_OPTIONS}></th>
             <th class="center width5"><{$smarty.const._AM_WGTIMELINES_FORM_ACTION}></th>
         </tr>
     </thead>
@@ -22,25 +17,19 @@
             <td class="center"><{$template.name}></td>
             <td class="center"><{$template.desc}></td>
             <td class="center"><{$template.file}></td>
-            <td class="center">
-                <{if $template.imgposition_show}><{$template.imgposition}><{else}>-<{/if}>
+            <td class="left">
+                <{foreach item=option from=$template.options}>
+                    <{if $option.valid > 0}>
+                        <p style="padding:3px">
+                        <{$option.title}>: <{$option.value}>
+                        <{if $option.type == 'color'}>
+                            &nbsp;<span style="border:1px solid #000;background-color:<{$option.value}>;border-radius:5px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <{/if}>
+                        </p>
+                    <{/if}>
+                <{/foreach}>
             </td>
-            <td class="center">
-                <{if $template.imgstyle_show}><{$template.imgstyle}><{else}>-<{/if}>
-            </td>
-            <td class="center">
-                <{if $template.tabletype_show}><{$template.tabletype}><{else}>-<{/if}>
-            </td>
-            <td class="center">
-                <{if $template.bgcolor_show}><{$template.bgcolor}><{else}>-<{/if}>
-            </td>
-            <td class="center">
-                <{if $template.fontcolor_show}><{$template.fontcolor}><{else}>-<{/if}>
-            </td>
-            <td class="center">
-                <{if $template.imgposition_p_show}><{$template.imgposition_p}><{else}>-<{/if}>
-            </td>
-            <td class="center  width5">
+            <td class="center  width10">
                 <a href="templates.php?op=edit&amp;tpl_id=<{$template.id}>" title="<{$smarty.const._EDIT}>">
                     <img src="<{xoModuleIcons16 edit.png}>" alt="templates" />
                 </a>

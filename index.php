@@ -41,17 +41,11 @@ if ($timeline_rows > 0) {
     $tl_sortby    = $timeline_obj->getVar('tl_sortby');
 
     // get template and template options
-    $template_obj       = $templatesHandler->get($tl_template);
-    $tpl_name           = $template_obj->getVar('tpl_name');
-    $tpl_file           = $template_obj->getVar('tpl_file');
-    $tpl_imgposition    = $template_obj->getVar('tpl_imgposition');
-    $tpl_imgstyle       = $template_obj->getVar('tpl_imgstyle');
-    $tpl_tabletype      = $template_obj->getVar('tpl_tabletype');
-    $tpl_imgposition_p  = $template_obj->getVar('tpl_imgposition_p');
-    $tpl_bgcolor        = $template_obj->getVar('tpl_bgcolor');
-    $tpl_fontcolor      = $template_obj->getVar('tpl_fontcolor');
+    $template_obj = $templatesHandler->get($tl_template);
+    $template     = $template_obj->getValuesTemplates();
+    $options      = $template['options'];
 
-    $GLOBALS['xoopsOption']['template_main'] = $tpl_file;
+    $GLOBALS['xoopsOption']['template_main'] = $template['file'];
 
     include_once XOOPS_ROOT_PATH .'/header.php';
 
@@ -76,10 +70,13 @@ if ($timeline_rows > 0) {
         $criteria->setLimit( $limit );
     }
     if ($tl_sortby == 1) {
-        $criteria->setSort('item_year DESC, item_date');
+        $criteria->SetSort('item_year DESC, item_date');
         $criteria->setOrder('DESC');
+    } else if ($tl_sortby == 2) {
+        $criteria->SetSort('item_year ASC, item_date');
+        $criteria->setOrder('ASC');
     } else {
-        $criteria->setSort('item_year ASC, item_date');
+        $criteria->SetSort('item_weight');
         $criteria->setOrder('ASC');
     }
     $itemsCount = $itemsHandler->getCount($criteria);
@@ -97,7 +94,7 @@ if ($timeline_rows > 0) {
             $j++;
             $items[$j] = $itemsAll[$i]->getValuesItems();
             if ($items[$j]['image'] == 'blank.gif') $items[$j]['image'] = '';
-            if ($tpl_imgposition == 'alternate') {
+            if ($template['panel_pos']== 'alternate') {
                 $alternate = $alternate == 0 ? 1 : 0;
                 $items[$j]['alternate'] = $alternate;
             }
@@ -113,14 +110,11 @@ if ($timeline_rows > 0) {
         }
         $GLOBALS['xoopsTpl']->assign('items', $items);
         unset($items);
+        if ($wgtimelines->getConfig('tl_name') == 1) $GLOBALS['xoopsTpl']->assign('timeline_name', $tl_name);
         // set template options
-        $GLOBALS['xoopsTpl']->assign('table_type', $tpl_tabletype);
-        $GLOBALS['xoopsTpl']->assign('imgstyle', $tpl_imgstyle);
-        $GLOBALS['xoopsTpl']->assign('imgposition', $tpl_imgposition);
-        $GLOBALS['xoopsTpl']->assign('timeline_name', $tl_name);
-        $GLOBALS['xoopsTpl']->assign('bgcolor', $tpl_bgcolor);
-        $GLOBALS['xoopsTpl']->assign('fontcolor', $tpl_fontcolor);
-        $GLOBALS['xoopsTpl']->assign('imgposition_p', $tpl_imgposition_p);
+        foreach ($options as $option) {
+            if ($option['valid'] > 0) $GLOBALS['xoopsTpl']->assign($option['name'], $option['value']);
+        }
         
         // Display Navigation
         if($itemsCount > $limit) {
@@ -135,11 +129,13 @@ if ($timeline_rows > 0) {
         $GLOBALS['xoopsTpl']->assign('breadcrumbs', 1);
     }
 }
+
+$GLOBALS['xoopsTpl']->assign('welcome', $wgtimelines->getConfig('welcome'));
 // Keywords
 wgtimelinesMetaKeywords($wgtimelines->getConfig('keywords').', '. implode(',', $keywords));
 unset($keywords);
 // Description
-wgtimelinesMetaDescription(_MA_WGTIMELINES_TIMELINES_DESC);
+wgtimelinesMetaDescription(_MA_WGTIMELINES_DESC);
 $GLOBALS['xoopsTpl']->assign('xoops_mpageurl', WGTIMELINES_URL.'/timelines.php');
 $GLOBALS['xoopsTpl']->assign('wgtimelines_upload_url', WGTIMELINES_UPLOAD_URL);
 include __DIR__ . '/footer.php';

@@ -4,15 +4,14 @@
 	<table class='table table-bordered' id='sortable-items'>
 	<thead>
         <tr class="head">
-            <th class="center"><{$smarty.const._AM_WGTIMELINES_ITEM_TL_ID}></th>
+            <th class="center">&nbsp;</th>
             <th class="center"><{$smarty.const._AM_WGTIMELINES_ITEM_TITLE}></th>
             <th class="center"><{$smarty.const._AM_WGTIMELINES_ITEM_CONTENT}></th>
             <th class="center"><{$smarty.const._AM_WGTIMELINES_ITEM_IMAGE}></th>
             <th class="center"><{$smarty.const._AM_WGTIMELINES_ITEM_DATE}></th>
             <th class="center"><{$smarty.const._AM_WGTIMELINES_ITEM_YEAR}></th>
-            <th class="center"><{$smarty.const._AM_WGTIMELINES_ITEM_WEIGHT}></th>
-            <th class="center"><{$smarty.const._AM_WGTIMELINES_ITEM_SUBMITTER}></th>
-            <th class="center"><{$smarty.const._AM_WGTIMELINES_ITEM_DATE_CREATE}></th>
+            <th class="center"><{$smarty.const._AM_WGTIMELINES_SUBMITTER}></th>
+            <th class="center"><{$smarty.const._AM_WGTIMELINES_DATE_CREATE}></th>
             <th class="center width5"><{$smarty.const._AM_WGTIMELINES_FORM_ACTION}></th>
         </tr>
     </thead>
@@ -32,10 +31,9 @@
                     &nbsp;
                 <{/if}>
             </td>
-            <td class="center"><{$item.tl_name}></td>
             <td class="center"><{$item.title}></td>
-            <td class="center"><{$item.content}></td>
-            <td class="center"><img src="<{$wgtimelines_upload_url}>/images/items/<{$item.image}>" alt="items" style="max-width:100px;" /></td>
+            <td class="center"><{$item.content_admin}></td>
+            <td class="center"><img src="<{$wgtimelines_upload_url}>/images/items/<{$item.image}>" alt="items" style="max-width:100px" /></td>
             <td class="center"><{$item.date}></td>
             <td class="center"><{$item.year}></td>
             <td class="center"><{$item.submitter}></td>

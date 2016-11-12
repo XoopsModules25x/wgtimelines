@@ -1,10 +1,9 @@
 Read Me First
 =============
 
-Originally created by the TDM Team.
+Originally created by Goffy (Wedega - Webdesign Gabor).
 
-Modified by Timgno (http://www.txmodxoops.org)
-
-Contributors: Mamba (http://www.xoops.org), Goffy (German Xoops)
-
-Included ideas for Logo Generator from Trabis (Publisher module) and Suin (Koins module)
+Credits for timeline templates:
+Joshua P. Larson (http://codepen.io/jplhomer/pen/lgfus)
+Bruno Rodrigues (http://codepen.io/itbruno/pen/KwarLp)
+CodyHouse

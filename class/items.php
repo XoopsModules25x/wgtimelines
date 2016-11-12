@@ -107,7 +107,7 @@ class WgtimelinesItems extends XoopsObject
 		$getItemImage = $this->getVar('item_image');
 		$itemImage = $getItemImage ? $getItemImage : 'blank.gif';
 		$imageDirectory = '/uploads/wgtimelines/images/items';
-		$imageTray = new XoopsFormElementTray(_OPTIONS, '<br />' );
+		$imageTray = new XoopsFormElementTray(_AM_WGTIMELINES_ITEM_IMAGE, '<br />' );
 		$imageSelect = new XoopsFormSelect( sprintf(_AM_WGTIMELINES_FORM_IMAGE_PATH, ".{$imageDirectory}/"), 'item_image', $itemImage, 5);
 		$imageArray = XoopsLists::getImgListAsArray( XOOPS_ROOT_PATH . $imageDirectory );
 		foreach($imageArray as $image1) {
@@ -126,17 +126,21 @@ class WgtimelinesItems extends XoopsObject
 		$itemDate = $this->isNew() ? 0 : $this->getVar('item_date');
 		$form->addElement(new XoopsFormTextDateSelect( _AM_WGTIMELINES_ITEM_DATE, 'item_date', '', $this->getVar('item_date') ));
 		// Form Text ItemYear
-        $itemYear = $this->isNew() ? time() : $this->getVar('item_year');
-		$form->addElement(new XoopsFormText( _AM_WGTIMELINES_ITEM_YEAR, 'item_year', 50, 255, formatTimestamp($itemYear, 'Y') ));
+        if ( $this->isNew() ) {
+            $itemYear = formatTimestamp(time(), 'Y');
+        } else {
+            $itemYear = $this->getVar('item_year');
+        }
+		$form->addElement(new XoopsFormText( _AM_WGTIMELINES_ITEM_YEAR, 'item_year', 50, 255, $itemYear ));
 		// Form Text ItemWeight
         $itemsHandler = $wgtimelines->getHandler('items');
 		$itemWeight = $this->isNew() ? ($itemsHandler->getCountItems() + 1) : $this->getVar('item_weight');
         $form->addElement(new XoopsFormHidden('item_weight', $itemWeight));
 		// Form Select User
-		$form->addElement(new XoopsFormSelectUser( _AM_WGTIMELINES_ITEM_SUBMITTER, 'item_submitter', false, $this->getVar('item_submitter') ));
+		$form->addElement(new XoopsFormSelectUser( _AM_WGTIMELINES_SUBMITTER, 'item_submitter', false, $this->getVar('item_submitter') ));
 		// Form Text Date Select
 		$itemDate_create = $this->isNew() ? 0 : $this->getVar('item_date_create');
-		$form->addElement(new XoopsFormTextDateSelect( _AM_WGTIMELINES_ITEM_DATE_CREATE, 'item_date_create', '', $itemDate_create ));
+		$form->addElement(new XoopsFormTextDateSelect( _AM_WGTIMELINES_DATE_CREATE, 'item_date_create', '', $itemDate_create ));
 		// To Save
 		$form->addElement(new XoopsFormHidden('op', 'save'));
 		$form->addElement(new XoopsFormButton('', 'submit', _SUBMIT, 'submit'));
@@ -156,7 +160,8 @@ class WgtimelinesItems extends XoopsObject
 		$timeline_obj = $timelines->get($this->getVar('item_tl_id'));
 		$ret['tl_name'] = $timeline_obj->getVar('tl_name');
 		$ret['title'] = $this->getVar('item_title');
-		$ret['content'] = strip_tags($this->getVar('item_content'));
+		$ret['content'] = strip_tags($this->getVar('item_content', 'n'));
+        $ret['content_admin'] = $this->getVar('item_content', 'e');
 		$ret['image'] = $this->getVar('item_image');
         if ($this->getVar('item_date') > 0) {
             $ret['date'] = formatTimestamp($this->getVar('item_date'), 's');

@@ -33,7 +33,7 @@ switch($op) {
 		$limit = XoopsRequest::getInt('limit', $wgtimelines->getConfig('adminpager'));
 		$templateMain = 'wgtimelines_admin_timelines.tpl';
 		$GLOBALS['xoopsTpl']->assign('navigation', $adminMenu->addNavigation('timelines.php'));
-		$adminMenu->addItemButton(_AM_WGTIMELINES_ADD_TIMELINE, 'timelines.php?op=new', 'add');
+		$adminMenu->addItemButton(_AM_WGTIMELINES_TIMELINE_ADD, 'timelines.php?op=new', 'add');
 		$GLOBALS['xoopsTpl']->assign('buttons', $adminMenu->renderButton());
 		$timelinesCount = $timelinesHandler->getCountTimelines();
 		$timelinesAll = $timelinesHandler->getAllTimelines($start, $limit);
@@ -123,7 +123,7 @@ switch($op) {
 	case 'edit':
 		$templateMain = 'wgtimelines_admin_timelines.tpl';
 		$GLOBALS['xoopsTpl']->assign('navigation', $adminMenu->addNavigation('timelines.php'));
-		$adminMenu->addItemButton(_AM_WGTIMELINES_ADD_TIMELINE, 'timelines.php?op=new', 'add');
+		$adminMenu->addItemButton(_AM_WGTIMELINES_TIMELINE_ADD, 'timelines.php?op=new', 'add');
 		$adminMenu->addItemButton(_AM_WGTIMELINES_TIMELINES_LIST, 'timelines.php', 'list');
 		$GLOBALS['xoopsTpl']->assign('buttons', $adminMenu->renderButton());
 		// Get Form
@@ -138,11 +138,22 @@ switch($op) {
 			if(!$GLOBALS['xoopsSecurity']->check()) {
 				redirect_header('timelines.php', 3, implode(', ', $GLOBALS['xoopsSecurity']->getErrors()));
 			}
-			if($timelinesHandler->delete($timelinesObj)) {
-				redirect_header('timelines.php', 3, _AM_WGTIMELINES_FORM_DELETE_OK);
-			} else {
-				$GLOBALS['xoopsTpl']->assign('error', $timelinesObj->getHtmlErrors());
-			}
+            // delete all items first
+            $crit_items = new CriteriaCompo();
+            $crit_items->add(new Criteria('item_tl_id', $tlId));
+            $itemsCount = $itemsHandler->getCount($crit_items);
+            if ($itemsCount > 0) {
+                if(!$itemsHandler->deleteAll($crit_items, true)) {
+                    $GLOBALS['xoopsTpl']->assign('error', $itemsHandler->getHtmlErrors());
+                    break;
+                }
+            }
+            // if successful then delete timeline
+            if($timelinesHandler->delete($timelinesObj)) {
+                redirect_header('timelines.php', 3, _AM_WGTIMELINES_FORM_DELETE_OK);
+            } else {
+                $GLOBALS['xoopsTpl']->assign('error', $timelinesObj->getHtmlErrors());
+            }
 		} else {
 			xoops_confirm(array('ok' => 1, 'tl_id' => $tlId, 'op' => 'delete'), $_SERVER['REQUEST_URI'], sprintf(_AM_WGTIMELINES_FORM_SURE_DELETE, $timelinesObj->getVar('tl_name')));
 		}

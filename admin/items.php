@@ -33,7 +33,7 @@ switch($op) {
 		$limit = XoopsRequest::getInt('limit', $wgtimelines->getConfig('adminpager'));
 		$templateMain = 'wgtimelines_admin_items.tpl';
 		$GLOBALS['xoopsTpl']->assign('navigation', $adminMenu->addNavigation('items.php'));
-		$adminMenu->addItemButton(_AM_WGTIMELINES_ADD_ITEM, 'items.php?op=new', 'add');
+		$adminMenu->addItemButton(_AM_WGTIMELINES_ITEM_ADD, 'items.php?op=new', 'add');
 		$GLOBALS['xoopsTpl']->assign('buttons', $adminMenu->renderButton());
 		$itemsCount = $itemsHandler->getCountItems();
 		$itemsAll = $itemsHandler->getAllItems($start, $limit);
@@ -138,7 +138,7 @@ switch($op) {
 	case 'edit':
 		$templateMain = 'wgtimelines_admin_items.tpl';
 		$GLOBALS['xoopsTpl']->assign('navigation', $adminMenu->addNavigation('items.php'));
-		$adminMenu->addItemButton(_AM_WGTIMELINES_ADD_ITEM, 'items.php?op=new', 'add');
+		$adminMenu->addItemButton(_AM_WGTIMELINES_ITEM_ADD, 'items.php?op=new', 'add');
 		$adminMenu->addItemButton(_AM_WGTIMELINES_ITEMS_LIST, 'items.php', 'list');
 		$GLOBALS['xoopsTpl']->assign('buttons', $adminMenu->renderButton());
 		// Get Form

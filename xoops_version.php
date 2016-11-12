@@ -37,7 +37,7 @@ $modversion['license_url'] = 'http://www.gnu.org/licenses/gpl-3.0.en.html';
 $modversion['help'] = 'page=help';
 $modversion['release_info'] = 'release_info';
 $modversion['release_file'] = XOOPS_URL . '/modules/wgtimelines/docs/release_info file';
-$modversion['release_date'] = '2016-10-01';
+$modversion['release_date'] = '2016/09/27';
 $modversion['manual'] = 'link to manual file';
 $modversion['manual_file'] = XOOPS_URL . '/modules/wgtimelines/docs/install.txt';
 $modversion['min_php'] = '5.5';
@@ -79,12 +79,13 @@ $modversion['templates'][] = array('file' => 'wgtimelines_admin_footer.tpl', 'de
 $modversion['templates'][] = array('file' => 'wgtimelines_header.tpl', 'description' => '');
 $modversion['templates'][] = array('file' => 'wgtimelines_index.tpl', 'description' => '');
 $modversion['templates'][] = array('file' => 'wgtimelines_timelines_table.tpl', 'description' => '');
-$modversion['templates'][] = array('file' => 'wgtimelines_timelines_bootstrap.tpl', 'description' => '');
-$modversion['templates'][] = array('file' => 'wgtimelines_timelines_bootstrap2.tpl', 'description' => '');
 $modversion['templates'][] = array('file' => 'wgtimelines_timelines_simple.tpl', 'description' => '');
 $modversion['templates'][] = array('file' => 'wgtimelines_timelines_colorful.tpl', 'description' => '');
 $modversion['templates'][] = array('file' => 'wgtimelines_timelines_cleanhtml.tpl', 'description' => '');
 $modversion['templates'][] = array('file' => 'wgtimelines_timelines_animated.tpl', 'description' => '');
+$modversion['templates'][] = array('file' => 'wgtimelines_timelines_bigpicture.tpl', 'description' => '');
+$modversion['templates'][] = array('file' => 'wgtimelines_timelines_slider.tpl', 'description' => '');
+$modversion['templates'][] = array('file' => 'wgtimelines_timelines_extended.tpl', 'description' => '');
 $modversion['templates'][] = array('file' => 'wgtimelines_breadcrumbs.tpl', 'description' => '');
 $modversion['templates'][] = array('file' => 'wgtimelines_rss.tpl', 'description' => '');
 $modversion['templates'][] = array('file' => 'wgtimelines_search.tpl', 'description' => '');
@@ -160,6 +161,14 @@ $modversion['config'][$c] = array(
     'default'     => 'dhtmltextarea'
 );
 ++$c;
+// Welcome text
+$modversion['config'][$c]['name'] = 'welcome';
+$modversion['config'][$c]['title'] = '_MI_WGTIMELINES_WELCOME';
+$modversion['config'][$c]['description'] = '_MI_WGTIMELINES_WELCOME_DESC';
+$modversion['config'][$c]['formtype'] = 'textarea';
+$modversion['config'][$c]['valuetype'] = 'text';
+$modversion['config'][$c]['default'] = _MI_WGTIMELINES_WELCOME_DEFAULT;
+++$c;
 // Admin pager
 $modversion['config'][$c]['name'] = 'adminpager';
 $modversion['config'][$c]['title'] = '_MI_WGTIMELINES_ADMIN_PAGER';
@@ -184,7 +193,42 @@ $modversion['config'][$c]['formtype'] = 'yesno';
 $modversion['config'][$c]['valuetype'] = 'int';
 $modversion['config'][$c]['default'] = 1;
 ++$c;
+// Timeline name
+$modversion['config'][$c]['name'] = 'tl_name';
+$modversion['config'][$c]['title'] = '_MI_WGTIMELINES_TIMELINE_NAME';
+$modversion['config'][$c]['description'] = '_MI_WGTIMELINES_TIMELINE_NAME_DESC';
+$modversion['config'][$c]['formtype'] = 'yesno';
+$modversion['config'][$c]['valuetype'] = 'int';
+$modversion['config'][$c]['default'] = 1;
+++$c;
+//Uploads : max size for image upload 
+$modversion['config'][$c] = array(
+    'name'        => 'maxsize',
+    'title'       => '_MI_WGTIMELINES_MAXSIZE',
+    'description' => '_MI_WGTIMELINES_MAXSIZE_DESC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'int',
+    'default'     => 10485760); // 1 MB
+++$c;
+//Uploads : mimetypes of images
+$modversion['config'][$c] = array(
+    'name'        => 'mimetypes',
+    'title'       => '_MI_WGTIMELINES_MIMETYPES',
+    'description' => '_MI_WGTIMELINES_MIMETYPES_DESC',
+    'formtype'    => 'select_multi',
+    'valuetype'   => 'array',
+    'default'     => array('image/gif', 'image/jpeg', 'image/png', 'image/jpg'),
+    'options'     => array(
+        'bmp'   => 'image/bmp',
+        'gif'   => 'image/gif',
+        'pjpeg' => 'image/pjpeg',
+        'jpeg'  => 'image/jpeg',
+        'jpg'   => 'image/jpg',
+        'jpe'   => 'image/jpe',
+        'png'   => 'image/png'
+    ));
 // Bookmarks
+++$c;
 $modversion['config'][$c]['name'] = 'bookmarks';
 $modversion['config'][$c]['title'] = '_MI_WGTIMELINES_BOOKMARKS';
 $modversion['config'][$c]['description'] = '_MI_WGTIMELINES_BOOKMARKS_DESC';

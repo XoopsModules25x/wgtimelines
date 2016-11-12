@@ -17,14 +17,19 @@
   }
 }
 </style>
+<{if $welcome}>
+    <h2 class="timeline-welcome"><{$welcome}></h2>
+<{/if}>
 <{if count($items) > 0}>
     <div class="timeline">
-        <h2 class="timeline-header"><{$timeline_name}></h2>
+        <{if $timeline_name}>
+            <h3 class="timeline-header"><{$timeline_name}></h3>
+        <{/if}>
         <ul>
         <{foreach item=item from=$items}>
             <li>
-                <{if $imgposition_p == 'top' && $item.image}>
-                    <span class='col-sm-12 cont-img-timeline'><img class='img-timeline img-responsive <{$imgstyle}>' src='<{$wgtimelines_upload_url}>/images/items/<{$item.image}>' alt='items' /></span>
+                <{if $panel_imgpos == 'top' && $item.image}>
+                    <span class='col-sm-12 cont-img-timeline'><img class='img-timeline img-timeline-<{$panel_imgpos}> img-responsive <{$imgstyle}>' src='<{$wgtimelines_upload_url}>/images/items/<{$item.image}>' alt='items' /></span>
                 <{/if}>
                 <{if $item.title}>
                     <h3 class="timeline-title"><{$item.title}></h3>
@@ -33,8 +38,8 @@
                 <{if $item.date}>
                     <time><{$item.date}></time>
                 <{/if}>
-                <{if $imgposition_p == 'bottom' && $item.image}>
-                    <span class='col-sm-12'><img class='img-timeline img-responsive <{$imgstyle}>' src='<{$wgtimelines_upload_url}>/images/items/<{$item.image}>' alt='items' /></span>
+                <{if $panel_imgpos == 'bottom' && $item.image}>
+                    <span class='col-sm-12'><img class='img-timeline img-timeline-<{$panel_imgpos}> img-responsive <{$imgstyle}>' src='<{$wgtimelines_upload_url}>/images/items/<{$item.image}>' alt='items' /></span>
                 <{/if}>
             </li>
         <{/foreach}>

@@ -94,8 +94,9 @@ class WgtimelinesTimelines extends XoopsObject
 		// Form Text tlSortBy
 		$tlSortBy = $this->isNew() ? 0 : $this->getVar('tl_sortby');
         $tlSortBySelect = new XoopsFormSelect( _AM_WGTIMELINES_TIMELINE_SORTBY, 'tl_sortby', $tlSortBy);
-        $tlSortBySelect->addOption(0, _AM_WGTIMELINES_TIMELINE_SORTBY_ASC);
-        $tlSortBySelect->addOption(1, _AM_WGTIMELINES_TIMELINE_SORTBY_DESC);
+        $tlSortBySelect->addOption(0, _AM_WGTIMELINES_TIMELINE_SORTBY_ADMIN);
+        $tlSortBySelect->addOption(1, _AM_WGTIMELINES_TIMELINE_SORTBY_Y_DESC);
+        $tlSortBySelect->addOption(2, _AM_WGTIMELINES_TIMELINE_SORTBY_Y_ASC);
         $form->addElement($tlSortBySelect);
         // Form Text TlWeight
         $timelinesHandler = $wgtimelines->getHandler('timelines');
@@ -105,10 +106,10 @@ class WgtimelinesTimelines extends XoopsObject
 		$tlOnline = $this->isNew() ? 0 : $this->getVar('tl_online');
 		$form->addElement(new XoopsFormRadioYN( _AM_WGTIMELINES_TIMELINE_ONLINE, 'tl_online', $tlOnline));
 		// Form Select User
-		$form->addElement(new XoopsFormSelectUser( _AM_WGTIMELINES_TIMELINE_SUBMITTER, 'tl_submitter', false, $this->getVar('tl_submitter') ));
+		$form->addElement(new XoopsFormSelectUser( _AM_WGTIMELINES_SUBMITTER, 'tl_submitter', false, $this->getVar('tl_submitter') ));
 		// Form Text Date Select
 		$tlDate_create = $this->isNew() ? 0 : $this->getVar('tl_date_create');
-		$form->addElement(new XoopsFormTextDateSelect( _AM_WGTIMELINES_TIMELINE_DATE_CREATE, 'tl_date_create', '', $tlDate_create ), true);
+		$form->addElement(new XoopsFormTextDateSelect( _AM_WGTIMELINES_DATE_CREATE, 'tl_date_create', '', $tlDate_create ), true);
 		// To Save
 		$form->addElement(new XoopsFormHidden('op', 'save'));
 		$form->addElement(new XoopsFormButton('', 'submit', _SUBMIT, 'submit'));
@@ -127,14 +128,16 @@ class WgtimelinesTimelines extends XoopsObject
 		$ret['weight'] = $this->getVar('tl_weight');
         $ret['sortby'] = $this->getVar('tl_sortby');
         if ($this->getVar('tl_sortby') == 1) {
-            $ret['sortby_text'] = _AM_WGTIMELINES_TIMELINE_SORTBY_DESC;
+            $ret['sortby_text'] = _AM_WGTIMELINES_TIMELINE_SORTBY_Y_DESC;
+        } else if ($this->getVar('tl_sortby') == 2) {
+            $ret['sortby_text'] = _AM_WGTIMELINES_TIMELINE_SORTBY_Y_ASC;
         } else {
-            $ret['sortby_text'] = _AM_WGTIMELINES_TIMELINE_SORTBY_ASC;
+            $ret['sortby_text'] = _AM_WGTIMELINES_TIMELINE_SORTBY_ADMIN;
         }
         $ret['online'] = $this->getVar('tl_online');
 		$templates = $wgtimelines->getHandler('templates');
-		$tl_template = $templates->get($this->getVar('tl_template'));
-		$ret['template'] = $tl_template->getVar('tpl_name');
+		$template_obj = $templates->get($this->getVar('tl_template'));
+		$ret['template'] = $template_obj->getVar('tpl_name');
 		$ret['submitter'] = XoopsUser::getUnameFromId($this->getVar('tl_submitter'));
 		$ret['date_create'] = formatTimestamp($this->getVar('tl_date_create'), 's');
 		return $ret;

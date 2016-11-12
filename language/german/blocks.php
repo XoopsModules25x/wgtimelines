@@ -18,13 +18,12 @@
  * @since          1.0
  * @min_xoops      2.5.7
  * @author         goffy (wedega.com) - Email:<webmaster@wedega.com> - Website:<http://xoops.wedega.com>
- * @version        $Id: 1.0 main.php 13070 Sat 2016-10-01 05:42:18Z XOOPS Development Team $
+ * @version        $Id: 1.0 blocks.php 13070 Sat 2016-10-01 05:42:17Z XOOPS Development Team $
  */
-// ---------------- Main ----------------
-define('_MA_WGTIMELINES_INDEX', "Home");
-define('_MA_WGTIMELINES_TITLE', "wgTimelines");
-define('_MA_WGTIMELINES_DESC', "This module creates a chronicle/timeline and display it in various ways.");
-// ---------------- Contents ----------------
-// Admin link
-define('_MA_WGTIMELINES_ADMIN', "Admin");
+// Admin Edit
+define('_MB_WGTIMELINES_TITLE_LENGTH', "Titellänge");
+define('_MB_WGTIMELINES_TIMELINES_TO_DISPLAY', "Anzuzeigende Zeitreihen");
+define('_MB_WGTIMELINES_ALL_TIMELINES', "Alle Zeitreihen");
+// Blocks
+define('_MB_WGTIMELINES_TL_NAME', "Liste der Zeitreihen");
 // ---------------- End ----------------
