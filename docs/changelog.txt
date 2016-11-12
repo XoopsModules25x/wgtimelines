@@ -2,3 +2,11 @@
 Change Log for wgTimelines - 2016/10/01 5:42:18 Version 1.0
 ==============================================================
  - Original release wgtimelines (goffy (wedega.com))
+ - Callable calls in loops termination condition (mamba)
+ - Reference mismatch (mamba)
+ - Missing semicolon (mamba)
+ - Typo: geConfig (mamba)
+ - Missing @return tag (mamba)
+ - Unnecessary parentheses (mamba)
+ - Unnecessary double quotes (mamba)
+ - Callable name case mismatched in a call (mamba)
