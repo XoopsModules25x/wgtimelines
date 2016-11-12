@@ -166,7 +166,7 @@ switch($op) {
     case 'order':
         $torder = $_POST['torder'];
         echo "torder:$echo";
-        for ($i = 0; $i < count($torder); $i++){
+        for ($i = 0, $iMax = count($torder); $i < $iMax; $i++){
             $timelinesObj = $timelinesHandler->get($torder[$i]);
             $timelinesObj->setVar('tl_weight',$i+1);
             $timelinesHandler->insert($timelinesObj);
