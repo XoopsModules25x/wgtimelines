@@ -90,7 +90,7 @@ class WgtimelinesHelper
             $this->initConfig();
         }
         if (!$name) {
-            $this->addLog("Getting all config");
+            $this->addLog('Getting all config');
             return $this->config;
         }
         if (!isset($this->config[$name])) {

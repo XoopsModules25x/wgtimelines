@@ -101,15 +101,15 @@ class WgtimelinesTemplates extends XoopsObject
 		// Form Text TplFile
 		$form->addElement(new XoopsFormText( _AM_WGTIMELINES_TEMPLATE_FILE, 'tpl_file', 50, 255, $this->getVar('tpl_file') ), true);
 		// Form Text Area TplOptions
-        $tpl_options = $this->isNew() ? "1|1|1|1|1|1|1|1|1|1|1" :  $this->getVar('tpl_options');
+        $tpl_options = $this->isNew() ? '1|1|1|1|1|1|1|1|1|1|1' :  $this->getVar('tpl_options');
         if ($master) {
             $form->addElement(new XoopsFormText( _AM_WGTIMELINES_TEMPLATE_OPTIONS, 'tpl_options', 50, 255, $tpl_options ), true);
         } else {
             $form->addElement(new XoopsFormHidden('tpl_options', $tpl_options));
         }
-        $options = explode("|", $tpl_options);
+        $options = explode('|', $tpl_options);
         // Form Select
-        $applicable = ($options[0] == 0) ? _AM_WGTIMELINES_TEMPLATE_NOTAPPL : "";
+        $applicable = ($options[0] == 0) ? _AM_WGTIMELINES_TEMPLATE_NOTAPPL : '';
         $tplImgpositionSelect = new XoopsFormSelect( _AM_WGTIMELINES_TEMPLATE_IMGPOS . $applicable, 'tpl_imgposition', $this->getVar('tpl_imgposition'));
         $tplImgpositionSelect->addOption('none', _AM_WGTIMELINES_TEMPLATE_NONE);
         $tplImgpositionSelect->addOption('left', _AM_WGTIMELINES_TEMPLATE_IMGPOS_LEFT);
@@ -119,7 +119,7 @@ class WgtimelinesTemplates extends XoopsObject
         $form->addElement($tplImgpositionSelect);
         
         // Form Select
-        $applicable = ($options[1] == 0) ? _AM_WGTIMELINES_TEMPLATE_NOTAPPL : "";
+        $applicable = ($options[1] == 0) ? _AM_WGTIMELINES_TEMPLATE_NOTAPPL : '';
         $tplImgstyleSelect = new XoopsFormSelect( _AM_WGTIMELINES_TEMPLATE_IMGSTYLE . $applicable, 'tpl_imgstyle', $this->getVar('tpl_imgstyle'));
         $tplImgstyleSelect->addOption('none', _AM_WGTIMELINES_TEMPLATE_NONE);
         $tplImgstyleSelect->addOption('img-rounded', _AM_WGTIMELINES_TEMPLATE_IMGSTYLE_ROUNDED);
@@ -129,7 +129,7 @@ class WgtimelinesTemplates extends XoopsObject
         $form->addElement($tplImgstyleSelect);
 
         // Form Select
-        $applicable = ($options[2] == 0) ? _AM_WGTIMELINES_TEMPLATE_NOTAPPL : "";
+        $applicable = ($options[2] == 0) ? _AM_WGTIMELINES_TEMPLATE_NOTAPPL : '';
         $tplTabletypeSelect = new XoopsFormSelect( _AM_WGTIMELINES_TEMPLATE_TABLETYPE . $applicable, 'tpl_tabletype', $this->getVar('tpl_tabletype'));
         $tplTabletypeSelect->addOption('none', _AM_WGTIMELINES_TEMPLATE_NONE);
         $tplTabletypeSelect->addOption('bordered', _AM_WGTIMELINES_TEMPLATE_TABLEBORDERED);
@@ -160,7 +160,7 @@ class WgtimelinesTemplates extends XoopsObject
         $form->addElement($tplFontColor);
 
         // Form Select
-        $applicable = ($options[5] == 0) ? _AM_WGTIMELINES_TEMPLATE_NOTAPPL : "";
+        $applicable = ($options[5] == 0) ? _AM_WGTIMELINES_TEMPLATE_NOTAPPL : '';
         $tplImgpositionSelect2 = new XoopsFormSelect( _AM_WGTIMELINES_TEMPLATE_IMGPOS_PANEL . $applicable, 'tpl_imgposition_p', $this->getVar('tpl_imgposition_p'));
         $tplImgpositionSelect2->addOption('none', _AM_WGTIMELINES_TEMPLATE_NONE);
         $tplImgpositionSelect2->addOption('top', _AM_WGTIMELINES_TEMPLATE_IMGPOS_TOP);
@@ -186,7 +186,7 @@ class WgtimelinesTemplates extends XoopsObject
         $ret['desc'] = $this->getVar('tpl_desc', 'n');
 		$ret['file'] = $this->getVar('tpl_file');
 		$ret['options'] = strip_tags($this->getVar('tpl_options'));
-        $options = explode("|", $this->getVar('tpl_options'));
+        $options = explode('|', $this->getVar('tpl_options'));
 		$ret['imgposition'] = $this->getVar('tpl_imgposition');
         if ($options[0] == 1) $ret['imgposition_show'] = 1;
 		$ret['imgstyle'] = $this->getVar('tpl_imgstyle');

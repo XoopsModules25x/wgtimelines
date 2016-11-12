@@ -25,19 +25,19 @@
 function wgtimelines_search($queryarray, $andor, $limit, $offset, $userid)
 {
     global $xoopsDB;
-    $sql = "SELECT 'tpl_id', 'tpl_name' FROM ".$xoopsDB->prefix('wgtimelines_templates')." WHERE tpl_id != 0";
+    $sql = "SELECT 'tpl_id', 'tpl_name' FROM ".$xoopsDB->prefix('wgtimelines_templates') . ' WHERE tpl_id != 0';
     if ( $userid != 0 ) {
-        $sql .= " AND tpl_submitter=".(int) ($userid);
+        $sql .= ' AND tpl_submitter=' . (int) ($userid);
     }
     if ( is_array($queryarray) && $count = count($queryarray) )
     {
-        $sql .= " AND (";
+        $sql .= ' AND (';
         for($i = 1; $i < $count; ++$i)
         {
             $sql .= " $andor ";
-            $sql .= "";
+            $sql .= '';
         }
-        $sql .= ")";
+        $sql .= ')';
     }
     $sql .= " ORDER BY 'tpl_id' DESC";
     $result = $xoopsDB->query($sql,$limit,$offset);

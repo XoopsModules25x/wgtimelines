@@ -67,11 +67,12 @@ function b_wgtimelines_timelines_edit($options)
     $timelinesAll = $timelinesHandler->getAll($criteria);
     unset($criteria);
     $form .= _MB_WGTIMELINES_TIMELINES_TO_DISPLAY."<br /><select name='options[]' multiple='multiple' size='5'>";
-    $form .= "<option value='0' " . (array_search(0, $options) === false ? "" : "selected='selected'") . ">" ._MB_WGTIMELINES_ALL_TIMELINES . "</option>";
+    $form .= "<option value='0' " . (array_search(0, $options) === false ? '' : "selected='selected'") . '>' . _MB_WGTIMELINES_ALL_TIMELINES . '</option>';
     foreach (array_keys($timelinesAll) as $i) {
         $tl_id = $timelinesAll[$i]->getVar('tl_id');
-        $form .= "<option value='" . $tl_id . "' " . (array_search($tl_id, $options) === false ? "" : "selected='selected'") . ">".$timelinesAll[$i]->getVar('tl_name')."</option>";
+        $form .= "<option value='" . $tl_id . "' " . (array_search($tl_id, $options) === false ? '' : "selected='selected'") . '>'
+                 . $timelinesAll[$i]->getVar('tl_name') . '</option>';
     }
-    $form .= "</select>";
+    $form .= '</select>';
     return $form;
 }
