@@ -57,10 +57,12 @@ class WgtimelinesHelper
         $this->debug = $debug;
         $this->dirname =  basename(dirname(__DIR__));
     }
+
     /**
-    *  @static function getInstance
-    *  @param mixed $debug
-    */
+     * @static function getInstance
+     * @param mixed $debug
+     * @return bool|WgtimelinesHelper
+     */
     public static function getInstance($debug = false)
     {
         static $instance = false;
@@ -69,10 +71,12 @@ class WgtimelinesHelper
         }
         return $instance;
     }
+
     /**
-    *  @static function getModule
-    *  @param null
-    */
+     * @static function getModule
+     * @param null
+     * @return string
+     */
     public function &getModule()
     {
         if ($this->module == null) {
@@ -80,10 +84,12 @@ class WgtimelinesHelper
         }
         return $this->module;
     }
+
     /**
-    *  @static function getConfig
-    *  @param string $name
-    */
+     * @static function getConfig
+     * @param string $name
+     * @return null|string
+     */
     public function getConfig($name = null)
     {
         if ($this->config == null) {
@@ -100,11 +106,13 @@ class WgtimelinesHelper
         $this->addLog("Getting config '{$name}' : " . $this->config[$name]);
         return $this->config[$name];
     }
+
     /**
-    *  @static function setConfig
-    *  @param string $name
-    *  @param mixed $value
-    */
+     * @static function setConfig
+     * @param string $name
+     * @param mixed  $value
+     * @return mixed
+     */
     public function setConfig($name = null, $value = null)
     {
         if ($this->config == null) {
@@ -114,10 +122,12 @@ class WgtimelinesHelper
         $this->addLog("Setting config '{$name}' : " . $this->config[$name]);
         return $this->config[$name];
     }
+
     /**
-    *  @static function getHandler
-    *  @param string $name
-    */
+     * @static function getHandler
+     * @param string $name
+     * @return mixed
+     */
     public function &getHandler($name)
     {
         if (!isset($this->handler[$name . '_handler'])) {

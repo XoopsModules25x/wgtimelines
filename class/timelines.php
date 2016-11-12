@@ -66,11 +66,12 @@ class WgtimelinesTimelines extends XoopsObject
 		return $newInsertedId;
 	}
 
-	/**
-	 * Get form
-	 *
-	 * @param mixed $action
-	 */
+    /**
+     * Get form
+     *
+     * @param mixed $action
+     * @return XoopsThemeForm
+     */
 	public function getFormTimelines($action = false)
 	{
 		$wgtimelines = WgtimelinesHelper::getInstance();
