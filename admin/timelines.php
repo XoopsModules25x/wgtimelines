@@ -93,7 +93,7 @@ switch($op) {
 		if($timelinesHandler->insert($timelinesObj)) {
 			$newCatId = $timelinesObj->getNewInsertedIdTimelines();
 			$permId = isset($_REQUEST['tl_id']) ? $tlId : $newTlId;
-			$gpermHandler = xoops_gethandler('groupperm');
+			$gpermHandler = xoops_getHandler('groupperm');
 			// Permission to view
 			if(isset($_POST['groups_view'])) {
 				foreach($_POST['groups_view'] as $onegroupId) {
@@ -177,7 +177,7 @@ switch($op) {
     case 'order':
         $torder = $_POST['torder'];
         echo "torder:$echo";
-        for ($i = 0; $i < count($torder); $i++){
+        for ($i = 0, $iMax = count($torder); $i < $iMax; $i++){
             $timelinesObj = $timelinesHandler->get($torder[$i]);
             $timelinesObj->setVar('tl_weight',$i+1);
             $timelinesHandler->insert($timelinesObj);

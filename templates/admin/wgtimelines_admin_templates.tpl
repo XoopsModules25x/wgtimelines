@@ -20,7 +20,7 @@
             <td class="left">
                 <{foreach item=option from=$template.options}>
                     <{if $option.valid > 0}>
-                        <p style="padding:3px">
+                        <p style="padding:3px;">
                         <{$option.title}>: <{$option.value}>
                         <{if $option.type == 'color'}>
                             &nbsp;<span style="border:1px solid #000;background-color:<{$option.value}>;border-radius:5px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>

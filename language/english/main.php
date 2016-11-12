@@ -21,10 +21,10 @@
  * @version        $Id: 1.0 main.php 13070 Sat 2016-10-01 05:42:18Z XOOPS Development Team $
  */
 // ---------------- Main ----------------
-define('_MA_WGTIMELINES_INDEX', "Home");
-define('_MA_WGTIMELINES_TITLE', "wgTimelines");
-define('_MA_WGTIMELINES_DESC', "This module creates a chronicle/timeline and display it in various ways.");
+define('_MA_WGTIMELINES_INDEX', 'Home');
+define('_MA_WGTIMELINES_TITLE', 'wgTimelines');
+define('_MA_WGTIMELINES_DESC', 'This module creates a chronicle/timeline and display it in various ways.');
 // ---------------- Contents ----------------
 // Admin link
-define('_MA_WGTIMELINES_ADMIN', "Admin");
+define('_MA_WGTIMELINES_ADMIN', 'Admin');
 // ---------------- End ----------------

@@ -178,7 +178,7 @@
 		left: 5%;
 	}
 	ul.timeline > li {
-		margin-bottom: 0px;
+		margin-bottom: 0;
 		position: relative;
 		width: 100%;
 		float: right;

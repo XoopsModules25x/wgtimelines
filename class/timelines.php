@@ -66,11 +66,12 @@ class WgtimelinesTimelines extends XoopsObject
 		return $newInsertedId;
 	}
 
-	/**
-	 * Get form
-	 *
-	 * @param mixed $action
-	 */
+    /**
+     * Get form
+     *
+     * @param mixed $action
+     * @return XoopsThemeForm
+     */
 	public function getFormTimelines($action = false)
 	{
 		$wgtimelines = WgtimelinesHelper::getInstance();
@@ -115,9 +116,13 @@ class WgtimelinesTimelines extends XoopsObject
 		return $form;
 	}
 
-	/**
-	 * Get Values
-	 */
+    /**
+     * Get Values
+     * @param null $keys
+     * @param null $format
+     * @param null $maxDepth
+     * @return array
+     */
 	public function getValuesTimelines($keys = null, $format = null, $maxDepth = null)
 	{
 		$wgtimelines = WgtimelinesHelper::getInstance();
@@ -138,7 +143,7 @@ class WgtimelinesTimelines extends XoopsObject
 		$template_obj = $templates->get($this->getVar('tl_template'));
 		$ret['template'] = $template_obj->getVar('tpl_name');
 		$ret['submitter'] = XoopsUser::getUnameFromId($this->getVar('tl_submitter'));
-		$ret['date_create'] = formatTimeStamp($this->getVar('tl_date_create'), 's');
+		$ret['date_create'] = formatTimestamp($this->getVar('tl_date_create'), 's');
 		return $ret;
 	}
 
@@ -150,7 +155,7 @@ class WgtimelinesTimelines extends XoopsObject
 	public function toArrayTimelines()
 	{
 		$ret = array();
-		$vars = $this->getVars();
+		$vars =& $this->getVars();
 		foreach(array_keys($vars) as $var) {
 			$ret[$var] = $this->getVar('"{$var}"');
 		}
@@ -183,12 +188,14 @@ class WgtimelinesTimelinesHandler extends XoopsPersistableObjectHandler
 		return parent::create($isNew);
 	}
 
-	/**
-	 * retrieve a field
-	 *
-	 * @param int $i field id
-	 * @return mixed reference to the {@link Get} object
-	 */
+    /**
+     * retrieve a field
+     *
+     * @param int  $i field id
+     * @param null $fields
+     * @return mixed reference to the <a href='psi_element://Get'>Get</a> object
+     *                object
+     */
 	public function get($i = null, $fields = null)
 	{
 		return parent::get($i, $fields);
@@ -205,9 +212,14 @@ class WgtimelinesTimelinesHandler extends XoopsPersistableObjectHandler
 		return $this->db->getInsertId();
 	}
 
-	/**
-	 * Get Count Timelines in the database
-	 */
+    /**
+     * Get Count Timelines in the database
+     * @param int    $start
+     * @param int    $limit
+     * @param string $sort
+     * @param string $order
+     * @return int
+     */
 	public function getCountTimelines($start = 0, $limit = 0, $sort = 'tl_weight ASC, tl_id', $order = 'ASC')
 	{
 		$crCountTimelines = new CriteriaCompo();
@@ -215,9 +227,14 @@ class WgtimelinesTimelinesHandler extends XoopsPersistableObjectHandler
 		return parent::getCount($crCountTimelines);
 	}
 
-	/**
-	 * Get All Timelines in the database
-	 */
+    /**
+     * Get All Timelines in the database
+     * @param int    $start
+     * @param int    $limit
+     * @param string $sort
+     * @param string $order
+     * @return array
+     */
 	public function getAllTimelines($start = 0, $limit = 0, $sort = 'tl_weight ASC, tl_id', $order = 'ASC')
 	{
 		$crAllTimelines = new CriteriaCompo();
@@ -225,9 +242,15 @@ class WgtimelinesTimelinesHandler extends XoopsPersistableObjectHandler
 		return parent::getAll($crAllTimelines);
 	}
 
-	/**
-	 * Get Criteria Timelines
-	 */
+    /**
+     * Get Criteria Timelines
+     * @param $crTimelines
+     * @param $start
+     * @param $limit
+     * @param $sort
+     * @param $order
+     * @return
+     */
 	private function getTimelinesCriteria($crTimelines, $start, $limit, $sort, $order)
 	{
 		if ($start > 0) $crTimelines->setStart( $start );

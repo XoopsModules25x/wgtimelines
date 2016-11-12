@@ -21,9 +21,9 @@
  * @version        $Id: 1.0 blocks.php 13070 Sat 2016-10-01 05:42:17Z XOOPS Development Team $
  */
 // Admin Edit
-define('_MB_WGTIMELINES_TITLE_LENGTH', "Titellänge");
-define('_MB_WGTIMELINES_TIMELINES_TO_DISPLAY', "Anzuzeigende Zeitreihen");
-define('_MB_WGTIMELINES_ALL_TIMELINES', "Alle Zeitreihen");
+define('_MB_WGTIMELINES_TITLE_LENGTH', 'Titellänge');
+define('_MB_WGTIMELINES_TIMELINES_TO_DISPLAY', 'Anzuzeigende Zeitreihen');
+define('_MB_WGTIMELINES_ALL_TIMELINES', 'Alle Zeitreihen');
 // Blocks
-define('_MB_WGTIMELINES_TL_NAME', "Liste der Zeitreihen");
+define('_MB_WGTIMELINES_TL_NAME', 'Liste der Zeitreihen');
 // ---------------- End ----------------

@@ -19,25 +19,30 @@
  * @min_xoops      2.5.7
  * @author         goffy (wedega.com) - Email:<webmaster@wedega.com> - Website:<http://xoops.wedega.com>
  * @version        $Id: 1.0 search.inc.php 13070 Sat 2016-10-01 05:42:17Z XOOPS Development Team $
+ * @param $queryarray
+ * @param $andor
+ * @param $limit
+ * @param $offset
+ * @param $userid
  */
 
 // search callback functions
 function wgtimelines_search($queryarray, $andor, $limit, $offset, $userid)
 {
     global $xoopsDB;
-    $sql = "SELECT 'tpl_id', 'tpl_name' FROM ".$xoopsDB->prefix('wgtimelines_templates')." WHERE tpl_id != 0";
-    if ( $userid != 0 ) {
-        $sql .= " AND tpl_submitter=".(int) ($userid);
+    $sql = "SELECT 'tpl_id', 'tpl_name' FROM ".$xoopsDB->prefix('wgtimelines_templates') . ' WHERE tpl_id != 0';
+    if ( $userid !== 0 ) {
+        $sql .= ' AND tpl_submitter=' . (int)$userid;
     }
     if ( is_array($queryarray) && $count = count($queryarray) )
     {
-        $sql .= " AND (";
+        $sql .= ' AND (';
         for($i = 1; $i < $count; ++$i)
         {
             $sql .= " $andor ";
-            $sql .= "";
+            $sql .= '';
         }
-        $sql .= ")";
+        $sql .= ')';
     }
     $sql .= " ORDER BY 'tpl_id' DESC";
     $result = $xoopsDB->query($sql,$limit,$offset);

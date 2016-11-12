@@ -68,11 +68,12 @@ class WgtimelinesItems extends XoopsObject
 		return $newInsertedId;
 	}
 
-	/**
-	 * Get form
-	 *
-	 * @param mixed $action
-	 */
+    /**
+     * Get form
+     *
+     * @param mixed $action
+     * @return XoopsThemeForm
+     */
 	public function getFormItems($action = false)
 	{
 		$wgtimelines = WgtimelinesHelper::getInstance();
@@ -104,7 +105,7 @@ class WgtimelinesItems extends XoopsObject
 		$form->addElement(new XoopsFormEditor( _AM_WGTIMELINES_ITEM_CONTENT, 'item_content', $editorConfigs), true);
 		// Form Upload Image
 		$getItemImage = $this->getVar('item_image');
-		$itemImage = $getItemImage ? $getItemImage : 'blank.gif';
+		$itemImage = $getItemImage ?: 'blank.gif';
 		$imageDirectory = '/uploads/wgtimelines/images/items';
 		$imageTray = new XoopsFormElementTray(_AM_WGTIMELINES_ITEM_IMAGE, '<br />' );
 		$imageSelect = new XoopsFormSelect( sprintf(_AM_WGTIMELINES_FORM_IMAGE_PATH, ".{$imageDirectory}/"), 'item_image', $itemImage, 5);
@@ -114,7 +115,7 @@ class WgtimelinesItems extends XoopsObject
 		}
 		$imageSelect->setExtra("onchange='showImgSelected(\"image1\", \"item_image\", \"".$imageDirectory."\", \"\", \"".XOOPS_URL."\")'");
 		$imageTray->addElement($imageSelect, false);
-		$imageTray->addElement(new XoopsFormLabel('', "<br /><img src='".XOOPS_URL."/".$imageDirectory."/".$itemImage."' name='image1' id='image1' alt='' style='max-width:100px' />"));
+		$imageTray->addElement(new XoopsFormLabel('', "<br /><img src='".XOOPS_URL . '/' . $imageDirectory . '/' . $itemImage . "' name='image1' id='image1' alt='' style='max-width:100px;' />"));
 		// Form File
 		$fileSelectTray = new XoopsFormElementTray('', '<br />' );
 		$fileSelectTray->addElement(new XoopsFormFile( _AM_WGTIMELINES_FORM_UPLOAD_IMAGE_ITEMS, 'attachedfile', $wgtimelines->getConfig('maxsize') ));
@@ -146,9 +147,13 @@ class WgtimelinesItems extends XoopsObject
 		return $form;
 	}
 
-	/**
-	 * Get Values
-	 */
+    /**
+     * Get Values
+     * @param null $keys
+     * @param null $format
+     * @param null $maxDepth
+     * @return array
+     */
 	public function getValuesItems($keys = null, $format = null, $maxDepth = null)
 	{
 		$wgtimelines = WgtimelinesHelper::getInstance();
@@ -163,12 +168,12 @@ class WgtimelinesItems extends XoopsObject
         $ret['content_admin'] = $this->getVar('item_content', 'e');
 		$ret['image'] = $this->getVar('item_image');
         if ($this->getVar('item_date') > 0) {
-            $ret['date'] = formatTimeStamp($this->getVar('item_date'), 's');
+            $ret['date'] = formatTimestamp($this->getVar('item_date'), 's');
         }
 		$ret['year'] = $this->getVar('item_year');
 		$ret['weight'] = $this->getVar('item_weight');
 		$ret['submitter'] = XoopsUser::getUnameFromId($this->getVar('item_submitter'));
-		$ret['date_create'] = formatTimeStamp($this->getVar('item_date_create'), 's');
+		$ret['date_create'] = formatTimestamp($this->getVar('item_date_create'), 's');
 		return $ret;
 	}
 
@@ -180,7 +185,7 @@ class WgtimelinesItems extends XoopsObject
 	public function toArrayItems()
 	{
 		$ret = array();
-		$vars = $this->getVars();
+		$vars =& $this->getVars();
 		foreach(array_keys($vars) as $var) {
 			$ret[$var] = $this->getVar('"{$var}"');
 		}
@@ -213,12 +218,14 @@ class WgtimelinesItemsHandler extends XoopsPersistableObjectHandler
 		return parent::create($isNew);
 	}
 
-	/**
-	 * retrieve a field
-	 *
-	 * @param int $i field id
-	 * @return mixed reference to the {@link Get} object
-	 */
+    /**
+     * retrieve a field
+     *
+     * @param int  $i field id
+     * @param null $fields
+     * @return mixed reference to the <a href='psi_element://Get'>Get</a> object
+     *                object
+     */
 	public function get($i = null, $fields = null)
 	{
 		return parent::get($i, $fields);
@@ -235,19 +242,26 @@ class WgtimelinesItemsHandler extends XoopsPersistableObjectHandler
 		return $this->db->getInsertId();
 	}
 
-	/**
-	 * Get Count Items in the database
-	 */
+    /**
+     * Get Count Items in the database
+     * @param int    $start
+     * @param int    $limit
+     * @param string $sort
+     * @param string $order
+     * @return int
+     */
 	public function getCountItems($start = 0, $limit = 0, $sort = 'item_id', $order = 'ASC')
 	{
 		$crCountItems = new CriteriaCompo();
 		$crCountItems = $this->getItemsCriteria($crCountItems, $start, $limit, $sort, $order);
 		return parent::getCount($crCountItems);
 	}
-    
+
     /**
-	 * Get Count Items per timeline in the database
-	 */
+     * Get Count Items per timeline in the database
+     * @param int $tl_id
+     * @return int
+     */
 	public function getCountItemsTl($tl_id = 0)
 	{
 		$crCountItems = new CriteriaCompo();
@@ -255,9 +269,14 @@ class WgtimelinesItemsHandler extends XoopsPersistableObjectHandler
 		return parent::getCount($crCountItems);
 	}
 
-	/**
-	 * Get All Items in the database
-	 */
+    /**
+     * Get All Items in the database
+     * @param int    $start
+     * @param int    $limit
+     * @param string $sort
+     * @param string $order
+     * @return array
+     */
 	public function getAllItems($start = 0, $limit = 0, $sort = 'item_tl_id ASC, item_weight ASC, item_id', $order = 'ASC')
 	{
 		$crAllItems = new CriteriaCompo();
@@ -265,9 +284,15 @@ class WgtimelinesItemsHandler extends XoopsPersistableObjectHandler
 		return parent::getAll($crAllItems);
 	}
 
-	/**
-	 * Get Criteria Items
-	 */
+    /**
+     * Get Criteria Items
+     * @param $crItems
+     * @param $start
+     * @param $limit
+     * @param $sort
+     * @param $order
+     * @return
+     */
 	private function getItemsCriteria($crItems, $start, $limit, $sort, $order)
 	{
 		$crItems->setStart( $start );

@@ -195,7 +195,7 @@ Main components
   clear: both;
 }
 .cd-timeline-content h3 {
-  margin-top: 0px;
+  margin-top: 0;
 }
 .cd-timeline-content .cd-date {
   font-size: 13px;
@@ -247,7 +247,7 @@ Main components
     left: auto;
     right: 100%;
     border-top: 6px solid transparent;
-    border-left: 0px solid #fff;
+    border-left: 0 solid #fff;
     border-right: 6px solid #fff;
     border-bottom: 6px solid transparent;
   }
@@ -269,7 +269,7 @@ Main components
     left: auto;
     right: 100%;
     border-top: 6px solid transparent;
-    border-left: 0px solid #fff;
+    border-left: 0 solid #fff;
     border-right: 6px solid #fff;
     border-bottom: 6px solid transparent;
   }
@@ -308,7 +308,7 @@ Main components
     right: auto;
     border-top: 6px solid transparent;
     border-left: 6px solid #fff;
-    border-right: 0px solid #fff;
+    border-right: 0 solid #fff;
     border-bottom: 6px solid transparent;
   }
   .cd-timeline-content .cd-date {
@@ -334,7 +334,7 @@ Main components
     left: auto;
     right: 100%;
     border-top: 6px solid transparent;
-    border-left: 0px solid #fff;
+    border-left: 0 solid #fff;
     border-right: 6px solid #fff;
     border-bottom: 6px solid transparent;
   }

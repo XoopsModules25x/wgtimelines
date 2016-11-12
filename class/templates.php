@@ -64,11 +64,12 @@ class WgtimelinesTemplates extends XoopsObject
 		return $newInsertedId;
 	}
 
-  	/**
-	 * Get form
-	 *
-	 * @param mixed $action
-	 */
+    /**
+     * Get form
+     *
+     * @param mixed $action
+     * @return XoopsThemeForm
+     */
 	public function getFormTemplates($action = false)
 	{
 		$wgtimelines = WgtimelinesHelper::getInstance();
@@ -374,7 +375,7 @@ class WgtimelinesTemplates extends XoopsObject
                     break;       
                 case 'autoplay':
                     if ($option['valid'] > 0) {
-                        $autoplay = $option['value'] == 'true' ? 1 : 0;
+                        $autoplay = $option['value'] === 'true' ? 1 : 0;
                         $form->addElement(new XoopsFormRadioYN(_AM_WGTIMELINES_TEMPLATE_AUTOPLAY, 'autoplay', $autoplay, _YES, _NO), false);
                     }
                     break;                    
@@ -404,7 +405,7 @@ class WgtimelinesTemplates extends XoopsObject
                     break;           
                 case 'arrowkeys':
                     if ($option['valid'] > 0) {
-                        $arrowkeys = $option['value'] == 'true' ? 1 : 0;
+                        $arrowkeys = $option['value'] === 'true' ? 1 : 0;
                         $form->addElement(new XoopsFormRadioYN(_AM_WGTIMELINES_TEMPLATE_ARROWKEYS, 'arrowkeys', $arrowkeys, _YES, _NO), false);
                     }
                     break; 
@@ -431,11 +432,12 @@ class WgtimelinesTemplates extends XoopsObject
 		return $form;
 	}
 
-  	/**
-	 * Get form
-	 *
-	 * @param mixed $action
-	 */
+    /**
+     * Get form
+     *
+     * @param mixed $action
+     * @return XoopsThemeForm
+     */
 	public function getFormTemplatesMaster($action = false)
 	{
 		$wgtimelines = WgtimelinesHelper::getInstance();
@@ -496,9 +498,13 @@ class WgtimelinesTemplates extends XoopsObject
 		return $form;
 	}
 
-	/**
-	 * Get Values
-	 */
+    /**
+     * Get Values
+     * @param null $keys
+     * @param null $format
+     * @param null $maxDepth
+     * @return array
+     */
 	public function getValuesTemplates($keys = null, $format = null, $maxDepth = null)
 	{
 		$wgtimelines = WgtimelinesHelper::getInstance();
@@ -515,10 +521,14 @@ class WgtimelinesTemplates extends XoopsObject
         $ret['options'] = $options;
 		return $ret;
 	}
-    
+
     /**
-	 * Get Values for admin area
-	 */
+     * Get Values for admin area
+     * @param null $keys
+     * @param null $format
+     * @param null $maxDepth
+     * @return array
+     */
 	public function getValuesTemplatesAdmin($keys = null, $format = null, $maxDepth = null)
 	{
 		$wgtimelines = WgtimelinesHelper::getInstance();
@@ -629,7 +639,7 @@ class WgtimelinesTemplates extends XoopsObject
 	public function toArrayTemplates()
 	{
 		$ret = array();
-		$vars = $this->getVars();
+		$vars =& $this->getVars();
 		foreach(array_keys($vars) as $var) {
 			$ret[$var] = $this->getVar('"{$var}"');
 		}
@@ -662,12 +672,14 @@ class WgtimelinesTemplatesHandler extends XoopsPersistableObjectHandler
 		return parent::create($isNew);
 	}
 
-	/**
-	 * retrieve a field
-	 *
-	 * @param int $i field id
-	 * @return mixed reference to the {@link Get} object
-	 */
+    /**
+     * retrieve a field
+     *
+     * @param int  $i field id
+     * @param null $fields
+     * @return mixed reference to the <a href='psi_element://Get'>Get</a> object
+     *                object
+     */
 	public function get($i = null, $fields = null)
 	{
 		return parent::get($i, $fields);
@@ -684,9 +696,14 @@ class WgtimelinesTemplatesHandler extends XoopsPersistableObjectHandler
 		return $this->db->getInsertId();
 	}
 
-	/**
-	 * Get Count Templates in the database
-	 */
+    /**
+     * Get Count Templates in the database
+     * @param int    $start
+     * @param int    $limit
+     * @param string $sort
+     * @param string $order
+     * @return int
+     */
 	public function getCountTemplates($start = 0, $limit = 0, $sort = 'tpl_id', $order = 'ASC')
 	{
 		$crCountTemplates = new CriteriaCompo();
@@ -694,9 +711,14 @@ class WgtimelinesTemplatesHandler extends XoopsPersistableObjectHandler
 		return parent::getCount($crCountTemplates);
 	}
 
-	/**
-	 * Get All Templates in the database
-	 */
+    /**
+     * Get All Templates in the database
+     * @param int    $start
+     * @param int    $limit
+     * @param string $sort
+     * @param string $order
+     * @return array
+     */
 	public function getAllTemplates($start = 0, $limit = 0, $sort = 'tpl_weight ASC, tpl_name', $order = 'ASC')
 	{
 		$crAllTemplates = new CriteriaCompo();
@@ -704,9 +726,15 @@ class WgtimelinesTemplatesHandler extends XoopsPersistableObjectHandler
 		return parent::getAll($crAllTemplates);
 	}
 
-	/**
-	 * Get Criteria Templates
-	 */
+    /**
+     * Get Criteria Templates
+     * @param $crTemplates
+     * @param $start
+     * @param $limit
+     * @param $sort
+     * @param $order
+     * @return
+     */
 	private function getTemplatesCriteria($crTemplates, $start, $limit, $sort, $order)
 	{
 		$crTemplates->setStart( $start );

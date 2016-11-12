@@ -33,7 +33,7 @@ $itemsHandler = $wgtimelines->getHandler('items');
 $templatesHandler = $wgtimelines->getHandler('templates');
 // Permission
 include_once XOOPS_ROOT_PATH .'/class/xoopsform/grouppermform.php';
-$gpermHandler = xoops_gethandler('groupperm');
+$gpermHandler = xoops_getHandler('groupperm');
 if(is_object($xoopsUser)) {
 	$groups  = $xoopsUser->getGroups();
 } else {

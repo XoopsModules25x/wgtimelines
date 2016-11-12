@@ -70,13 +70,13 @@ if ($timeline_rows > 0) {
         $criteria->setLimit( $limit );
     }
     if ($tl_sortby == 1) {
-        $criteria->SetSort('item_year DESC, item_date');
+        $criteria->setSort('item_year DESC, item_date');
         $criteria->setOrder('DESC');
     } else if ($tl_sortby == 2) {
-        $criteria->SetSort('item_year ASC, item_date');
+        $criteria->setSort('item_year ASC, item_date');
         $criteria->setOrder('ASC');
     } else {
-        $criteria->SetSort('item_weight');
+        $criteria->setSort('item_weight');
         $criteria->setOrder('ASC');
     }
     $itemsCount = $itemsHandler->getCount($criteria);
@@ -93,8 +93,8 @@ if ($timeline_rows > 0) {
         foreach(array_keys($itemsAll) as $i) {
             $j++;
             $items[$j] = $itemsAll[$i]->getValuesItems();
-            if ($items[$j]['image'] == 'blank.gif') $items[$j]['image'] = '';
-            if ($template['panel_pos']== 'alternate') {
+            if ($items[$j]['image'] === 'blank.gif') $items[$j]['image'] = '';
+            if ($template['panel_pos']=== 'alternate') {
                 $alternate = $alternate == 0 ? 1 : 0;
                 $items[$j]['alternate'] = $alternate;
             }

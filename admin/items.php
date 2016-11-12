@@ -166,7 +166,7 @@ switch($op) {
             
     case 'order':
         $iorder = $_POST['iorder'];
-        for ($i = 0; $i < count($iorder); $i++){
+        for ($i = 0, $iMax = count($iorder); $i < $iMax; $i++){
             $itemsObj = $itemsHandler->get($iorder[$i]);
             $itemsObj->setVar('item_weight',$i+1);
             $itemsHandler->insert($itemsObj);
