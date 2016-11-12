@@ -42,9 +42,9 @@ define('_MI_WGTIMELINES_KEYWORDS_DESC', "Insert here the keywords (separate by c
 define('_MI_WGTIMELINES_EDITOR', "Editor");
 define('_MI_WGTIMELINES_EDITOR_DESC', "Please select an editor for edit items");
 define('_MI_WGTIMELINES_MAXSIZE', "Max size");
-define('_MI_WGTIMELINES_MAXSIZE_DESC', "Set a number of max size uploads files in byte");
+define('_MI_WGTIMELINES_MAXSIZE_DESC', "Please define the maximum file size foruploads file. You have to enter the value for bytes (10485760 = 1 MB)");
 define('_MI_WGTIMELINES_MIMETYPES', "Mime Types");
-define('_MI_WGTIMELINES_MIMETYPES_DESC', "Set the mime types selected");
+define('_MI_WGTIMELINES_MIMETYPES_DESC', "Define which mime-types are allowed for file upload.");
 define('_MI_WGTIMELINES_BREADCRUMBS', "Breadcrumbs");
 define('_MI_WGTIMELINES_BREADCRUMBS_DESC', "Please define, whether breadcrumbs should be shown on user side or not");
 define('_MI_WGTIMELINES_BOOKMARKS', "Social Bookmarks");

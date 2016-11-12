@@ -51,8 +51,9 @@ define('_AM_WGTIMELINES_TIMELINE_ID', "Id");
 define('_AM_WGTIMELINES_TIMELINE_NAME', "Name");
 define('_AM_WGTIMELINES_TIMELINE_TEMPLATE', "Vorlage");
 define('_AM_WGTIMELINES_TIMELINE_SORTBY', "Sortierung");
-define('_AM_WGTIMELINES_TIMELINE_SORTBY_ASC', "Jahr/Datum aufsteigend");
-define('_AM_WGTIMELINES_TIMELINE_SORTBY_DESC', "Jahr/Datum absteigend");
+define('_AM_WGTIMELINES_TIMELINE_SORTBY_Y_ASC', "Jahr/Datum aufsteigend");
+define('_AM_WGTIMELINES_TIMELINE_SORTBY_Y_DESC', "Jahr/Datum absteigend");
+define('_AM_WGTIMELINES_TIMELINE_SORTBY_ADMIN', "Im Admin angezeigte Reihenfolge");
 define('_AM_WGTIMELINES_TIMELINE_ONLINE', "Online");
 // Item add/edit
 define('_AM_WGTIMELINES_ITEM_ADD', "Eintrag hinzufügen");

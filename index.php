@@ -72,8 +72,11 @@ if ($timeline_rows > 0) {
     if ($tl_sortby == 1) {
         $criteria->SetSort('item_year DESC, item_date');
         $criteria->setOrder('DESC');
-    } else {
+    } else if ($tl_sortby == 2) {
         $criteria->SetSort('item_year ASC, item_date');
+        $criteria->setOrder('ASC');
+    } else {
+        $criteria->SetSort('item_weight');
         $criteria->setOrder('ASC');
     }
     $itemsCount = $itemsHandler->getCount($criteria);

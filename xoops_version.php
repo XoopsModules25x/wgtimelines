@@ -201,7 +201,34 @@ $modversion['config'][$c]['formtype'] = 'yesno';
 $modversion['config'][$c]['valuetype'] = 'int';
 $modversion['config'][$c]['default'] = 1;
 ++$c;
+//Uploads : max size for image upload 
+$modversion['config'][$c] = array(
+    'name'        => 'maxsize',
+    'title'       => '_MI_WGTIMELINES_MAXSIZE',
+    'description' => '_MI_WGTIMELINES_MAXSIZE_DESC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'int',
+    'default'     => 10485760); // 1 MB
+++$c;
+//Uploads : mimetypes of images
+$modversion['config'][$c] = array(
+    'name'        => 'mimetypes',
+    'title'       => '_MI_WGTIMELINES_MIMETYPES',
+    'description' => '_MI_WGTIMELINES_MIMETYPES_DESC',
+    'formtype'    => 'select_multi',
+    'valuetype'   => 'array',
+    'default'     => array('image/gif', 'image/jpeg', 'image/png', 'image/jpg'),
+    'options'     => array(
+        'bmp'   => 'image/bmp',
+        'gif'   => 'image/gif',
+        'pjpeg' => 'image/pjpeg',
+        'jpeg'  => 'image/jpeg',
+        'jpg'   => 'image/jpg',
+        'jpe'   => 'image/jpe',
+        'png'   => 'image/png'
+    ));
 // Bookmarks
+++$c;
 $modversion['config'][$c]['name'] = 'bookmarks';
 $modversion['config'][$c]['title'] = '_MI_WGTIMELINES_BOOKMARKS';
 $modversion['config'][$c]['description'] = '_MI_WGTIMELINES_BOOKMARKS_DESC';

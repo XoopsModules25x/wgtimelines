@@ -106,7 +106,7 @@ class WgtimelinesItems extends XoopsObject
 		$getItemImage = $this->getVar('item_image');
 		$itemImage = $getItemImage ? $getItemImage : 'blank.gif';
 		$imageDirectory = '/uploads/wgtimelines/images/items';
-		$imageTray = new XoopsFormElementTray(_OPTIONS, '<br />' );
+		$imageTray = new XoopsFormElementTray(_AM_WGTIMELINES_ITEM_IMAGE, '<br />' );
 		$imageSelect = new XoopsFormSelect( sprintf(_AM_WGTIMELINES_FORM_IMAGE_PATH, ".{$imageDirectory}/"), 'item_image', $itemImage, 5);
 		$imageArray = XoopsLists::getImgListAsArray( XOOPS_ROOT_PATH . $imageDirectory );
 		foreach($imageArray as $image1) {

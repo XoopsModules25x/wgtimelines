@@ -93,8 +93,9 @@ class WgtimelinesTimelines extends XoopsObject
 		// Form Text tlSortBy
 		$tlSortBy = $this->isNew() ? 0 : $this->getVar('tl_sortby');
         $tlSortBySelect = new XoopsFormSelect( _AM_WGTIMELINES_TIMELINE_SORTBY, 'tl_sortby', $tlSortBy);
-        $tlSortBySelect->addOption(0, _AM_WGTIMELINES_TIMELINE_SORTBY_ASC);
-        $tlSortBySelect->addOption(1, _AM_WGTIMELINES_TIMELINE_SORTBY_DESC);
+        $tlSortBySelect->addOption(0, _AM_WGTIMELINES_TIMELINE_SORTBY_ADMIN);
+        $tlSortBySelect->addOption(1, _AM_WGTIMELINES_TIMELINE_SORTBY_Y_DESC);
+        $tlSortBySelect->addOption(2, _AM_WGTIMELINES_TIMELINE_SORTBY_Y_ASC);
         $form->addElement($tlSortBySelect);
         // Form Text TlWeight
         $timelinesHandler = $wgtimelines->getHandler('timelines');
@@ -126,9 +127,11 @@ class WgtimelinesTimelines extends XoopsObject
 		$ret['weight'] = $this->getVar('tl_weight');
         $ret['sortby'] = $this->getVar('tl_sortby');
         if ($this->getVar('tl_sortby') == 1) {
-            $ret['sortby_text'] = _AM_WGTIMELINES_TIMELINE_SORTBY_DESC;
+            $ret['sortby_text'] = _AM_WGTIMELINES_TIMELINE_SORTBY_Y_DESC;
+        } else if ($this->getVar('tl_sortby') == 2) {
+            $ret['sortby_text'] = _AM_WGTIMELINES_TIMELINE_SORTBY_Y_ASC;
         } else {
-            $ret['sortby_text'] = _AM_WGTIMELINES_TIMELINE_SORTBY_ASC;
+            $ret['sortby_text'] = _AM_WGTIMELINES_TIMELINE_SORTBY_ADMIN;
         }
         $ret['online'] = $this->getVar('tl_online');
 		$templates = $wgtimelines->getHandler('templates');
