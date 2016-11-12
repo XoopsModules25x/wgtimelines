@@ -10,3 +10,6 @@ Change Log for wgTimelines - 2016/10/01 5:42:18 Version 1.0
  - Unnecessary parentheses (mamba)
  - Unnecessary double quotes (mamba)
  - Callable name case mismatched in a call (mamba)
+ - PHPDoc comment matches function/method signature (mamba)
+ - Type unsafe comparison (mamba)
+

@@ -21,7 +21,10 @@
  * @version        $Id: 1.0 functions.php 13070 Sat 2016-10-01 05:42:17Z XOOPS Development Team $
  */
 
-/***************Blocks***************/
+/***************Blocks**************
+ * @param $cats
+ * @return string
+ */
 function wgtimelines_block_addCatSelect($cats) {
     if(is_array($cats))
     {
@@ -38,6 +41,11 @@ function wgtimelines_block_addCatSelect($cats) {
 
 /**
  *  Get the number of templates from the sub categories of a category or sub topics of or topic
+ * @param $mytree
+ * @param $templates
+ * @param $entries
+ * @param $cid
+ * @return int
  */
 function wgtimelinesNumbersOfEntries($mytree, $templates, $entries, $cid)
 {
@@ -87,7 +95,10 @@ function wgtimelinesMetaDescription($content)
  *
  * @String  $module  module name
  * @String  $array   array
- * @return  $type    string replacement for any blank case
+ * @param        $module
+ * @param        $array
+ * @param string $type
+ * @return string $type    string replacement for any blank case
  */
 function wgtimelines_RewriteUrl($module, $array, $type = 'content')
 {
@@ -135,9 +146,9 @@ function wgtimelines_RewriteUrl($module, $array, $type = 'content')
             $page = $array['content_alias'];
             $type = $type . '/';
             $id = $id . '/';
-            if ($type == 'content/') $type = '';
+            if ($type === 'content/') $type = '';
 
-            if ($type == 'comment-edit/' || $type == 'comment-reply/' || $type == 'comment-delete/') {
+            if ($type === 'comment-edit/' || $type === 'comment-reply/' || $type === 'comment-delete/') {
                 return XOOPS_URL . $rewrite_base . $module_name . $type . $id . '/';
             }
 
@@ -156,9 +167,9 @@ function wgtimelines_RewriteUrl($module, $array, $type = 'content')
             }
             $page = $array['content_alias'];
             $type = $type . '/';
-            if ($type == 'content/') $type = '';
+            if ($type === 'content/') $type = '';
 
-            if ($type == 'comment-edit/' || $type == 'comment-reply/' || $type == 'comment-delete/') {
+            if ($type === 'comment-edit/' || $type === 'comment-reply/' || $type === 'comment-delete/') {
                 return XOOPS_URL . $rewrite_base . $module_name . $type . $id . '/';
             }
 
@@ -166,12 +177,16 @@ function wgtimelines_RewriteUrl($module, $array, $type = 'content')
             break;
     }
 }
+
 /**
  * Replace all escape, character, ... for display a correct url
  *
  * @String  $url    string to transform
  * @String  $type   string replacement for any blank case
- * @return  $url
+ * @param        $url
+ * @param string $type
+ * @param string $module
+ * @return mixed|string $url
  */
 function wgtimelines_Filter($url, $type = '', $module = 'wgtimelines') {
 
