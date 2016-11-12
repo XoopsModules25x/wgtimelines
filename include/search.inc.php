@@ -27,7 +27,7 @@ function wgtimelines_search($queryarray, $andor, $limit, $offset, $userid)
     global $xoopsDB;
     $sql = "SELECT 'tpl_id', 'tpl_name' FROM ".$xoopsDB->prefix('wgtimelines_templates') . ' WHERE tpl_id != 0';
     if ( $userid != 0 ) {
-        $sql .= ' AND tpl_submitter=' . (int) ($userid);
+        $sql .= ' AND tpl_submitter=' . (int)$userid;
     }
     if ( is_array($queryarray) && $count = count($queryarray) )
     {
