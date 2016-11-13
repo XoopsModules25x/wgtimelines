@@ -428,7 +428,7 @@ class WgtimelinesTemplates extends XoopsObject
 		// To Save
 		$form->addElement(new XoopsFormHidden('op', 'save'));
         $form->addElement(new XoopsFormHidden('addopt', 0));
-		$form->addElement(new XoopsFormButton('', 'submit', _SUBMIT, 'submit'));
+		$form->addElement(new XoopsFormButtonTray('', _SUBMIT, 'submit', '', false));
 		return $form;
 	}
 

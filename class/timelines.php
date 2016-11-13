@@ -112,7 +112,7 @@ class WgtimelinesTimelines extends XoopsObject
 		$form->addElement(new XoopsFormTextDateSelect( _AM_WGTIMELINES_DATE_CREATE, 'tl_date_create', '', $tlDate_create ), true);
 		// To Save
 		$form->addElement(new XoopsFormHidden('op', 'save'));
-		$form->addElement(new XoopsFormButton('', 'submit', _SUBMIT, 'submit'));
+		$form->addElement(new XoopsFormButtonTray('', _SUBMIT, 'submit', '', false));
 		return $form;
 	}
 
