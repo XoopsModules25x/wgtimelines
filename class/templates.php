@@ -100,7 +100,7 @@ class WgtimelinesTemplates extends XoopsObject
         $tpl_options = $this->getVar('tpl_options', 'N');
         $options = unserialize($tpl_options);
         $eletray = array();
-        $i = 0;
+        
         foreach ($options as $option) {
             switch ($option['name']) {
                 case 'panel_pos':
@@ -178,7 +178,12 @@ class WgtimelinesTemplates extends XoopsObject
                     break;
                 case 'borderwidth':
                     if ($option['valid'] > 0) {
-                        $form->addElement(new XoopsFormText( _AM_WGTIMELINES_TEMPLATE_BORDERWIDTH, 'borderwidth', 20, 255, $option['value'] ), true);
+                        $borderwidth = new XoopsFormSelect( _AM_WGTIMELINES_TEMPLATE_BORDERWIDTH, 'borderwidth', $option['value']);
+                        $i = 0;
+                        for ($i; $i < 31; $i++) {
+                            $borderwidth->addOption($i . 'px', $i . 'px  ');
+                        }
+                        $form->addElement($borderwidth);
                     }
                     break;
                 case 'borderstyle':
@@ -198,7 +203,12 @@ class WgtimelinesTemplates extends XoopsObject
                     break;
                 case 'borderradius':
                     if ($option['valid'] > 0) {
-                        $form->addElement(new XoopsFormText( _AM_WGTIMELINES_TEMPLATE_BORDERRADIUS, 'borderradius', 20, 255, $option['value'] ), true);
+                        $borderradius = new XoopsFormSelect( _AM_WGTIMELINES_TEMPLATE_BORDERRADIUS, 'borderradius', $option['value']);
+                        $i = 0;
+                        for ($i; $i < 31; $i++) {
+                            $borderradius->addOption($i . 'px', $i . 'px  ');
+                        }
+                        $form->addElement($borderradius);
                     }
                     break;
                 case 'boxshadow':
@@ -206,96 +216,28 @@ class WgtimelinesTemplates extends XoopsObject
                         $option_shadow = explode(' ', $option['value']);
                         $shadowTray = new XoopsFormElementTray(_AM_WGTIMELINES_TEMPLATE_BOXSHADOW, '&nbsp;&nbsp;&nbsp;' );
                         $shadow_h = new XoopsFormSelect( _AM_WGTIMELINES_TEMPLATE_BOXSHADOW_H, 'boxshadow_h', $option_shadow[0]);
-                        $shadow_h->addOption('-10px', '-10px');
-                        $shadow_h->addOption('-9px', '-9px');
-                        $shadow_h->addOption('-8px', '-8px');
-                        $shadow_h->addOption('-7px', '-7px');
-                        $shadow_h->addOption('-6px', '-6px');
-                        $shadow_h->addOption('-5px', '-5px');
-                        $shadow_h->addOption('-4px', '-4px');
-                        $shadow_h->addOption('-3px', '-3px');
-                        $shadow_h->addOption('-2px', '-2px');
-                        $shadow_h->addOption('-1px', '-1px');
-                        $shadow_h->addOption('0px', '0px');
-                        $shadow_h->addOption('1px', '1px');
-                        $shadow_h->addOption('2px', '2px');
-                        $shadow_h->addOption('3px', '3px');
-                        $shadow_h->addOption('4px', '4px');
-                        $shadow_h->addOption('5px', '5px');
-                        $shadow_h->addOption('6px', '6px');
-                        $shadow_h->addOption('7px', '7px');
-                        $shadow_h->addOption('8px', '8px');
-                        $shadow_h->addOption('9px', '9px');
-                        $shadow_h->addOption('10px', '10px');
+                        $i = -10;
+                        for ($i; $i < 11; $i++) {
+                            $shadow_h->addOption($i . 'px', $i . 'px  ');
+                        }
                         $shadowTray->addElement($shadow_h);
                         $shadow_v = new XoopsFormSelect( _AM_WGTIMELINES_TEMPLATE_BOXSHADOW_V, 'boxshadow_v', $option_shadow[1]);
-                        $shadow_v->addOption('-10px', '-10px');
-                        $shadow_v->addOption('-9px', '-9px');
-                        $shadow_v->addOption('-8px', '-8px');
-                        $shadow_v->addOption('-7px', '-7px');
-                        $shadow_v->addOption('-6px', '-6px');
-                        $shadow_v->addOption('-5px', '-5px');
-                        $shadow_v->addOption('-4px', '-4px');
-                        $shadow_v->addOption('-3px', '-3px');
-                        $shadow_v->addOption('-2px', '-2px');
-                        $shadow_v->addOption('-1px', '-1px');
-                        $shadow_v->addOption('0px', '0px');
-                        $shadow_v->addOption('1px', '1px');
-                        $shadow_v->addOption('2px', '2px');
-                        $shadow_v->addOption('3px', '3px');
-                        $shadow_v->addOption('4px', '4px');
-                        $shadow_v->addOption('5px', '5px');
-                        $shadow_v->addOption('6px', '6px');
-                        $shadow_v->addOption('7px', '7px');
-                        $shadow_v->addOption('8px', '8px');
-                        $shadow_v->addOption('9px', '9px');
-                        $shadow_v->addOption('10px', '10px');
+                        $i = -10;
+                        for ($i; $i < 11; $i++) {
+                            $shadow_v->addOption($i . 'px', $i . 'px  ');
+                        }
                         $shadowTray->addElement($shadow_v);
                         $shadow_blur = new XoopsFormSelect( _AM_WGTIMELINES_TEMPLATE_BOXSHADOW_BLUR, 'boxshadow_blur', $option_shadow[2]);
-                        $shadow_blur->addOption('-10px', '-10px');
-                        $shadow_blur->addOption('-9px', '-9px');
-                        $shadow_blur->addOption('-8px', '-8px');
-                        $shadow_blur->addOption('-7px', '-7px');
-                        $shadow_blur->addOption('-6px', '-6px');
-                        $shadow_blur->addOption('-5px', '-5px');
-                        $shadow_blur->addOption('-4px', '-4px');
-                        $shadow_blur->addOption('-3px', '-3px');
-                        $shadow_blur->addOption('-2px', '-2px');
-                        $shadow_blur->addOption('-1px', '-1px');
-                        $shadow_blur->addOption('0px', '0px');
-                        $shadow_blur->addOption('1px', '1px');
-                        $shadow_blur->addOption('2px', '2px');
-                        $shadow_blur->addOption('3px', '3px');
-                        $shadow_blur->addOption('4px', '4px');
-                        $shadow_blur->addOption('5px', '5px');
-                        $shadow_blur->addOption('6px', '6px');
-                        $shadow_blur->addOption('7px', '7px');
-                        $shadow_blur->addOption('8px', '8px');
-                        $shadow_blur->addOption('9px', '9px');
-                        $shadow_blur->addOption('10px', '10px');
+                        $i = -10;
+                        for ($i; $i < 11; $i++) {
+                            $shadow_blur->addOption($i . 'px', $i . 'px  ');
+                        }
                         $shadowTray->addElement($shadow_blur);
                         $shadow_spread = new XoopsFormSelect( _AM_WGTIMELINES_TEMPLATE_BOXSHADOW_SPREAD, 'boxshadow_spread', $option_shadow[3]);
-                        $shadow_spread->addOption('-10px', '-10px');
-                        $shadow_spread->addOption('-9px', '-9px');
-                        $shadow_spread->addOption('-8px', '-8px');
-                        $shadow_spread->addOption('-7px', '-7px');
-                        $shadow_spread->addOption('-6px', '-6px');
-                        $shadow_spread->addOption('-5px', '-5px');
-                        $shadow_spread->addOption('-4px', '-4px');
-                        $shadow_spread->addOption('-3px', '-3px');
-                        $shadow_spread->addOption('-2px', '-2px');
-                        $shadow_spread->addOption('-1px', '-1px');
-                        $shadow_spread->addOption('0px', '0px');
-                        $shadow_spread->addOption('1px', '1px');
-                        $shadow_spread->addOption('2px', '2px');
-                        $shadow_spread->addOption('3px', '3px');
-                        $shadow_spread->addOption('4px', '4px');
-                        $shadow_spread->addOption('5px', '5px');
-                        $shadow_spread->addOption('6px', '6px');
-                        $shadow_spread->addOption('7px', '7px');
-                        $shadow_spread->addOption('8px', '8px');
-                        $shadow_spread->addOption('9px', '9px');
-                        $shadow_spread->addOption('10px', '10px');
+                        $i = -10;
+                        for ($i; $i < 11; $i++) {
+                            $shadow_spread->addOption($i . 'px', $i . 'px  ');
+                        }
                         $shadowTray->addElement($shadow_spread);
                         $shadowTray->addElement(new XoopsFormColorPicker( _AM_WGTIMELINES_TEMPLATE_BOXSHADOW_COLOR, 'boxshadow_color', $option_shadow[4]));
                         $form->addElement($shadowTray);
@@ -414,7 +356,36 @@ class WgtimelinesTemplates extends XoopsObject
                         $form->addElement(new XoopsFormText( _AM_WGTIMELINES_TEMPLATE_STARTAT, 'startat', 20, 255, $option['value'] ));
                     }
                     break;     
-
+                case 'fontcolor2':
+                    if ($option['valid'] > 0) {
+                        $form->addElement(new XoopsFormColorPicker( _AM_WGTIMELINES_TEMPLATE_FONTCOLOR2, 'fontcolor2', $option['value']));
+                    }
+                    break;
+                case 'fontcolor3':
+                    if ($option['valid'] > 0) {
+                        $form->addElement(new XoopsFormColorPicker( _AM_WGTIMELINES_TEMPLATE_FONTCOLOR3, 'fontcolor3', $option['value']));
+                    }
+                    break;
+                case 'fontcolor4':
+                    if ($option['valid'] > 0) {
+                        $form->addElement(new XoopsFormColorPicker( _AM_WGTIMELINES_TEMPLATE_FONTCOLOR4, 'fontcolor4', $option['value']));
+                    }
+                    break;
+                case 'bgcolor2':
+                    if ($option['valid'] > 0) {
+                        $form->addElement(new XoopsFormColorPicker( _AM_WGTIMELINES_TEMPLATE_BGCOLOR2, 'bgcolor2', $option['value']));
+                    }
+                    break;
+                case 'bgcolor3':
+                    if ($option['valid'] > 0) {
+                        $form->addElement(new XoopsFormColorPicker( _AM_WGTIMELINES_TEMPLATE_BGCOLOR3, 'bgcolor3', $option['value']));
+                    }
+                    break;
+                case 'bgcolor4':
+                    if ($option['valid'] > 0) {
+                        $form->addElement(new XoopsFormColorPicker( _AM_WGTIMELINES_TEMPLATE_BGCOLOR4, 'bgcolor4', $option['value']));
+                    }
+                    break;
                 case 'default':
                 default:
                     if ($option['valid'] > 0) {
@@ -553,8 +524,26 @@ class WgtimelinesTemplates extends XoopsObject
                 case 'bgcolor':
                     $title = _AM_WGTIMELINES_TEMPLATE_BGCOLOR;
                 break;
+                case 'bgcolor2':
+                    $title = _AM_WGTIMELINES_TEMPLATE_BGCOLOR2;
+                break;
+                case 'bgcolor3':
+                    $title = _AM_WGTIMELINES_TEMPLATE_BGCOLOR3;
+                break;
+                case 'bgcolor4':
+                    $title = _AM_WGTIMELINES_TEMPLATE_BGCOLOR4;
+                break;
                 case 'fontcolor':
                     $title = _AM_WGTIMELINES_TEMPLATE_FONTCOLOR;
+                break;
+                case 'fontcolor2':
+                    $title = _AM_WGTIMELINES_TEMPLATE_FONTCOLOR2;
+                break;
+                case 'fontcolor3':
+                    $title = _AM_WGTIMELINES_TEMPLATE_FONTCOLOR3;
+                break;
+                case 'fontcolor4':
+                    $title = _AM_WGTIMELINES_TEMPLATE_FONTCOLOR4;
                 break;
                 case 'panel_imgpos':
                     $title = _AM_WGTIMELINES_TEMPLATE_IMGPOS;

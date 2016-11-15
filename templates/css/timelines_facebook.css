@@ -1,0 +1,113 @@
+.timeline{
+	background-color:#ffffff;
+    background-image: url("../images/facebook/bg.png");
+    background-position: center; 
+    background-repeat: repeat-y;
+    max-width: 960px;
+    margin: 0 auto;
+    position: relative;
+    height: auto;
+    padding: 0px;
+    clear: both;
+    overflow: hidden;
+}
+.timeline li.year{
+	clear: both;
+	width: 4em;
+	margin: 0 auto;
+    font-size:1.5em;
+	line-height: 4em;
+	background-color: #fff;
+	border-radius:50%;
+	text-align: center;
+	margin-bottom: 25px;
+	border: 1px solid #e5e6e9;
+	box-shadow: 2px 2px 2px #888888;
+	-moz-box-shadow: 2px 2px 2px #888888;
+    -webkit-box-shadow: 2px 2px 2px #888888;
+}
+.timeline li.year:first-child{
+	margin-top:0px;
+}
+.timeline li.year, .timeline li.event{
+	list-style-type: none;
+	z-index: 999;
+}
+.timeline li.event{
+    width: 45%;
+    background-color: #fff;
+	margin-bottom: 20px;
+	padding: 20px;
+	position: relative;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-color: #eeeeee;
+    border-image: none;
+    border-style: solid;
+    border-width: 1px;
+}
+li.event:nth-child(odd) {
+    color: #000000;
+    clear:left;
+    float: left;
+}
+li.event:nth-child(even) {
+    color: #000000;
+    clear: right;
+    float: right;
+    margin-top:100px;
+    margin-bottom:50px;
+}
+.timeline li.event:nth-child(odd)::after {
+    background:#eeeeee;
+    content: "";
+    height: 2px;
+    position: absolute;
+    right: -11.2%;
+    top: 30px;
+    width: 11.2%;
+    
+}
+li.event:nth-child(even)::before{
+	background:#eeeeee;
+    content: "";
+    height: 2px;
+    position: absolute;
+    top: 30px;
+    width: 11.2%;
+    left: -11.2%;
+}
+@media (max-width: 640px) {
+	.timeline li.event{
+		width: 80%;
+		border: 1px solid #ff0000;
+		margin: 20px auto;
+		padding: 20px;
+		position: relative;
+	}
+	
+	li.event:nth-child(odd) {
+	    color: #000000;
+	    clear: both;
+	    float: none;
+	}
+	li.event:nth-child(even) {
+	    color: #000000;
+	    clear: both;
+	    float: none;
+	}
+	
+	.timeline li.event:nth-child(odd)::after, li.event:nth-child(even)::before {
+	    width: 0px;
+	}
+}
+.img-timeline-top {
+    margin-bottom:20px;
+}
+.event-body {
+    margin:10px 0;
+}
+
+
+

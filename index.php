@@ -90,6 +90,7 @@ if ($timeline_rows > 0) {
         $alternate = 0;
         $j = 0;
         $inverted = 0;
+        $crazycolors = 0;
         foreach(array_keys($itemsAll) as $i) {
             $j++;
             $items[$j] = $itemsAll[$i]->getValuesItems();
@@ -103,6 +104,11 @@ if ($timeline_rows > 0) {
             } else {
                 $year = $itemsAll[$i]->getVar('item_year');
                 $items[$j]['year_display'] = $itemsAll[$i]->getVar('item_year');
+            }
+            if ($template['name']=== 'Crazy Colors') {
+                $crazycolors++;
+                if ($crazycolors == 5) $crazycolors = 1;
+                $items[$j]['crazycolors'] = $crazycolors;
             }
             $items[$j]['inverted'] = $inverted;
             $inverted = $inverted == 0 ? 1 : 0;

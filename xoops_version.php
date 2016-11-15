@@ -86,6 +86,8 @@ $modversion['templates'][] = array('file' => 'wgtimelines_timelines_animated.tpl
 $modversion['templates'][] = array('file' => 'wgtimelines_timelines_bigpicture.tpl', 'description' => '');
 $modversion['templates'][] = array('file' => 'wgtimelines_timelines_slider.tpl', 'description' => '');
 $modversion['templates'][] = array('file' => 'wgtimelines_timelines_extended.tpl', 'description' => '');
+$modversion['templates'][] = array('file' => 'wgtimelines_timelines_facebook.tpl', 'description' => '');
+$modversion['templates'][] = array('file' => 'wgtimelines_timelines_crazycolors.tpl', 'description' => '');
 $modversion['templates'][] = array('file' => 'wgtimelines_breadcrumbs.tpl', 'description' => '');
 $modversion['templates'][] = array('file' => 'wgtimelines_rss.tpl', 'description' => '');
 $modversion['templates'][] = array('file' => 'wgtimelines_search.tpl', 'description' => '');

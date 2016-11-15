@@ -105,7 +105,31 @@ switch($op) {
         $options[] = array('name' => 'fontcolor', 
                             'valid' => isset($_POST['fontcolor']) ? 1 : 0, 
                             'value' => isset($_POST['fontcolor']) ? $_POST['fontcolor'] : '', 
+                            'type' => 'color');    
+        $options[] = array('name' => 'bgcolor2', 
+                            'valid' => isset($_POST['bgcolor2']) ? 1 : 0, 
+                            'value' => isset($_POST['bgcolor2']) ? $_POST['bgcolor2'] : '', 
                             'type' => 'color');
+        $options[] = array('name' => 'fontcolor2', 
+                            'valid' => isset($_POST['fontcolor2']) ? 1 : 0, 
+                            'value' => isset($_POST['fontcolor2']) ? $_POST['fontcolor2'] : '', 
+                            'type' => 'color');
+        $options[] = array('name' => 'bgcolor3', 
+                            'valid' => isset($_POST['bgcolor3']) ? 1 : 0, 
+                            'value' => isset($_POST['bgcolor3']) ? $_POST['bgcolor3'] : '', 
+                            'type' => 'color');
+        $options[] = array('name' => 'fontcolor3', 
+                            'valid' => isset($_POST['fontcolor3']) ? 1 : 0, 
+                            'value' => isset($_POST['fontcolor3']) ? $_POST['fontcolor3'] : '', 
+                            'type' => 'color');
+        $options[] = array('name' => 'bgcolor4', 
+                            'valid' => isset($_POST['bgcolor4']) ? 1 : 0, 
+                            'value' => isset($_POST['bgcolor4']) ? $_POST['bgcolor4'] : '', 
+                            'type' => 'color');
+        $options[] = array('name' => 'fontcolor4', 
+                            'valid' => isset($_POST['fontcolor4']) ? 1 : 0, 
+                            'value' => isset($_POST['fontcolor4']) ? $_POST['fontcolor4'] : '', 
+                            'type' => 'color');                            
         $options[] = array('name' => 'badgestyle', 
                             'valid' => isset($_POST['badgestyle']) ? 1 : 0, 
                             'value' => isset($_POST['badgestyle']) ? $_POST['badgestyle'] : '', 

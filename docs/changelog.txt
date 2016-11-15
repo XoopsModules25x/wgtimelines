@@ -2,6 +2,7 @@
 Change Log for wgTimelines - 2016/11/13 Version 1.01
 ==============================================================
  - added form button trays (cancel/reset/submit) to forms (goffy)
+ - added new template facebook and crazy colors (goffy) 
  
 ==============================================================
 Change Log for wgTimelines - 2016/10/01 5:42:18 Version 1.0

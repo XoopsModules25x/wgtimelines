@@ -159,7 +159,7 @@ switch($op) {
 				$GLOBALS['xoopsTpl']->assign('error', $itemsObj->getHtmlErrors());
 			}
 		} else {
-			xoops_confirm(array('ok' => 1, 'item_id' => $itemId, 'op' => 'delete'), $_SERVER['REQUEST_URI'], sprintf(_AM_WGTIMELINES_FORM_SURE_DELETE, $itemsObj->getVar('item_content')));
+			xoops_confirm(array('ok' => 1, 'item_id' => $itemId, 'op' => 'delete'), $_SERVER['REQUEST_URI'], sprintf(_AM_WGTIMELINES_FORM_SURE_DELETE, $itemsObj->getVar('item_title')));
 		}
 
 	break;
