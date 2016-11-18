@@ -30,14 +30,15 @@
                 </div> <!-- cd-timeline-badge -->
                 <div class="cd-timeline-content">
                     <{if $panel_imgpos == 'top' && $item.image}>
-                        <span class='col-sm-12'><img class='img-timeline img-timeline-<{$panel_imgpos}> img-responsive <{$imgstyle}>' src='<{$wgtimelines_upload_url}>/images/items/<{$item.image}>' alt='<{$item.image}>' /></span>
+                        <div class='col-sm-12'><img class='img-timeline img-timeline-<{$panel_imgpos}> img-responsive <{$imgstyle}>' src='<{$wgtimelines_upload_url}>/images/items/<{$item.image}>' alt='<{$item.image}>' /></div>
                     <{/if}>
-                    <{if $item.title}><h3><{$item.title}></h3><{/if}>
-                    <p><{$item.content}></p>
+                    <div class=''>
+                        <{if $item.title}><h3><{$item.title}></h3><{/if}>
+                        <p><{$item.content}></p>
+                    </div>
                     <{if $panel_imgpos == 'bottom' && $item.image}>
-                        <span class='col-sm-12'><img class='img-timeline img-timeline-<{$panel_imgpos}> img-responsive <{$imgstyle}>' src='<{$wgtimelines_upload_url}>/images/items/<{$item.image}>' alt='<{$item.image}>' /></span>
+                        <div class=''><img class='img-timeline img-timeline-<{$panel_imgpos}> img-responsive <{$imgstyle}>' src='<{$wgtimelines_upload_url}>/images/items/<{$item.image}>' alt='<{$item.image}>' /></div>
                     <{/if}>
-                    <p class="cd-date-sm"><{$item.date}></p>
                     <span class="cd-date"><{$item.date}></span>
                 </div> <!-- cd-timeline-content -->
             </div> <!-- cd-timeline-block -->
