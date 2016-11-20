@@ -137,7 +137,7 @@ class WgtimelinesItems extends XoopsObject
 		$item_icon = $this->isNew() ? 'none' : $this->getVar('item_icon');
         $item_icon = new XoopsFormRadio( _AM_WGTIMELINES_ITEM_ICON . "<br><span class='font-size:70%'> " . _AM_WGTIMELINES_ITEM_YEAR_ICON_DESC . "</span>", 'item_icon', $item_icon);
         $item_icon->addOption('none', _AM_WGTIMELINES_ITEM_NONE . '<br>');
-		$ret = $this->addGlyphicons($item_icon);
+		$this->addGlyphicons($item_icon);
         $form->addElement($item_icon);
 		
 		// Form Text ItemWeight
