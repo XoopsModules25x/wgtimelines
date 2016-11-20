@@ -28,10 +28,13 @@
  */
 function xoops_module_update_wgtimelines(&$module, $prev_version = null)
 {
-    // irmtfan bug fix: solve templates duplicate issue
     $ret = null;
     if ($prev_version < 10) {
         $ret = update_wgtimelines_v10($module);
+    }
+    $errors = $module->getErrors();
+    if ($prev_version < 102) {
+        $ret = update_wgtimelines_v102($module);
     }
     $errors = $module->getErrors();
     if (!empty($errors)) {
@@ -39,8 +42,28 @@ function xoops_module_update_wgtimelines(&$module, $prev_version = null)
     }
 
     return $ret;
-    // irmtfan bug fix: solve templates duplicate issue
-}// irmtfan bug fix: solve templates duplicate issue
+
+}
+
+/**
+ * @param $module
+ *
+ * @return bool
+ */
+function update_wgtimelines_v102(&$module)
+{
+	$sql = "ALTER TABLE `" . $GLOBALS['xoopsDB']->prefix('wgtimelines_items') . "` ADD `item_icon` VARCHAR(200) NOT NULL DEFAULT '' AFTER `item_year`;";
+
+	if (!$result = $GLOBALS['xoopsDB']->queryF($sql)) {
+        xoops_error($GLOBALS['xoopsDB']->error() . '<br />' . $sql);
+        $module->setErrors("error when adding new field item_icon to table wgtimelines_items");
+        return false;
+    }
+	
+    return true;
+}
+
+// irmtfan bug fix: solve templates duplicate issue
 /**
  * @param $module
  *

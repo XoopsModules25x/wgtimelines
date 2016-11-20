@@ -24,8 +24,8 @@
         <{foreach item=item from=$items}>
             <div class="cd-timeline-block">
                 <div class="cd-timeline-badge">
-                    <{if $item.year_display}>
-                        <p class="timeline-year"><{$item.year_display}></p>
+                    <{if $item.badgecontent}>
+                        <p class="timeline-year"><{$item.badgecontent}></p>
                     <{/if}>
                 </div> <!-- cd-timeline-badge -->
                 <div class="cd-timeline-content">

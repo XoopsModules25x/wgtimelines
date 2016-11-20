@@ -107,9 +107,9 @@ class WgtimelinesTemplates extends XoopsObject
                     if ($option['valid'] > 0) {
                         $tplIpSel = new XoopsFormSelect( _AM_WGTIMELINES_TEMPLATE_IMGPOS, 'panel_pos', $option['value']);
                         $tplIpSel->addOption('none', _AM_WGTIMELINES_TEMPLATE_NONE);
-                        $tplIpSel->addOption('left', _AM_WGTIMELINES_TEMPLATE_IMGPOS_LEFT);
-                        $tplIpSel->addOption('right', _AM_WGTIMELINES_TEMPLATE_IMGPOS_RIGHT);
-                        $tplIpSel->addOption('alternate', _AM_WGTIMELINES_TEMPLATE_IMGPOS_ALTERNATE);
+                        $tplIpSel->addOption('left', _AM_WGTIMELINES_TEMPLATE_LEFT);
+                        $tplIpSel->addOption('right', _AM_WGTIMELINES_TEMPLATE_RIGHT);
+                        $tplIpSel->addOption('alternate', _AM_WGTIMELINES_TEMPLATE_ALTERNATE);
                         $form->addElement($tplIpSel);
                     }
                     break;
@@ -143,8 +143,8 @@ class WgtimelinesTemplates extends XoopsObject
                     if ($option['valid'] > 0) {
                         $tplIpSel2 = new XoopsFormSelect( _AM_WGTIMELINES_TEMPLATE_IMGPOS, 'panel_imgpos', $option['value']);
                         $tplIpSel2->addOption('none', _AM_WGTIMELINES_TEMPLATE_NONE);
-                        $tplIpSel2->addOption('top', _AM_WGTIMELINES_TEMPLATE_IMGPOS_TOP);
-                        $tplIpSel2->addOption('bottom', _AM_WGTIMELINES_TEMPLATE_IMGPOS_BOTTOM);
+                        $tplIpSel2->addOption('top', _AM_WGTIMELINES_TEMPLATE_TOP);
+                        $tplIpSel2->addOption('bottom', _AM_WGTIMELINES_TEMPLATE_BOTTOM);
                         $form->addElement($tplIpSel2);
                     }
                     break;
@@ -180,7 +180,7 @@ class WgtimelinesTemplates extends XoopsObject
                     if ($option['valid'] > 0) {
                         $borderwidth = new XoopsFormSelect( _AM_WGTIMELINES_TEMPLATE_BORDERWIDTH, 'borderwidth', $option['value']);
                         $i = 0;
-                        for ($i; $i < 31; $i++) {
+                        for ($i; $i < 11; $i++) {
                             $borderwidth->addOption($i . 'px', $i . 'px  ');
                         }
                         $form->addElement($borderwidth);
@@ -386,6 +386,41 @@ class WgtimelinesTemplates extends XoopsObject
                         $form->addElement(new XoopsFormColorPicker( _AM_WGTIMELINES_TEMPLATE_BGCOLOR4, 'bgcolor4', $option['value']));
                     }
                     break;
+                case 'fadein':
+                    if ($option['valid'] > 0) {
+                        $fadein = new XoopsFormSelect( _AM_WGTIMELINES_TEMPLATE_FADEIN, 'fadein', $option['value']);
+                        $fadein->addOption('fly', _AM_WGTIMELINES_TEMPLATE_FADEIN_FLY);
+                        $fadein->addOption('appear', _AM_WGTIMELINES_TEMPLATE_FADEIN_APPEAR);
+                        $form->addElement($fadein);
+                    }
+                    break;
+                case 'panel_pos_single':
+                    if ($option['valid'] > 0) {
+                        $tplPpSel = new XoopsFormSelect( _AM_WGTIMELINES_TEMPLATE_PANELPOS, 'panel_pos_single', $option['value']);
+                        $tplPpSel->addOption('left', _AM_WGTIMELINES_TEMPLATE_LEFT);
+                        $tplPpSel->addOption('right', _AM_WGTIMELINES_TEMPLATE_RIGHT);
+                        $form->addElement($tplPpSel);
+                    }
+                    break;
+				case 'showyear':
+                    if ($option['valid'] > 0) {
+                        $tplShowyear = new XoopsFormSelect( _AM_WGTIMELINES_TEMPLATE_SHOWYEAR, 'showyear', $option['value']);
+                        $tplShowyear->addOption('none', _AM_WGTIMELINES_TEMPLATE_NONE);
+                        $tplShowyear->addOption('changed', _AM_WGTIMELINES_TEMPLATE_SHOWYEAR_CHANGED);
+						$tplShowyear->addOption('all', _AM_WGTIMELINES_TEMPLATE_SHOWYEAR_ALL);
+                        $form->addElement($tplShowyear);
+                    }
+                    break;
+                case 'badgecontent':
+                    if ($option['valid'] > 0) {
+                        $tplBContent = new XoopsFormSelect( _AM_WGTIMELINES_TEMPLATE_BADGECONTENT, 'badgecontent', $option['value']);
+                        $tplBContent->addOption('none', _AM_WGTIMELINES_TEMPLATE_NONE);
+                        $tplBContent->addOption('year', _AM_WGTIMELINES_TEMPLATE_BADGECONTENT_YEAR);
+						$tplBContent->addOption('glyphicon', _AM_WGTIMELINES_TEMPLATE_BADGECONTENT_GLYPH);
+                        $form->addElement($tplBContent);
+                    }
+                    break;
+
                 case 'default':
                 default:
                     if ($option['valid'] > 0) {
@@ -604,7 +639,19 @@ class WgtimelinesTemplates extends XoopsObject
                 case 'startat':
                     $title = _AM_WGTIMELINES_TEMPLATE_STARTAT;
                 break;
-                
+                case 'fadein':
+                    $title = _AM_WGTIMELINES_TEMPLATE_FADEIN;
+                break;
+                case 'panel_pos_single':
+                    $title = _AM_WGTIMELINES_TEMPLATE_PANELPOS;
+                break;
+                case 'showyear':
+                    $title = _AM_WGTIMELINES_TEMPLATE_SHOWYEAR;
+                break;
+                case 'badgecontent':
+                    $title = _AM_WGTIMELINES_TEMPLATE_BADGECONTENT;
+                break;
+
                 case 'else':
                 default:
                     $title = $option['name'];

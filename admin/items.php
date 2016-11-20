@@ -25,6 +25,9 @@ include __DIR__ . '/header.php';
 $op = XoopsRequest::getString('op', 'list');
 // Request item_id
 $itemId = XoopsRequest::getInt('item_id');
+
+$GLOBALS['xoTheme']->addStylesheet(WGTIMELINES_URL . '/assets/css/admin/glyphicons.css');
+
 switch($op) {
 	case 'list':
 	default:
@@ -47,6 +50,7 @@ switch($op) {
             $timeline_id_prev = 0;
 			foreach(array_keys($itemsAll) as $i) {
 				$item = $itemsAll[$i]->getValuesItems(); 
+				// vars for sortable
                 if ($timeline_id_prev == $item['item_tl_id']) {
                     $item['new_timeline'] = 0;
                     $item['nb_items_tl'] = $nb_items_tl;
@@ -121,6 +125,7 @@ switch($op) {
             $itemsObj->setVar('item_date', 0);
         }
 		$itemsObj->setVar('item_year', isset($_POST['item_year']) ? $_POST['item_year'] : 0);
+		$itemsObj->setVar('item_icon', isset($_POST['item_icon']) ? $_POST['item_icon'] : 'none');
 		$itemsObj->setVar('item_weight', isset($_POST['item_weight']) ? $_POST['item_weight'] : 0);
 		$itemsObj->setVar('item_submitter', isset($_POST['item_submitter']) ? $_POST['item_submitter'] : 0);
         $itemDate_create = date_create_from_format(_SHORTDATESTRING, $_POST['item_date_create']);

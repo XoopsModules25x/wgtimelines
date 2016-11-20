@@ -7,9 +7,9 @@
     <table class="table table-<{$table_type}>">
 		<tbody>  
             <{foreach item=item from=$items}>
-                <{if $item.year_display}>
+                <{if $item.badgecontent}>
                     <tr class="tl-table-item-year">
-                        <th colspan="2"><{$item.year_display}></th>
+                        <th colspan="2"><{$item.badgecontent}></th>
                     </tr>
                 <{/if}>
                 <tr>

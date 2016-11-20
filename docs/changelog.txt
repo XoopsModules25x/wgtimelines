@@ -1,8 +1,13 @@
 ==============================================================
+Change Log for wgTimelines - 2016/11/20 Version 1.02
+==============================================================
+ - added glyphicons for badges (goffy)
+ 
+==============================================================
 Change Log for wgTimelines - 2016/11/13 Version 1.01
 ==============================================================
  - added form button trays (cancel/reset/submit) to forms (goffy)
- - added new template facebook and crazy colors (goffy) 
+ - added new template facebook, crazy colors, single column (goffy) 
  
 ==============================================================
 Change Log for wgTimelines - 2016/10/01 5:42:18 Version 1.0

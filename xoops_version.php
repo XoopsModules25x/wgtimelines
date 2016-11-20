@@ -25,7 +25,7 @@
 $dirname  = basename(__DIR__);
 // ------------------- Informations ------------------- //
 $modversion['name'] = _MI_WGTIMELINES_NAME;
-$modversion['version'] = '1.01';
+$modversion['version'] = '1.02';
 $modversion['description'] = _MI_WGTIMELINES_DESC;
 $modversion['author'] = 'goffy (wedega.com)';
 $modversion['author_mail'] = 'webmaster@wedega.com';
@@ -88,6 +88,8 @@ $modversion['templates'][] = array('file' => 'wgtimelines_timelines_slider.tpl',
 $modversion['templates'][] = array('file' => 'wgtimelines_timelines_extended.tpl', 'description' => '');
 $modversion['templates'][] = array('file' => 'wgtimelines_timelines_facebook.tpl', 'description' => '');
 $modversion['templates'][] = array('file' => 'wgtimelines_timelines_crazycolors.tpl', 'description' => '');
+$modversion['templates'][] = array('file' => 'wgtimelines_timelines_animated_2.tpl', 'description' => '');
+$modversion['templates'][] = array('file' => 'wgtimelines_timelines_single.tpl', 'description' => '');
 $modversion['templates'][] = array('file' => 'wgtimelines_breadcrumbs.tpl', 'description' => '');
 $modversion['templates'][] = array('file' => 'wgtimelines_rss.tpl', 'description' => '');
 $modversion['templates'][] = array('file' => 'wgtimelines_search.tpl', 'description' => '');

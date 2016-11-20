@@ -55,22 +55,16 @@ define('_AM_WGTIMELINES_TIMELINE_SORTBY_Y_ASC', 'Jahr/Datum aufsteigend');
 define('_AM_WGTIMELINES_TIMELINE_SORTBY_Y_DESC', 'Jahr/Datum absteigend');
 define('_AM_WGTIMELINES_TIMELINE_SORTBY_ADMIN', 'Im Admin angezeigte Reihenfolge');
 define('_AM_WGTIMELINES_TIMELINE_ONLINE', 'Online');
-// Item add/edit
-define('_AM_WGTIMELINES_ITEM_ADD', 'Eintrag hinzufügen');
-define('_AM_WGTIMELINES_ITEM_EDIT', 'Eintrag bearbeiten');
-// Elements of Item
-define('_AM_WGTIMELINES_ITEM_ID', 'Id');
-define('_AM_WGTIMELINES_ITEM_TL_ID', 'Zeitreihe');
-define('_AM_WGTIMELINES_ITEM_TITLE', 'Titel');
-define('_AM_WGTIMELINES_ITEM_CONTENT', 'Inhalt');
-define('_AM_WGTIMELINES_ITEM_IMAGE', 'Bild');
-define('_AM_WGTIMELINES_FORM_UPLOAD_IMAGE_ITEMS', 'Bilder in ../uploads/wgtimelines/images/items');
-define('_AM_WGTIMELINES_ITEM_DATE', 'Datum');
-define('_AM_WGTIMELINES_ITEM_YEAR', 'Jahr');
 // Template add/edit
 define('_AM_WGTIMELINES_TEMPLATE_ADD', 'Vorlage hinzufügen');
 define('_AM_WGTIMELINES_TEMPLATE_EDIT', 'Vorlage bearbeiten');
 // Elements of Template
+define('_AM_WGTIMELINES_TEMPLATE_NONE', 'Ohne');
+define('_AM_WGTIMELINES_TEMPLATE_LEFT', 'Links');
+define('_AM_WGTIMELINES_TEMPLATE_RIGHT', 'Rechts');
+define('_AM_WGTIMELINES_TEMPLATE_ALTERNATE', 'Abwechselnd');
+define('_AM_WGTIMELINES_TEMPLATE_TOP', 'Oben');
+define('_AM_WGTIMELINES_TEMPLATE_BOTTOM', 'Unten');
 define('_AM_WGTIMELINES_TEMPLATE_ID', 'Id');
 define('_AM_WGTIMELINES_TEMPLATE_NAME', 'Name');
 define('_AM_WGTIMELINES_TEMPLATE_DESC', 'Beschreibung');
@@ -78,12 +72,8 @@ define('_AM_WGTIMELINES_TEMPLATE_FILE', 'Datei');
 define('_AM_WGTIMELINES_TEMPLATE_OPTIONS', 'Optionen');
 define('_AM_WGTIMELINES_TEMPLATE_VALID', 'Anwenden');
 define('_AM_WGTIMELINES_TEMPLATE_ADDOPT', 'Option nach Speichern hinzufügen');
+define('_AM_WGTIMELINES_TEMPLATE_PANELPOS', 'Panelposition');
 define('_AM_WGTIMELINES_TEMPLATE_IMGPOS', 'Bildposition auf Panel');
-define('_AM_WGTIMELINES_TEMPLATE_IMGPOS_LEFT', 'Links');
-define('_AM_WGTIMELINES_TEMPLATE_IMGPOS_RIGHT', 'Rechts');
-define('_AM_WGTIMELINES_TEMPLATE_IMGPOS_ALTERNATE', 'Abwechselnd');
-define('_AM_WGTIMELINES_TEMPLATE_IMGPOS_TOP', 'Oben');
-define('_AM_WGTIMELINES_TEMPLATE_IMGPOS_BOTTOM', 'Unten');
 define('_AM_WGTIMELINES_TEMPLATE_IMGSTYLE', 'Bilddarstellung');
 define('_AM_WGTIMELINES_TEMPLATE_IMGSTYLE_ROUNDED', 'Abgerundet');
 define('_AM_WGTIMELINES_TEMPLATE_IMGSTYLE_CIRCLE', 'Kreisförmig');
@@ -101,12 +91,14 @@ define('_AM_WGTIMELINES_TEMPLATE_BGCOLOR3', '3. Hintergrundfarbe');
 define('_AM_WGTIMELINES_TEMPLATE_FONTCOLOR3', '3. Schriftfarbe');
 define('_AM_WGTIMELINES_TEMPLATE_BGCOLOR4', '4. Hintergrundfarbe');
 define('_AM_WGTIMELINES_TEMPLATE_FONTCOLOR4', '4. Schriftfarbe');
-define('_AM_WGTIMELINES_TEMPLATE_BADGECOLOR', 'Knotenpunktfarbe');
 define('_AM_WGTIMELINES_TEMPLATE_BADGESTYLE', 'Knotenpunktart');
 define('_AM_WGTIMELINES_TEMPLATE_BADGESTYLE_FULL', 'Voll');
 define('_AM_WGTIMELINES_TEMPLATE_BADGESTYLE_CIRCLE', 'Kreis');
+define('_AM_WGTIMELINES_TEMPLATE_BADGECONTENT', 'Inhalt Knotenpunkt');
+define('_AM_WGTIMELINES_TEMPLATE_BADGECONTENT_YEAR', 'Jahr verwenden');
+define('_AM_WGTIMELINES_TEMPLATE_BADGECONTENT_GLYPH', 'Glyphicons verwenden');
+define('_AM_WGTIMELINES_TEMPLATE_BADGECOLOR', 'Knotenpunktfarbe');
 define('_AM_WGTIMELINES_TEMPLATE_BADGEFONTCOLOR', 'Schriftfarbe Knotenpunkt');
-define('_AM_WGTIMELINES_TEMPLATE_NONE', 'Ohne');
 define('_AM_WGTIMELINES_TEMPLATE_ORIENTATION', 'Ausrichtung');
 define('_AM_WGTIMELINES_TEMPLATE_ORIENTATION_V', 'vertikal');
 define('_AM_WGTIMELINES_TEMPLATE_ORIENTATION_H', 'horizontal');
@@ -132,6 +124,28 @@ define('_AM_WGTIMELINES_TEMPLATE_BOXSHADOW_V', 'Vertikal');
 define('_AM_WGTIMELINES_TEMPLATE_BOXSHADOW_BLUR', 'Blur');
 define('_AM_WGTIMELINES_TEMPLATE_BOXSHADOW_SPREAD', 'Spread');
 define('_AM_WGTIMELINES_TEMPLATE_BOXSHADOW_COLOR', 'Schattenfarbe');
+define('_AM_WGTIMELINES_TEMPLATE_FADEIN', 'Animations-Effekt');
+define('_AM_WGTIMELINES_TEMPLATE_FADEIN_FLY', 'einfliegen');
+define('_AM_WGTIMELINES_TEMPLATE_FADEIN_APPEAR', 'erscheinen');
+define('_AM_WGTIMELINES_TEMPLATE_SHOWYEAR', 'Jahr anzeigen');
+define('_AM_WGTIMELINES_TEMPLATE_SHOWYEAR_CHANGED', 'nur bei Änderung');
+define('_AM_WGTIMELINES_TEMPLATE_SHOWYEAR_ALL', 'Immer anzeigen');
+// Item add/edit
+define('_AM_WGTIMELINES_ITEM_ADD', 'Eintrag hinzufügen');
+define('_AM_WGTIMELINES_ITEM_EDIT', 'Eintrag bearbeiten');
+// Elements of Item
+define('_AM_WGTIMELINES_ITEM_ID', 'Id');
+define('_AM_WGTIMELINES_ITEM_TL_ID', 'Zeitreihe');
+define('_AM_WGTIMELINES_ITEM_TITLE', 'Titel');
+define('_AM_WGTIMELINES_ITEM_CONTENT', 'Inhalt');
+define('_AM_WGTIMELINES_ITEM_IMAGE', 'Bild');
+define('_AM_WGTIMELINES_FORM_UPLOAD_IMAGE_ITEMS', 'Bilder in ../uploads/wgtimelines/images/items');
+define('_AM_WGTIMELINES_ITEM_DATE', 'Datum');
+define('_AM_WGTIMELINES_ITEM_YEAR', 'Jahr');
+define('_AM_WGTIMELINES_ITEM_ICON', 'Icon');
+define('_AM_WGTIMELINES_ITEM_YEAR_ICON_DESC', "Wird nur verwendet, wenn die Option '"._AM_WGTIMELINES_TEMPLATE_BADGECONTENT."' entsprechend gesetzt wurde");
+define('_AM_WGTIMELINES_ITEM_NONE', 'Ohne');
+
 // General
 define('_AM_WGTIMELINES_FORM_UPLOAD', 'Datei hochladen');
 define('_AM_WGTIMELINES_FORM_IMAGE_PATH', 'Dateien in %s ');

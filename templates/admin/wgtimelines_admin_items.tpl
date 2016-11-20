@@ -10,6 +10,7 @@
             <th class="center"><{$smarty.const._AM_WGTIMELINES_ITEM_IMAGE}></th>
             <th class="center"><{$smarty.const._AM_WGTIMELINES_ITEM_DATE}></th>
             <th class="center"><{$smarty.const._AM_WGTIMELINES_ITEM_YEAR}></th>
+			<th class="center"><{$smarty.const._AM_WGTIMELINES_ITEM_ICON}></th>
             <th class="center"><{$smarty.const._AM_WGTIMELINES_SUBMITTER}></th>
             <th class="center"><{$smarty.const._AM_WGTIMELINES_DATE_CREATE}></th>
             <th class="center width5"><{$smarty.const._AM_WGTIMELINES_FORM_ACTION}></th>
@@ -36,6 +37,7 @@
             <td class="center"><img src="<{$wgtimelines_upload_url}>/images/items/<{$item.image}>" alt="items" style="max-width:100px;" /></td>
             <td class="center"><{$item.date}></td>
             <td class="center"><{$item.year}></td>
+			<td class="center"><i class='glyphicon glyphicon-<{$item.icon}>'></i></td>
             <td class="center"><{$item.submitter}></td>
             <td class="center"><{$item.date_create}></td>
             <td class="center  width5">

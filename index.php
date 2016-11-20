@@ -44,6 +44,15 @@ if ($timeline_rows > 0) {
     $template_obj = $templatesHandler->get($tl_template);
     $template     = $template_obj->getValuesTemplates();
     $options      = $template['options'];
+	// read necessaoptions
+    $tplpanel_pos = 'none';
+    $tplshowyear  = 'none';
+	$badgecontent  = 'none';
+	foreach ($options as $option) {
+		if ($option['name'] === 'panel_pos' && $option['valid'] > 0) $tplpanel_pos = $option['value'];
+		if ($option['name'] === 'showyear'  && $option['valid'] > 0) $tplshowyear  = $option['value'];
+		if ($option['name'] === 'badgecontent'  && $option['valid'] > 0) $badgecontent  = $option['value'];
+	}
 
     $GLOBALS['xoopsOption']['template_main'] = $template['file'];
 
@@ -94,24 +103,41 @@ if ($timeline_rows > 0) {
         foreach(array_keys($itemsAll) as $i) {
             $j++;
             $items[$j] = $itemsAll[$i]->getValuesItems();
-            if ($items[$j]['image'] === 'blank.gif') $items[$j]['image'] = '';
-            if ($template['panel_pos']=== 'alternate') {
+			// option panel pos
+            if ($tplpanel_pos === 'alternate') {
                 $alternate = $alternate == 0 ? 1 : 0;
                 $items[$j]['alternate'] = $alternate;
             }
-            if ( $year == $itemsAll[$i]->getVar('item_year')) {
-                $items[$j]['year_display'] = '';
-            } else {
-                $year = $itemsAll[$i]->getVar('item_year');
-                $items[$j]['year_display'] = $itemsAll[$i]->getVar('item_year');
-            }
+			if ($badgecontent === 'year') {
+				// option show year
+				if ($tplshowyear === 'changed') {
+					if ( $year == $itemsAll[$i]->getVar('item_year')) {
+						$items[$j]['badgecontent'] = '';
+					} else {
+						$year = $itemsAll[$i]->getVar('item_year');
+						$items[$j]['badgecontent'] = $itemsAll[$i]->getVar('item_year');
+					}
+				} else if ($tplshowyear === 'all') {
+					$items[$j]['badgecontent'] = $itemsAll[$i]->getVar('item_year');
+				} else {
+					$items[$j]['badgecontent'] = '';
+				}
+			} else if ($badgecontent === 'glyphicon') {
+				$items[$j]['badgecontent'] = "<i class='glyphicon glyphicon-" .$itemsAll[$i]->getVar('item_icon') . "'></i> ";
+			} else {
+				// badgecontent = none
+			}
+			// specials for crazy colors
             if ($template['name']=== 'Crazy Colors') {
                 $crazycolors++;
                 if ($crazycolors == 5) $crazycolors = 1;
                 $items[$j]['crazycolors'] = $crazycolors;
             }
+			// inverted or not
             $items[$j]['inverted'] = $inverted;
             $inverted = $inverted == 0 ? 1 : 0;
+			// misc
+			if ($items[$j]['image'] === 'blank.gif') $items[$j]['image'] = '';
             $keywords[] = $itemsAll[$i]->getVar('item_title');
         }
         $GLOBALS['xoopsTpl']->assign('items', $items);

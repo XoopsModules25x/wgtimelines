@@ -90,6 +90,10 @@ switch($op) {
                             'valid' => isset($_POST['panel_pos']) ? 1 : 0, 
                             'value' => isset($_POST['panel_pos']) ? $_POST['panel_pos'] : '', 
                             'type' => 'text');
+        $options[] = array('name' => 'panel_pos_single', 
+                            'valid' => isset($_POST['panel_pos_single']) ? 1 : 0, 
+                            'value' => isset($_POST['panel_pos_single']) ? $_POST['panel_pos_single'] : 'left', 
+                            'type' => 'text');
         $options[] = array('name' => 'panel_imgpos', 
                             'valid' => isset($_POST['panel_imgpos']) ? 1 : 0, 
                             'value' => isset($_POST['panel_imgpos']) ? $_POST['panel_imgpos'] : '', 
@@ -130,11 +134,15 @@ switch($op) {
                             'valid' => isset($_POST['fontcolor4']) ? 1 : 0, 
                             'value' => isset($_POST['fontcolor4']) ? $_POST['fontcolor4'] : '', 
                             'type' => 'color');                            
-        $options[] = array('name' => 'badgestyle', 
+		$options[] = array('name' => 'badgestyle', 
                             'valid' => isset($_POST['badgestyle']) ? 1 : 0, 
                             'value' => isset($_POST['badgestyle']) ? $_POST['badgestyle'] : '', 
                             'type' => 'text');
-        $options[] = array('name' => 'badgecolor', 
+        $options[] = array('name' => 'badgecontent', 
+                            'valid' => isset($_POST['badgecontent']) ? 1 : 0, 
+                            'value' => isset($_POST['badgecontent']) ? $_POST['badgecontent'] : 'none',
+                            'type' => 'text');    
+		$options[] = array('name' => 'badgecolor', 
                             'valid' => isset($_POST['badgecolor']) ? 1 : 0, 
                             'value' => isset($_POST['badgecolor']) ? $_POST['badgecolor'] : '', 
                             'type' => 'color');
@@ -142,6 +150,10 @@ switch($op) {
                             'valid' => isset($_POST['badgefontcolor']) ? 1 : 0, 
                             'value' => isset($_POST['badgefontcolor']) ? $_POST['badgefontcolor'] : '#eeeeee', 
                             'type' => 'color');
+		$options[] = array('name' => 'showyear', 
+                            'valid' => isset($_POST['showyear']) ? 1 : 0, 
+                            'value' => isset($_POST['showyear']) ? $_POST['showyear'] : 'none', 
+                            'type' => 'text');
         $options[] = array('name' => 'linecolor', 
                             'valid' => isset($_POST['linecolor']) ? 1 : 0, 
                             'value' => isset($_POST['linecolor']) ? $_POST['linecolor'] : '', 
@@ -206,7 +218,11 @@ switch($op) {
                             'valid' => isset($_POST['startat']) ? 1 : 0, 
                             'value' => (isset($_POST['startat']) && $_POST['startat'] > 0) ? $_POST['startat'] : '1', 
                             'type' => 'text'); 
-        
+        $options[] = array('name' => 'fadein', 
+                            'valid' => isset($_POST['fadein']) ? 1 : 0, 
+                            'value' => isset($_POST['fadein']) ? $_POST['fadein'] : 'appear',
+                            'type' => 'text'); 
+                         
         $templatesObj->setVar('tpl_options', serialize($options));
 
 		// Insert Data

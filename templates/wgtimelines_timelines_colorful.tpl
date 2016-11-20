@@ -2,18 +2,20 @@
 <link rel="stylesheet" href="<{$wgtimelines_url}>/templates/css/timelines_colorful.css">
 <style>
 .timeline:before {
-	background-color: <{$bgcolor}>;
+	background-color: <{$linecolor}>;
 }
 .timeline > li > .timeline-panel {
-    border-color: <{$bgcolor}>;
+    border: <{$borderwidth}> <{$borderstyle}> <{$bordercolor}>;
+    border-radius: <{$borderradius}>;
+    background-color:<{$badgecolor}>;
 }
 .timeline > li > .timeline-panel:before {
-    border-left-color: <{$bgcolor}>;
-    border-right-color: <{$bgcolor}>;
+    border-left-color: <{$bordercolor}>;
+    border-right-color: <{$bordercolor}>;
 }
 .timeline > li > .timeline-panel:after {
-    border-left-color: <{$bgcolor}>;
-    border-right-color: <{$bgcolor}>;
+    border-left-color: <{$bordercolor}>;
+    border-right-color: <{$bordercolor}>;
 }
 .timeline-title {
     color: <{$fontcolor}>;
@@ -24,7 +26,6 @@
 }
 .timeline-heading {
     color: <{$fontcolor}>;
-    background-color:<{$bgcolor}>;
 }
 </style>
 <{if count($items) > 0}>
@@ -38,9 +39,7 @@
         <ul class="timeline">
         <{foreach item=item from=$items}>
             <li class="<{if $item.inverted > 0}>timeline-inverted<{/if}>">
-                <{if $item.year_display}>
-                    <div class="timeline-badge"><{$item.year_display}></div>
-                <{/if}>
+                <div class="timeline-badge"><{$item.badgecontent}></div>
                 <div class="timeline-panel">
                     <div class="timeline-heading"> 
                         <h4 class="timeline-title"><{$item.title}></h4>

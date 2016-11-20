@@ -2,7 +2,16 @@
 <link rel="stylesheet" href="<{$wgtimelines_url}>/templates/css/timelines_bigpicture.css">
 <style>
 .timeline::before {
-	background-color: <{$bgcolor}>;
+	background-color: <{$linecolor}>;
+}
+.timeline > li > .timeline-panel {
+    border: <{$borderwidth}> <{$borderstyle}> <{$bordercolor}>;
+    -webkit-box-shadow: <{$boxshadow}>;
+    box-shadow: <{$boxshadow}>;
+}
+.timeline > li > .timeline-panel:before {
+  border-left-color: <{$bordercolor}>;
+  border-right-color: <{$bordercolor}>;
 }
 .timeline-badge-icon {
     color:<{$badgecolor}>;
@@ -23,7 +32,7 @@
         <ul class="timeline">
         <{foreach item=item from=$items}>
             <li class="<{if $item.inverted > 0}>timeline-inverted<{/if}>">
-                <div class="timeline-badge"><i class="glyphicon glyphicon-record timeline-badge-icon" title="<{$item.year_display}>" id=""></i></div>
+                <div class="timeline-badge"><i class="glyphicon glyphicon-record timeline-badge-icon" title="<{$item.badgecontent}>" id=""></i></div>
                 <div class="timeline-panel">
                     <{if $panel_imgpos == 'bottom' && $item.date}>
                         <div class="timeline-footer">
@@ -33,9 +42,10 @@
                     <div class="timeline-heading"> 
                         <{if $panel_imgpos == 'top' && $item.image}>
                             <img class='img-timeline img-timeline-<{$panel_imgpos}> img-responsive <{$imgstyle}>' src='<{$wgtimelines_upload_url}>/images/items/<{$item.image}>' alt='items' />
-                        <{else}>
                         <{/if}>
-                        <h4 class="timeline-title"><{$item.title}></h4>
+                        <{if $item.title}>
+                            <h4 class="timeline-title"><{$item.title}></h4>
+                        <{/if}>
                     </div>
                     <div class="timeline-body">
                         <p><{$item.content}></p>

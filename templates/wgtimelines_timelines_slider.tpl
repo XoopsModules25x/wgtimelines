@@ -20,7 +20,6 @@
 
 <style>
 
-}
 </style>
 
 <{if $welcome}><h2><{$welcome}></h2><{/if}>
@@ -42,7 +41,7 @@
         
 		<ul id="issues">
 			<{foreach name=items item=item from=$items}>
-            <li id="<{$item.year_display}>" class="selected">
+            <li id="<{$item.badgecontent}>" class="selected">
                 <{if $orientation == 'horizontal'}>
                     <{if $item.image}>
                         <div class='slider-img-horizontal'>

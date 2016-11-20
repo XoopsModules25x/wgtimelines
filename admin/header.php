@@ -54,7 +54,7 @@ redirect_header('../../../admin.php.php', 5, _AM_MODULEADMIN_MISSING);
 }
 xoops_cp_header();
 $adminMenu = new ModuleAdmin();
-echo file_exists(WGTIMELINES_URL . '/assets/js/sortable.js');
+
 //load stylesheets and jquery for sortable
 $GLOBALS['xoTheme']->addStylesheet(WGTIMELINES_URL . '/assets/css/admin/style.css');
 $GLOBALS['xoTheme']->addScript(WGTIMELINES_URL . '/assets/js/jquery.js');

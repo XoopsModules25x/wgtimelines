@@ -83,7 +83,7 @@
         <ul class="timeline">
         <{foreach item=item from=$items}>
             <li class="<{if $item.inverted > 0}>timeline-inverted<{/if}>">
-                <div class="timeline-badge"><{$item.year}></div>
+                <div class="timeline-badge"><{$item.badgecontent}></div>
                 <div class="timeline-panel-<{$item.crazycolors}>">
                     <div class="timeline-heading">
                         <{if $panel_imgpos == 'top' && $item.image}>
