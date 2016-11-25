@@ -25,7 +25,7 @@
 $dirname  = basename(__DIR__);
 // ------------------- Informations ------------------- //
 $modversion['name'] = _MI_WGTIMELINES_NAME;
-$modversion['version'] = '1.02';
+$modversion['version'] = '1.03';
 $modversion['description'] = _MI_WGTIMELINES_DESC;
 $modversion['author'] = 'goffy (wedega.com)';
 $modversion['author_mail'] = 'webmaster@wedega.com';

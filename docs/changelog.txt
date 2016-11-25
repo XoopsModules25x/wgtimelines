@@ -1,4 +1,11 @@
 ==============================================================
+Change Log for wgTimelines - 2016/11/22 Version 1.03
+==============================================================
+ - added truncateHTML to helper class (mamba/lucio/goffy)
+ - added proper description for options in templates admin side (goffy)
+ - added new fields tpl_version and tpl_author to wgtimelines_templates (goffy)
+ 
+==============================================================
 Change Log for wgTimelines - 2016/11/20 Version 1.02
 ==============================================================
  - added glyphicons for badges (goffy)

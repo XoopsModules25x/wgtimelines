@@ -37,6 +37,10 @@ function xoops_module_update_wgtimelines(&$module, $prev_version = null)
         $ret = update_wgtimelines_v102($module);
     }
     $errors = $module->getErrors();
+    if ($prev_version < 103) {
+        $ret = update_wgtimelines_v103($module);
+    }
+    $errors = $module->getErrors();
     if (!empty($errors)) {
         print_r($errors);
     }
@@ -60,6 +64,29 @@ function update_wgtimelines_v102(&$module)
         return false;
     }
 	
+    return true;
+}
+
+/**
+ * @param $module
+ *
+ * @return bool
+ */
+function update_wgtimelines_v103(&$module)
+{
+	$sql = "ALTER TABLE `" . $GLOBALS['xoopsDB']->prefix('wgtimelines_templates') . "` ADD `tpl_version` VARCHAR(10) NOT NULL DEFAULT '' AFTER `tpl_weight`;";
+	if (!$result = $GLOBALS['xoopsDB']->queryF($sql)) {
+        xoops_error($GLOBALS['xoopsDB']->error() . '<br />' . $sql);
+        $module->setErrors("error when adding new field tpl_version to table wgtimelines_templates");
+        return false;
+    }
+	
+	$sql = "ALTER TABLE `" . $GLOBALS['xoopsDB']->prefix('wgtimelines_templates') . "` ADD `tpl_author` VARCHAR(200) NOT NULL DEFAULT '' AFTER `tpl_version`;";
+	if (!$result = $GLOBALS['xoopsDB']->queryF($sql)) {
+        xoops_error($GLOBALS['xoopsDB']->error() . '<br />' . $sql);
+        $module->setErrors("error when adding new field tpl_author to table wgtimelines_templates");
+        return false;
+    }	
     return true;
 }
 

@@ -40,6 +40,8 @@ class WgtimelinesTemplates extends XoopsObject
 		$this->initVar('tpl_file', XOBJ_DTYPE_TXTBOX);
         $this->initVar('tpl_options', XOBJ_DTYPE_TXTAREA);
 		$this->initVar('tpl_weight', XOBJ_DTYPE_TXTBOX);
+		$this->initVar('tpl_version', XOBJ_DTYPE_TXTBOX);
+		$this->initVar('tpl_author', XOBJ_DTYPE_TXTBOX);
 	}
 
 	/**
@@ -430,7 +432,10 @@ class WgtimelinesTemplates extends XoopsObject
             }
         }
 
-
+		// Form label tpl_version
+		$form->addElement(new XoopsFormLabel( _AM_WGTIMELINES_TEMPLATE_VERSION, $this->getVar('tpl_version')));
+		// Form label tpl_author
+		$form->addElement(new XoopsFormLabel( _AM_WGTIMELINES_TEMPLATE_AUTHOR, $this->getVar('tpl_author')));
 		// To Save
 		$form->addElement(new XoopsFormHidden('op', 'save'));
         $form->addElement(new XoopsFormHidden('addopt', 0));
@@ -525,6 +530,8 @@ class WgtimelinesTemplates extends XoopsObject
             $ret[$option['name']] = $option['value'];
         }
         $ret['options'] = $options;
+		$ret['version'] = $this->getVar('tpl_version');
+		$ret['author'] = $this->getVar('tpl_author');
 		return $ret;
 	}
 
@@ -545,8 +552,10 @@ class WgtimelinesTemplates extends XoopsObject
 		$ret['file'] = $this->getVar('tpl_file');
         $options = unserialize($this->getVar('tpl_options', 'N'));
         $ret_options = array();
+		
         foreach ($options as $option) {
-            switch ($option['name']) {
+            // get proper option name
+			switch ($option['name']) {
                 case 'panel_pos':
                     $title = _AM_WGTIMELINES_TEMPLATE_IMGPOS;
                 break;
@@ -657,13 +666,43 @@ class WgtimelinesTemplates extends XoopsObject
                     $title = $option['name'];
                 break;
             }
+			// get proper option value
+			$optval = $option['value'];
+			if ($optval === 'none')          $optval = _AM_WGTIMELINES_TEMPLATE_NONE;
+			if ($optval === 'left')          $optval = _AM_WGTIMELINES_TEMPLATE_LEFT;
+			if ($optval === 'right')         $optval = _AM_WGTIMELINES_TEMPLATE_RIGHT;
+			if ($optval === 'alternate')     $optval = _AM_WGTIMELINES_TEMPLATE_ALTERNATE;
+			if ($optval === 'bordered')      $optval = _AM_WGTIMELINES_TEMPLATE_TABLEBORDERED;
+			if ($optval === 'striped')       $optval = _AM_WGTIMELINES_TEMPLATE_TABLESTRIPED;
+			if ($optval === 'hover')         $optval = _AM_WGTIMELINES_TEMPLATE_TABLEHOVER;
+			if ($optval === 'condensed')     $optval = _AM_WGTIMELINES_TEMPLATE_TABLECONDENSED;
+			if ($optval === 'img-rounded')   $optval = _AM_WGTIMELINES_TEMPLATE_IMGSTYLE_ROUNDED;
+			if ($optval === 'img-circle')    $optval = _AM_WGTIMELINES_TEMPLATE_IMGSTYLE_CIRCLE;
+			if ($optval === 'img-thumbnail') $optval = _AM_WGTIMELINES_TEMPLATE_IMGSTYLE_THUMB;
+			if ($optval === 'top')           $optval = _AM_WGTIMELINES_TEMPLATE_TOP;
+			if ($optval === 'bottom')        $optval = _AM_WGTIMELINES_TEMPLATE_BOTTOM;
+			if ($optval === 'full')          $optval = _AM_WGTIMELINES_TEMPLATE_BADGESTYLE_FULL;
+			if ($optval === 'circle')        $optval = _AM_WGTIMELINES_TEMPLATE_BADGESTYLE_CIRCLE;
+			if ($optval === 'vertical')      $optval = _AM_WGTIMELINES_TEMPLATE_ORIENTATION_V;
+			if ($optval === 'horizontal')    $optval = _AM_WGTIMELINES_TEMPLATE_ORIENTATION_H;
+			if ($optval === 'forward')       $optval = _AM_WGTIMELINES_TEMPLATE_AUTOPLAY_DIRECTION_FW;
+			if ($optval === 'backward')      $optval = _AM_WGTIMELINES_TEMPLATE_AUTOPLAY_DIRECTION_BW;
+			if ($optval === 'fly')           $optval = _AM_WGTIMELINES_TEMPLATE_FADEIN_FLY;
+			if ($optval === 'appear')        $optval = _AM_WGTIMELINES_TEMPLATE_FADEIN_APPEAR;
+			if ($optval === 'changed')       $optval = _AM_WGTIMELINES_TEMPLATE_SHOWYEAR_CHANGED;
+			if ($optval === 'all')           $optval = _AM_WGTIMELINES_TEMPLATE_SHOWYEAR_ALL;
+			if ($optval === 'year')          $optval = _AM_WGTIMELINES_TEMPLATE_BADGECONTENT_YEAR;
+			if ($optval === 'glyphicon')     $optval = _AM_WGTIMELINES_TEMPLATE_BADGECONTENT_GLYPH;
+
             $ret_options[] = array('name' => $option['name'], 
                                     'valid' => $option['valid'], 
-                                    'value' => $option['value'], 
+                                    'value' => $optval, 
                                     'title' => $title, 
                                     'type' => $option['type']);
         }
         $ret['options'] = $ret_options;
+		$ret['version'] = $this->getVar('tpl_version');
+		$ret['author'] = $this->getVar('tpl_author');
 		return $ret;
 	}
 

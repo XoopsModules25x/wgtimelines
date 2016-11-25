@@ -8,6 +8,8 @@
             <th class="center"><{$smarty.const._AM_WGTIMELINES_TEMPLATE_DESC}></th>
             <th class="center"><{$smarty.const._AM_WGTIMELINES_TEMPLATE_FILE}></th>
             <th class="center"><{$smarty.const._AM_WGTIMELINES_TEMPLATE_OPTIONS}></th>
+			<th class="center"><{$smarty.const._AM_WGTIMELINES_TEMPLATE_VERSION}></th>
+			<th class="center"><{$smarty.const._AM_WGTIMELINES_TEMPLATE_AUTHOR}></th>
             <th class="center width5"><{$smarty.const._AM_WGTIMELINES_FORM_ACTION}></th>
         </tr>
     </thead>
@@ -29,6 +31,8 @@
                     <{/if}>
                 <{/foreach}>
             </td>
+			<td class="center"><{$template.version}></td>
+			<td class="center"><{$template.author}></td>
             <td class="center  width10">
                 <a href="templates.php?op=edit&amp;tpl_id=<{$template.id}>" title="<{$smarty.const._EDIT}>">
                     <img src="<{xoModuleIcons16 edit.png}>" alt="templates" />

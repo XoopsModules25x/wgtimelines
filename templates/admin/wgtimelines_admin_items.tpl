@@ -33,7 +33,7 @@
                 <{/if}>
             </td>
             <td class="center"><{$item.title}></td>
-            <td class="center"><{$item.content_admin}></td>
+            <td class=""><{$item.content_admin}></td>
             <td class="center"><img src="<{$wgtimelines_upload_url}>/images/items/<{$item.image}>" alt="items" style="max-width:100px;" /></td>
             <td class="center"><{$item.date}></td>
             <td class="center"><{$item.year}></td>

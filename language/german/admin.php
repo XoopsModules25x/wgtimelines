@@ -59,17 +59,20 @@ define('_AM_WGTIMELINES_TIMELINE_ONLINE', 'Online');
 define('_AM_WGTIMELINES_TEMPLATE_ADD', 'Vorlage hinzufügen');
 define('_AM_WGTIMELINES_TEMPLATE_EDIT', 'Vorlage bearbeiten');
 // Elements of Template
+define('_AM_WGTIMELINES_TEMPLATE_ID', 'Id');
+define('_AM_WGTIMELINES_TEMPLATE_NAME', 'Name');
+define('_AM_WGTIMELINES_TEMPLATE_DESC', 'Beschreibung');
+define('_AM_WGTIMELINES_TEMPLATE_FILE', 'Datei');
+define('_AM_WGTIMELINES_TEMPLATE_OPTIONS', 'Optionen');
+define('_AM_WGTIMELINES_TEMPLATE_VERSION', 'Version');
+define('_AM_WGTIMELINES_TEMPLATE_AUTHOR', 'Autor');
+// Elements of Template options
 define('_AM_WGTIMELINES_TEMPLATE_NONE', 'Ohne');
 define('_AM_WGTIMELINES_TEMPLATE_LEFT', 'Links');
 define('_AM_WGTIMELINES_TEMPLATE_RIGHT', 'Rechts');
 define('_AM_WGTIMELINES_TEMPLATE_ALTERNATE', 'Abwechselnd');
 define('_AM_WGTIMELINES_TEMPLATE_TOP', 'Oben');
 define('_AM_WGTIMELINES_TEMPLATE_BOTTOM', 'Unten');
-define('_AM_WGTIMELINES_TEMPLATE_ID', 'Id');
-define('_AM_WGTIMELINES_TEMPLATE_NAME', 'Name');
-define('_AM_WGTIMELINES_TEMPLATE_DESC', 'Beschreibung');
-define('_AM_WGTIMELINES_TEMPLATE_FILE', 'Datei');
-define('_AM_WGTIMELINES_TEMPLATE_OPTIONS', 'Optionen');
 define('_AM_WGTIMELINES_TEMPLATE_VALID', 'Anwenden');
 define('_AM_WGTIMELINES_TEMPLATE_ADDOPT', 'Option nach Speichern hinzufügen');
 define('_AM_WGTIMELINES_TEMPLATE_PANELPOS', 'Panelposition');
@@ -130,6 +133,7 @@ define('_AM_WGTIMELINES_TEMPLATE_FADEIN_APPEAR', 'erscheinen');
 define('_AM_WGTIMELINES_TEMPLATE_SHOWYEAR', 'Jahr anzeigen');
 define('_AM_WGTIMELINES_TEMPLATE_SHOWYEAR_CHANGED', 'nur bei Änderung');
 define('_AM_WGTIMELINES_TEMPLATE_SHOWYEAR_ALL', 'Immer anzeigen');
+
 // Item add/edit
 define('_AM_WGTIMELINES_ITEM_ADD', 'Eintrag hinzufügen');
 define('_AM_WGTIMELINES_ITEM_EDIT', 'Eintrag bearbeiten');
