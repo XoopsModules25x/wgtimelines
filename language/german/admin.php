@@ -71,6 +71,7 @@ define('_AM_WGTIMELINES_TEMPLATE_SURE_UPDATE', 'Durch die Aktualiserung auf die 
 define('_AM_WGTIMELINES_TEMPLATE_RESETVERSION', 'Die Standardwerte wiederherstellen');
 define('_AM_WGTIMELINES_TEMPLATE_SURE_RESET', 'Durch die Wiederherstellen der Standardwerte gehen Ihre Einstellungen verloren. Wollen Sie fortsetzen?');
 define('_AM_WGTIMELINES_TEMPLATE_NOTSUPPORTED', 'Diese Vorlage wird vom Entwicklerteam nicht mehr unterstützt');
+define('_AM_WGTIMELINES_TEMPLATE_NEWTEMPLATE', 'Eine neue Vorlage ist verfügbar');
 // Elements of Template options
 define('_AM_WGTIMELINES_TEMPLATE_NONE', 'Ohne');
 define('_AM_WGTIMELINES_TEMPLATE_LEFT', 'Links');

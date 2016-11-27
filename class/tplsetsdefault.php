@@ -169,7 +169,7 @@ class WgtimelinesTplsetsdefaultHandler extends XoopsPersistableObjectHandler
 			}
 		}
 		$templatesCount = WgtimelinesHelper::getInstance()->getHandler('templates')->getCountTemplates();
-		if ($tplsetsdefaultCount != $templatesCount) {
+		if ($tplsetsdefaultCount > $templatesCount) {
 			$db = $GLOBALS['xoopsDB'];
 			$sql = 'INSERT INTO `' . $db->prefix('wgtimelines_templates') . '` SELECT `' . $db->prefix('wgtimelines_tplsetsdefault') . '`.* FROM `' . $db->prefix('wgtimelines_tplsetsdefault') . '` LEFT JOIN `' . $db->prefix('wgtimelines_templates') . '` ON `' . $db->prefix('wgtimelines_tplsetsdefault') . '`.tpl_id = `' . $db->prefix('wgtimelines_templates') . '`.tpl_id WHERE (((`' . $db->prefix('wgtimelines_templates') . '`.tpl_id) Is Null));';
 			if ($db->queryF($sql)) {
