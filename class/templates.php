@@ -511,7 +511,7 @@ class WgtimelinesTemplates extends XoopsObject
 		$form->addElement(new XoopsFormText( _AM_WGTIMELINES_TEMPLATE_AUTHOR, 'tpl_author', 20, 255,  $this->getVar('tpl_author') ), true);
 		// Form label tpl_date_create   	
 		$tplDate_create = $this->isNew() ? time() : $this->getVar('tpl_date_create');
-		$form->addElement(new XoopsFormTextDateSelect( _AM_WGTIMELINES_DATE_CREATE, 'tpl_date_create', '', $this->getVar('tpl_date_create') ));
+		$form->addElement(new XoopsFormTextDateSelect( _AM_WGTIMELINES_DATE_CREATE, 'tpl_date_create', '', $tplDate_create ));
 		
 		$form->addElement(new XoopsFormRadioYN(_AM_WGTIMELINES_TEMPLATE_ADDOPT, 'addopt', 0, _YES, _NO), false);
 		// To Save

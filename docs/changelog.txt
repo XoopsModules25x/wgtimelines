@@ -1,6 +1,7 @@
 ==============================================================
 Change Log for wgTimelines - 2016/11/22 Version 1.03
 ==============================================================
+ - fixed bug proper showing of html on front end (mamba/goffy)
  - added usage of versions of templates (goffy)
  - added truncateHTML to helper class (mamba/lucio/goffy)
  - added proper description for options in templates admin side (goffy)

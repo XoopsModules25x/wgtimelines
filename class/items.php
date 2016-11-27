@@ -172,7 +172,7 @@ class WgtimelinesItems extends XoopsObject
 		$timeline_obj = $timelines->get($this->getVar('item_tl_id'));
 		$ret['tl_name'] = $timeline_obj->getVar('tl_name');
 		$ret['title'] = $this->getVar('item_title');
-		$ret['content'] = strip_tags($this->getVar('item_content', 'n'));
+		$ret['content'] = $this->getVar('item_content', 'n');
         $ret['content_admin'] = $wgtimelines->truncateHtml($this->getVar('item_content', 'n'));
 		$ret['image'] = $this->getVar('item_image');
         if ($this->getVar('item_date') > 0) $ret['date'] = formatTimestamp($this->getVar('item_date'), 's');
