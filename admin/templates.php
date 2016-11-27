@@ -27,19 +27,35 @@ $op = XoopsRequest::getString('op', 'list');
 $tplId = XoopsRequest::getInt('tpl_id');
 switch($op) {
 	case 'list':
-	default:
+	default:	
 		$start = XoopsRequest::getInt('start', 0);
 		$limit = XoopsRequest::getInt('limit', $wgtimelines->getConfig('adminpager'));
 		$templateMain = 'wgtimelines_admin_templates.tpl';
+		
+		// check default template set
+		$tplsetsdefaultHandler->checkTplsetsdefault();
+		
 		$templatesCount = $templatesHandler->getCountTemplates();
 		$templatesAll = $templatesHandler->getAllTemplates($start, $limit);
+		
 		$GLOBALS['xoopsTpl']->assign('templates_count', $templatesCount);
 		$GLOBALS['xoopsTpl']->assign('wgtimelines_url', WGTIMELINES_URL);
 		$GLOBALS['xoopsTpl']->assign('wgtimelines_upload_url', WGTIMELINES_UPLOAD_URL);
+		$GLOBALS['xoopsTpl']->assign('wgtimelines_icons_url', WGTIMELINES_ICONS_URL);
 		// Table view templates
 		if($templatesCount > 0) {
 			foreach(array_keys($templatesAll) as $i) {
 				$template = $templatesAll[$i]->getValuesTemplatesAdmin();
+				$obj_tplsetdefault = $tplsetsdefaultHandler->get($template['id']);
+				$template['newversion'] = 0;
+				$template['notsupported'] = 0;
+				if (is_object($obj_tplsetdefault)) {
+					if ($template['tpl_version'] < $obj_tplsetdefault->getVar('tpl_version'))  $template['newversion'] = 1;
+				} else {
+					$template['notsupported'] = 1;
+				}
+				$template['newtemplate'] = 0;
+				if ($template['tpl_date_create'] > (time()-2592000)) $template['newtemplate'] = 1;
 				$GLOBALS['xoopsTpl']->append('templates_list', $template);
 				unset($template);
 			}
@@ -245,6 +261,10 @@ switch($op) {
 		}
         $options = array();
 		// Set Vars
+		$templatesObj->setVar('tpl_name', $_POST['tpl_name']);
+        $templatesObj->setVar('tpl_desc', $_POST['tpl_desc']);
+		$templatesObj->setVar('tpl_file', $_POST['tpl_file']);
+		
         for ($i = 1; $i <= $_POST['counter']; $i++) {
             if (!$_POST['name_'.$i] == '') {
                 $options[] = array('name' => $_POST['name_' . $i], 'valid' => $_POST['valid_' . $i], 'value' => $_POST['value_' . $i], 'type' => $_POST['type_' . $i]);
@@ -252,6 +272,11 @@ switch($op) {
             }
         }
         $templatesObj->setVar('tpl_options', serialize($options));
+		$templatesObj->setVar('tpl_version', $_POST['tpl_version']);
+		$templatesObj->setVar('tpl_author', $_POST['tpl_author']);
+		$tplDate_create = date_create_from_format(_SHORTDATESTRING, $_POST['tpl_date_create']);
+		$templatesObj->setVar('tpl_date_create', $tplDate_create->getTimestamp());
+		
 		// Insert Data
 		if($templatesHandler->insert($templatesObj)) {
 			if ($_POST['addopt'] > 0) {
@@ -284,19 +309,31 @@ switch($op) {
 		$GLOBALS['xoopsTpl']->assign('form', $form->render());
 
 	break;
-	case 'delete':
+	case 'update':
+	case 'reset':
 		$templatesObj = $templatesHandler->get($tplId);
 		if(isset($_REQUEST['ok']) && 1 == $_REQUEST['ok']) {
 			if(!$GLOBALS['xoopsSecurity']->check()) {
 				redirect_header('templates.php', 3, implode(', ', $GLOBALS['xoopsSecurity']->getErrors()));
 			}
-			if($templatesHandler->delete($templatesObj)) {
-				redirect_header('templates.php', 3, _AM_WGTIMELINES_FORM_DELETE_OK);
-			} else {
-				$GLOBALS['xoopsTpl']->assign('error', $templatesObj->getHtmlErrors());
+			$tplsetdefaultObj = $tplsetsdefaultHandler->get($tplId);
+			// Set Vars
+			$templatesObj->setVar('tpl_name', $tplsetdefaultObj->getVar('tpl_name'));
+			$templatesObj->setVar('tpl_desc', $tplsetdefaultObj->getVar('tpl_desc', 'n'));
+			$templatesObj->setVar('tpl_file', $tplsetdefaultObj->getVar('tpl_file'));
+			$templatesObj->setVar('tpl_options', $tplsetdefaultObj->getVar('tpl_options', 'n'));
+			$templatesObj->setVar('tpl_weight', $tplsetdefaultObj->getVar('tpl_weight'));
+			$templatesObj->setVar('tpl_version', $tplsetdefaultObj->getVar('tpl_version'));
+			$templatesObj->setVar('tpl_author', $tplsetdefaultObj->getVar('tpl_author'));
+			$templatesObj->setVar('tpl_date_create', $tplsetdefaultObj->getVar('tpl_date_create'));
+			// Insert Data
+			if($templatesHandler->insert($templatesObj)) {
+				redirect_header('templates.php?op=list', 2, _AM_WGTIMELINES_FORM_OK);
 			}
+			$GLOBALS['xoopsTpl']->assign('error', $templatesObj->getHtmlErrors());
 		} else {
-			xoops_confirm(array('ok' => 1, 'tpl_id' => $tplId, 'op' => 'delete'), $_SERVER['REQUEST_URI'], sprintf(_AM_WGTIMELINES_FORM_SURE_DELETE, $templatesObj->getVar('tpl_name')));
+			$info = ($op == 'update') ? _AM_WGTIMELINES_TEMPLATE_SURE_UPDATE : _AM_WGTIMELINES_TEMPLATE_SURE_RESET;
+			xoops_confirm(array('ok' => 1, 'tpl_id' => $tplId, 'op' => $op), $_SERVER['REQUEST_URI'], $info);
 		}
 
 	break;

@@ -66,6 +66,11 @@ define('_AM_WGTIMELINES_TEMPLATE_FILE', 'File');
 define('_AM_WGTIMELINES_TEMPLATE_OPTIONS', 'Options');
 define('_AM_WGTIMELINES_TEMPLATE_VERSION', 'Version');
 define('_AM_WGTIMELINES_TEMPLATE_AUTHOR', 'Autor');
+define('_AM_WGTIMELINES_TEMPLATE_NEWVERSION', 'A new version is available');
+define('_AM_WGTIMELINES_TEMPLATE_SURE_UPDATE', 'Update to new version will also reset to default values. Do you want to continue?');
+define('_AM_WGTIMELINES_TEMPLATE_RESETVERSION', 'Reset to default values');
+define('_AM_WGTIMELINES_TEMPLATE_SURE_RESET', 'With the reset all your personal settings will be deleted. Do you want to continue?');
+define('_AM_WGTIMELINES_TEMPLATE_NOTSUPPORTED', "This template isn't supported anymore by the developer's team");
 // Elements of Template options
 define('_AM_WGTIMELINES_TEMPLATE_NONE', 'None');
 define('_AM_WGTIMELINES_TEMPLATE_LEFT', 'Left');

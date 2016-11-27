@@ -58,7 +58,7 @@ $modversion['support_name'] = 'Support Forum';
 $modversion['module_website_url'] = 'xoops.wedega.com';
 $modversion['module_website_name'] = 'XOOPS on Wedega';
 $modversion['release'] = '09/27/2016';
-$modversion['module_status'] = 'Beta 1';
+$modversion['module_status'] = 'Beta 2';
 $modversion['system_menu'] = 1;
 $modversion['hasAdmin'] = 1;
 $modversion['hasMain'] = 1;
@@ -100,6 +100,7 @@ $modversion['sqlfile']['mysql'] = 'sql/mysql.sql';
 $modversion['tables'][1] = 'wgtimelines_timelines';
 $modversion['tables'][2] = 'wgtimelines_items';
 $modversion['tables'][3] = 'wgtimelines_templates';
+$modversion['tables'][4] = 'wgtimelines_tplsetsdefault';
 // ------------------- Search ------------------- //
 $modversion['hasSearch'] = 1;
 $modversion['search']['file'] = 'include/search.inc.php';

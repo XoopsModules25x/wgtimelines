@@ -40,13 +40,58 @@ function xoops_module_update_wgtimelines(&$module, $prev_version = null)
     if ($prev_version < 103) {
         $ret = update_wgtimelines_v103($module);
     }
+
+	// create table 'wgtimelines_tplsetsdefault' in any case
+	$ret = update_tplsetsdefault($module);
     $errors = $module->getErrors();
+	
     if (!empty($errors)) {
         print_r($errors);
     }
 
     return $ret;
 
+}
+
+/**
+ * @param $module
+ *
+ * @return bool
+ */
+function update_tplsetsdefault(&$module)
+{
+	include_once 'common.php';
+	$db = $GLOBALS['xoopsDB'];
+	$sql_file_path = WGTIMELINES_PATH . '/sql/update.sql';
+	if (!file_exists($sql_file_path)) {
+		$module->setErrors("error: update file '" . $sql_file_path . "' not found");
+		return false;
+	} else {
+		// delete existing table
+		$sql = 'DROP TABLE IF EXISTS `' . $db->prefix('wgtimelines_tplsetsdefault') . '`;';
+		if (!$db->queryF($sql)) {
+			$module->setErrors($db->error());
+			return false;
+		} else {
+			include_once XOOPS_ROOT_PATH . '/class/database/sqlutility.php';
+			$sql_query = fread(fopen($sql_file_path, 'r'), filesize($sql_file_path));
+			$sql_query = trim($sql_query);
+			SqlUtility::splitMySqlFile($pieces, $sql_query);
+			foreach ($pieces as $piece) {
+				$prefixed_query = SqlUtility::prefixQuery($piece, $db->prefix());
+				if (!$prefixed_query) {
+					$module->setErrors("error: invalid sql in file 'update.sql' found");
+					return false;
+				}
+				if (!$db->queryF($prefixed_query[0])) {
+					$module->setErrors($db->error());
+					return false;
+				}
+			}
+		}
+	}
+		
+    return true;
 }
 
 /**
@@ -74,17 +119,29 @@ function update_wgtimelines_v102(&$module)
  */
 function update_wgtimelines_v103(&$module)
 {
-	$sql = "ALTER TABLE `" . $GLOBALS['xoopsDB']->prefix('wgtimelines_templates') . "` ADD `tpl_version` VARCHAR(10) NOT NULL DEFAULT '' AFTER `tpl_weight`;";
+ 	$sql = "ALTER TABLE `" . $GLOBALS['xoopsDB']->prefix('wgtimelines_templates') . "` ADD `tpl_version` VARCHAR(10) NOT NULL DEFAULT '' AFTER `tpl_weight`;";
 	if (!$result = $GLOBALS['xoopsDB']->queryF($sql)) {
         xoops_error($GLOBALS['xoopsDB']->error() . '<br />' . $sql);
         $module->setErrors("error when adding new field tpl_version to table wgtimelines_templates");
         return false;
-    }
-	
+    }	
 	$sql = "ALTER TABLE `" . $GLOBALS['xoopsDB']->prefix('wgtimelines_templates') . "` ADD `tpl_author` VARCHAR(200) NOT NULL DEFAULT '' AFTER `tpl_version`;";
 	if (!$result = $GLOBALS['xoopsDB']->queryF($sql)) {
         xoops_error($GLOBALS['xoopsDB']->error() . '<br />' . $sql);
         $module->setErrors("error when adding new field tpl_author to table wgtimelines_templates");
+        return false;
+    }
+	$sql = "ALTER TABLE `" . $GLOBALS['xoopsDB']->prefix('wgtimelines_templates') . "` ADD `tpl_date_create` INT(8) NOT NULL DEFAULT '0' AFTER `tpl_author`;";
+	if ($result = $GLOBALS['xoopsDB']->queryF($sql)) {
+		$sql = "UPDATE `" . $GLOBALS['xoopsDB']->prefix('wgtimelines_templates') . "` SET `" . $GLOBALS['xoopsDB']->prefix('wgtimelines_templates') . "`.`tpl_date_create` = 1475272800";
+		if (!$result = $GLOBALS['xoopsDB']->queryF($sql)) {
+			xoops_error($GLOBALS['xoopsDB']->error() . '<br />' . $sql);
+			$module->setErrors("error when updating new field tpl_date_create in table wgtimelines_templates");
+			return false;
+		}
+	} else {
+        xoops_error($GLOBALS['xoopsDB']->error() . '<br />' . $sql);
+        $module->setErrors("error when adding new field tpl_date_create to table wgtimelines_templates");
         return false;
     }	
     return true;

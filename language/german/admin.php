@@ -66,6 +66,11 @@ define('_AM_WGTIMELINES_TEMPLATE_FILE', 'Datei');
 define('_AM_WGTIMELINES_TEMPLATE_OPTIONS', 'Optionen');
 define('_AM_WGTIMELINES_TEMPLATE_VERSION', 'Version');
 define('_AM_WGTIMELINES_TEMPLATE_AUTHOR', 'Autor');
+define('_AM_WGTIMELINES_TEMPLATE_NEWVERSION', 'Eine neue Version dieser Vorlage ist verfügbar');
+define('_AM_WGTIMELINES_TEMPLATE_SURE_UPDATE', 'Durch die Aktualiserung auf die aktuelle Version werden die Standardwerte wiederhergestellt. Wollen Sie fortsetzen?');
+define('_AM_WGTIMELINES_TEMPLATE_RESETVERSION', 'Die Standardwerte wiederherstellen');
+define('_AM_WGTIMELINES_TEMPLATE_SURE_RESET', 'Durch die Wiederherstellen der Standardwerte gehen Ihre Einstellungen verloren. Wollen Sie fortsetzen?');
+define('_AM_WGTIMELINES_TEMPLATE_NOTSUPPORTED', 'Diese Vorlage wird vom Entwicklerteam nicht mehr unterstützt');
 // Elements of Template options
 define('_AM_WGTIMELINES_TEMPLATE_NONE', 'Ohne');
 define('_AM_WGTIMELINES_TEMPLATE_LEFT', 'Links');

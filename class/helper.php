@@ -287,5 +287,4 @@ class WgtimelinesHelper
 
 		return $truncate;
 	}
-	
 }

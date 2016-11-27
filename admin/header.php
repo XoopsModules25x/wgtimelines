@@ -32,6 +32,7 @@ $wgtimelines = WgtimelinesHelper::getInstance();
 $timelinesHandler = $wgtimelines->getHandler('timelines');
 $itemsHandler = $wgtimelines->getHandler('items');
 $templatesHandler = $wgtimelines->getHandler('templates');
+$tplsetsdefaultHandler = $wgtimelines->getHandler('tplsetsdefault');
 $myts = MyTextSanitizer::getInstance();
 // 
 if(!isset($xoopsTpl) || !is_object($xoopsTpl)) {

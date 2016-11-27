@@ -42,6 +42,7 @@ class WgtimelinesTemplates extends XoopsObject
 		$this->initVar('tpl_weight', XOBJ_DTYPE_TXTBOX);
 		$this->initVar('tpl_version', XOBJ_DTYPE_TXTBOX);
 		$this->initVar('tpl_author', XOBJ_DTYPE_TXTBOX);
+		$this->initVar('tpl_date_create', XOBJ_DTYPE_INT);
 	}
 
 	/**
@@ -431,11 +432,15 @@ class WgtimelinesTemplates extends XoopsObject
                     break;
             }
         }
-
 		// Form label tpl_version
 		$form->addElement(new XoopsFormLabel( _AM_WGTIMELINES_TEMPLATE_VERSION, $this->getVar('tpl_version')));
+		$form->addElement(new XoopsFormHidden('tpl_version', $this->getVar('tpl_version')));
 		// Form label tpl_author
 		$form->addElement(new XoopsFormLabel( _AM_WGTIMELINES_TEMPLATE_AUTHOR, $this->getVar('tpl_author')));
+		$form->addElement(new XoopsFormHidden('tpl_author', $this->getVar('tpl_author')));
+		// Form label tpl_author
+		$form->addElement(new XoopsFormLabel( _AM_WGTIMELINES_DATE_CREATE, formatTimestamp($this->getVar('tpl_date_create'))));
+		$form->addElement(new XoopsFormHidden('tpl_date_create', $this->getVar('tpl_date_create')));
 		// To Save
 		$form->addElement(new XoopsFormHidden('op', 'save'));
         $form->addElement(new XoopsFormHidden('addopt', 0));
@@ -500,7 +505,15 @@ class WgtimelinesTemplates extends XoopsObject
             $form->addElement($eletray[$i], false);
         }
         
-        $form->addElement(new XoopsFormRadioYN(_AM_WGTIMELINES_TEMPLATE_ADDOPT, 'addopt', 0, _YES, _NO), false);
+		// Form label tpl_version
+		$form->addElement(new XoopsFormText( _AM_WGTIMELINES_TEMPLATE_VERSION, 'tpl_version', 20, 255,  $this->getVar('tpl_version') ), true);
+		// Form label tpl_author
+		$form->addElement(new XoopsFormText( _AM_WGTIMELINES_TEMPLATE_AUTHOR, 'tpl_author', 20, 255,  $this->getVar('tpl_author') ), true);
+		// Form label tpl_date_create   	
+		$tplDate_create = $this->isNew() ? time() : $this->getVar('tpl_date_create');
+		$form->addElement(new XoopsFormTextDateSelect( _AM_WGTIMELINES_DATE_CREATE, 'tpl_date_create', '', $this->getVar('tpl_date_create') ));
+		
+		$form->addElement(new XoopsFormRadioYN(_AM_WGTIMELINES_TEMPLATE_ADDOPT, 'addopt', 0, _YES, _NO), false);
 		// To Save
         $form->addElement(new XoopsFormHidden('counter', $i));
         $form->addElement(new XoopsFormHidden('tpl_id', $this->getVar('tpl_id')));
@@ -530,8 +543,6 @@ class WgtimelinesTemplates extends XoopsObject
             $ret[$option['name']] = $option['value'];
         }
         $ret['options'] = $options;
-		$ret['version'] = $this->getVar('tpl_version');
-		$ret['author'] = $this->getVar('tpl_author');
 		return $ret;
 	}
 
@@ -703,6 +714,8 @@ class WgtimelinesTemplates extends XoopsObject
         $ret['options'] = $ret_options;
 		$ret['version'] = $this->getVar('tpl_version');
 		$ret['author'] = $this->getVar('tpl_author');
+		$ret['date_create'] = $this->getVar('tpl_date_create');
+		$ret['date_create_formatted'] = formatTimestamp($this->getVar('tpl_date_create'));
 		return $ret;
 	}
 
