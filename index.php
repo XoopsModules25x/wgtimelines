@@ -151,7 +151,7 @@ if ($timeline_rows > 0) {
         // Display Navigation
         if($itemsCount > $limit) {
             include_once XOOPS_ROOT_PATH .'/class/pagenav.php';
-            $pagenav = new XoopsPageNav($itemsCount, $limit, $start, 'start', 'op=list&limit=' . $limit);
+            $pagenav = new XoopsPageNav($itemsCount, $limit, $start, 'start', 'op=list&limit=' . $limit . '&tl_id=' . $tl_id);
             $GLOBALS['xoopsTpl']->assign('pagenav', $pagenav->renderNav(4));
         }
     }

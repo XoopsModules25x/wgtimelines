@@ -21,7 +21,7 @@
  * @version        $Id: 1.0 footer.php 13070 Sat 2016-10-01 05:42:16Z XOOPS Development Team $
  */
 if(isset($templateMain)) {
-	$GLOBALS['xoopsTpl']->assign('maintainedby', $wgtimelines->getConfig('maintainedby'));
-	$GLOBALS['xoopsTpl']->display("db:{$templateMain}");}
+	$GLOBALS['xoopsTpl']->display("db:{$templateMain}");
+}
 
 xoops_cp_footer();

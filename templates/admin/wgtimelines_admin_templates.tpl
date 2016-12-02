@@ -21,7 +21,7 @@
 				<{if $template.notsupported}><img src="<{$wgtimelines_icons_url}>/32/notsupported.png" alt="<{$smarty.const._AM_WGTIMELINES_TEMPLATE_NOTSUPPORTED}>" title="<{$smarty.const._AM_WGTIMELINES_TEMPLATE_NOTSUPPORTED}>"/>&nbsp;<{/if}>
 				<{if $template.newversion}><a href="templates.php?op=update&amp;tpl_id=<{$template.id}>" title="<{$smarty.const._AM_WGTIMELINES_TEMPLATE_NEWVERSION}>"><img src="<{$wgtimelines_icons_url}>/32/newversion.png" alt="<{$smarty.const._AM_WGTIMELINES_TEMPLATE_NEWVERSION}>" /></a>&nbsp;<{/if}>
 				<{if $template.newtemplate}><img src="<{$wgtimelines_icons_url}>/32/newtemplate.png" width="32px" alt="<{$smarty.const._AM_WGTIMELINES_TEMPLATE_NEWTEMPLATE}>" title="<{$smarty.const._AM_WGTIMELINES_TEMPLATE_NEWTEMPLATE}>"/>&nbsp;<{/if}>
-				<{$template.name}>
+				<br><{$template.name}>
 				<{if $template.notsupported}>
 					<br><span class="notsupported"><{$smarty.const._AM_WGTIMELINES_TEMPLATE_NOTSUPPORTED}></span>
 				<{/if}>

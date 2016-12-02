@@ -132,14 +132,7 @@ function update_wgtimelines_v103(&$module)
         return false;
     }
 	$sql = "ALTER TABLE `" . $GLOBALS['xoopsDB']->prefix('wgtimelines_templates') . "` ADD `tpl_date_create` INT(8) NOT NULL DEFAULT '0' AFTER `tpl_author`;";
-	if ($result = $GLOBALS['xoopsDB']->queryF($sql)) {
-		$sql = "UPDATE `" . $GLOBALS['xoopsDB']->prefix('wgtimelines_templates') . "` SET `" . $GLOBALS['xoopsDB']->prefix('wgtimelines_templates') . "`.`tpl_date_create` = 1475272800";
-		if (!$result = $GLOBALS['xoopsDB']->queryF($sql)) {
-			xoops_error($GLOBALS['xoopsDB']->error() . '<br />' . $sql);
-			$module->setErrors("error when updating new field tpl_date_create in table wgtimelines_templates");
-			return false;
-		}
-	} else {
+	if (!$result = $GLOBALS['xoopsDB']->queryF($sql)) {
         xoops_error($GLOBALS['xoopsDB']->error() . '<br />' . $sql);
         $module->setErrors("error when adding new field tpl_date_create to table wgtimelines_templates");
         return false;

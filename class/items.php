@@ -90,6 +90,7 @@ class WgtimelinesItems extends XoopsObject
 		// Form Table Items
 		$timelinesHandler = $wgtimelines->getHandler('timelines');
 		$itemTl_idSelect = new XoopsFormSelect( _AM_WGTIMELINES_ITEM_TL_ID, 'item_tl_id', $this->getVar('item_tl_id'));
+		$itemTl_idSelect->addOption(0, _AM_WGTIMELINES_ITEM_NONE);
 		$itemTl_idSelect->addOptionArray($timelinesHandler->getList());
 		$form->addElement($itemTl_idSelect, true);
 		// Form Text ItemTitle
