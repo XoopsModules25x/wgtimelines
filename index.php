@@ -23,16 +23,23 @@
 include __DIR__ . '/header.php';
 // get timeline id
 $tl_id = XoopsRequest::getInt('tl_id', 0);
-$timeline_rows = $timelinesHandler->getCountTimelines();
+$criteria = new CriteriaCompo();
+$criteria->add(new Criteria('tl_online', 1));
+$timeline_rows = $timelinesHandler->getCount($criteria);
 if ( $tl_id == 0 ) {
     if ($timeline_rows > 0) {
-        $timelinesAll = $timelinesHandler->getAllTimelines(0, 1);
+		$criteria->setStart(0);
+		$criteria->setLimit(1);
+		$criteria->setSort('tl_weight ASC, tl_id');
+		$criteria->setOrder('ASC');
+        $timelinesAll = $timelinesHandler->getAll($criteria);
         // Get first timeline
         foreach(array_keys($timelinesAll) as $i) {
             $tl_id = $timelinesAll[$i]->getVar('tl_id');
         }
     }
 }
+unset($criteria);
 if ($timeline_rows > 0) {
     // get timeline
     $timeline_obj = $timelinesHandler->get($tl_id);
@@ -74,6 +81,7 @@ if ($timeline_rows > 0) {
     // get items
     $criteria = new CriteriaCompo();
     $criteria->add(new Criteria('item_tl_id', $tl_id));
+	$criteria->add(new Criteria('item_online', 1));
     if ( $limit > 0 ) {
         $criteria->setStart( $start );
         $criteria->setLimit( $limit );

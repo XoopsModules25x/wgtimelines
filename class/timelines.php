@@ -104,7 +104,7 @@ class WgtimelinesTimelines extends XoopsObject
         $form->addElement(new XoopsFormHidden('tl_weight', $tlWeight));
         // Form Radio Yes/No
 		$tlOnline = $this->isNew() ? 0 : $this->getVar('tl_online');
-		$form->addElement(new XoopsFormRadioYN( _AM_WGTIMELINES_TIMELINE_ONLINE, 'tl_online', $tlOnline));
+		$form->addElement(new XoopsFormRadioYN( _AM_WGTIMELINES_ONLINE, 'tl_online', $tlOnline));
 		// Form Select User
 		$form->addElement(new XoopsFormSelectUser( _AM_WGTIMELINES_SUBMITTER, 'tl_submitter', false, $this->getVar('tl_submitter') ));
 		// Form Text Date Select

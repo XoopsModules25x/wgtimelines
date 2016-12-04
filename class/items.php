@@ -43,6 +43,7 @@ class WgtimelinesItems extends XoopsObject
 		$this->initVar('item_year', XOBJ_DTYPE_INT);
 		$this->initVar('item_icon', XOBJ_DTYPE_TXTBOX);
 		$this->initVar('item_weight', XOBJ_DTYPE_INT);
+		$this->initVar('item_online', XOBJ_DTYPE_INT);
 		$this->initVar('item_submitter', XOBJ_DTYPE_INT);
 		$this->initVar('item_date_create', XOBJ_DTYPE_INT);
 	}
@@ -145,6 +146,9 @@ class WgtimelinesItems extends XoopsObject
         $itemsHandler = $wgtimelines->getHandler('items');
 		$itemWeight = $this->isNew() ? ($itemsHandler->getCountItems() + 1) : $this->getVar('item_weight');
         $form->addElement(new XoopsFormHidden('item_weight', $itemWeight));
+		// Form Radio Yes/No
+		$itemOnline = $this->isNew() ? 0 : $this->getVar('item_online');
+		$form->addElement(new XoopsFormRadioYN( _AM_WGTIMELINES_ONLINE, 'item_online', $itemOnline));
 		// Form Select User
 		$form->addElement(new XoopsFormSelectUser( _AM_WGTIMELINES_SUBMITTER, 'item_submitter', false, $this->getVar('item_submitter') ));
 		// Form Text Date Select
@@ -180,6 +184,7 @@ class WgtimelinesItems extends XoopsObject
         if ($this->getVar('item_year') > 0) $ret['year'] = $this->getVar('item_year');
 		$ret['icon'] = $this->getVar('item_icon');
 		$ret['weight'] = $this->getVar('item_weight');
+		$ret['online'] = $this->getVar('item_online');
 		$ret['submitter'] = XoopsUser::getUnameFromId($this->getVar('item_submitter'));
 		$ret['date_create'] = formatTimestamp($this->getVar('item_date_create'), 's');
 		return $ret;

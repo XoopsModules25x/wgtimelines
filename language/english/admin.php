@@ -54,7 +54,7 @@ define('_AM_WGTIMELINES_TIMELINE_SORTBY', 'Sort by');
 define('_AM_WGTIMELINES_TIMELINE_SORTBY_Y_ASC', 'Year/Date ascending');
 define('_AM_WGTIMELINES_TIMELINE_SORTBY_Y_DESC', 'Year/Date descending');
 define('_AM_WGTIMELINES_TIMELINE_SORTBY_ADMIN', 'Sort order in admin area');
-define('_AM_WGTIMELINES_TIMELINE_ONLINE', 'Online');
+define('_AM_WGTIMELINES_ONLINE', 'Online');
 // Template add/edit
 define('_AM_WGTIMELINES_TEMPLATE_ADD', 'Add Template');
 define('_AM_WGTIMELINES_TEMPLATE_EDIT', 'Edit Template');

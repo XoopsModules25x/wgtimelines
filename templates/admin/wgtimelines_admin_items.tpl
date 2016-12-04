@@ -11,6 +11,7 @@
             <th class="center"><{$smarty.const._AM_WGTIMELINES_ITEM_DATE}></th>
             <th class="center"><{$smarty.const._AM_WGTIMELINES_ITEM_YEAR}></th>
 			<th class="center"><{$smarty.const._AM_WGTIMELINES_ITEM_ICON}></th>
+			<th class="center"><{$smarty.const._AM_WGTIMELINES_ONLINE}></th>
             <th class="center"><{$smarty.const._AM_WGTIMELINES_SUBMITTER}></th>
             <th class="center"><{$smarty.const._AM_WGTIMELINES_DATE_CREATE}></th>
             <th class="center width5"><{$smarty.const._AM_WGTIMELINES_FORM_ACTION}></th>
@@ -38,6 +39,15 @@
             <td class="center"><{$item.date}></td>
             <td class="center"><{$item.year}></td>
 			<td class="center"><i class='glyphicon glyphicon-<{$item.icon}>'></i></td>
+			<td class="center">
+                <a href="items.php?op=set_onoff&amp;item_id=<{$item.id}>" title="<{$item.online}>">
+                    <{if $item.online == 1}>
+                        <img src="<{xoModuleIcons16 on.png}>" alt="<{$smarty.const._YES}>" />
+                    <{else}>
+                        <img src="<{xoModuleIcons16 off.png}>" alt="<{$smarty.const._NO}>" />
+                    <{/if}>
+                </a>
+            </td>
             <td class="center"><{$item.submitter}></td>
             <td class="center"><{$item.date_create}></td>
             <td class="center  width5">

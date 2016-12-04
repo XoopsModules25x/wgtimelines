@@ -1,6 +1,7 @@
 ==============================================================
-Change Log for wgTimelines - 2016/11/22 Version 1.03 RC1
+Change Log for wgTimelines - 2016/12/04 Version 1.04 RC1
 ==============================================================
+ - add field "item_online" to table items (mamba/goffy)
  - add possibility to save item without link to timeline (mamba/goffy)
  - fixed bug in pagination (mamba/goffy)
  

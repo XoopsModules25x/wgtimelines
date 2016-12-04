@@ -40,7 +40,11 @@ function xoops_module_update_wgtimelines(&$module, $prev_version = null)
     if ($prev_version < 103) {
         $ret = update_wgtimelines_v103($module);
     }
-
+	$errors = $module->getErrors();
+    if ($prev_version < 104) {
+        $ret = update_wgtimelines_v104($module);
+    }
+	$errors = $module->getErrors();
 	// create table 'wgtimelines_tplsetsdefault' in any case
 	$ret = update_tplsetsdefault($module);
     $errors = $module->getErrors();
@@ -99,16 +103,14 @@ function update_tplsetsdefault(&$module)
  *
  * @return bool
  */
-function update_wgtimelines_v102(&$module)
+function update_wgtimelines_v104(&$module)
 {
-	$sql = "ALTER TABLE `" . $GLOBALS['xoopsDB']->prefix('wgtimelines_items') . "` ADD `item_icon` VARCHAR(200) NOT NULL DEFAULT '' AFTER `item_year`;";
-
+ 	$sql = "ALTER TABLE `" . $GLOBALS['xoopsDB']->prefix('wgtimelines_items') . "` ADD `item_online` INT(1) NOT NULL DEFAULT '0' AFTER `item_weight`;";
 	if (!$result = $GLOBALS['xoopsDB']->queryF($sql)) {
         xoops_error($GLOBALS['xoopsDB']->error() . '<br />' . $sql);
-        $module->setErrors("error when adding new field item_icon to table wgtimelines_items");
+        $module->setErrors("error when adding new field item_online to table wgtimelines_items");
         return false;
-    }
-	
+    }	
     return true;
 }
 
@@ -137,6 +139,24 @@ function update_wgtimelines_v103(&$module)
         $module->setErrors("error when adding new field tpl_date_create to table wgtimelines_templates");
         return false;
     }	
+    return true;
+}
+
+/**
+ * @param $module
+ *
+ * @return bool
+ */
+function update_wgtimelines_v102(&$module)
+{
+	$sql = "ALTER TABLE `" . $GLOBALS['xoopsDB']->prefix('wgtimelines_items') . "` ADD `item_icon` VARCHAR(200) NOT NULL DEFAULT '' AFTER `item_year`;";
+
+	if (!$result = $GLOBALS['xoopsDB']->queryF($sql)) {
+        xoops_error($GLOBALS['xoopsDB']->error() . '<br />' . $sql);
+        $module->setErrors("error when adding new field item_icon to table wgtimelines_items");
+        return false;
+    }
+	
     return true;
 }
 

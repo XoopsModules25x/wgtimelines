@@ -127,6 +127,7 @@ switch($op) {
 		$itemsObj->setVar('item_year', isset($_POST['item_year']) ? $_POST['item_year'] : 0);
 		$itemsObj->setVar('item_icon', isset($_POST['item_icon']) ? $_POST['item_icon'] : 'none');
 		$itemsObj->setVar('item_weight', isset($_POST['item_weight']) ? $_POST['item_weight'] : 0);
+		$itemsObj->setVar('item_online', isset($_POST['item_online']) ? $_POST['item_online'] : 0);
 		$itemsObj->setVar('item_submitter', isset($_POST['item_submitter']) ? $_POST['item_submitter'] : 0);
         $itemDate_create = date_create_from_format(_SHORTDATESTRING, $_POST['item_date_create']);
         $itemsObj->setVar('item_date_create', $itemDate_create->getTimestamp());
@@ -168,6 +169,20 @@ switch($op) {
 		}
 
 	break;
+	case 'set_onoff':
+        if ($itemId > 0) {
+            $itemsObj = $itemsHandler->get($itemId);
+            // get Var team_online
+            $item_online = ($itemsObj->getVar('item_online') == 1) ? '0' : '1';
+            // Set Var team_online
+            $itemsObj->setVar('item_online', $item_online);
+            if ($itemsHandler->insert($itemsObj, true)) {
+                redirect_header('items.php?op=list', 2, _AM_WGTIMELINES_FORM_OK);
+            }
+        } else {
+            echo 'invalid params';
+        }
+        break;
             
     case 'order':
         $iorder = $_POST['iorder'];

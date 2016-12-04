@@ -37,6 +37,7 @@ CREATE TABLE `wgtimelines_items` (
   `item_year` INT(8) DEFAULT NULL,
   `item_icon` VARCHAR(200) NOT NULL DEFAULT '',
   `item_weight` INT(8) NOT NULL DEFAULT '0',
+  `item_online` INT(1) NOT NULL DEFAULT '0',
   `item_submitter` INT(8) NOT NULL DEFAULT '0',
   `item_date_create` INT(8) NOT NULL DEFAULT '0',
   PRIMARY KEY (`item_id`)
