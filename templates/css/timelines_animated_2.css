@@ -120,6 +120,11 @@ time {
 .img-timeline-bottom {
   margin-top: 15px;
 }
+.timeline-item-reads  i{
+}
+.admin-area {
+	text-align:right;
+}
 
 /* GENERAL MEDIA QUERIES
 –––––––––––––––––––––––––––––––––––––––––––––––––– */

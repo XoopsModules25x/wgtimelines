@@ -38,6 +38,14 @@ if(!is_dir($images)) {
 }
 copy($indexFile, $images.'/index.html');
 copy($blankFile, $images.'/blank.gif');
+// Making of images/timelines uploads folder
+$timelines = $images.'/timelines';
+if(!is_dir($timelines)) {
+	mkdir($timelines, 0777);
+	chmod($timelines, 0777);
+}
+copy($indexFile, $timelines.'/index.html');
+copy($blankFile, $timelines.'/blank.gif');
 // Making of images/items uploads folder
 $items = $images.'/items';
 if(!is_dir($items)) {

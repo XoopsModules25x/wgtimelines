@@ -36,9 +36,12 @@ class WgtimelinesTimelines extends XoopsObject
 	{
 		$this->initVar('tl_id', XOBJ_DTYPE_INT);
 		$this->initVar('tl_name', XOBJ_DTYPE_TXTBOX);
+		$this->initVar('tl_desc', XOBJ_DTYPE_TXTAREA);
+		$this->initVar('tl_image', XOBJ_DTYPE_TXTBOX);
 		$this->initVar('tl_weight', XOBJ_DTYPE_INT);
 		$this->initVar('tl_template', XOBJ_DTYPE_INT);
         $this->initVar('tl_sortby', XOBJ_DTYPE_INT);
+		$this->initVar('tl_limit', XOBJ_DTYPE_INT);
         $this->initVar('tl_online', XOBJ_DTYPE_INT);
 		$this->initVar('tl_submitter', XOBJ_DTYPE_INT);
 		$this->initVar('tl_date_create', XOBJ_DTYPE_INT);
@@ -86,6 +89,35 @@ class WgtimelinesTimelines extends XoopsObject
 		$form->setExtra('enctype="multipart/form-data"');
 		// Form Text TlName
 		$form->addElement(new XoopsFormText( _AM_WGTIMELINES_TIMELINE_NAME, 'tl_name', 50, 255, $this->getVar('tl_name') ), true);
+		// Form editor tl_desc
+		$editorConfigs = array();
+		$editorConfigs['name'] = 'tl_desc';
+		$editorConfigs['value'] = $this->getVar('tl_desc', 'e');
+		$editorConfigs['rows'] = 5;
+		$editorConfigs['cols'] = 40;
+		$editorConfigs['width'] = '100%';
+		$editorConfigs['height'] = '400px';
+		$editorConfigs['editor'] = $wgtimelines->getConfig('wgtimelines_editor');
+		$form->addElement(new XoopsFormEditor( _AM_WGTIMELINES_TIMELINE_DESC, 'tl_desc', $editorConfigs), true);
+		// Form Upload Image
+		$getTimelineImage = $this->getVar('tl_image');
+		$itemImage = $getTimelineImage ?: 'blank.gif';
+		$imageDirectory = '/uploads/wgtimelines/images/timelines';
+		$imageTray = new XoopsFormElementTray(_AM_WGTIMELINES_TIMELINE_IMAGE, '<br />' );
+		$imageSelect = new XoopsFormSelect( sprintf(_AM_WGTIMELINES_FORM_IMAGE_PATH, ".{$imageDirectory}/"), 'tl_image', $itemImage, 5);
+		$imageArray = XoopsLists::getImgListAsArray( XOOPS_ROOT_PATH . $imageDirectory );
+		foreach($imageArray as $image1) {
+			$imageSelect->addOption("{$image1}", $image1);
+		}
+		$imageSelect->setExtra("onchange='showImgSelected(\"image1\", \"tl_image\", \"".$imageDirectory."\", \"\", \"".XOOPS_URL."\")'");
+		$imageTray->addElement($imageSelect, false);
+		$imageTray->addElement(new XoopsFormLabel('', "<br /><img src='".XOOPS_URL . '/' . $imageDirectory . '/' . $itemImage . "' name='image1' id='image1' alt='' style='max-width:100px;' />"));
+		// Form File
+		$fileSelectTray = new XoopsFormElementTray('', '<br />' );
+		$fileSelectTray->addElement(new XoopsFormFile( _AM_WGTIMELINES_FORM_UPLOAD_IMAGE, 'attachedfile', $wgtimelines->getConfig('maxsize') ));
+		$fileSelectTray->addElement(new XoopsFormLabel(''));
+		$imageTray->addElement($fileSelectTray);
+		$form->addElement($imageTray);
 		// Form Table Templates
         $templatesHandler = $wgtimelines->getHandler('templates');
 		$cat_templateSelect = new XoopsFormSelect( _AM_WGTIMELINES_TIMELINE_TEMPLATE, 'tl_template', $this->getVar('tl_template'));
@@ -97,7 +129,10 @@ class WgtimelinesTimelines extends XoopsObject
         $tlSortBySelect->addOption(0, _AM_WGTIMELINES_TIMELINE_SORTBY_ADMIN);
         $tlSortBySelect->addOption(1, _AM_WGTIMELINES_TIMELINE_SORTBY_Y_DESC);
         $tlSortBySelect->addOption(2, _AM_WGTIMELINES_TIMELINE_SORTBY_Y_ASC);
-        $form->addElement($tlSortBySelect);
+        $form->addElement($tlSortBySelect, true);
+		// Form Text TlLimit
+		$tlLimit = $this->isNew() ? 0 : $this->getVar('tl_limit');
+		$form->addElement(new XoopsFormText( _AM_WGTIMELINES_TIMELINE_LIMIT . "<br>" . _AM_WGTIMELINES_TIMELINE_LIMIT_DESC, 'tl_limit', 20, 255, $tlLimit ), true);
         // Form Text TlWeight
         $timelinesHandler = $wgtimelines->getHandler('timelines');
 		$tlWeight = $this->isNew() ? ($timelinesHandler->getCountTimelines() + 1) : $this->getVar('tl_weight');
@@ -129,16 +164,13 @@ class WgtimelinesTimelines extends XoopsObject
 		$ret = $this->getValues($keys, $format, $maxDepth);
 		$ret['id'] = $this->getVar('tl_id');
 		$ret['name'] = $this->getVar('tl_name');
+		$ret['desc'] = $this->getVar('tl_desc', 'n');
+		$ret['desc_admin'] = $wgtimelines->truncateHtml($this->getVar('tl_desc', 'n'));
+		$ret['image'] = $this->getVar('tl_image');
 		$ret['weight'] = $this->getVar('tl_weight');
         $ret['sortby'] = $this->getVar('tl_sortby');
-        if ($this->getVar('tl_sortby') == 1) {
-            $ret['sortby_text'] = _AM_WGTIMELINES_TIMELINE_SORTBY_Y_DESC;
-        } else if ($this->getVar('tl_sortby') == 2) {
-            $ret['sortby_text'] = _AM_WGTIMELINES_TIMELINE_SORTBY_Y_ASC;
-        } else {
-            $ret['sortby_text'] = _AM_WGTIMELINES_TIMELINE_SORTBY_ADMIN;
-        }
-        $ret['online'] = $this->getVar('tl_online');
+        $ret['limit'] = $this->getVar('tl_limit');
+		$ret['online'] = $this->getVar('tl_online');
 		$templates = $wgtimelines->getHandler('templates');
 		$template_obj = $templates->get($this->getVar('tl_template'));
 		$ret['template'] = $template_obj->getVar('tpl_name');

@@ -1,5 +1,19 @@
 ==============================================================
-Change Log for wgTimelines - 2016/12/04 Version 1.04 RC1
+Change Log for wgTimelines - 2016/12/09 Version 1.05 Beta 1
+==============================================================
+ - add field "item_reads" to table items (mamba/goffy)
+ - add fields "tl_limit", "tl_desc", "tl_image" to table timelines (goffy)
+ - add possibility to insert description for timelines (goffy)
+ - add possibility to show a logo/image for timelines (goffy)
+ - add possibility to limit text of items and show the full item via "Read more" button (mamba/goffy)
+ - add link for edit/delete item to user side (mamba/goffy)
+ - add new option for module startpage (show list of timelines or show first) (mamba/goffy)
+ - add possibility to show a single image (mamba/goffy)
+ - add block for last/new/random items (mamba/goffy)
+ - updated default templates table and animated (goffy)
+ 
+==============================================================
+Change Log for wgTimelines - 2016/12/04 Version 1.04 Beta 1
 ==============================================================
  - add field "item_online" to table items (mamba/goffy)
  - add possibility to save item without link to timeline (mamba/goffy)

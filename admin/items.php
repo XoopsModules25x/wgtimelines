@@ -22,8 +22,8 @@
  */
 include __DIR__ . '/header.php';
 // It recovered the value of argument op in URL$
-$op = XoopsRequest::getString('op', 'list');
-// Request item_id
+$op     = XoopsRequest::getString('op', 'list');
+$ui     = XoopsRequest::getString('ui', 'admin');
 $itemId = XoopsRequest::getInt('item_id');
 
 $GLOBALS['xoTheme']->addStylesheet(WGTIMELINES_URL . '/assets/css/admin/glyphicons.css');
@@ -96,7 +96,8 @@ switch($op) {
 			$itemsObj = $itemsHandler->create();
 		}
 		// Set Vars
-		$itemsObj->setVar('item_tl_id', isset($_POST['item_tl_id']) ? $_POST['item_tl_id'] : 0);
+        $item_tl_id = isset($_POST['item_tl_id']) ? $_POST['item_tl_id'] : 0;
+		$itemsObj->setVar('item_tl_id', $item_tl_id);
 		$itemsObj->setVar('item_title', $_POST['item_title']);
 		$itemsObj->setVar('item_content', $_POST['item_content']);
 		// Set Var item_image
@@ -127,13 +128,18 @@ switch($op) {
 		$itemsObj->setVar('item_year', isset($_POST['item_year']) ? $_POST['item_year'] : 0);
 		$itemsObj->setVar('item_icon', isset($_POST['item_icon']) ? $_POST['item_icon'] : 'none');
 		$itemsObj->setVar('item_weight', isset($_POST['item_weight']) ? $_POST['item_weight'] : 0);
+		$itemsObj->setVar('item_reads', isset($_POST['item_reads']) ? $_POST['item_reads'] : 0);
 		$itemsObj->setVar('item_online', isset($_POST['item_online']) ? $_POST['item_online'] : 0);
 		$itemsObj->setVar('item_submitter', isset($_POST['item_submitter']) ? $_POST['item_submitter'] : 0);
         $itemDate_create = date_create_from_format(_SHORTDATESTRING, $_POST['item_date_create']);
         $itemsObj->setVar('item_date_create', $itemDate_create->getTimestamp());
 		// Insert Data
 		if($itemsHandler->insert($itemsObj)) {
-			redirect_header('items.php?op=list', 2, _AM_WGTIMELINES_FORM_OK);
+            if ($ui === 'user') {
+                redirect_header('../index.php?op=list&tl_id=' . $item_tl_id . '#item' . $itemId, 2, _AM_WGTIMELINES_FORM_OK);
+            } else {
+                redirect_header('items.php?op=list#iorder_' .  $itemId, 2, _AM_WGTIMELINES_FORM_OK);
+            }
 		}
 		// Get Form
 		$GLOBALS['xoopsTpl']->assign('error', $itemsObj->getHtmlErrors());
@@ -149,7 +155,7 @@ switch($op) {
 		$GLOBALS['xoopsTpl']->assign('buttons', $adminMenu->renderButton());
 		// Get Form
 		$itemsObj = $itemsHandler->get($itemId);
-		$form = $itemsObj->getFormItems();
+		$form = $itemsObj->getFormItems(false, $ui);
 		$GLOBALS['xoopsTpl']->assign('form', $form->render());
 
 	break;
@@ -159,13 +165,18 @@ switch($op) {
 			if(!$GLOBALS['xoopsSecurity']->check()) {
 				redirect_header('items.php', 3, implode(', ', $GLOBALS['xoopsSecurity']->getErrors()));
 			}
+            $item_tl_id = $itemsObj->getVar('item_tl_id');
 			if($itemsHandler->delete($itemsObj)) {
-				redirect_header('items.php', 3, _AM_WGTIMELINES_FORM_DELETE_OK);
+                if ($ui === 'user') {
+                    redirect_header('../index.php?op=list&tl_id=' . $item_tl_id, 3, _AM_WGTIMELINES_FORM_DELETE_OK);
+                } else {
+                    redirect_header('items.php?op=list#timeline' . $item_tl_id, 2, _AM_WGTIMELINES_FORM_DELETE_OK);
+                }
 			} else {
 				$GLOBALS['xoopsTpl']->assign('error', $itemsObj->getHtmlErrors());
 			}
 		} else {
-			xoops_confirm(array('ok' => 1, 'item_id' => $itemId, 'op' => 'delete'), $_SERVER['REQUEST_URI'], sprintf(_AM_WGTIMELINES_FORM_SURE_DELETE, $itemsObj->getVar('item_title')));
+			xoops_confirm(array('ok' => 1, 'item_id' => $itemId, 'op' => 'delete', 'ui' => $ui), $_SERVER['REQUEST_URI'], sprintf(_AM_WGTIMELINES_FORM_SURE_DELETE, $itemsObj->getVar('item_title')));
 		}
 
 	break;

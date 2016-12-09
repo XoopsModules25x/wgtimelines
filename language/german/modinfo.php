@@ -32,6 +32,8 @@ define('_MI_WGTIMELINES_ABOUT', 'Über');
 // Blocks
 define('_MI_WGTIMELINES_TIMELINES_BLOCK_TIMELINE', 'Block Zeitreihen');
 define('_MI_WGTIMELINES_TIMELINES_BLOCK_TIMELINE_DESC', 'Anzeige einer Liste der Zeitreihen');
+define('_MI_WGTIMELINES_ITEMS_BLOCK_ITEM', 'Block Einträge');
+define('_MI_WGTIMELINES_ITEMS_BLOCK_ITEM_DESC', 'Anzeige einer Liste von Einträgen');
 // Config
 define('_MI_WGTIMELINES_ADMIN_PAGER', 'Admin Listenzeilen');
 define('_MI_WGTIMELINES_ADMIN_PAGER_DESC', 'Anzahl der Zeilen für Listen im Admin-Bereich');
@@ -58,4 +60,9 @@ define('_MI_WGTIMELINES_WELCOME_DESC', 'Diese Willkommensnachricht wird vor Ihre
 define('_MI_WGTIMELINES_WELCOME_DEFAULT', 'Willkommen bei der Zeitreihe auf ' . $xoopsConfig['sitename']);
 define('_MI_WGTIMELINES_TIMELINE_NAME', 'Name Zeitreihe anzeigen');
 define('_MI_WGTIMELINES_TIMELINE_NAME_DESC', 'Bitte wählen Sie, ob der Name der Zeitreiche auf der Userseite angezeigt werden soll');
+define('_MI_WGTIMELINES_STARTPAGE', 'Startseite');
+define('_MI_WGTIMELINES_STARTPAGE_DESC', 'Definieren Sie bitte, welche Informationen beim Modulaufruf (index.php) angezeigt werden sollen');
+define('_MI_WGTIMELINES_STARTPAGE_LIST', 'Eine Übersichtsliste mit allen Zeitreihen (ohne Einträge)');
+define('_MI_WGTIMELINES_STARTPAGE_ALL', 'Alle Zeitreihen mit allen Einträgen');
+define('_MI_WGTIMELINES_STARTPAGE_FIRST', 'Die erste Zeitreihe');
 // ---------------- End ----------------

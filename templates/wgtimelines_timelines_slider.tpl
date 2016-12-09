@@ -49,20 +49,45 @@
                         </div>
                         <div class=''>
                     <{else}>
-                        <div class='slider-content'>
+                        <div id="item<{$item.id}>" class='slider-content'>
                     <{/if}>
                             <h2><{$item.title}></h2>
                             <p><{$item.content}></p>
+							<{if $item.readmore}>
+								<p class='timeline-item-readmore right'>
+									<a href="items.php?op=read&amp;item_id=<{$item.id}>" title="<{$smarty.const._MA_WGTIMELINES_READMORE}>"><{$smarty.const._MA_WGTIMELINES_READMORE}>...</a>
+								</p>
+							<{/if}>
                         </div>
                 <{else}>
                     <{if $item.image}>
                     <div class='col-xs-12 col-sm-12'><img class="img-responsive center <{$imgstyle}>" src="<{$wgtimelines_upload_url}>/images/items/<{$item.image}>" alt="<{$item.title}>" "/></div>
                     <{/if}>
-                    <div class='col-xs-12 col-sm-12'>
+                    <div id="item<{$item.id}>" class='col-xs-12 col-sm-12'>
                         <h2><{$item.title}></h2>
                         <p><{$item.content}></p>
+						<{if $item.readmore}>
+							<p class='timeline-item-readmore right'>
+								<a href="items.php?op=read&amp;item_id=<{$item.id}>" title="<{$smarty.const._MA_WGTIMELINES_READMORE}>"><{$smarty.const._MA_WGTIMELINES_READMORE}>...</a>
+							</p>
+						<{/if}>
                     </div>
                 <{/if}>
+				<{if $showreads}>
+					<div class='col-xs-12 col-sm-6 timeline-item-reads pull-left'>
+						<i class='glyphicon glyphicon-eye-open'> <{$smarty.const._MA_WGTIMELINES_ITEM_READS}>: <{$item.reads}></i>
+					</div><br>
+				<{/if}>	
+				<{if $isAdmin}>
+					<div class='col-xs-12 col-sm-6 admin-area pull-right'>
+						<a href="admin/items.php?op=edit&amp;ui=user&amp;item_id=<{$item.id}>" title="<{$smarty.const._EDIT}>">
+							<img src="<{xoModuleIcons16 edit.png}>" alt="items" />
+						</a>
+						<a href="admin/items.php?op=delete&amp;ui=user&amp;item_id=<{$item.id}>" title="<{$smarty.const._DELETE}>">
+							<img src="<{xoModuleIcons16 delete.png}>" alt="items" />
+						</a>
+					</div><br>
+				<{/if}>
 			</li>
             <{/foreach}>
 		</ul>
@@ -72,5 +97,8 @@
 		<a href="#" id="prev">-</a>
 	</div>
     <div class="clear"></div>
+<{/if}>
+<{if $error}>
+	<div class="errorMsg"><strong><{$error}></strong></div>
 <{/if}>
 <{include file='db:wgtimelines_footer.tpl'}>

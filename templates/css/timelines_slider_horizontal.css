@@ -133,3 +133,8 @@
 				#prev.disabled {
 					opacity: 0.2;
 				}
+.timeline-item-reads  i{
+}
+.admin-area {
+	text-align:right;
+}

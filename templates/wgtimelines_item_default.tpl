@@ -1,11 +1,11 @@
 <{include file='db:wgtimelines_header.tpl'}>
-<link rel="stylesheet" href="<{$wgtimelines_url}>/templates/css/timelines_single.css">
+<link rel="stylesheet" href="<{$wgtimelines_url}>/templates/css/item_default.css">
 <style>
     .timeline:before {
         background-color: <{$linecolor}>;
     }
     .timeline > li > .timeline-panel {
-        border-color: <{$bordercolor}>;
+        border: <{$borderwidth}> <{$borderstyle}> <{$bordercolor}>;
         border-radius: <{$borderradius}>;
         background-color: <{$bgcolor}>;
         -webkit-box-shadow: <{$boxshadow}>;
@@ -41,12 +41,12 @@
     <div class="container-timeline">
         <ul class="timeline <{if $panel_pos_single == 'right'}>timeline-inverted<{/if}>">
         <{foreach item=item from=$items}>
-            <li id="item<{$item.id}>" class="<{if $panel_pos_single == 'right'}>timeline-inverted<{/if}>">
+            <li class="<{if $panel_pos_single == 'right'}>timeline-inverted<{/if}>">
                 <div class="timeline-badge"><{if $item.badgecontent}><{$item.badgecontent}><{/if}></div>
                 <div class="timeline-panel">
                     <div class="timeline-heading"> 
                         <h4 class="timeline-title">
-							<{$item.title}>
+							<{$item.title}>						
 							<{if $isAdmin}>
 								<span class='admin-area pull-right'>
 									<a href="admin/items.php?op=edit&amp;ui=user&amp;item_id=<{$item.id}>" title="<{$smarty.const._EDIT}>">
@@ -76,21 +76,17 @@
                             <div class='cols-xs-12 col-sm-12'>
                         <{/if}>
                         <p><{$item.content}></p>
-						<{if $item.readmore}>
-						<div class='col-sm-12 timeline-item-readmore right'>
-							<a href="items.php?op=read&amp;item_id=<{$item.id}>" title="<{$smarty.const._MA_WGTIMELINES_READMORE}>"><{$smarty.const._MA_WGTIMELINES_READMORE}>...</a>
-						</div>
                         </div>
-						
-					<{/if}>
                     </div>
-					
                     <{if $item.date}>
                         <div class="cols-xs-12 col-sm-12 timeline-footer">
                             <p><{$item.date}></p>
                         </div>
                     <{/if}>
                 </div>
+				<div class="timeline-back col-sm-12 right">
+					<a href="index.php?op=list&amp;tl_id=<{$item.tl_id}>#item<{$item.id}>" title="<{$smarty.const._MA_WGTIMELINES_GOBACK}>"><img src="<{$wgtimelines_icons_url}>/32/back.png" alt="<{$smarty.const._MA_WGTIMELINES_GOBACK}>" /></a>
+				</div>
             </li>
         <{/foreach}>
         </ul>

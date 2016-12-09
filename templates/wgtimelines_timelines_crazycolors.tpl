@@ -72,17 +72,19 @@
     }
 <{/if}>
 </style>
+
+<{if $timeline_name || $welcome}>
+	<div class="page-header">
+		<h2><{$welcome}></h2>
+		<h3><{$timeline_name}></h3>
+	</div>
+<{/if}>
 <{if count($items) > 0}>
     <div class="container-timeline">
-        <{if $timeline_name || $welcome}>
-            <div class="page-header">
-                <h2><{$welcome}></h2>
-                <h3 id="timeline"><{$timeline_name}></h3>
-            </div>
-        <{/if}>
+
         <ul class="timeline">
         <{foreach item=item from=$items}>
-            <li class="<{if $item.inverted > 0}>timeline-inverted<{/if}>">
+            <li id="item<{$item.id}>" class="<{if $item.inverted > 0}>timeline-inverted<{/if}>">
                 <div class="timeline-badge"><{$item.badgecontent}></div>
                 <div class="timeline-panel-<{$item.crazycolors}>">
                     <div class="timeline-heading">
@@ -94,9 +96,30 @@
                     </div>
                     <div class="timeline-body">
                         <p><{$item.content}></p>
+						<{if $item.readmore}>
+							<p class='timeline-item-readmore right'>
+								<a href="items.php?op=read&amp;item_id=<{$item.id}>" title="<{$smarty.const._MA_WGTIMELINES_READMORE}>"><{$smarty.const._MA_WGTIMELINES_READMORE}>...</a>
+							</p>
+						<{/if}>
                         <{if $panel_imgpos == 'bottom' && $item.image}>
                             <span class='col-sm-12'><img class='img-timeline img-timeline-<{$panel_imgpos}> img-responsive <{$imgstyle}>' src='<{$wgtimelines_upload_url}>/images/items/<{$item.image}>' alt='items' /></span>
                         <{/if}>
+						<div class="clear"></div>
+						<{if $showreads}>
+							<div class='col-xs-12 col-sm-6 timeline-item-reads pull-left'>
+								<i class='glyphicon glyphicon-eye-open'> <{$smarty.const._MA_WGTIMELINES_ITEM_READS}>: <{$item.reads}></i>
+							</div>
+						<{/if}>	
+						<{if $isAdmin}>
+							<div class='col-xs-12 col-sm-6 admin-area pull-right'>
+								<a href="admin/items.php?op=edit&amp;ui=user&amp;item_id=<{$item.id}>" title="<{$smarty.const._EDIT}>">
+									<img src="<{xoModuleIcons16 edit.png}>" alt="items" />
+								</a>
+								<a href="admin/items.php?op=delete&amp;ui=user&amp;item_id=<{$item.id}>" title="<{$smarty.const._DELETE}>">
+									<img src="<{xoModuleIcons16 delete.png}>" alt="items" />
+								</a>
+							</div>
+						<{/if}>
                     </div>
                 </div>
             </li>
@@ -104,5 +127,8 @@
         </ul>
     </div>
     <div class="clear"></div>
+<{/if}>
+<{if $error}>
+	<div class="errorMsg"><strong><{$error}></strong></div>
 <{/if}>
 <{include file='db:wgtimelines_footer.tpl'}>

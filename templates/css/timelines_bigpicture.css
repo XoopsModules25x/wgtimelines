@@ -116,12 +116,10 @@
 .timeline-footer {
     padding:10px 20px;
     background-color:#f4f4f4;
-    text-align:right;
+    text-align:left;
 }
-.timeline-footer .timeline-date{
-    color:#ff0000;
-    float: right;
-    padding:5px;
+.timeline-date{
+    text-align: right;
 }
 .timeline-footer > p{
     padding:10px;
@@ -143,52 +141,50 @@
     ul.timeline:before {
         left: 40px;
     }
-
     ul.timeline > li {
-      margin-bottom: 20px;
-      position: relative;
-      width:100%;
-      float: left;
-      clear: left;
+		margin-bottom: 20px;
+		position: relative;
+		width:100%;
+		float: left;
+		clear: left;
     }
     ul.timeline > li > .timeline-panel {
         width: calc(100% - 70px);
         width: -moz-calc(100% - 70px);
         width: -webkit-calc(100% - 70px);
     }
-
     ul.timeline > li > .timeline-badge {
         left: 28px;
         margin-left: 0;
         top: 19px;
     }
-
     ul.timeline > li > .timeline-panel {
         float: right;
     }
-
-        ul.timeline > li > .timeline-panel:before {
-            border-left-width: 0;
-            border-right-width: 15px;
-            left: -15px;
-            right: auto;
-        }
-
-        ul.timeline > li > .timeline-panel:after {
-            border-left-width: 0;
-            border-right-width: 14px;
-            left: -14px;
-            right: auto;
-        }
-    
-.timeline > li.timeline-inverted{
-  float: left; 
-  clear: left;
-  margin-top: 30px;
-  margin-bottom: 30px;
+	ul.timeline > li > .timeline-panel:before {
+		border-left-width: 0;
+		border-right-width: 15px;
+		left: -15px;
+		right: auto;
+	}
+	ul.timeline > li > .timeline-panel:after {
+		border-left-width: 0;
+		border-right-width: 14px;
+		left: -14px;
+		right: auto;
+	}
+	.timeline > li.timeline-inverted{
+		float: left; 
+		clear: left;
+		margin-top: 30px;
+		margin-bottom: 30px;
+	}
+	.timeline > li.timeline-inverted > .timeline-badge{
+		left: 28px;
+	}
 }
-
-.timeline > li.timeline-inverted > .timeline-badge{
-  left: 28px;
+.timeline-item-reads  i{
 }
+.admin-area {
+	text-align:right;
 }

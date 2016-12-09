@@ -133,21 +133,33 @@
 }
 .timeline-body  {
   padding-top: 20px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 0;
+  padding-right: 0;
   background-color:#ffffff;
 }
-.timeline-footer  {
+.timeline-footer-right  {
   text-align: right;
   padding-right: 20px;
-  background-color:#ffffff;
+  padding-bottom:10px;
+  margin-bottom:10px;
 }
-
+.timeline-footer-left  {
+  text-align: left;
+  padding-left: 20px;
+  padding-bottom:10px;
+  margin-bottom:10px;
+}
 .img-timeline {
   margin-top: 10px;
   margin-bottom: 10px;
 }
-
+.timeline-item-reads  i{
+	font-size:80%;
+}
+.admin-area {
+	margin-left:10px;
+	margin-right:10px;
+}
 @media screen and (max-width: 768px) {
     .timeline > li > .timeline-panel {
       float: right;

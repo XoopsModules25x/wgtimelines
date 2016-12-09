@@ -110,8 +110,7 @@
 }
 .timeline-footer {
     padding:10px 20px;
-    background-color:#f4f4f4;
-    text-align:right;
+    background-color:#ececec;
 }
 .timeline-footer .timeline-date{
     color:#ff0000;
@@ -136,6 +135,13 @@
 .img-timeline {
   margin-top: 15px;
   margin-bottom: 15px;
+}
+.timeline-item-reads  i{
+
+}
+.admin-area {
+	margin:10px;
+	padding-right:10px;
 }
 
 @media (max-width: 767px) {

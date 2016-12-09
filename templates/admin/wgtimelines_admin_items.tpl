@@ -11,6 +11,7 @@
             <th class="center"><{$smarty.const._AM_WGTIMELINES_ITEM_DATE}></th>
             <th class="center"><{$smarty.const._AM_WGTIMELINES_ITEM_YEAR}></th>
 			<th class="center"><{$smarty.const._AM_WGTIMELINES_ITEM_ICON}></th>
+			<th class="center"><{$smarty.const._AM_WGTIMELINES_ITEM_READS}></th>
 			<th class="center"><{$smarty.const._AM_WGTIMELINES_ONLINE}></th>
             <th class="center"><{$smarty.const._AM_WGTIMELINES_SUBMITTER}></th>
             <th class="center"><{$smarty.const._AM_WGTIMELINES_DATE_CREATE}></th>
@@ -22,7 +23,7 @@
     <{if $item.new_timeline > 0}> 
     <tbody>
         <tr class="odd">
-        <td class="left" colspan="16"><{$item.tl_name}></td>
+        <td id="timeline<{$item.tl_id}>" class="left" colspan="16"><{$item.tl_name}></td>
         </tr>
     <{/if}>
         <tr class="even" id="iorder_<{$item.id}>">
@@ -35,10 +36,11 @@
             </td>
             <td class="center"><{$item.title}></td>
             <td class=""><{$item.content_admin}></td>
-            <td class="center"><img src="<{$wgtimelines_upload_url}>/images/items/<{$item.image}>" alt="items" style="max-width:100px;" /></td>
+            <td class="center"><img src="<{$wgtimelines_upload_url}>/images/items/<{$item.image}>" alt="<{$item.title}>" style="max-width:100px;" /></td>
             <td class="center"><{$item.date}></td>
             <td class="center"><{$item.year}></td>
 			<td class="center"><i class='glyphicon glyphicon-<{$item.icon}>'></i></td>
+			<td class="center"><{$item.reads}></td>
 			<td class="center">
                 <a href="items.php?op=set_onoff&amp;item_id=<{$item.id}>" title="<{$item.online}>">
                     <{if $item.online == 1}>

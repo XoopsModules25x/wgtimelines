@@ -25,7 +25,7 @@
 $dirname  = basename(__DIR__);
 // ------------------- Informations ------------------- //
 $modversion['name'] = _MI_WGTIMELINES_NAME;
-$modversion['version'] = '1.04';
+$modversion['version'] = '1.05';
 $modversion['description'] = _MI_WGTIMELINES_DESC;
 $modversion['author'] = 'goffy (wedega.com)';
 $modversion['author_mail'] = 'webmaster@wedega.com';
@@ -58,7 +58,7 @@ $modversion['support_name'] = 'Support Forum';
 $modversion['module_website_url'] = 'xoops.wedega.com';
 $modversion['module_website_name'] = 'XOOPS on Wedega';
 $modversion['release'] = '09/27/2016';
-$modversion['module_status'] = 'RC1';
+$modversion['module_status'] = 'Beta 1';
 $modversion['system_menu'] = 1;
 $modversion['hasAdmin'] = 1;
 $modversion['hasMain'] = 1;
@@ -78,6 +78,8 @@ $modversion['templates'][] = array('file' => 'wgtimelines_admin_footer.tpl', 'de
 // User
 $modversion['templates'][] = array('file' => 'wgtimelines_header.tpl', 'description' => '');
 $modversion['templates'][] = array('file' => 'wgtimelines_index.tpl', 'description' => '');
+$modversion['templates'][] = array('file' => 'wgtimelines_item_default.tpl', 'description' => '');
+$modversion['templates'][] = array('file' => 'wgtimelines_item_table.tpl', 'description' => '');
 $modversion['templates'][] = array('file' => 'wgtimelines_timelines_table.tpl', 'description' => '');
 $modversion['templates'][] = array('file' => 'wgtimelines_timelines_simple.tpl', 'description' => '');
 $modversion['templates'][] = array('file' => 'wgtimelines_timelines_colorful.tpl', 'description' => '');
@@ -141,6 +143,15 @@ $modversion['blocks'][$b]['show_func'] = 'b_wgtimelines_timelines_show';
 $modversion['blocks'][$b]['edit_func'] = 'b_wgtimelines_timelines_edit';
 $modversion['blocks'][$b]['template'] = 'wgtimelines_block_timelines.tpl';
 $modversion['blocks'][$b]['options'] = 'tl|25|0';
+++$b;
+// Items
+$modversion['blocks'][$b]['file'] = 'items.php';
+$modversion['blocks'][$b]['name'] = _MI_WGTIMELINES_ITEMS_BLOCK_ITEM;
+$modversion['blocks'][$b]['description'] = _MI_WGTIMELINES_ITEMS_BLOCK_ITEM_DESC;
+$modversion['blocks'][$b]['show_func'] = 'b_wgtimelines_items_show';
+$modversion['blocks'][$b]['edit_func'] = 'b_wgtimelines_items_edit';
+$modversion['blocks'][$b]['template'] = 'wgtimelines_block_items.tpl';
+$modversion['blocks'][$b]['options'] = 'item|5|25|last|0';
 ++$b;
 unset($b);
 // ------------------- Config ------------------- //
@@ -256,4 +267,13 @@ $modversion['config'][$c]['description'] = '_MI_WGTIMELINES_DISQUS_COMMENTS_DESC
 $modversion['config'][$c]['formtype'] = 'yesno';
 $modversion['config'][$c]['valuetype'] = 'int';
 $modversion['config'][$c]['default'] = 0;
+++$c;
+// start page for module
+$modversion['config'][$c]['name'] = 'startpage';
+$modversion['config'][$c]['title'] = '_MI_WGTIMELINES_STARTPAGE';
+$modversion['config'][$c]['description'] = '_MI_WGTIMELINES_STARTPAGE_DESC';
+$modversion['config'][$c]['formtype'] = 'select';
+$modversion['config'][$c]['valuetype'] = 'int';
+$modversion['config'][$c]['default'] = 1;
+$modversion['config'][$c]['options'] = array(_MI_WGTIMELINES_STARTPAGE_LIST => 1, _MI_WGTIMELINES_STARTPAGE_FIRST => 3);
 ++$c;

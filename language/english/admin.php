@@ -36,8 +36,10 @@ define('_AM_WGTIMELINES_FORM_OK', 'Successfully saved');
 define('_AM_WGTIMELINES_FORM_DELETE_OK', 'Successfully deleted');
 define('_AM_WGTIMELINES_FORM_SURE_DELETE', "Are you sure to delete: <b><span style='color : Red;'>%s </span></b>");
 define('_AM_WGTIMELINES_FORM_SURE_RENEW', "Are you sure to update: <b><span style='color : Red;'>%s </span></b>");
+define('_AM_WGTIMELINES_FORM_UPLOAD_IMAGE', 'Upload images');
 define('_AM_WGTIMELINES_SUBMITTER', 'Submitter');
 define('_AM_WGTIMELINES_DATE_CREATE', 'Date create');
+define('_AM_WGTIMELINES_ONLINE', 'Online');
 // Lists
 define('_AM_WGTIMELINES_TIMELINES_LIST', 'List of Timelines');
 define('_AM_WGTIMELINES_ITEMS_LIST', 'List of Items');
@@ -49,12 +51,15 @@ define('_AM_WGTIMELINES_TIMELINE_EDIT', 'Edit Timeline');
 // Elements of Timeline
 define('_AM_WGTIMELINES_TIMELINE_ID', 'Id');
 define('_AM_WGTIMELINES_TIMELINE_NAME', 'Name');
+define('_AM_WGTIMELINES_TIMELINE_DESC', 'Description');
+define('_AM_WGTIMELINES_TIMELINE_IMAGE', 'Image');
 define('_AM_WGTIMELINES_TIMELINE_TEMPLATE', 'Template');
 define('_AM_WGTIMELINES_TIMELINE_SORTBY', 'Sort by');
 define('_AM_WGTIMELINES_TIMELINE_SORTBY_Y_ASC', 'Year/Date ascending');
 define('_AM_WGTIMELINES_TIMELINE_SORTBY_Y_DESC', 'Year/Date descending');
 define('_AM_WGTIMELINES_TIMELINE_SORTBY_ADMIN', 'Sort order in admin area');
-define('_AM_WGTIMELINES_ONLINE', 'Online');
+define('_AM_WGTIMELINES_TIMELINE_LIMIT', 'Limit of characters');
+define('_AM_WGTIMELINES_TIMELINE_LIMIT_DESC', '0 = complete text will be shown, otherwise you can display the full text with "Read more"');
 // Template add/edit
 define('_AM_WGTIMELINES_TEMPLATE_ADD', 'Add Template');
 define('_AM_WGTIMELINES_TEMPLATE_EDIT', 'Edit Template');
@@ -149,10 +154,10 @@ define('_AM_WGTIMELINES_ITEM_TL_ID', 'Timeline');
 define('_AM_WGTIMELINES_ITEM_TITLE', 'Title');
 define('_AM_WGTIMELINES_ITEM_CONTENT', 'Content');
 define('_AM_WGTIMELINES_ITEM_IMAGE', 'Image');
-define('_AM_WGTIMELINES_FORM_UPLOAD_IMAGE_ITEMS', 'Images in ../uploads/wgtimelines/images/items');
 define('_AM_WGTIMELINES_ITEM_DATE', 'Date');
 define('_AM_WGTIMELINES_ITEM_YEAR', 'Year');
 define('_AM_WGTIMELINES_ITEM_ICON', 'Icon');
+define('_AM_WGTIMELINES_ITEM_READS', 'Reads');
 define('_AM_WGTIMELINES_ITEM_YEAR_ICON_DESC', "Will be only used, if option '"._AM_WGTIMELINES_TEMPLATE_BADGECONTENT."' is set corresponding");
 define('_AM_WGTIMELINES_ITEM_NONE', 'None');
 // General

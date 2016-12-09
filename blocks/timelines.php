@@ -64,7 +64,7 @@ function b_wgtimelines_timelines_edit($options)
     array_shift($options);
     $criteria = new CriteriaCompo();
     $criteria->add(new Criteria('tl_id', 0, '!='));
-    $criteria->setSort('tl_id');
+    $criteria->setSort('tl_weight');
     $criteria->setOrder('ASC');
     $timelinesAll = $timelinesHandler->getAll($criteria);
     unset($criteria);

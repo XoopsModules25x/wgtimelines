@@ -22,16 +22,16 @@
  */
 include dirname(dirname(dirname(__DIR__))) .'/include/cp_header.php';
 include_once dirname(__DIR__) .'/include/common.php';
-$sysPathIcon16  = '../' . $GLOBALS['xoopsModule']->getInfo('sysicons16');
-$sysPathIcon32  = '../' . $GLOBALS['xoopsModule']->getInfo('sysicons32');
-$pathModuleAdmin  = $GLOBALS['xoopsModule']->getInfo('dirmoduleadmin');
-$modPathIcon16  = $GLOBALS['xoopsModule']->getInfo('modicons16');
-$modPathIcon32  = $GLOBALS['xoopsModule']->getInfo('modicons32');
+$sysPathIcon16   = '../' . $GLOBALS['xoopsModule']->getInfo('sysicons16');
+$sysPathIcon32   = '../' . $GLOBALS['xoopsModule']->getInfo('sysicons32');
+$pathModuleAdmin = $GLOBALS['xoopsModule']->getInfo('dirmoduleadmin');
+$modPathIcon16   = $GLOBALS['xoopsModule']->getInfo('modicons16');
+$modPathIcon32   = $GLOBALS['xoopsModule']->getInfo('modicons32');
 // Get instance of module
-$wgtimelines = WgtimelinesHelper::getInstance();
-$timelinesHandler = $wgtimelines->getHandler('timelines');
-$itemsHandler = $wgtimelines->getHandler('items');
-$templatesHandler = $wgtimelines->getHandler('templates');
+$wgtimelines           = WgtimelinesHelper::getInstance();
+$timelinesHandler      = $wgtimelines->getHandler('timelines');
+$itemsHandler          = $wgtimelines->getHandler('items');
+$templatesHandler      = $wgtimelines->getHandler('templates');
 $tplsetsdefaultHandler = $wgtimelines->getHandler('tplsetsdefault');
 $myts = MyTextSanitizer::getInstance();
 // 
@@ -49,9 +49,9 @@ xoops_loadLanguage('admin');
 xoops_loadLanguage('modinfo');
 // Local admin menu class
 if(file_exists($GLOBALS['xoops']->path($pathModuleAdmin.'/moduleadmin.php'))) {
-include_once $GLOBALS['xoops']->path($pathModuleAdmin.'/moduleadmin.php');
+	include_once $GLOBALS['xoops']->path($pathModuleAdmin.'/moduleadmin.php');
 } else {
-redirect_header('../../../admin.php.php', 5, _AM_MODULEADMIN_MISSING);
+	redirect_header('../../../admin.php.php', 5, _AM_MODULEADMIN_MISSING);
 }
 xoops_cp_header();
 $adminMenu = new ModuleAdmin();

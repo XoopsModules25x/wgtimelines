@@ -44,6 +44,7 @@ class WgtimelinesItems extends XoopsObject
 		$this->initVar('item_icon', XOBJ_DTYPE_TXTBOX);
 		$this->initVar('item_weight', XOBJ_DTYPE_INT);
 		$this->initVar('item_online', XOBJ_DTYPE_INT);
+		$this->initVar('item_reads', XOBJ_DTYPE_INT);
 		$this->initVar('item_submitter', XOBJ_DTYPE_INT);
 		$this->initVar('item_date_create', XOBJ_DTYPE_INT);
 	}
@@ -76,7 +77,7 @@ class WgtimelinesItems extends XoopsObject
      * @param mixed $action
      * @return XoopsThemeForm
      */
-	public function getFormItems($action = false)
+	public function getFormItems($action = false, $ui = 'admin')
 	{
 		$wgtimelines = WgtimelinesHelper::getInstance();
 		if($action === false) {
@@ -121,7 +122,7 @@ class WgtimelinesItems extends XoopsObject
 		$imageTray->addElement(new XoopsFormLabel('', "<br /><img src='".XOOPS_URL . '/' . $imageDirectory . '/' . $itemImage . "' name='image1' id='image1' alt='' style='max-width:100px;' />"));
 		// Form File
 		$fileSelectTray = new XoopsFormElementTray('', '<br />' );
-		$fileSelectTray->addElement(new XoopsFormFile( _AM_WGTIMELINES_FORM_UPLOAD_IMAGE_ITEMS, 'attachedfile', $wgtimelines->getConfig('maxsize') ));
+		$fileSelectTray->addElement(new XoopsFormFile( _AM_WGTIMELINES_FORM_UPLOAD_IMAGE, 'attachedfile', $wgtimelines->getConfig('maxsize') ));
 		$fileSelectTray->addElement(new XoopsFormLabel(''));
 		$imageTray->addElement($fileSelectTray);
 		$form->addElement($imageTray);
@@ -146,6 +147,9 @@ class WgtimelinesItems extends XoopsObject
         $itemsHandler = $wgtimelines->getHandler('items');
 		$itemWeight = $this->isNew() ? ($itemsHandler->getCountItems() + 1) : $this->getVar('item_weight');
         $form->addElement(new XoopsFormHidden('item_weight', $itemWeight));
+		// Form Text ItemReads
+		$itemReads = $this->isNew() ? 0 : $this->getVar('item_reads');
+		$form->addElement(new XoopsFormText( _AM_WGTIMELINES_ITEM_READS, 'item_reads', 20, 255, $itemReads ));
 		// Form Radio Yes/No
 		$itemOnline = $this->isNew() ? 0 : $this->getVar('item_online');
 		$form->addElement(new XoopsFormRadioYN( _AM_WGTIMELINES_ONLINE, 'item_online', $itemOnline));
@@ -156,6 +160,7 @@ class WgtimelinesItems extends XoopsObject
 		$form->addElement(new XoopsFormTextDateSelect( _AM_WGTIMELINES_DATE_CREATE, 'item_date_create', '', $itemDate_create ));
 		// To Save
 		$form->addElement(new XoopsFormHidden('op', 'save'));
+        $form->addElement(new XoopsFormHidden('ui', $ui));
 		$form->addElement(new XoopsFormButtonTray('', _SUBMIT, 'submit', '', false));
 		return $form;
 	}
@@ -178,12 +183,20 @@ class WgtimelinesItems extends XoopsObject
 		$ret['tl_name'] = $timeline_obj->getVar('tl_name');
 		$ret['title'] = $this->getVar('item_title');
 		$ret['content'] = $this->getVar('item_content', 'n');
-        $ret['content_admin'] = $wgtimelines->truncateHtml($this->getVar('item_content', 'n'));
+		$content = $this->getVar('item_content', 'n');
+		$tl_limit = $timeline_obj->getVar('tl_limit');
+		$ret['tl_limit'] = $tl_limit;
+		$ret['content_admin'] = $wgtimelines->truncateHtml($content);
+		if ($tl_limit > 0 && strlen(strip_tags($content)) > $tl_limit) {
+			$ret['content_summary'] = $wgtimelines->truncateHtml($content, $timeline_obj->getVar('tl_limit'));
+			$ret['content_admin'] = $wgtimelines->truncateHtml($content, $timeline_obj->getVar('tl_limit'));
+		}
 		$ret['image'] = $this->getVar('item_image');
         if ($this->getVar('item_date') > 0) $ret['date'] = formatTimestamp($this->getVar('item_date'), 's');
         if ($this->getVar('item_year') > 0) $ret['year'] = $this->getVar('item_year');
 		$ret['icon'] = $this->getVar('item_icon');
 		$ret['weight'] = $this->getVar('item_weight');
+		$ret['reads'] = $this->getVar('item_reads');
 		$ret['online'] = $this->getVar('item_online');
 		$ret['submitter'] = XoopsUser::getUnameFromId($this->getVar('item_submitter'));
 		$ret['date_create'] = formatTimestamp($this->getVar('item_date_create'), 's');

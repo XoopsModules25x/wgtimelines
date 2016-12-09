@@ -100,3 +100,10 @@
   margin: 30px 0;
   text-align: left;
 }
+.timeline-item-reads  i{
+	font-size:80%;
+}
+.admin-area {
+	margin-left:10px;
+	margin-right:10px;
+}

@@ -108,6 +108,12 @@ li.event:nth-child(even)::before{
 .event-body {
     margin:10px 0;
 }
-
-
-
+.timeline-item-reads  i{
+	padding-top:5px;
+}
+.timeline-footer-right {
+	text-align:right;
+}
+.admin-area {
+	text-align:right;
+}

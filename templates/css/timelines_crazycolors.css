@@ -147,6 +147,11 @@
 .img-timeline-bottom {
   margin-top: 15px;
 }
+.timeline-item-readmore a {
+	padding:10px;
+	border-radius:5px;
+	background-color: #ffffff;
+}
 
 @media screen and (max-width: 768px) {
     .timeline > li > .timeline-panel-1,
@@ -215,4 +220,10 @@
       left: 50%;
     }
     
+}
+.timeline-item-reads  i{
+}
+.admin-area {
+	margin-top:20px;
+	text-align:right;
 }

@@ -6,8 +6,11 @@
         <tr class="head">
             <th class="center">&nbsp;</th>
             <th class="center"><{$smarty.const._AM_WGTIMELINES_TIMELINE_NAME}></th>
+			<th class="center"><{$smarty.const._AM_WGTIMELINES_TIMELINE_DESC}></th>
+			<th class="center"><{$smarty.const._AM_WGTIMELINES_TIMELINE_IMAGE}></th>
             <th class="center"><{$smarty.const._AM_WGTIMELINES_TIMELINE_TEMPLATE}></th>
             <th class="center"><{$smarty.const._AM_WGTIMELINES_TIMELINE_SORTBY}></th>
+			<th class="center"><{$smarty.const._AM_WGTIMELINES_TIMELINE_LIMIT}></th>
             <th class="center"><{$smarty.const._AM_WGTIMELINES_ONLINE}></th>
             <th class="center"><{$smarty.const._AM_WGTIMELINES_SUBMITTER}></th>
             <th class="center"><{$smarty.const._AM_WGTIMELINES_DATE_CREATE}></th>
@@ -19,8 +22,11 @@
         <tr class="even" id="torder_<{$timeline.id}>" >
             <td class="center"><img src="<{$wgtimelines_icons_url}>/16/up_down.png" alt="drag&drop" class="icon-sortable"/></td>
             <td class="center"><{$timeline.name}></td>
+			<td class="left"><{$timeline.desc_admin}></td>
+			<td class="center"><img src="<{$wgtimelines_upload_url}>/images/timelines/<{$timeline.image}>" alt="<{$timeline.name}>" style="max-width:50px;" /></td>
             <td class="center"><{$timeline.template}></td>
             <td class="center"><{$timeline.sortby_text}></td>
+			<td class="center"><{$timeline.limit}></td>
             <td class="center">
                 <a href="timelines.php?op=set_onoff&amp;tl_id=<{$timeline.id}>" title="<{$timeline.online}>">
                     <{if $timeline.online == 1}>

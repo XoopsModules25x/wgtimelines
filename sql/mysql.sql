@@ -14,6 +14,8 @@
 CREATE TABLE `wgtimelines_timelines` (
   `tl_id` INT(8) UNSIGNED NOT NULL AUTO_INCREMENT,
   `tl_name` VARCHAR(200) NOT NULL DEFAULT '',
+  `tl_desc` TEXT NOT NULL,
+  `tl_image` VARCHAR(200) NOT NULL DEFAULT '',
   `tl_weight` INT(8) NOT NULL DEFAULT '0',
   `tl_template` INT(8) NOT NULL DEFAULT '0',
   `tl_sortby` INT(1) NOT NULL DEFAULT '0',

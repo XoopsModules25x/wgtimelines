@@ -45,6 +45,13 @@ switch($op) {
 		if($timelinesCount > 0) {
 			foreach(array_keys($timelinesAll) as $i) {
 				$timeline = $timelinesAll[$i]->getValuesTimelines();
+				if ($timeline['tl_sortby'] == 1) {
+					$timeline['sortby_text'] = _AM_WGTIMELINES_TIMELINE_SORTBY_Y_DESC;
+				} else if ($timeline['tl_sortby'] == 2) {
+					$timeline['sortby_text'] = _AM_WGTIMELINES_TIMELINE_SORTBY_Y_ASC;
+				} else {
+					$timeline['sortby_text'] = _AM_WGTIMELINES_TIMELINE_SORTBY_ADMIN;
+				}
 				$GLOBALS['xoopsTpl']->append('timelines_list', $timeline);
 				unset($timeline);
 			}
@@ -82,9 +89,30 @@ switch($op) {
 		}
 		// Set Vars
 		$timelinesObj->setVar('tl_name', $_POST['tl_name']);
+		$timelinesObj->setVar('tl_desc', $_POST['tl_desc']);
+		// Set Var tl_image
+		include_once XOOPS_ROOT_PATH .'/class/uploader.php';
+		$uploader = new XoopsMediaUploader(WGTIMELINES_UPLOAD_IMAGE_PATH.'/timelines/', 
+													$wgtimelines->getConfig('mimetypes'), 
+													$wgtimelines->getConfig('maxsize'), null, null);
+		if($uploader->fetchMedia($_POST['xoops_upload_file'][0])) {
+			$extension = preg_replace('/^.+\.([^.]+)$/sU', '', $_FILES['attachedfile']['name']);
+			$imgName = str_replace(' ', '', $_POST['tl_name']).'.'.$extension;
+			$uploader->setPrefix($imgName);
+			$uploader->fetchMedia($_POST['xoops_upload_file'][0]);
+			if(!$uploader->upload()) {
+				$errors = $uploader->getErrors();
+				redirect_header('javascript:history.go(-1).php', 3, $errors);
+			} else {
+				$timelinesObj->setVar('tl_image', $uploader->getSavedFileName());
+			}
+		} else {
+			$timelinesObj->setVar('tl_image', $_POST['tl_image']);
+		}
 		$timelinesObj->setVar('tl_weight', isset($_POST['tl_weight']) ? $_POST['tl_weight'] : 0);
 		$timelinesObj->setVar('tl_template', isset($_POST['tl_template']) ? $_POST['tl_template'] : 0);
         $timelinesObj->setVar('tl_sortby', isset($_POST['tl_sortby']) ? $_POST['tl_sortby'] : 0);
+		$timelinesObj->setVar('tl_limit', isset($_POST['tl_limit']) ? $_POST['tl_limit'] : 0);
         $timelinesObj->setVar('tl_online', isset($_POST['tl_online']) ? $_POST['tl_online'] : 0);
 		$timelinesObj->setVar('tl_submitter', isset($_POST['tl_submitter']) ? $_POST['tl_submitter'] : 0);
 		$timelineDate_create = date_create_from_format(_SHORTDATESTRING, $_POST['tl_date_create']);

@@ -23,7 +23,7 @@
 include __DIR__ . '/header.php';
 // Count elements
 $countTimelines = $timelinesHandler->getCount();
-$countItems = $itemsHandler->getCount();
+$countItems     = $itemsHandler->getCount();
 $countTemplates = $templatesHandler->getCount();
 // Template Index
 $templateMain = 'wgtimelines_admin_index.tpl';
@@ -37,7 +37,8 @@ $adminMenu->addInfoBoxLine(_AM_WGTIMELINES_STATISTICS, '<label>'._AM_WGTIMELINES
 $folder = array(
 	WGTIMELINES_UPLOAD_PATH,
 	WGTIMELINES_UPLOAD_PATH . '/images/',
-	WGTIMELINES_UPLOAD_PATH . '/images/items/',
+	WGTIMELINES_UPLOAD_PATH . '/images/timelines/',
+	WGTIMELINES_UPLOAD_PATH . '/images/items/'
 );
 // Uploads Folders Created
 foreach(array_keys($folder) as $i) {

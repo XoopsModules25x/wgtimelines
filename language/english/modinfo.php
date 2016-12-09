@@ -32,6 +32,8 @@ define('_MI_WGTIMELINES_ABOUT', 'About');
 // Blocks
 define('_MI_WGTIMELINES_TIMELINES_BLOCK_TIMELINE', 'Timelines block');
 define('_MI_WGTIMELINES_TIMELINES_BLOCK_TIMELINE_DESC', 'Show a list of timelines');
+define('_MI_WGTIMELINES_ITEMS_BLOCK_ITEM', 'Items block');
+define('_MI_WGTIMELINES_ITEMS_BLOCK_ITEM_DESC', 'Show a list of items');
 // Config
 define('_MI_WGTIMELINES_ADMIN_PAGER', 'Admin pager');
 define('_MI_WGTIMELINES_ADMIN_PAGER_DESC', 'Admin per page list');
@@ -58,4 +60,9 @@ define('_MI_WGTIMELINES_WELCOME_DESC', 'This welcome message will be shown on th
 define('_MI_WGTIMELINES_WELCOME_DEFAULT', 'Welcome to timeline on ' . $xoopsConfig['sitename']);
 define('_MI_WGTIMELINES_TIMELINE_NAME', 'Show name timeline');
 define('_MI_WGTIMELINES_TIMELINE_NAME_DESC', 'Please decide, whether the name of the timeline should be shown on the top of the timeline');
+define('_MI_WGTIMELINES_STARTPAGE', 'Start page');
+define('_MI_WGTIMELINES_STARTPAGE_DESC', 'Define, what should be shown when calling the module (index.php)');
+define('_MI_WGTIMELINES_STARTPAGE_LIST', 'An overview with all timelines (but without items)');
+define('_MI_WGTIMELINES_STARTPAGE_ALL', 'All timelines with all items');
+define('_MI_WGTIMELINES_STARTPAGE_FIRST', 'The first timeline');
 // ---------------- End ----------------
