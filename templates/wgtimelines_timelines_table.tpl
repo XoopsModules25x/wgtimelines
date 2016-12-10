@@ -1,9 +1,6 @@
 <{include file='db:wgtimelines_header.tpl'}>
 <link rel="stylesheet" href="<{$wgtimelines_url}>/templates/css/timelines_table.css">
 
-<{if $welcome}><h2><{$welcome}></h2><{/if}>
-<{if $timeline_name}><h3><{$timeline_name}></h3><{/if}>
-
 <{if count($items) > 0}>
 <div class="table-responsive timeline-table">    
     <table class="table table-<{$table_type}> ">

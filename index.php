@@ -62,7 +62,6 @@ if ($timelinesCount > 0) {
 			$tl_desc      = $timelinesAll[$i]->getVar('tl_desc', 'n');
 			$tl_sortby    = $timelinesAll[$i]->getVar('tl_sortby');
 			$tl_limit     = $timelinesAll[$i]->getVar('tl_limit');
-			echo $tl_desc;
 			// get template and template options
 			$template_obj = $templatesHandler->get($tl_template);
 			$template     = $template_obj->getValuesTemplates();
@@ -179,9 +178,9 @@ if ($timelinesCount > 0) {
 			} else {
 				$GLOBALS['xoopsTpl']->assign('error', _MA_WGTIMELINES_THEREARENT_ITEMS);
 			}
-			
+			echo $wgtimelines->getConfig('tl_description');
 			if ($wgtimelines->getConfig('tl_name') == 1) $GLOBALS['xoopsTpl']->assign('timeline_name', $tl_name);
-			if ($wgtimelines->getConfig('tl_desc') == 3) $GLOBALS['xoopsTpl']->assign('timeline_desc', $tl_desc);
+			if ($wgtimelines->getConfig('tl_description') == 3) $GLOBALS['xoopsTpl']->assign('timeline_desc', $tl_desc);
 			// Breadcrumbs
 			if ( $wgtimelines->getConfig('breadcrumbs') ) {
 				$xoBreadcrumbs[] = array('title' => $tl_name);
@@ -198,7 +197,7 @@ if ($timelinesCount > 0) {
 		foreach(array_keys($timelinesAll) as $i)
 		{
 			$timelines[$i] = $timelinesAll[$i]->getValuesTimelines();
-			if ($wgtimelines->getConfig('tl_desc') < 2) $timelines[$i]['tl_desc'] = 'aaa';
+			if ($wgtimelines->getConfig('tl_description') < 2) $timelines[$i]['tl_desc'] = 'aaa';
 			$keywords[] = $timelinesAll[$i]->getVar('tl_name');
 		}
 		$GLOBALS['xoopsTpl']->assign('timelines', $timelines);

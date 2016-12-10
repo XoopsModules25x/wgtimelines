@@ -96,7 +96,7 @@ class WgtimelinesTimelines extends XoopsObject
 		$editorConfigs['rows'] = 5;
 		$editorConfigs['cols'] = 40;
 		$editorConfigs['width'] = '100%';
-		$editorConfigs['height'] = '400px';
+		$editorConfigs['height'] = '200px';
 		$editorConfigs['editor'] = $wgtimelines->getConfig('wgtimelines_editor');
 		$form->addElement(new XoopsFormEditor( _AM_WGTIMELINES_TIMELINE_DESC, 'tl_desc', $editorConfigs), true);
 		// Form Upload Image

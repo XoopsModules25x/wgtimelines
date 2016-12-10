@@ -17,12 +17,6 @@
 }
 </style>
 
-<{if $timeline_name || $welcome}>
-	<div class="page-header">
-		<h2><{$welcome}></h2>
-		<h3><{$timeline_name}></h3>
-	</div>
-<{/if}>
 <{if count($items) > 0}>
 	<section id="cd-timeline" class="cd-container">
         <{foreach item=item from=$items}>

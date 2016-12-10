@@ -65,4 +65,9 @@ define('_MI_WGTIMELINES_STARTPAGE_DESC', 'Define, what should be shown when call
 define('_MI_WGTIMELINES_STARTPAGE_LIST', 'An overview with all timelines (but without items)');
 define('_MI_WGTIMELINES_STARTPAGE_ALL', 'All timelines with all items');
 define('_MI_WGTIMELINES_STARTPAGE_FIRST', 'The first timeline');
+define('_MI_WGTIMELINES_TLDESC', 'Timeline description');
+define('_MI_WGTIMELINES_TLDESC_DESC', 'Define, whether and where the description should be shown');
+define('_MI_WGTIMELINES_TLDESC_NONE', 'Never');
+define('_MI_WGTIMELINES_TLDESC_ONLYLIST', 'Only on list of timelines');
+define('_MI_WGTIMELINES_TLDESC_ALL', 'On list of timelines and the timeline himself');
 // ---------------- End ----------------

@@ -65,4 +65,9 @@ define('_MI_WGTIMELINES_STARTPAGE_DESC', 'Definieren Sie bitte, welche Informati
 define('_MI_WGTIMELINES_STARTPAGE_LIST', 'Eine Übersichtsliste mit allen Zeitreihen (ohne Einträge)');
 define('_MI_WGTIMELINES_STARTPAGE_ALL', 'Alle Zeitreihen mit allen Einträgen');
 define('_MI_WGTIMELINES_STARTPAGE_FIRST', 'Die erste Zeitreihe');
+define('_MI_WGTIMELINES_TLDESC', 'Beschreibung Zeitreihe');
+define('_MI_WGTIMELINES_TLDESC_DESC', 'Definieren Sie bitte, ob und wo die Beschreibung angezeigt werden soll');
+define('_MI_WGTIMELINES_TLDESC_NONE', 'Niemals');
+define('_MI_WGTIMELINES_TLDESC_ONLYLIST', 'Nur auf der Übersichtsliste');
+define('_MI_WGTIMELINES_TLDESC_ALL', 'Auf der Übersichtsliste und bei der Zeitreihe');
 // ---------------- End ----------------

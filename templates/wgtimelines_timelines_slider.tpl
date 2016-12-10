@@ -19,11 +19,7 @@
 </script>
 
 <style>
-
 </style>
-
-<{if $welcome}><h2><{$welcome}></h2><{/if}>
-<{if $timeline_name}><h3><{$timeline_name}></h3><{/if}>   
         
 <{if count($items) > 0}>
 	<div id="timeline">

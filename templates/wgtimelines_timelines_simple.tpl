@@ -12,12 +12,6 @@
 }
 </style>
 
-<{if $timeline_name || $welcome}>
-	<div class="page-header  text-center">
-		<h2><{$welcome}></h2>
-		<h3><{$timeline_name}></h3>
-	</div>
-<{/if}>
 <{if count($items) > 0}>
     <div class="container-timeline">
         <ul class="timeline">

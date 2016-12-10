@@ -27,12 +27,6 @@ li.event:nth-child(even)::before{
 }
 </style>
 
-<{if $timeline_name || $welcome}>
-	<div class="page-header">
-		<h2><{$welcome}></h2>
-		<h3><{$timeline_name}></h3>
-	</div>
-<{/if}>
 <{if count($items) > 0}>
     <div class="container">
 

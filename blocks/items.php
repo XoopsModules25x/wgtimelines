@@ -95,7 +95,7 @@ function b_wgtimelines_items_edit($options)
     include_once XOOPS_ROOT_PATH.'/modules/wgtimelines/class/items.php';
     $wgtimelines      = WgtimelinesHelper::getInstance();
     $timelinesHandler = $wgtimelines->getHandler('timelines');
-	$itemsHandler     = $wgtimelines->getHandler('items');
+
     $GLOBALS['xoopsTpl']->assign('wgtimelines_upload_url', WGTIMELINES_UPLOAD_URL);
     $form  = _MB_WGTIMELINES_ITEMS_TO_DISPLAY . ': ';
     $form .= "<input type='hidden' name='options[0]' value='".$options[0]."' />";

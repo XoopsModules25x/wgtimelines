@@ -217,6 +217,15 @@ $modversion['config'][$c]['formtype'] = 'yesno';
 $modversion['config'][$c]['valuetype'] = 'int';
 $modversion['config'][$c]['default'] = 1;
 ++$c;
+// show timeline description
+$modversion['config'][$c]['name'] = 'tl_description';
+$modversion['config'][$c]['title'] = '_MI_WGTIMELINES_TLDESC';
+$modversion['config'][$c]['description'] = '_MI_WGTIMELINES_TLDESC_DESC';
+$modversion['config'][$c]['formtype'] = 'select';
+$modversion['config'][$c]['valuetype'] = 'int';
+$modversion['config'][$c]['default'] = 1;
+$modversion['config'][$c]['options'] = array(_MI_WGTIMELINES_TLDESC_NONE => 1, _MI_WGTIMELINES_TLDESC_ONLYLIST => 2, _MI_WGTIMELINES_TLDESC_ALL => 3);
+++$c;
 //Uploads : max size for image upload 
 $modversion['config'][$c] = array(
     'name'        => 'maxsize',
