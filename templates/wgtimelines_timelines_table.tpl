@@ -3,7 +3,7 @@
 
 <{if count($items) > 0}>
 <div class="table-responsive timeline-table">    
-    <table class="table table-<{$table_type}> ">
+    <table class="table table-<{$tabletype}> ">
 		<tbody>  
             <{foreach item=item from=$items}>
                 <{if $item.showyear}>
@@ -45,6 +45,9 @@
 									<i class='glyphicon glyphicon-eye-open'> <{$smarty.const._MA_WGTIMELINES_ITEM_READS}>: <{$item.reads}></i>
 								</span>
 							<{/if}>	
+							<{if $rating}>
+								<div class='timeline-item-rating pull-left'><{include file='db:wgtimelines_ratingbar.tpl'}></div>
+							<{/if}>
                         </td>
                         <{if $item.image}>
                         <td class='col-sm-6'>
@@ -87,6 +90,10 @@
 									<i class='glyphicon glyphicon-eye-open'> <{$smarty.const._MA_WGTIMELINES_ITEM_READS}>: <{$item.reads}></i>
 								</span>
 							<{/if}>	
+							
+							<{if $rating}>&nbsp;<br>
+								<div class='timeline-item-rating pull-left'><{include file='db:wgtimelines_ratingbar.tpl'}></div>
+							<{/if}>
                         </td>
                     <{/if}>
                 </tr>

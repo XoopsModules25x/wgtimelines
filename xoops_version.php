@@ -25,7 +25,7 @@
 $dirname  = basename(__DIR__);
 // ------------------- Informations ------------------- //
 $modversion['name'] = _MI_WGTIMELINES_NAME;
-$modversion['version'] = '1.05';
+$modversion['version'] = '1.06';
 $modversion['description'] = _MI_WGTIMELINES_DESC;
 $modversion['author'] = 'goffy (wedega.com)';
 $modversion['author_mail'] = 'webmaster@wedega.com';
@@ -93,6 +93,7 @@ $modversion['templates'][] = array('file' => 'wgtimelines_timelines_crazycolors.
 $modversion['templates'][] = array('file' => 'wgtimelines_timelines_animated_2.tpl', 'description' => '');
 $modversion['templates'][] = array('file' => 'wgtimelines_timelines_single.tpl', 'description' => '');
 $modversion['templates'][] = array('file' => 'wgtimelines_breadcrumbs.tpl', 'description' => '');
+$modversion['templates'][] = array('file' => 'wgtimelines_ratingbar.tpl', 'description' => '');
 $modversion['templates'][] = array('file' => 'wgtimelines_rss.tpl', 'description' => '');
 $modversion['templates'][] = array('file' => 'wgtimelines_search.tpl', 'description' => '');
 $modversion['templates'][] = array('file' => 'wgtimelines_footer.tpl', 'description' => '');
@@ -208,6 +209,21 @@ $modversion['config'][$c]['description'] = '_MI_WGTIMELINES_BREADCRUMBS_DESC';
 $modversion['config'][$c]['formtype'] = 'yesno';
 $modversion['config'][$c]['valuetype'] = 'int';
 $modversion['config'][$c]['default'] = 1;
+++$c;
+// Rating bar
+$modversion['config'][$c]['name'] = 'ratingbars';
+$modversion['config'][$c]['title'] = '_MI_WGTIMELINES_RATINGBARS';
+$modversion['config'][$c]['description'] = '_MI_WGTIMELINES_RATINGBARS_DESC';
+$modversion['config'][$c]['formtype'] = 'yesno';
+$modversion['config'][$c]['valuetype'] = 'int';
+$modversion['config'][$c]['default'] = 1;
+$c++; 
+$modversion['config'][$c]['name'] = "ratingbar_groups"; 
+$modversion['config'][$c]['title'] = "_MI_WGTIMELINES_RATINGBAR_GROUPS"; 
+$modversion['config'][$c]['description'] = "_MI_WGTIMELINES_RATINGBAR_GROUPS_DESC"; 
+$modversion['config'][$c]['formtype'] = "group_multi";
+$modversion['config'][$c]['valuetype'] = "array"; 
+$modversion['config'][$c]['default'] = '1';
 ++$c;
 // Timeline name
 $modversion['config'][$c]['name'] = 'tl_name';

@@ -55,7 +55,10 @@
 					<div class='timeline-item-reads pull-left'>
 						<i class='glyphicon glyphicon-eye-open'> <{$smarty.const._MA_WGTIMELINES_ITEM_READS}>: <{$item.reads}></i>
 					</div>
-				<{/if}>	
+				<{/if}>
+				<{if $rating}>
+					<div class='timeline-item-rating pull-left'><{include file='db:wgtimelines_ratingbar.tpl'}></div>
+				<{/if}>				
             </li>
         <{/foreach}>
         </ul>

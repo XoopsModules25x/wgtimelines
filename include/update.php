@@ -49,6 +49,10 @@ function xoops_module_update_wgtimelines(&$module, $prev_version = null)
         $ret = update_wgtimelines_v105($module);
     }
 	$errors = $module->getErrors();
+		if ($prev_version < 106) {
+        $ret = update_wgtimelines_v106($module);
+    }
+	$errors = $module->getErrors();
 	// create table 'wgtimelines_tplsetsdefault' in any case
 	$ret = update_tplsetsdefault($module);
     $errors = $module->getErrors();
@@ -99,6 +103,22 @@ function update_tplsetsdefault(&$module)
 		}
 	}
 		
+    return true;
+}
+
+/**
+ * @param $module
+ *
+ * @return bool
+ */
+function update_wgtimelines_v106(&$module)
+{
+  	$sql = "CREATE TABLE `" . $GLOBALS['xoopsDB']->prefix('wgtimelines_ratings') . "` (`rate_id` INT(8) UNSIGNED NOT NULL AUTO_INCREMENT, `rate_itemid` INT(8) NOT NULL DEFAULT '0', `rate_value` INT(1) NOT NULL DEFAULT '0', `rate_uid` INT(8) NOT NULL DEFAULT '0', `rate_ip` VARCHAR(60) NOT NULL DEFAULT '', `rate_date` INT(8) NOT NULL DEFAULT '0', PRIMARY KEY (`rate_id`) ) ENGINE=InnoDB;";
+	if (!$result = $GLOBALS['xoopsDB']->queryF($sql)) {
+        xoops_error($GLOBALS['xoopsDB']->error() . '<br />' . $sql);
+        $module->setErrors("error when creating new table wgtimelines_ratings");
+        return false;
+    }
     return true;
 }
 
@@ -202,13 +222,11 @@ function update_wgtimelines_v103(&$module)
 function update_wgtimelines_v102(&$module)
 {
 	$sql = "ALTER TABLE `" . $GLOBALS['xoopsDB']->prefix('wgtimelines_items') . "` ADD `item_icon` VARCHAR(200) NOT NULL DEFAULT '' AFTER `item_year`;";
-
 	if (!$result = $GLOBALS['xoopsDB']->queryF($sql)) {
         xoops_error($GLOBALS['xoopsDB']->error() . '<br />' . $sql);
         $module->setErrors("error when adding new field item_icon to table wgtimelines_items");
         return false;
     }
-	
     return true;
 }
 
@@ -244,7 +262,6 @@ function update_wgtimelines_v10(&$module)
     $sql = 'SHOW INDEX FROM ' . $xoopsDB->prefix('tplfile') . " WHERE KEY_NAME = 'tpl_refid_module_set_file_type'";
     if (!$result = $xoopsDB->queryF($sql)) {
         xoops_error($this->db->error() . '<br />' . $sql);
-
         return false;
     }
     $ret = array();
@@ -255,7 +272,6 @@ function update_wgtimelines_v10(&$module)
         $module->setErrors(
             "'tpl_refid_module_set_file_type' unique index is exist. Note: check 'tplfile' table to be sure this index is UNIQUE because XOOPS CORE need it."
         );
-
         return true;
     }
     $sql = 'ALTER TABLE ' . $xoopsDB->prefix('tplfile')
@@ -265,10 +281,8 @@ function update_wgtimelines_v10(&$module)
         $module->setErrors(
             "'tpl_refid_module_set_file_type' unique index is not added to 'tplfile' table. Warning: do not use XOOPS until you add this unique index."
         );
-
         return false;
     }
-
     return true;
 }
 // irmtfan bug fix: solve templates duplicate issue

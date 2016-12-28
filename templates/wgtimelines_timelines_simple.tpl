@@ -42,6 +42,9 @@
                         <{if $panel_imgpos == 'bottom' && $item.image}>
                             <img class='img-timeline img-timeline-<{$panel_imgpos}> img-responsive <{$imgstyle}>' src='<{$wgtimelines_upload_url}>/images/items/<{$item.image}>' alt='items' />
                         <{/if}>
+						<{if $rating}>
+							<div class='timeline-item-rating pull-left'><{include file='db:wgtimelines_ratingbar.tpl'}></div>
+						<{/if}>
                     </div>
                     <{if $showreads}>
 						<div class='col-xs-12 col-sm-6 timeline-footer timeline-item-reads left'>

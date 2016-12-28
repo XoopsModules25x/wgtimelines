@@ -69,14 +69,16 @@
                         <{else}>
                             <div class='cols-xs-12 col-sm-12'>
                         <{/if}>
-                        <p><{$item.content}></p>
+						<p><{$item.content}></p>
 						<{if $item.readmore}>
-						<div class='col-sm-12 timeline-item-readmore right'>
-							<a href="items.php?op=read&amp;item_id=<{$item.id}>" title="<{$smarty.const._MA_WGTIMELINES_READMORE}>"><{$smarty.const._MA_WGTIMELINES_READMORE}>...</a>
+							<div class='col-sm-12 timeline-item-readmore right'>
+								<a href="items.php?op=read&amp;item_id=<{$item.id}>" title="<{$smarty.const._MA_WGTIMELINES_READMORE}>"><{$smarty.const._MA_WGTIMELINES_READMORE}>...</a>
+							</div>
+						<{/if}>
+						<{if $rating}>
+							<div class='timeline-item-rating pull-left'><{include file='db:wgtimelines_ratingbar.tpl'}></div>
+						<{/if}>
 						</div>
-                        </div>
-						
-					<{/if}>
                     </div>
 					
                     <{if $item.date}>

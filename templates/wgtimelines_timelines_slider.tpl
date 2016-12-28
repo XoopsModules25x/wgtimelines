@@ -84,6 +84,9 @@
 						</a>
 					</div><br>
 				<{/if}>
+				<{if $rating}>
+					<div class='col-xs-12 col-sm-12 timeline-item-rating pull-left'><{include file='db:wgtimelines_ratingbar.tpl'}></div>
+				<{/if}>	
 			</li>
             <{/foreach}>
 		</ul>

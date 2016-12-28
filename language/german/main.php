@@ -28,7 +28,17 @@ define('_MA_WGTIMELINES_READMORE', 'Mehr lesen');
 define('_MA_WGTIMELINES_ITEM_READS', 'Gelesen');
 define('_MA_WGTIMELINES_THEREARENT_TIMELINES', 'Derzeit sind keine Zeitreihen verfügbar');
 define('_MA_WGTIMELINES_THEREARENT_ITEMS', 'Derzeit sind keine Einträge für diese Zeitreihe verfügbar');
-// ---------------- Contents ----------------
+// ---------------- Ratings ----------------
+define('_MA_WGTIMELINES_RATING_CURRENT', 'Bewertung: %c / %m (%t Bewertung(en) insgesamt)');
+define('_MA_WGTIMELINES_RATING1', '1 von 5');
+define('_MA_WGTIMELINES_RATING2', '2 von 5');
+define('_MA_WGTIMELINES_RATING3', '3 von 5');
+define('_MA_WGTIMELINES_RATING4', '4 von 5');
+define('_MA_WGTIMELINES_RATING5', '5 von 5');
+define('_MA_WGTIMELINES_RATING_VOTE_BAD', 'Ungültige Bewertung');
+define('_MA_WGTIMELINES_RATING_VOTE_ALREADY', 'Sie haben bereits eine Bewertung abgegeben');
+define('_MA_WGTIMELINES_RATING_VOTE_THANKS', 'Danke für Ihre Bewertung');
+define('_MA_WGTIMELINES_RATING_NOPERM', 'Verzeichung, aber Sie haben keine Berechtigung zum Bewerten von Einträgen');
 // Admin link
 define('_MA_WGTIMELINES_ADMIN', 'Administration');
 // ---------------- End ----------------

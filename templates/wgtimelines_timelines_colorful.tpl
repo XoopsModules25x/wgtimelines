@@ -58,11 +58,15 @@
                             <span class='col-sm-12'><img class='img-timeline img-timeline-<{$panel_imgpos}> img-responsive <{$imgstyle}>' src='<{$wgtimelines_upload_url}>/images/items/<{$item.image}>' alt='items' /></span>
                         <{/if}>
                     </div>
+					<{if $rating}>
+						<span class='col-xs-12 col-sm-12 timeline-item-reads'><{include file='db:wgtimelines_ratingbar.tpl'}></span>
+					<{/if}>
                     <{if $showreads}>
 						<span class='col-xs-12 col-sm-6 timeline-item-reads timeline-footer-left'>
 							<i class='glyphicon glyphicon-eye-open'> <{$smarty.const._MA_WGTIMELINES_ITEM_READS}>: <{$item.reads}></i>
 						</span>
 					<{/if}>	
+					
 					<{if $item.date}>
                         <span class="ol-xs-12 col-sm-6 timeline-footer-right">
                             <{$item.date}>

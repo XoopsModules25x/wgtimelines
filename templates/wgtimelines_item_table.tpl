@@ -50,6 +50,9 @@
 									<i class='glyphicon glyphicon-eye-open'> <{$smarty.const._MA_WGTIMELINES_ITEM_READS}>: <{$item.reads}></i>
 								</span>
 							<{/if}>	
+							<{if $rating}>
+								<div class='timeline-item-rating pull-left'><{include file='db:wgtimelines_ratingbar.tpl'}></div>
+							<{/if}>
                         </td>
                         <{/if}>
                     <{else}>
@@ -88,6 +91,9 @@
 									<i class='glyphicon glyphicon-eye-open'> <{$smarty.const._MA_WGTIMELINES_ITEM_READS}>: <{$item.reads}></i>
 								</span>
 							<{/if}>	
+							<{if $rating}>
+								<div class='timeline-item-rating pull-left'><{include file='db:wgtimelines_ratingbar.tpl'}></div>
+							<{/if}>
                         </td>
                     <{/if}>
                 </tr>

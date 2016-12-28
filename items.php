@@ -69,6 +69,10 @@ if ($itemsCount > 0) {
     $GLOBALS['xoopsTpl']->assign('wgtimelines_url', WGTIMELINES_URL);
 	$GLOBALS['xoopsTpl']->assign('wgtimelines_icons_url', WGTIMELINES_ICONS_URL);
 	if (isset($GLOBALS['xoopsUser']) && is_object($GLOBALS['xoopsUser']) && $GLOBALS['xoopsUser']->isAdmin()) $GLOBALS['xoopsTpl']->assign('isAdmin', 1);
+	if ($wgtimelines->getConfig('ratingbars')) {
+		$GLOBALS['xoopsTpl']->assign('rating', $wgtimelines->getConfig('ratingbars'));
+		$GLOBALS['xoopsTpl']->assign('save', 'save-item');
+	}
 
     $keywords = array();
 
@@ -80,6 +84,9 @@ if ($itemsCount > 0) {
 	$crazycolors = 0;
 	$j++;
 	$items[$j] = $itemsObj->getValuesItems();
+	if ($wgtimelines->getConfig('ratingbars')) {
+		$items[$j]['rating'] = $ratingsHandler->getItemRating($items[$j]['id']);
+	}
 	
 	// misc
 	$keywords[] = $itemsObj->getVar('item_title');

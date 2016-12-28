@@ -71,12 +71,16 @@
                         <{/if}>
                         <p><{$item.content}></p>
                         </div>
+						
                     </div>
                     <{if $item.date}>
                         <div class="cols-xs-12 col-sm-12 timeline-footer">
                             <p><{$item.date}></p>
                         </div>
                     <{/if}>
+					<{if $rating}>
+						<div class='timeline-item-rating pull-left'><{include file='db:wgtimelines_ratingbar.tpl'}></div>
+					<{/if}>	
                 </div>
 				<div class="timeline-back col-sm-12 right">
 					<a href="index.php?op=list&amp;tl_id=<{$item.tl_id}>#item<{$item.id}>" title="<{$smarty.const._MA_WGTIMELINES_GOBACK}>"><img src="<{$wgtimelines_icons_url}>/32/back.png" alt="<{$smarty.const._MA_WGTIMELINES_GOBACK}>" /></a>

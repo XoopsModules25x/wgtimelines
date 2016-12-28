@@ -1,4 +1,5 @@
 <{include file='db:wgtimelines_header.tpl'}>
+
 <{foreach item=timeline from=$timelines}>
 	<div class="col-xs-12 cols-sm-12 timeline-list">
 		<{if $timeline.image}>

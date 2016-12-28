@@ -27,10 +27,11 @@ $dirname = basename(__DIR__);
 $xoBreadcrumbs = array();
 $xoBreadcrumbs[] = array('title' => _MA_WGTIMELINES_TITLE, 'link' => WGTIMELINES_URL . '/');
 // Get instance of module
-$wgtimelines = WgtimelinesHelper::getInstance();
+$wgtimelines      = WgtimelinesHelper::getInstance();
 $timelinesHandler = $wgtimelines->getHandler('timelines');
-$itemsHandler = $wgtimelines->getHandler('items');
+$itemsHandler     = $wgtimelines->getHandler('items');
 $templatesHandler = $wgtimelines->getHandler('templates');
+$ratingsHandler   = $wgtimelines->getHandler('ratings');
 // Permission
 include_once XOOPS_ROOT_PATH .'/class/xoopsform/grouppermform.php';
 $gpermHandler = xoops_getHandler('groupperm');

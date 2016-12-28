@@ -234,10 +234,20 @@ Main components
   font-size: 14px;
 }
 .timeline-item-reads  {
-	padding-top:15px;
+	padding:15px 0 0 0;
 }
 .admin-area {
 	text-align:right;
+}
+.timeline-item-rating {
+	margin:0;
+	padding:0;
+}
+.timelines_ratingblock {
+	margin-top:10px;
+	margin-left:0;
+	margin-right:0;
+	margin-bottom:5px;
 }
 
 @media only screen and (max-width: 399px) {

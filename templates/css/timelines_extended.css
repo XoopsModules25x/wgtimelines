@@ -21,6 +21,7 @@
 .timeline .timeline-item {
   margin-bottom: 20px;
   position: relative;
+  width:100%;
 }
 .timeline .timeline-item:before,
 .timeline .timeline-item:after {
@@ -186,9 +187,16 @@
   bottom: 0px;
   left: 43px;
 }
-.timeline-item-reads  i{
-	
+.timeline-item-reads {
+	padding:5px 0 0 0;
 }
 .admin-area {
 	text-align:right;
+}
+.timelines_ratingblock {
+	margin-top:10px;
+	margin-left:0;
+	margin-right:0;
+	margin-bottom:10px;
+	background-color:#ffffff;
 }

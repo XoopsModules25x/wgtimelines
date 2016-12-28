@@ -221,9 +221,16 @@
     }
     
 }
-.timeline-item-reads  i{
+.timeline-item-reads  {
+	padding: 5px 0 0 0;
 }
 .admin-area {
 	margin-top:20px;
 	text-align:right;
+}
+.timelines_ratingblock {
+	margin-top:10px;
+	margin-left:0;
+	margin-right:0;
+	margin-bottom:5px;
 }

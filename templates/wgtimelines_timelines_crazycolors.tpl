@@ -104,6 +104,9 @@
 								<i class='glyphicon glyphicon-eye-open'> <{$smarty.const._MA_WGTIMELINES_ITEM_READS}>: <{$item.reads}></i>
 							</div>
 						<{/if}>	
+						<{if $rating}>
+							<div class='timeline-item-rating pull-left'><{include file='db:wgtimelines_ratingbar.tpl'}></div>
+						<{/if}>
 						<{if $isAdmin}>
 							<div class='col-xs-12 col-sm-6 admin-area pull-right'>
 								<a href="admin/items.php?op=edit&amp;ui=user&amp;item_id=<{$item.id}>" title="<{$smarty.const._EDIT}>">

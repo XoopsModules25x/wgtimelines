@@ -72,6 +72,49 @@
 								</a>
 							</span><br>
 						<{/if}>
+						<{if $rating}>
+							<!-- wgtimelines_ratingbar.tpl can't be used, divs destroy layout for this template -->
+							<small>
+								<{if $item.rating.voted == 0}>
+									<span class="timelines_ratingblock col-xs-12 col-sm-12 rating-left">
+										<span id="unit_long<{$item.id}>" class="col-xs-12 col-sm-12 rating-left">
+											<span id="unit_ul<{$item.id}>" class="timelines_unit-rating col-xs-12 col-sm-12 rating-left">
+												<span class="wgtimelines_current-rating col-xs-12 col-sm-12" style="width:<{$item.rating.size}>;"></span>
+												<span>
+													<a class="timelines_r1-unit rater" href="rate.php?op=<{$save}>&item_id=<{$item.id}>&rating=1&tl_id=<{$item.tl_id}>" title="<{$smarty.const._MA_WGTIMELINES_RATING1}>" rel="nofollow">1</a>
+												</span>
+												<span>
+													<a class="timelines_r2-unit rater" href="rate.php?op=<{$save}>&item_id=<{$item.id}>&rating=2&tl_id=<{$item.tl_id}>" title="<{$smarty.const._MA_WGTIMELINES_RATING2}>" rel="nofollow">2</a>
+												</span>
+												<span>
+													<a class="timelines_r3-unit rater" href="rate.php?op=<{$save}>&item_id=<{$item.id}>&rating=3&tl_id=<{$item.tl_id}>" title="<{$smarty.const._MA_WGTIMELINES_RATING3}>" rel="nofollow">3</a>
+												</span>
+												<span>
+													<a class="timelines_r4-unit rater" href="rate.php?op=<{$save}>&item_id=<{$item.id}>&rating=4&tl_id=<{$item.tl_id}>" title="<{$smarty.const._MA_WGTIMELINES_RATING4}>" rel="nofollow">4</a>
+												</span>
+												<span>
+													<a class="timelines_r5-unit rater" href="rate.php?op=<{$save}>&item_id=<{$item.id}>&rating=5&tl_id=<{$item.tl_id}>" title="<{$smarty.const._MA_WGTIMELINES_RATING5}>" rel="nofollow">5</a>
+												</span>
+											</span>
+											<span class="col-xs-12 col-sm-12 rating-left">
+												<{$item.rating.text}>
+											</span>
+										</span>
+									</span>
+								<{else}>
+									<span class="timelines_ratingblock col-xs-12 col-sm-12 rating-left">
+										<span id="unit_long<{$item.id}> col-xs-12 col-sm-12 rating-left">
+											<span id="unit_ul<{$item.id}>" class="timelines_unit-rating col-xs-12 col-sm-12 rating-left" style="width:<{$item.rating.maxsize}>;">
+												<span class="wgtimelines_current-rating" style="width:<{$item.rating.size}>;"><{$item.rating.text}></span>
+											</span>
+											<span class="wgtimelines_voted col-xs-12 col-sm-12 rating-left">
+												<{$item.rating.text}>
+											</span>
+										</span>
+									</span>
+								<{/if}>
+							</small><br><br><br>
+						<{/if}>	
                     </div>
                 </li>
             <{/foreach}>

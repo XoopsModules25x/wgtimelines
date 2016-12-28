@@ -114,18 +114,6 @@ time {
   opacity: 1;
 }
 
-.img-timeline-top {
-  margin-bottom: 15px;
-}
-.img-timeline-bottom {
-  margin-top: 15px;
-}
-.timeline-item-reads  i{
-}
-.admin-area {
-	text-align:right;
-}
-
 /* GENERAL MEDIA QUERIES
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
@@ -154,4 +142,65 @@ time {
     border-width: 8px 16px 8px 0;
     border-color: transparent #eeeeee transparent transparent;
   }
+}
+
+/* misc
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.img-timeline-top {
+  margin-bottom: 15px;
+}
+.img-timeline-bottom {
+  margin-top: 15px;
+}
+.timeline-item-reads  {
+	padding:5px 0 0 0;
+}
+.admin-area {
+	text-align:right;
+}
+.timelines_ratingblock {
+	margin-top:10px;
+	margin-left:0;
+	margin-right:0;
+	margin-bottom:5px;
+	padding:0;
+}
+.timelines_unit-rating span {
+    text-indent: -90000px;
+/*     float: left; */
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+.timelines_unit-rating span a {
+    outline: none;
+    display: block;
+    width: 25px;
+    height: 25px;
+    text-decoration: none;
+    text-indent: -9000px;
+    overflow: hidden;
+    z-index: 20;
+    position: absolute;
+    padding: 0;
+}
+
+.timelines_unit-rating span a:hover {
+    background: url(../../assets/images/starrating.png) left center;
+    z-index: 2;
+    left: 0;
+}
+.timelines_unit-rating span.wgtimelines_current-rating {
+    background: url(../../assets/images/starrating.png) left bottom;
+    position: absolute;
+    height: 25px;
+    display: block;
+    text-indent: -9000px;
+    z-index: 1;
+    overflow: hidden;
+}
+.rating-left {
+	padding-left:0;
+	margin-left:0;
 }

@@ -70,4 +70,8 @@ define('_MI_WGTIMELINES_TLDESC_DESC', 'Define, whether and where the description
 define('_MI_WGTIMELINES_TLDESC_NONE', 'Never');
 define('_MI_WGTIMELINES_TLDESC_ONLYLIST', 'Only on list of timelines');
 define('_MI_WGTIMELINES_TLDESC_ALL', 'On list of timelines and the timeline himself');
+define('_MI_WGTIMELINES_RATINGBARS', 'Show rating');
+define('_MI_WGTIMELINES_RATINGBARS_DESC', 'Define, whether a rating of the items should be possible and shown');
+define('_MI_WGTIMELINES_RATINGBAR_GROUPS', "Groups with permission to rate");
+define('_MI_WGTIMELINES_RATINGBAR_GROUPS_DESC', "Please define the groups, which have the permission to rate a timeline item");
 // ---------------- End ----------------

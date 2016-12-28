@@ -108,12 +108,19 @@ li.event:nth-child(even)::before{
 .event-body {
     margin:10px 0;
 }
-.timeline-item-reads  i{
-	padding-top:5px;
+.timeline-item-reads {
+	padding:5px 0 0 0;
 }
 .timeline-footer-right {
 	text-align:right;
 }
 .admin-area {
 	text-align:right;
+}
+.timelines_ratingblock {
+	margin-top:10px;
+	margin-left:0;
+	margin-right:0;
+	margin-bottom:10px;
+	background-color:#ffffff;
 }

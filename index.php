@@ -85,6 +85,10 @@ if ($timelinesCount > 0) {
 			$GLOBALS['xoopsTpl']->assign('xoops_icons32_url', XOOPS_ICONS32_URL);
 			$GLOBALS['xoopsTpl']->assign('wgtimelines_url', WGTIMELINES_URL);
 			if (isset($GLOBALS['xoopsUser']) && is_object($GLOBALS['xoopsUser']) && $GLOBALS['xoopsUser']->isAdmin()) $GLOBALS['xoopsTpl']->assign('isAdmin', 1);
+			if ($wgtimelines->getConfig('ratingbars')) {
+				$GLOBALS['xoopsTpl']->assign('rating', $wgtimelines->getConfig('ratingbars'));
+				$GLOBALS['xoopsTpl']->assign('save', 'save-index');
+			}
 			// get items
 			$criteria = new CriteriaCompo();
 			$criteria->add(new Criteria('item_tl_id', $tl_id));
@@ -158,6 +162,9 @@ if ($timelinesCount > 0) {
 						$items[$j]['content'] = $items[$j]['content_summary'];
 						$items[$j]['readmore'] = 1;
 					}
+					if ($wgtimelines->getConfig('ratingbars')) {
+						$items[$j]['rating'] = $ratingsHandler->getItemRating($items[$j]['id']);
+					}
 					$keywords[] = $itemsAll[$i]->getVar('item_title');
 				}
 				$GLOBALS['xoopsTpl']->assign('items', $items);
@@ -178,7 +185,6 @@ if ($timelinesCount > 0) {
 			} else {
 				$GLOBALS['xoopsTpl']->assign('error', _MA_WGTIMELINES_THEREARENT_ITEMS);
 			}
-			echo $wgtimelines->getConfig('tl_description');
 			if ($wgtimelines->getConfig('tl_name') == 1) $GLOBALS['xoopsTpl']->assign('timeline_name', $tl_name);
 			if ($wgtimelines->getConfig('tl_description') == 3) $GLOBALS['xoopsTpl']->assign('timeline_desc', $tl_desc);
 			// Breadcrumbs
@@ -213,7 +219,10 @@ if ($timelinesCount > 0) {
 			$GLOBALS['xoopsTpl']->assign('pagenav', $pagenav->renderNav(4));
 		}
 	}
+	
 	$GLOBALS['xoopsTpl']->assign('welcome', $wgtimelines->getConfig('welcome'));
+
+	
 	// Keywords
 	wgtimelinesMetaKeywords($wgtimelines->getConfig('keywords').', '. implode(',', $keywords));
 	unset($keywords);
