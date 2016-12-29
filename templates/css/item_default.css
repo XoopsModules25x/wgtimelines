@@ -61,9 +61,6 @@
 	margin-right:10px;
 }
 .timelines_ratingblock {
-	margin-top:0;
-	margin-left:20px;
-	margin-right:20px;
-	margin-bottom:10px;
+	margin:0 20px 10px 20px;
 	background-color:#ffffff;
 }

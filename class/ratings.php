@@ -105,7 +105,7 @@ class WgtimelinesRatings extends XoopsObject
 		$form->addElement(new XoopsFormText( _AM_WGTIMELINES_RATING_IP, 'rate_ip', 50, 255, $this->getVar('rate_ip') ), true);
 		// Form Text Date Select
 		$rateDate = $this->isNew() ? 0 : $this->getVar('rate_date');
-		$form->addElement(new XoopsFormTextDateSelect( _AM_WGTIMELINES_RATING_DATE, 'rate_date', '', $this->getVar('rate_date') ));
+		$form->addElement(new XoopsFormTextDateSelect( _AM_WGTIMELINES_RATING_DATE, 'rate_date', '', $rateDate ));
 		// To Save
 		$form->addElement(new XoopsFormHidden('op', 'save'));
 		$form->addElement(new XoopsFormButton('', 'submit', _SUBMIT, 'submit'));

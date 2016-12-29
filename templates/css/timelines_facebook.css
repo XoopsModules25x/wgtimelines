@@ -118,9 +118,6 @@ li.event:nth-child(even)::before{
 	text-align:right;
 }
 .timelines_ratingblock {
-	margin-top:10px;
-	margin-left:0;
-	margin-right:0;
-	margin-bottom:10px;
+	margin:10px 0 10px 0;
 	background-color:#ffffff;
 }

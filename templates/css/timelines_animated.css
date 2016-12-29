@@ -244,10 +244,7 @@ Main components
 	padding:0;
 }
 .timelines_ratingblock {
-	margin-top:10px;
-	margin-left:0;
-	margin-right:0;
-	margin-bottom:5px;
+	margin:10px 0 5px 0;
 }
 
 @media only screen and (max-width: 399px) {
