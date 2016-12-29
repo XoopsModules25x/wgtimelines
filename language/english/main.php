@@ -37,6 +37,7 @@ define('_MA_WGTIMELINES_RATING4', '4 of 5');
 define('_MA_WGTIMELINES_RATING5', '5 of 5');
 define('_MA_WGTIMELINES_RATING_VOTE_BAD', 'Invalid vote');
 define('_MA_WGTIMELINES_RATING_VOTE_ALREADY', 'You have already voted');
+define('_MA_WGTIMELINES_RATING_VOTE_THANKS', 'Thank you for rating');
 define('_MA_WGTIMELINES_RATING_NOPERM', "Sorry, you don't have permission to rate items");
 // Admin link
 define('_MA_WGTIMELINES_ADMIN', 'Admin');

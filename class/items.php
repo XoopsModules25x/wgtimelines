@@ -187,6 +187,7 @@ class WgtimelinesItems extends XoopsObject
 		$tl_limit = $timeline_obj->getVar('tl_limit');
 		$ret['tl_limit'] = $tl_limit;
 		$ret['content_admin'] = $wgtimelines->truncateHtml($content);
+		$ret['content_summary'] = '';
 		if ($tl_limit > 0 && strlen(strip_tags($content)) > $tl_limit) {
 			$ret['content_summary'] = $wgtimelines->truncateHtml($content, $timeline_obj->getVar('tl_limit'));
 			$ret['content_admin'] = $wgtimelines->truncateHtml($content, $timeline_obj->getVar('tl_limit'));

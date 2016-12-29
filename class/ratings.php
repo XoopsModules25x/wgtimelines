@@ -226,7 +226,8 @@ class WgtimelinesRatingsHandler extends XoopsPersistableObjectHandler
 		
 		$ItemRating['uid']            = $uid;
 		$ItemRating['nb_ratings']     = $count;
-		$ItemRating['avg_rate_value'] = number_format($current_rating / $count, 2);
+		$ItemRating['avg_rate_value'] = 0;
+		if ($count > 0) $ItemRating['avg_rate_value'] = number_format($current_rating / $count, 2);
 		$text = str_replace('%c', $ItemRating['avg_rate_value'], _MA_WGTIMELINES_RATING_CURRENT);
 		$text = str_replace('%m', $max_units, $text);
 		$text = str_replace('%t', $ItemRating['nb_ratings'], $text);

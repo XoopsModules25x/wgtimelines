@@ -2,6 +2,7 @@
 Change Log for wgTimelines - 2016/12/28 Version 1.06 Beta 1
 ==============================================================
  - add star rating for items (mamba/goffy)
+ - fixed bugs (mamba/goffy)
  
 ==============================================================
 Change Log for wgTimelines - 2016/12/09 Version 1.05 Beta 1
