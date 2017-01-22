@@ -47,6 +47,8 @@ class WgtimelinesItems extends XoopsObject
 		$this->initVar('item_reads', XOBJ_DTYPE_INT);
 		$this->initVar('item_submitter', XOBJ_DTYPE_INT);
 		$this->initVar('item_date_create', XOBJ_DTYPE_INT);
+        //to use html
+        $this->initVar('dohtml', XOBJ_DTYPE_INT, 1, false);
 	}
 
 	/**
@@ -182,7 +184,7 @@ class WgtimelinesItems extends XoopsObject
 		$timeline_obj = $timelines->get($this->getVar('item_tl_id'));
 		$ret['tl_name'] = $timeline_obj->getVar('tl_name');
 		$ret['title'] = $this->getVar('item_title');
-		$ret['content'] = $this->getVar('item_content', 'n');
+		$ret['content'] = $this->getVar('item_content', 'show');
 		$content = $this->getVar('item_content', 'n');
 		$tl_limit = $timeline_obj->getVar('tl_limit');
 		$ret['tl_limit'] = $tl_limit;
