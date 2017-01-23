@@ -47,7 +47,9 @@ class WgtimelinesItems extends XoopsObject
         $this->initVar('item_reads', XOBJ_DTYPE_INT);
         $this->initVar('item_submitter', XOBJ_DTYPE_INT);
         $this->initVar('item_date_create', XOBJ_DTYPE_INT);
+        $this->initVar('dohtml', XOBJ_DTYPE_INT, 1, false);
     }
+
 
     /**
      * @static function &getInstance
@@ -180,33 +182,31 @@ class WgtimelinesItems extends XoopsObject
         $ret['id'] = $this->getVar('item_id');
         $ret['tl_id'] = $this->getVar('item_tl_id');
         $timelines = $wgtimelines->getHandler('timelines');
-        $timeline_obj = $timelines->get($this->getVar('item_tl_id'));
-        $ret['tl_name'] = $timeline_obj->getVar('tl_name');
-        $ret['title'] = $this->getVar('item_title');
-        $ret['content'] = $this->getVar('item_content', 'n');
-        $content = $this->getVar('item_content', 'n');
-        $tl_limit = $timeline_obj->getVar('tl_limit');
-        $ret['tl_limit'] = $tl_limit;
-        $ret['content_admin'] = $wgtimelines->truncateHtml($content);
-        if ($tl_limit > 0 && strlen(strip_tags($content)) > $tl_limit) {
-            $ret['content_summary'] = $wgtimelines->truncateHtml($content, $timeline_obj->getVar('tl_limit'));
-            $ret['content_admin'] = $wgtimelines->truncateHtml($content, $timeline_obj->getVar('tl_limit'));
-        }
-        $ret['image'] = $this->getVar('item_image');
-        if ($this->getVar('item_date') > 0) {
-            $ret['date'] = formatTimestamp($this->getVar('item_date'), 's');
-        }
-        if ($this->getVar('item_year') > 0) {
-            $ret['year'] = $this->getVar('item_year');
-        }
-        $ret['icon'] = $this->getVar('item_icon');
-        $ret['weight'] = $this->getVar('item_weight');
-        $ret['reads'] = $this->getVar('item_reads');
-        $ret['online'] = $this->getVar('item_online');
-        $ret['submitter'] = XoopsUser::getUnameFromId($this->getVar('item_submitter'));
-        $ret['date_create'] = formatTimestamp($this->getVar('item_date_create'), 's');
-        return $ret;
-    }
+
+		    $timeline_obj = $timelines->get($this->getVar('item_tl_id'));
+		    $ret['tl_name'] = $timeline_obj->getVar('tl_name');
+		    $ret['title'] = $this->getVar('item_title');
+		    $ret['content'] = $this->getVar('item_content', 'show');
+		    $content = $this->getVar('item_content', 'n');
+		    $tl_limit = $timeline_obj->getVar('tl_limit');
+		    $ret['tl_limit'] = $tl_limit;
+		    $ret['content_admin'] = $wgtimelines->truncateHtml($content);
+		    $ret['content_summary'] = '';
+		    if ($tl_limit > 0 && strlen(strip_tags($content)) > $tl_limit) {
+			      $ret['content_summary'] = $wgtimelines->truncateHtml($content, $timeline_obj->getVar('tl_limit'));
+			      $ret['content_admin'] = $wgtimelines->truncateHtml($content, $timeline_obj->getVar('tl_limit'));
+		    }
+		    $ret['image'] = $this->getVar('item_image');
+        if ($this->getVar('item_date') > 0) $ret['date'] = formatTimestamp($this->getVar('item_date'), 's');
+        if ($this->getVar('item_year') > 0) $ret['year'] = $this->getVar('item_year');
+		    $ret['icon'] = $this->getVar('item_icon');
+		    $ret['weight'] = $this->getVar('item_weight');
+		    $ret['reads'] = $this->getVar('item_reads');
+		    $ret['online'] = $this->getVar('item_online');
+		    $ret['submitter'] = XoopsUser::getUnameFromId($this->getVar('item_submitter'));
+		    $ret['date_create'] = formatTimestamp($this->getVar('item_date_create'), 's');
+		    return $ret;
+	  }
 
     /**
      * Returns an array representation of the object
