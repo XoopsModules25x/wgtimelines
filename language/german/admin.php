@@ -159,7 +159,7 @@ define('_AM_WGTIMELINES_ITEM_DATE', 'Datum');
 define('_AM_WGTIMELINES_ITEM_YEAR', 'Jahr');
 define('_AM_WGTIMELINES_ITEM_ICON', 'Icon');
 define('_AM_WGTIMELINES_ITEM_READS', 'Gelesen');
-define('_AM_WGTIMELINES_ITEM_YEAR_ICON_DESC', "Wird nur verwendet, wenn die Option '"._AM_WGTIMELINES_TEMPLATE_BADGECONTENT."' entsprechend gesetzt wurde");
+define('_AM_WGTIMELINES_ITEM_YEAR_ICON_DESC', "Wird nur verwendet, wenn die Option '"._AM_WGTIMELINES_TEMPLATE_BADGECONTENT . '\' entsprechend gesetzt wurde');
 define('_AM_WGTIMELINES_ITEM_NONE', 'Ohne');
 
 // General

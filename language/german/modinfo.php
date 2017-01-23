@@ -72,6 +72,6 @@ define('_MI_WGTIMELINES_TLDESC_ONLYLIST', 'Nur auf der Übersichtsliste');
 define('_MI_WGTIMELINES_TLDESC_ALL', 'Auf der Übersichtsliste und bei der Zeitreihe');
 define('_MI_WGTIMELINES_RATINGBARS', 'Bewertung anzeigen');
 define('_MI_WGTIMELINES_RATINGBARS_DESC', 'Definieren Sie bitte, ob eine Bewertung der Einträge möglich sein und angezeigt werden soll');
-define('_MI_WGTIMELINES_RATINGBAR_GROUPS', "Gruppen mit der Berechtigung zum Bewerten");
-define('_MI_WGTIMELINES_RATINGBAR_GROUPS_DESC', "Bestimmen Sie bitte die Gruppen, die Zeitreiheneinträge bewerten dürfen");
+define('_MI_WGTIMELINES_RATINGBAR_GROUPS', 'Gruppen mit der Berechtigung zum Bewerten');
+define('_MI_WGTIMELINES_RATINGBAR_GROUPS_DESC', 'Bestimmen Sie bitte die Gruppen, die Zeitreiheneinträge bewerten dürfen');
 // ---------------- End ----------------

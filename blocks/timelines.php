@@ -39,12 +39,13 @@ function b_wgtimelines_timelines_show($options)
     $criteria->setSort('tl_weight');
     $criteria->setOrder('ASC');
     $timelinesAll = $timelinesHandler->getAll($criteria);
-	unset($criteria);
-    foreach(array_keys($timelinesAll) as $i)
-    {
+    unset($criteria);
+    foreach (array_keys($timelinesAll) as $i) {
         $block[$i]['id'] = $myts->htmlSpecialChars($timelinesAll[$i]->getVar('tl_id'));
         $tl_name = $myts->htmlSpecialChars($timelinesAll[$i]->getVar('tl_name'));
-        if ($lenghtTitle > 0) $tl_name = substr($tl_name, 0, $lenghtTitle);
+        if ($lenghtTitle > 0) {
+            $tl_name = substr($tl_name, 0, $lenghtTitle);
+        }
         $block[$i]['name'] = $tl_name;
         $block[$i]['url'] = WGTIMELINES_URL;
     }
@@ -58,8 +59,8 @@ function b_wgtimelines_timelines_edit($options)
     $wgtimelines = WgtimelinesHelper::getInstance();
     $timelinesHandler = $wgtimelines->getHandler('timelines');
     $GLOBALS['xoopsTpl']->assign('wgtimelines_upload_url', WGTIMELINES_UPLOAD_URL);
-    $form = "<input type='hidden' name='options[0]' value='".$options[0]."' />";
-    $form .= _MB_WGTIMELINES_TITLE_LENGTH." : <input type='text' name='options[1]' size='5' maxlength='255' value='".$options[1]."' /><br /><br />";
+    $form = "<input type='hidden' name='options[0]' value='".$options[0] . '\' />';
+    $form .= _MB_WGTIMELINES_TITLE_LENGTH." : <input type='text' name='options[1]' size='5' maxlength='255' value='".$options[1] . '\' /><br /><br />';
     array_shift($options);
     array_shift($options);
     $criteria = new CriteriaCompo();
@@ -69,10 +70,10 @@ function b_wgtimelines_timelines_edit($options)
     $timelinesAll = $timelinesHandler->getAll($criteria);
     unset($criteria);
     $form .= _MB_WGTIMELINES_TIMELINES_TO_DISPLAY."<br /><select name='options[]' multiple='multiple' size='5'>";
-    $form .= "<option value='0' " . (array_search(0, $options) === false ? '' : "selected='selected'") . '>' . _MB_WGTIMELINES_ALL_TIMELINES . '</option>';
+    $form .= "<option value='0' " . (!in_array(0, $options) ? '' : "selected='selected'") . '>' . _MB_WGTIMELINES_ALL_TIMELINES . '</option>';
     foreach (array_keys($timelinesAll) as $i) {
         $tl_id = $timelinesAll[$i]->getVar('tl_id');
-        $form .= "<option value='" . $tl_id . "' " . (array_search($tl_id, $options) === false ? '' : "selected='selected'") . '>'
+        $form .= "<option value='" . $tl_id . '\' ' . (!in_array($tl_id, $options) ? '' : "selected='selected'") . '>'
                  . $timelinesAll[$i]->getVar('tl_name') . '</option>';
     }
     $form .= '</select>';

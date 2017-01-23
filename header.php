@@ -35,17 +35,16 @@ $ratingsHandler   = $wgtimelines->getHandler('ratings');
 // Permission
 include_once XOOPS_ROOT_PATH .'/class/xoopsform/grouppermform.php';
 $gpermHandler = xoops_getHandler('groupperm');
-if(is_object($xoopsUser)) {
-	$groups  = $xoopsUser->getGroups();
-} else {
-	$groups  = XOOPS_GROUP_ANONYMOUS;
+$groups  = XOOPS_GROUP_ANONYMOUS;
+if (is_object($xoopsUser)) {
+    $groups  = $xoopsUser->getGroups();
 }
-// 
+//
 $myts = MyTextSanitizer::getInstance();
 // Default Css Style
 $style = WGTIMELINES_URL . '/assets/css/style.css';
-if(!file_exists($style)) {
-	return false;
+if (!file_exists($style)) {
+    return false;
 }
 // Smarty Default
 $sysPathIcon16 = $GLOBALS['xoopsModule']->getInfo('sysicons16');
