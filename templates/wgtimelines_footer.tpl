@@ -13,7 +13,7 @@
 <{if $pagenav != ''}>
     <div class="pull-right"><{$pagenav}></div>
 <{/if}>
-<br />
+<br>
 <{if $xoops_isadmin}>
-   <div class="text-center bold"><a href="<{$admin}>"><{$smarty.const._MA_WGTIMELINES_ADMIN}></a></div><br />
+   <div class="text-center bold"><a href="<{$admin}>"><{$smarty.const._MA_WGTIMELINES_ADMIN}></a></div><br>
 <{/if}>

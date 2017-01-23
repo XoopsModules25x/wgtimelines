@@ -25,13 +25,12 @@
  * @param $cats
  * @return string
  */
-function wgtimelines_block_addCatSelect($cats) {
-    if(is_array($cats))
-    {
+function wgtimelines_block_addCatSelect($cats)
+{
+    if (is_array($cats)) {
         $cat_sql = '('.current($cats);
         array_shift($cats);
-        foreach($cats as $cat)
-        {
+        foreach ($cats as $cat) {
             $cat_sql .= ','.$cat;
         }
         $cat_sql .= ')';
@@ -50,14 +49,14 @@ function wgtimelines_block_addCatSelect($cats) {
 function wgtimelinesNumbersOfEntries($mytree, $templates, $entries, $cid)
 {
     $count = 0;
-    if(in_array($cid, $templates)) {
+    if (in_array($cid, $templates)) {
         $child = $mytree->getAllChild($cid);
         foreach (array_keys($entries) as $i) {
-            if ($entries[$i]->getVar('tpl_id') == $cid){
+            if ($entries[$i]->getVar('tpl_id') == $cid) {
                 $count++;
             }
             foreach (array_keys($child) as $j) {
-                if ($entries[$i]->getVar('tpl_id') == $j){
+                if ($entries[$i]->getVar('tpl_id') == $j) {
                     $count++;
                 }
             }
@@ -71,8 +70,8 @@ function wgtimelinesMetaKeywords($content)
     global $xoopsTpl, $xoTheme;
     $myts = MyTextSanitizer::getInstance();
     $content= $myts->undoHtmlSpecialChars($myts->displayTarea($content));
-    if(isset($xoTheme) && is_object($xoTheme)) {
-        $xoTheme->addMeta( 'meta', 'keywords', strip_tags($content));
+    if (isset($xoTheme) && is_object($xoTheme)) {
+        $xoTheme->addMeta('meta', 'keywords', strip_tags($content));
     } else {    // Compatibility for old Xoops versions
         $xoopsTpl->assign('xoops_meta_keywords', strip_tags($content));
     }
@@ -83,8 +82,8 @@ function wgtimelinesMetaDescription($content)
     global $xoopsTpl, $xoTheme;
     $myts = MyTextSanitizer::getInstance();
     $content = $myts->undoHtmlSpecialChars($myts->displayTarea($content));
-    if(isset($xoTheme) && is_object($xoTheme)) {
-        $xoTheme->addMeta( 'meta', 'description', strip_tags($content));
+    if (isset($xoTheme) && is_object($xoTheme)) {
+        $xoTheme->addMeta('meta', 'description', strip_tags($content));
     } else {    // Compatibility for old Xoops versions
         $xoopsTpl->assign('xoops_meta_description', strip_tags($content));
     }
@@ -110,8 +109,9 @@ function wgtimelines_RewriteUrl($module, $array, $type = 'content')
 
     if ($lenght_id != 0) {
         $id = $array['content_id'];
-        while (strlen($id) < $lenght_id)
+        while (strlen($id) < $lenght_id) {
             $id = '0' . $id;
+        }
     } else {
         $id = $array['content_id'];
     }
@@ -125,8 +125,8 @@ function wgtimelines_RewriteUrl($module, $array, $type = 'content')
     switch ($rewrite_url) {
 
         case 'none':
-            if($topic_name) {
-                 $topic_name = 'topic=' . $topic_name . '&amp;';
+            if ($topic_name) {
+                $topic_name = 'topic=' . $topic_name . '&amp;';
             }
             $rewrite_base = '/modules/';
             $page = 'page=' . $array['content_alias'];
@@ -134,19 +134,21 @@ function wgtimelines_RewriteUrl($module, $array, $type = 'content')
             break;
 
         case 'rewrite':
-            if($topic_name) {
-                $topic_name = $topic_name . '/';
+            if ($topic_name) {
+                $topic_name .= '/';
             }
             $rewrite_base = xoops_getModuleOption('rewrite_mode', $module);
             $rewrite_ext = xoops_getModuleOption('rewrite_ext', $module);
             $module_name = '';
-            if(xoops_getModuleOption('rewrite_name', $module)) {
+            if (xoops_getModuleOption('rewrite_name', $module)) {
                 $module_name = xoops_getModuleOption('rewrite_name', $module) . '/';
             }
             $page = $array['content_alias'];
-            $type = $type . '/';
-            $id = $id . '/';
-            if ($type === 'content/') $type = '';
+            $type .= '/';
+            $id .= '/';
+            if ($type === 'content/') {
+                $type = '';
+            }
 
             if ($type === 'comment-edit/' || $type === 'comment-reply/' || $type === 'comment-delete/') {
                 return XOOPS_URL . $rewrite_base . $module_name . $type . $id . '/';
@@ -156,18 +158,20 @@ function wgtimelines_RewriteUrl($module, $array, $type = 'content')
             break;
 
          case 'short':
-            if($topic_name) {
-                $topic_name = $topic_name . '/';
+            if ($topic_name) {
+                $topic_name .= '/';
             }
             $rewrite_base = xoops_getModuleOption('rewrite_mode', $module);
             $rewrite_ext = xoops_getModuleOption('rewrite_ext', $module);
             $module_name = '';
-            if(xoops_getModuleOption('rewrite_name', $module)) {
+            if (xoops_getModuleOption('rewrite_name', $module)) {
                 $module_name = xoops_getModuleOption('rewrite_name', $module) . '/';
             }
             $page = $array['content_alias'];
-            $type = $type . '/';
-            if ($type === 'content/') $type = '';
+            $type .= '/';
+            if ($type === 'content/') {
+                $type = '';
+            }
 
             if ($type === 'comment-edit/' || $type === 'comment-reply/' || $type === 'comment-delete/') {
                 return XOOPS_URL . $rewrite_base . $module_name . $type . $id . '/';
@@ -188,7 +192,8 @@ function wgtimelines_RewriteUrl($module, $array, $type = 'content')
  * @param string $module
  * @return mixed|string $url
  */
-function wgtimelines_Filter($url, $type = '', $module = 'wgtimelines') {
+function wgtimelines_Filter($url, $type = '', $module = 'wgtimelines')
+{
 
     // Get regular expression from module setting. default setting is : `[^a-z0-9]`i
     $wgtimelines = WgtimelinesHelper::getInstance();

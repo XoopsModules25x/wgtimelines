@@ -23,64 +23,66 @@
 include __DIR__ . '/header.php';
 $op     = XoopsRequest::getString('op', 'default');
  
-switch($op) {
-	case 'save-index':
-	case 'save-item':
-		// Security Check
-		if($GLOBALS['xoopsSecurity']->check()) {
-			redirect_header('index.php', 3, implode(',', $GLOBALS['xoopsSecurity']->getErrors()));
-		}
+switch ($op) {
+    case 'save-index':
+    case 'save-item':
+        // Security Check
+        if ($GLOBALS['xoopsSecurity']->check()) {
+            redirect_header('index.php', 3, implode(',', $GLOBALS['xoopsSecurity']->getErrors()));
+        }
 
-		$itemid       = XoopsRequest::getInt('item_id');
-		$rating       = XoopsRequest::getInt('rating');
-		$tl_id        = XoopsRequest::getInt('tl_id', 0);
+        $itemid       = XoopsRequest::getInt('item_id');
+        $rating       = XoopsRequest::getInt('rating');
+        $tl_id        = XoopsRequest::getInt('tl_id', 0);
 
-		$groups       = (isset($GLOBALS['xoopsUser']) && is_object($GLOBALS['xoopsUser'])) ? $GLOBALS['xoopsUser']->getGroups() : XOOPS_GROUP_ANONYMOUS;
-		// Checking permissions
-		$rate_allowed = false;
-		if ($wgtimelines->getConfig('ratingbars')) {
-			foreach ($groups as $group) {
-				if (in_array($group, $wgtimelines->getConfig('ratingbar_groups')) || XOOPS_GROUP_ADMIN == $group) {
-					$rate_allowed = true;
-					break;
-				}
-			}
-		}
+        $groups       = (isset($GLOBALS['xoopsUser']) && is_object($GLOBALS['xoopsUser'])) ? $GLOBALS['xoopsUser']->getGroups() : XOOPS_GROUP_ANONYMOUS;
+        // Checking permissions
+        $rate_allowed = false;
+        if ($wgtimelines->getConfig('ratingbars')) {
+            foreach ($groups as $group) {
+                if (XOOPS_GROUP_ADMIN == $group || in_array($group, $wgtimelines->getConfig('ratingbar_groups'))) {
+                    $rate_allowed = true;
+                    break;
+                }
+            }
+        }
 
-		if (!$rate_allowed) {
-			redirect_header(WGTIMELINES_URL . '/index.php?tl_id=' . $tl_id . '#item' . $itemid, 2, _MA_WGTIMELINES_RATING_NOPERM);
-		}
+        if (!$rate_allowed) {
+            redirect_header(WGTIMELINES_URL . '/index.php?tl_id=' . $tl_id . '#item' . $itemid, 2, _MA_WGTIMELINES_RATING_NOPERM);
+        }
 
-		$redir = $_SERVER["HTTP_REFERER"];
-		if ($op === 'save-index') $redir = $_SERVER["HTTP_REFERER"] . '#item' . $itemid;
-		
-		if ($rating > 5 || $rating < 1) {
-			redirect_header($redir, 2, _MA_WGTIMELINES_RATING_VOTE_BAD);
-			exit();
-		}
-		
-		$itemrating = $ratingsHandler->getItemRating($itemid);
-		
-		if ($itemrating['voted']) {
-			redirect_header($redir, 2, _MA_WGTIMELINES_RATING_VOTE_ALREADY);
-		}
+        $redir = $_SERVER['HTTP_REFERER'];
+        if ($op === 'save-index') {
+            $redir = $_SERVER['HTTP_REFERER'] . '#item' . $itemid;
+        }
+        
+        if ($rating > 5 || $rating < 1) {
+            redirect_header($redir, 2, _MA_WGTIMELINES_RATING_VOTE_BAD);
+            exit();
+        }
+        
+        $itemrating = $ratingsHandler->getItemRating($itemid);
+        
+        if ($itemrating['voted']) {
+            redirect_header($redir, 2, _MA_WGTIMELINES_RATING_VOTE_ALREADY);
+        }
 
-		$ratingsObj = $ratingsHandler->create();
-		$ratingsObj->setVar('rate_itemid', $itemid);
-		$ratingsObj->setVar('rate_value', $rating);
-		$ratingsObj->setVar('rate_uid', $itemrating['uid']);
-		$ratingsObj->setVar('rate_ip', $itemrating['ip']);
-		$ratingsObj->setVar('rate_date', time());
-		// Insert Data
-		if($ratingsHandler->insert($ratingsObj)) {
-			redirect_header($redir, 2, _MA_WGTIMELINES_RATING_VOTE_THANKS);
-		}
-		echo "<br>error:".$ratingsObj->getHtmlErrors();
+        $ratingsObj = $ratingsHandler->create();
+        $ratingsObj->setVar('rate_itemid', $itemid);
+        $ratingsObj->setVar('rate_value', $rating);
+        $ratingsObj->setVar('rate_uid', $itemrating['uid']);
+        $ratingsObj->setVar('rate_ip', $itemrating['ip']);
+        $ratingsObj->setVar('rate_date', time());
+        // Insert Data
+        if ($ratingsHandler->insert($ratingsObj)) {
+            redirect_header($redir, 2, _MA_WGTIMELINES_RATING_VOTE_THANKS);
+        }
+        echo '<br>error:' . $ratingsObj->getHtmlErrors();
 
-		break;
-	
-	case "default":
-	default:
-		echo _MA_WGTIMELINES_RATING_VOTE_BAD . ' (invalid parameter)';
-		break;
+        break;
+    
+    case 'default':
+    default:
+        echo _MA_WGTIMELINES_RATING_VOTE_BAD . ' (invalid parameter)';
+        break;
 }

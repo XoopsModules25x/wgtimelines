@@ -31,83 +31,93 @@ $itemsCount = $itemsHandler->getCount($crit_item);
 
 unset($crit_item);
 if ($itemsCount > 0) {
-	// get item
+    // get item
     $itemsObj = $itemsHandler->get($item_id);
-	// update reads
-	$itemsObj->setVar('item_reads', $itemsObj->getVar('item_reads') + 1);
-	$itemsHandler->insert($itemsObj, true);
-	// get timeline
-	$item_tl_id   = $itemsObj->getVar('item_tl_id');
+    // update reads
+    $itemsObj->setVar('item_reads', $itemsObj->getVar('item_reads') + 1);
+    $itemsHandler->insert($itemsObj, true);
+    // get timeline
+    $item_tl_id   = $itemsObj->getVar('item_tl_id');
     $timeline_obj = $timelinesHandler->get($item_tl_id);
     $tl_template  = $timeline_obj->getVar('tl_template');
-	$tl_name      = $timeline_obj->getVar('tl_name');
-	$tl_limit     = $timeline_obj->getVar('tl_limit');
+    $tl_name      = $timeline_obj->getVar('tl_name');
+    $tl_limit     = $timeline_obj->getVar('tl_limit');
 
     // get template and template options
     $template_obj = $templatesHandler->get($tl_template);
     $template     = $template_obj->getValuesTemplates();
     $options      = $template['options'];
-	
-	// read necessary options
+    
+    // read necessary options
     $tplpanel_pos = 'none';
     $tplshowyear  = 'none';
-	// $badgecontent  = 'none';
-	foreach ($options as $option) {
-		if ($option['name'] === 'panel_pos' && $option['valid'] > 0) $tplpanel_pos = $option['value'];
-		if ($option['name'] === 'showyear'  && $option['valid'] > 0) $tplshowyear  = $option['value'];
-		// if ($option['name'] === 'badgecontent'  && $option['valid'] > 0) $badgecontent  = $option['value'];
-	}
+    // $badgecontent  = 'none';
+    foreach ($options as $option) {
+        if ($option['name'] === 'panel_pos' && $option['valid'] > 0) {
+            $tplpanel_pos = $option['value'];
+        }
+        if ($option['name'] === 'showyear'  && $option['valid'] > 0) {
+            $tplshowyear  = $option['value'];
+        }
+        // if ($option['name'] === 'badgecontent'  && $option['valid'] > 0) $badgecontent  = $option['value'];
+    }
 
     $GLOBALS['xoopsOption']['template_main'] = 'wgtimelines_item_' . $tpltype . '.tpl';
 
     include_once XOOPS_ROOT_PATH .'/header.php';
 
     // Define Stylesheet
-    $GLOBALS['xoTheme']->addStylesheet( $style, null );
-    // 
+    $GLOBALS['xoTheme']->addStylesheet($style, null);
+    //
     $GLOBALS['xoopsTpl']->assign('xoops_icons32_url', XOOPS_ICONS32_URL);
     $GLOBALS['xoopsTpl']->assign('wgtimelines_url', WGTIMELINES_URL);
-	$GLOBALS['xoopsTpl']->assign('wgtimelines_icons_url', WGTIMELINES_ICONS_URL);
-	if (isset($GLOBALS['xoopsUser']) && is_object($GLOBALS['xoopsUser']) && $GLOBALS['xoopsUser']->isAdmin()) $GLOBALS['xoopsTpl']->assign('isAdmin', 1);
-	if ($wgtimelines->getConfig('ratingbars')) {
-		$GLOBALS['xoopsTpl']->assign('rating', $wgtimelines->getConfig('ratingbars'));
-		$GLOBALS['xoopsTpl']->assign('save', 'save-item');
-	}
+    $GLOBALS['xoopsTpl']->assign('wgtimelines_icons_url', WGTIMELINES_ICONS_URL);
+    if (isset($GLOBALS['xoopsUser']) && is_object($GLOBALS['xoopsUser']) && $GLOBALS['xoopsUser']->isAdmin()) {
+        $GLOBALS['xoopsTpl']->assign('isAdmin', 1);
+    }
+    if ($wgtimelines->getConfig('ratingbars')) {
+        $GLOBALS['xoopsTpl']->assign('rating', $wgtimelines->getConfig('ratingbars'));
+        $GLOBALS['xoopsTpl']->assign('save', 'save-item');
+    }
 
     $keywords = array();
 
-	$items = array();
-	$year = '';
-	$alternate = 0;
-	$j = 0;
-	$inverted = 0;
-	$crazycolors = 0;
-	$j++;
-	$items[$j] = $itemsObj->getValuesItems();
-	if ($wgtimelines->getConfig('ratingbars')) {
-		$items[$j]['rating'] = $ratingsHandler->getItemRating($items[$j]['id']);
-	}
-	
-	// misc
-	$keywords[] = $itemsObj->getVar('item_title');
-	
-	$GLOBALS['xoopsTpl']->assign('items', $items);
-	$GLOBALS['xoopsTpl']->assign('showreads', $tl_limit > 0);
-	unset($items);
-	if ($wgtimelines->getConfig('tl_name') == 1) $GLOBALS['xoopsTpl']->assign('timeline_name', $tl_name);
-	// set template options
-	foreach ($options as $option) {
-		if ($option['valid'] > 0) $GLOBALS['xoopsTpl']->assign($option['name'], $option['value']);
-	}
+    $items = array();
+    $year = '';
+    $alternate = 0;
+    $j = 0;
+    $inverted = 0;
+    $crazycolors = 0;
+    $j++;
+    $items[$j] = $itemsObj->getValuesItems();
+    if ($wgtimelines->getConfig('ratingbars')) {
+        $items[$j]['rating'] = $ratingsHandler->getItemRating($items[$j]['id']);
+    }
+    
+    // misc
+    $keywords[] = $itemsObj->getVar('item_title');
+    
+    $GLOBALS['xoopsTpl']->assign('items', $items);
+    $GLOBALS['xoopsTpl']->assign('showreads', $tl_limit > 0);
+    unset($items);
+    if ($wgtimelines->getConfig('tl_name') == 1) {
+        $GLOBALS['xoopsTpl']->assign('timeline_name', $tl_name);
+    }
+    // set template options
+    foreach ($options as $option) {
+        if ($option['valid'] > 0) {
+            $GLOBALS['xoopsTpl']->assign($option['name'], $option['value']);
+        }
+    }
 
     // Breadcrumbs
-    if ( $wgtimelines->getConfig('breadcrumbs') ) {
+    if ($wgtimelines->getConfig('breadcrumbs')) {
         $xoBreadcrumbs[] = array('title' => $tl_name, 'link' => 'index.php?tl_id=' . $item_tl_id);
-		$xoBreadcrumbs[] = array('title' => $itemsObj->getVar('item_title'));
+        $xoBreadcrumbs[] = array('title' => $itemsObj->getVar('item_title'));
         $GLOBALS['xoopsTpl']->assign('breadcrumbs', 1);
     }
 } else {
-	echo "invalid item id";
+    echo 'invalid item id';
 }
 
 $GLOBALS['xoopsTpl']->assign('welcome', $wgtimelines->getConfig('welcome'));

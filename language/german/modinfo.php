@@ -72,6 +72,18 @@ define('_MI_WGTIMELINES_TLDESC_ONLYLIST', 'Nur auf der Übersichtsliste');
 define('_MI_WGTIMELINES_TLDESC_ALL', 'Auf der Übersichtsliste und bei der Zeitreihe');
 define('_MI_WGTIMELINES_RATINGBARS', 'Bewertung anzeigen');
 define('_MI_WGTIMELINES_RATINGBARS_DESC', 'Definieren Sie bitte, ob eine Bewertung der Einträge möglich sein und angezeigt werden soll');
-define('_MI_WGTIMELINES_RATINGBAR_GROUPS', "Gruppen mit der Berechtigung zum Bewerten");
-define('_MI_WGTIMELINES_RATINGBAR_GROUPS_DESC', "Bestimmen Sie bitte die Gruppen, die Zeitreiheneinträge bewerten dürfen");
+define('_MI_WGTIMELINES_RATINGBAR_GROUPS', 'Gruppen mit der Berechtigung zum Bewerten');
+define('_MI_WGTIMELINES_RATINGBAR_GROUPS_DESC', 'Bestimmen Sie bitte die Gruppen, die Zeitreiheneinträge bewerten dürfen');
 // ---------------- End ----------------
+//Help
+define('_MI_WGTIMELINES_DIRNAME', basename(dirname(dirname(__DIR__))));
+define('_MI_WGTIMELINES_HELP_HEADER', __DIR__.'/help/helpheader.html');
+define('_MI_WGTIMELINES_BACK_2_ADMIN', 'Back to Administration of ');
+define('_MI_WGTIMELINES_OVERVIEW', 'Overview');
+
+//define('_MI_WGTIMELINES_HELP_DIR', __DIR__);
+
+//help multi-page
+define('_MI_WGTIMELINES_DISCLAIMER', 'Disclaimer');
+define('_MI_WGTIMELINES_LICENSE', 'License');
+define('_MI_WGTIMELINES_SUPPORT', 'Support');

@@ -158,7 +158,7 @@ define('_AM_WGTIMELINES_ITEM_DATE', 'Date');
 define('_AM_WGTIMELINES_ITEM_YEAR', 'Year');
 define('_AM_WGTIMELINES_ITEM_ICON', 'Icon');
 define('_AM_WGTIMELINES_ITEM_READS', 'Reads');
-define('_AM_WGTIMELINES_ITEM_YEAR_ICON_DESC', "Will be only used, if option '"._AM_WGTIMELINES_TEMPLATE_BADGECONTENT."' is set corresponding");
+define('_AM_WGTIMELINES_ITEM_YEAR_ICON_DESC', "Will be only used, if option '"._AM_WGTIMELINES_TEMPLATE_BADGECONTENT . '\' is set corresponding');
 define('_AM_WGTIMELINES_ITEM_NONE', 'None');
 // General
 define('_AM_WGTIMELINES_FORM_UPLOAD', 'Upload file');
@@ -169,3 +169,11 @@ define('_AM_WGTIMELINES_FORM_DELETE', 'Clear');
 // ---------------- Admin Others ----------------
 define('_AM_WGTIMELINES_MAINTAINEDBY', ' is maintained by ');
 // ---------------- End ----------------
+
+define('_AM_WGTIMELINES_RATING_ADD', 'Add Rating');
+define('_AM_WGTIMELINES_RATING_EDIT', 'Edit Rating');
+define('_AM_WGTIMELINES_RATING_ITEMID', 'Item ID');
+define('_AM_WGTIMELINES_RATING_VALUE', 'Value');
+define('_AM_WGTIMELINES_RATING_UID', 'User ID');
+define('_AM_WGTIMELINES_RATING_IP', 'IP');
+define('_AM_WGTIMELINES_RATING_DATE', 'Date');
