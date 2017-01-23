@@ -115,7 +115,7 @@ function update_wgtimelines_v106(&$module)
     $sql = 'CREATE TABLE `'
            . $GLOBALS['xoopsDB']->prefix('wgtimelines_ratings') . "` (`rate_id` INT(8) UNSIGNED NOT NULL AUTO_INCREMENT, `rate_itemid` INT(8) NOT NULL DEFAULT '0', `rate_value` INT(1) NOT NULL DEFAULT '0', `rate_uid` INT(8) NOT NULL DEFAULT '0', `rate_ip` VARCHAR(60) NOT NULL DEFAULT '', `rate_date` INT(8) NOT NULL DEFAULT '0', PRIMARY KEY (`rate_id`) ) ENGINE=InnoDB;";
     if (!$result = $GLOBALS['xoopsDB']->queryF($sql)) {
-        xoops_error($GLOBALS['xoopsDB']->error() . '<br />' . $sql);
+        xoops_error($GLOBALS['xoopsDB']->error() . '<br>' . $sql);
         $module->setErrors('error when creating new table wgtimelines_ratings');
         return false;
     }
@@ -131,25 +131,25 @@ function update_wgtimelines_v105(&$module)
 {
     $sql = 'ALTER TABLE `' . $GLOBALS['xoopsDB']->prefix('wgtimelines_timelines') . "` ADD `tl_limit` int(8) NOT NULL DEFAULT '0' AFTER `tl_sortby`;";
     if (!$result = $GLOBALS['xoopsDB']->queryF($sql)) {
-        xoops_error($GLOBALS['xoopsDB']->error() . '<br />' . $sql);
+        xoops_error($GLOBALS['xoopsDB']->error() . '<br>' . $sql);
         $module->setErrors('error when adding new field tl_limit to table wgtimelines_timelines');
         return false;
     }
     $sql = 'ALTER TABLE `' . $GLOBALS['xoopsDB']->prefix('wgtimelines_timelines') . '` ADD `tl_desc` TEXT NOT NULL AFTER `tl_name`;';
     if (!$result = $GLOBALS['xoopsDB']->queryF($sql)) {
-        xoops_error($GLOBALS['xoopsDB']->error() . '<br />' . $sql);
+        xoops_error($GLOBALS['xoopsDB']->error() . '<br>' . $sql);
         $module->setErrors('error when adding new field tl_desc to table wgtimelines_timelines');
         return false;
     }
     $sql = 'ALTER TABLE `' . $GLOBALS['xoopsDB']->prefix('wgtimelines_timelines') . "` ADD `tl_image` VARCHAR(200) NOT NULL DEFAULT 'blank.gif' AFTER `tl_desc`;";
     if (!$result = $GLOBALS['xoopsDB']->queryF($sql)) {
-        xoops_error($GLOBALS['xoopsDB']->error() . '<br />' . $sql);
+        xoops_error($GLOBALS['xoopsDB']->error() . '<br>' . $sql);
         $module->setErrors('error when adding new field tl_image to table wgtimelines_timelines');
         return false;
     }
     $sql = 'ALTER TABLE `' . $GLOBALS['xoopsDB']->prefix('wgtimelines_items') . "` ADD `item_reads` int(8) NOT NULL DEFAULT '0' AFTER `item_icon`;";
     if (!$result = $GLOBALS['xoopsDB']->queryF($sql)) {
-        xoops_error($GLOBALS['xoopsDB']->error() . '<br />' . $sql);
+        xoops_error($GLOBALS['xoopsDB']->error() . '<br>' . $sql);
         $module->setErrors('error when adding new field item_reads to table wgtimelines_items');
         return false;
     }
@@ -179,7 +179,7 @@ function update_wgtimelines_v104(&$module)
 {
     $sql = 'ALTER TABLE `' . $GLOBALS['xoopsDB']->prefix('wgtimelines_items') . "` ADD `item_online` INT(1) NOT NULL DEFAULT '1' AFTER `item_weight`;";
     if (!$result = $GLOBALS['xoopsDB']->queryF($sql)) {
-        xoops_error($GLOBALS['xoopsDB']->error() . '<br />' . $sql);
+        xoops_error($GLOBALS['xoopsDB']->error() . '<br>' . $sql);
         $module->setErrors('error when adding new field item_online to table wgtimelines_items');
         return false;
     }
@@ -195,19 +195,19 @@ function update_wgtimelines_v103(&$module)
 {
     $sql = 'ALTER TABLE `' . $GLOBALS['xoopsDB']->prefix('wgtimelines_templates') . "` ADD `tpl_version` VARCHAR(10) NOT NULL DEFAULT '' AFTER `tpl_weight`;";
     if (!$result = $GLOBALS['xoopsDB']->queryF($sql)) {
-        xoops_error($GLOBALS['xoopsDB']->error() . '<br />' . $sql);
+        xoops_error($GLOBALS['xoopsDB']->error() . '<br>' . $sql);
         $module->setErrors('error when adding new field tpl_version to table wgtimelines_templates');
         return false;
     }
     $sql = 'ALTER TABLE `' . $GLOBALS['xoopsDB']->prefix('wgtimelines_templates') . "` ADD `tpl_author` VARCHAR(200) NOT NULL DEFAULT '' AFTER `tpl_version`;";
     if (!$result = $GLOBALS['xoopsDB']->queryF($sql)) {
-        xoops_error($GLOBALS['xoopsDB']->error() . '<br />' . $sql);
+        xoops_error($GLOBALS['xoopsDB']->error() . '<br>' . $sql);
         $module->setErrors('error when adding new field tpl_author to table wgtimelines_templates');
         return false;
     }
     $sql = 'ALTER TABLE `' . $GLOBALS['xoopsDB']->prefix('wgtimelines_templates') . "` ADD `tpl_date_create` INT(8) NOT NULL DEFAULT '0' AFTER `tpl_author`;";
     if (!$result = $GLOBALS['xoopsDB']->queryF($sql)) {
-        xoops_error($GLOBALS['xoopsDB']->error() . '<br />' . $sql);
+        xoops_error($GLOBALS['xoopsDB']->error() . '<br>' . $sql);
         $module->setErrors('error when adding new field tpl_date_create to table wgtimelines_templates');
         return false;
     }
@@ -223,7 +223,7 @@ function update_wgtimelines_v102(&$module)
 {
     $sql = 'ALTER TABLE `' . $GLOBALS['xoopsDB']->prefix('wgtimelines_items') . "` ADD `item_icon` VARCHAR(200) NOT NULL DEFAULT '' AFTER `item_year`;";
     if (!$result = $GLOBALS['xoopsDB']->queryF($sql)) {
-        xoops_error($GLOBALS['xoopsDB']->error() . '<br />' . $sql);
+        xoops_error($GLOBALS['xoopsDB']->error() . '<br>' . $sql);
         $module->setErrors('error when adding new field item_icon to table wgtimelines_items');
         return false;
     }
@@ -261,7 +261,7 @@ function update_wgtimelines_v10(&$module)
     }
     $sql = 'SHOW INDEX FROM ' . $xoopsDB->prefix('tplfile') . " WHERE KEY_NAME = 'tpl_refid_module_set_file_type'";
     if (!$result = $xoopsDB->queryF($sql)) {
-        xoops_error($this->db->error() . '<br />' . $sql);
+        xoops_error($this->db->error() . '<br>' . $sql);
         return false;
     }
     $ret = array();
@@ -276,7 +276,7 @@ function update_wgtimelines_v10(&$module)
     $sql = 'ALTER TABLE ' . $xoopsDB->prefix('tplfile')
            . ' ADD UNIQUE tpl_refid_module_set_file_type ( tpl_refid, tpl_module, tpl_tplset, tpl_file, tpl_type )';
     if (!$result = $xoopsDB->queryF($sql)) {
-        xoops_error($xoopsDB->error() . '<br />' . $sql);
+        xoops_error($xoopsDB->error() . '<br>' . $sql);
         $module->setErrors('\'tpl_refid_module_set_file_type\' unique index is not added to \'tplfile\' table. Warning: do not use XOOPS until you add this unique index.'
         );
         return false;

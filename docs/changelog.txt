@@ -8,6 +8,7 @@ Change Log for wgTimelines - 2017-01-23 Version 1.06  RC1
  - code cosmetics (mamba)
  - added missing Rating language variables (mamba)
  - added missing $modversion['tables'][5] = 'wgtimelines_ratings'; (mamba)
+ - replaced < br /> with < br > (mamba)
 
 ==============================================================
 Change Log for wgTimelines - 2016/12/28 Version 1.06 Beta 1

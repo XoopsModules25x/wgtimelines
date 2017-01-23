@@ -60,7 +60,7 @@ function b_wgtimelines_timelines_edit($options)
     $timelinesHandler = $wgtimelines->getHandler('timelines');
     $GLOBALS['xoopsTpl']->assign('wgtimelines_upload_url', WGTIMELINES_UPLOAD_URL);
     $form = "<input type='hidden' name='options[0]' value='".$options[0] . '\' />';
-    $form .= _MB_WGTIMELINES_TITLE_LENGTH." : <input type='text' name='options[1]' size='5' maxlength='255' value='".$options[1] . '\' /><br /><br />';
+    $form .= _MB_WGTIMELINES_TITLE_LENGTH." : <input type='text' name='options[1]' size='5' maxlength='255' value='".$options[1] . '\' /><br><br>';
     array_shift($options);
     array_shift($options);
     $criteria = new CriteriaCompo();
@@ -69,7 +69,7 @@ function b_wgtimelines_timelines_edit($options)
     $criteria->setOrder('ASC');
     $timelinesAll = $timelinesHandler->getAll($criteria);
     unset($criteria);
-    $form .= _MB_WGTIMELINES_TIMELINES_TO_DISPLAY."<br /><select name='options[]' multiple='multiple' size='5'>";
+    $form .= _MB_WGTIMELINES_TIMELINES_TO_DISPLAY."<br><select name='options[]' multiple='multiple' size='5'>";
     $form .= "<option value='0' " . (!in_array(0, $options) ? '' : "selected='selected'") . '>' . _MB_WGTIMELINES_ALL_TIMELINES . '</option>';
     foreach (array_keys($timelinesAll) as $i) {
         $tl_id = $timelinesAll[$i]->getVar('tl_id');

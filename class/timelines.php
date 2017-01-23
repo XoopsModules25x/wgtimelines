@@ -103,7 +103,7 @@ class WgtimelinesTimelines extends XoopsObject
         $getTimelineImage = $this->getVar('tl_image');
         $itemImage = $getTimelineImage ?: 'blank.gif';
         $imageDirectory = '/uploads/wgtimelines/images/timelines';
-        $imageTray = new XoopsFormElementTray(_AM_WGTIMELINES_TIMELINE_IMAGE, '<br />');
+        $imageTray = new XoopsFormElementTray(_AM_WGTIMELINES_TIMELINE_IMAGE, '<br>');
         $imageSelect = new XoopsFormSelect(sprintf(_AM_WGTIMELINES_FORM_IMAGE_PATH, ".{$imageDirectory}/"), 'tl_image', $itemImage, 5);
         $imageArray = XoopsLists::getImgListAsArray(XOOPS_ROOT_PATH . $imageDirectory);
         foreach ($imageArray as $image1) {
@@ -111,9 +111,9 @@ class WgtimelinesTimelines extends XoopsObject
         }
         $imageSelect->setExtra("onchange='showImgSelected(\"image1\", \"tl_image\", \"".$imageDirectory . '", "", "' . XOOPS_URL . "\")'");
         $imageTray->addElement($imageSelect, false);
-        $imageTray->addElement(new XoopsFormLabel('', "<br /><img src='".XOOPS_URL . '/' . $imageDirectory . '/' . $itemImage . '\' name=\'image1\' id=\'image1\' alt=\'\' style=\'max-width:100px;\' />'));
+        $imageTray->addElement(new XoopsFormLabel('', "<br><img src='".XOOPS_URL . '/' . $imageDirectory . '/' . $itemImage . '\' name=\'image1\' id=\'image1\' alt=\'\' style=\'max-width:100px;\' />'));
         // Form File
-        $fileSelectTray = new XoopsFormElementTray('', '<br />');
+        $fileSelectTray = new XoopsFormElementTray('', '<br>');
         $fileSelectTray->addElement(new XoopsFormFile(_AM_WGTIMELINES_FORM_UPLOAD_IMAGE, 'attachedfile', $wgtimelines->getConfig('maxsize')));
         $fileSelectTray->addElement(new XoopsFormLabel(''));
         $imageTray->addElement($fileSelectTray);

@@ -67,5 +67,5 @@
 </div>
 
 <{/if}>
-<br /></br />
+<br></br />
 <!-- Footer --><{include file='db:wgtimelines_admin_footer.tpl'}>
