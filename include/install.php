@@ -26,31 +26,31 @@ $blankFile = XOOPS_UPLOAD_PATH.'/blank.gif';
 // Making of uploads/wgtimelines folder
 $wgtimelines = XOOPS_UPLOAD_PATH.'/wgtimelines';
 if(!is_dir($wgtimelines)) {
-	mkdir($wgtimelines, 0777);
-	chmod($wgtimelines, 0777);
+    mkdir($wgtimelines, 0777);
+    chmod($wgtimelines, 0777);
 }
 copy($indexFile, $wgtimelines.'/index.html');
 // Making of images folder
 $images = $wgtimelines.'/images';
 if(!is_dir($images)) {
-	mkdir($images, 0777);
-	chmod($images, 0777);
+    mkdir($images, 0777);
+    chmod($images, 0777);
 }
 copy($indexFile, $images.'/index.html');
 copy($blankFile, $images.'/blank.gif');
 // Making of images/timelines uploads folder
 $timelines = $images.'/timelines';
 if(!is_dir($timelines)) {
-	mkdir($timelines, 0777);
-	chmod($timelines, 0777);
+    mkdir($timelines, 0777);
+    chmod($timelines, 0777);
 }
 copy($indexFile, $timelines.'/index.html');
 copy($blankFile, $timelines.'/blank.gif');
 // Making of images/items uploads folder
 $items = $images.'/items';
 if(!is_dir($items)) {
-	mkdir($items, 0777);
-	chmod($items, 0777);
+    mkdir($items, 0777);
+    chmod($items, 0777);
 }
 copy($indexFile, $items.'/index.html');
 copy($blankFile, $items.'/blank.gif');

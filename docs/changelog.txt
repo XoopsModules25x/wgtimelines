@@ -1,4 +1,11 @@
 ==============================================================
+Change Log for wgTimelines - 2017-02-03 Version 1.06  RC2
+==============================================================
+ - fixed problem with hiding empty paragraphs (goffy)
+ - cosmetics (replaced tabs by 4 spaces, trailing spaces) (goffy)
+ - fixed output problems (replace $this->getVar('...', 'n') by $this->getVar('...', 'show')) (mage);
+ 
+==============================================================
 Change Log for wgTimelines - 2017-01-23 Version 1.06  RC1
 ==============================================================
  - add extra Help Pages (mamba)

@@ -108,7 +108,7 @@ function b_wgtimelines_items_edit($options)
     $form .= "<option value='new' " . ('new' === $options[3] ? "selected='selected'" : '') . '>' . _MB_WGTIMELINES_ITEMS_NEW . '</option>';
     $form .= "<option value='random' " . ('random' === $options[3] ? "selected='selected'" : '') . '>' . _MB_WGTIMELINES_ITEMS_RANDOM . '</option>';
     $form .= '</select><br><br>';
-    
+
     $criteria = new CriteriaCompo();
     $criteria->add(new Criteria('tl_id', 0, '!='));
     $criteria->setSort('tl_weight');
@@ -123,10 +123,10 @@ function b_wgtimelines_items_edit($options)
                  . $timelinesAll[$i]->getVar('tl_name') . '</option>';
     }
     $form .= '</select>';
-    
+
     array_shift($options);
     array_shift($options);
     array_shift($options);
-    
+
     return $form;
 }

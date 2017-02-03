@@ -182,7 +182,7 @@ class WgtimelinesHelper
             }
         }
     }
-    
+
     /**
      * truncateHtml can truncate a string up to a number of characters while preserving whole words and HTML tags
      * www.gsdesign.ro/blog/cut-html-string-without-breaking-the-tags

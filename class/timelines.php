@@ -164,7 +164,7 @@ class WgtimelinesTimelines extends XoopsObject
         $ret = $this->getValues($keys, $format, $maxDepth);
         $ret['id'] = $this->getVar('tl_id');
         $ret['name'] = $this->getVar('tl_name');
-        $ret['desc'] = $this->getVar('tl_desc', 'n');
+        $ret['desc'] = $this->getVar('tl_desc', 'show');
         $ret['desc_admin'] = $wgtimelines->truncateHtml($this->getVar('tl_desc', 'n'));
         $ret['image'] = $this->getVar('tl_image');
         $ret['weight'] = $this->getVar('tl_weight');

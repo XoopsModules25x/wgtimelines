@@ -47,7 +47,7 @@ if ($itemsCount > 0) {
     $template_obj = $templatesHandler->get($tl_template);
     $template     = $template_obj->getValuesTemplates();
     $options      = $template['options'];
-    
+
     // read necessary options
     $tplpanel_pos = 'none';
     $tplshowyear  = 'none';
@@ -93,10 +93,10 @@ if ($itemsCount > 0) {
     if ($wgtimelines->getConfig('ratingbars')) {
         $items[$j]['rating'] = $ratingsHandler->getItemRating($items[$j]['id']);
     }
-    
+
     // misc
     $keywords[] = $itemsObj->getVar('item_title');
-    
+
     $GLOBALS['xoopsTpl']->assign('items', $items);
     $GLOBALS['xoopsTpl']->assign('showreads', $tl_limit > 0);
     unset($items);

@@ -25,7 +25,7 @@ include __DIR__ . '/header.php';
 $tl_id = XoopsRequest::getInt('tl_id', 0);
 $start = XoopsRequest::getInt('start', 0);
 $limit = XoopsRequest::getInt('limit', $wgtimelines->getConfig('userpager'));
-            
+
 $startpage = $wgtimelines->getConfig('startpage', 0);
 
 $criteria = new CriteriaCompo();
@@ -182,14 +182,14 @@ if ($timelinesCount > 0) {
                 $GLOBALS['xoopsTpl']->assign('items', $items);
                 $GLOBALS['xoopsTpl']->assign('showreads', $tl_limit > 0);
                 unset($items);
-                
+
                 // set template options
                 foreach ($options as $option) {
                     if ($option['valid'] > 0) {
                         $GLOBALS['xoopsTpl']->assign($option['name'], $option['value']);
                     }
                 }
-                
+
                 // Display Navigation
                 if ($itemsCount > $limit) {
                     include_once XOOPS_ROOT_PATH .'/class/pagenav.php';
@@ -230,7 +230,7 @@ if ($timelinesCount > 0) {
         //
         $GLOBALS['xoopsTpl']->assign('xoops_icons32_url', XOOPS_ICONS32_URL);
         $GLOBALS['xoopsTpl']->assign('wgtimelines_url', WGTIMELINES_URL);
-        
+
         // Display Navigation
         if ($timelinesCount > $limit) {
             include_once XOOPS_ROOT_PATH .'/class/pagenav.php';
@@ -238,10 +238,10 @@ if ($timelinesCount > 0) {
             $GLOBALS['xoopsTpl']->assign('pagenav', $pagenav->renderNav(4));
         }
     }
-    
+
     $GLOBALS['xoopsTpl']->assign('welcome', $wgtimelines->getConfig('welcome'));
 
-    
+
     // Keywords
     wgtimelinesMetaKeywords($wgtimelines->getConfig('keywords').', '. implode(',', $keywords));
     unset($keywords);

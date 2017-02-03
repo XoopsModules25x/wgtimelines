@@ -34,10 +34,10 @@ $itemsHandler          = $wgtimelines->getHandler('items');
 $templatesHandler      = $wgtimelines->getHandler('templates');
 $tplsetsdefaultHandler = $wgtimelines->getHandler('tplsetsdefault');
 $myts = MyTextSanitizer::getInstance();
-// 
+//
 if(!isset($xoopsTpl) || !is_object($xoopsTpl)) {
 include_once XOOPS_ROOT_PATH .'/class/template.php';
-	$xoopsTpl = new XoopsTpl();
+    $xoopsTpl = new XoopsTpl();
 }
 // System icons path
 $GLOBALS['xoopsTpl']->assign('sysPathIcon16', $sysPathIcon16);
@@ -49,9 +49,9 @@ xoops_loadLanguage('admin');
 xoops_loadLanguage('modinfo');
 // Local admin menu class
 if(file_exists($GLOBALS['xoops']->path($pathModuleAdmin.'/moduleadmin.php'))) {
-	include_once $GLOBALS['xoops']->path($pathModuleAdmin.'/moduleadmin.php');
+    include_once $GLOBALS['xoops']->path($pathModuleAdmin.'/moduleadmin.php');
 } else {
-	redirect_header('../../../admin.php.php', 5, _AM_MODULEADMIN_MISSING);
+    redirect_header('../../../admin.php.php', 5, _AM_MODULEADMIN_MISSING);
 }
 xoops_cp_header();
 $adminMenu = new ModuleAdmin();

@@ -56,7 +56,7 @@ function xoops_module_update_wgtimelines(&$module, $prev_version = null)
     // create table 'wgtimelines_tplsetsdefault' in any case
     $ret = update_tplsetsdefault($module);
     $errors = $module->getErrors();
-    
+
     if (!empty($errors)) {
         print_r($errors);
     }
@@ -101,7 +101,7 @@ function update_tplsetsdefault(&$module)
             }
         }
     }
-        
+
     return true;
 }
 
@@ -153,7 +153,7 @@ function update_wgtimelines_v105(&$module)
         $module->setErrors('error when adding new field item_reads to table wgtimelines_items');
         return false;
     }
-    
+
     // Copy base file
     $indexFile = XOOPS_UPLOAD_PATH.'/index.html';
     $blankFile = XOOPS_UPLOAD_PATH.'/blank.gif';

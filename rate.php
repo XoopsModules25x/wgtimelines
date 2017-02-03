@@ -22,7 +22,7 @@
  */
 include __DIR__ . '/header.php';
 $op     = XoopsRequest::getString('op', 'default');
- 
+
 switch ($op) {
     case 'save-index':
     case 'save-item':
@@ -55,14 +55,14 @@ switch ($op) {
         if ($op === 'save-index') {
             $redir = $_SERVER['HTTP_REFERER'] . '#item' . $itemid;
         }
-        
+
         if ($rating > 5 || $rating < 1) {
             redirect_header($redir, 2, _MA_WGTIMELINES_RATING_VOTE_BAD);
             exit();
         }
-        
+
         $itemrating = $ratingsHandler->getItemRating($itemid);
-        
+
         if ($itemrating['voted']) {
             redirect_header($redir, 2, _MA_WGTIMELINES_RATING_VOTE_ALREADY);
         }
@@ -80,7 +80,7 @@ switch ($op) {
         echo '<br>error:' . $ratingsObj->getHtmlErrors();
 
         break;
-    
+
     case 'default':
     default:
         echo _MA_WGTIMELINES_RATING_VOTE_BAD . ' (invalid parameter)';

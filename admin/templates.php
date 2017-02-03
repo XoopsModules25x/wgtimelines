@@ -31,13 +31,13 @@ switch ($op) {
         $start = XoopsRequest::getInt('start', 0);
         $limit = XoopsRequest::getInt('limit', $wgtimelines->getConfig('adminpager'));
         $templateMain = 'wgtimelines_admin_templates.tpl';
-        
+
         // check default template set
         $tplsetsdefaultHandler->checkTplsetsdefault();
-        
+
         $templatesCount = $templatesHandler->getCountTemplates();
         $templatesAll = $templatesHandler->getAllTemplates($start, $limit);
-        
+
         $GLOBALS['xoopsTpl']->assign('templates_count', $templatesCount);
         $GLOBALS['xoopsTpl']->assign('wgtimelines_url', WGTIMELINES_URL);
         $GLOBALS['xoopsTpl']->assign('wgtimelines_upload_url', WGTIMELINES_UPLOAD_URL);
@@ -95,7 +95,7 @@ switch ($op) {
         } else {
             $templatesObj = $templatesHandler->create();
         }
-        
+
         // Set Vars
         $templatesObj->setVar('tpl_name', $_POST['tpl_name']);
         $templatesObj->setVar('tpl_desc', $_POST['tpl_desc']);
@@ -242,7 +242,7 @@ switch ($op) {
                             'valid' => isset($_POST['fadein']) ? 1 : 0,
                             'value' => isset($_POST['fadein']) ? $_POST['fadein'] : 'appear',
                             'type' => 'text');
-                         
+
         $templatesObj->setVar('tpl_options', serialize($options));
 
         // Insert Data
@@ -268,7 +268,7 @@ switch ($op) {
         $templatesObj->setVar('tpl_name', $_POST['tpl_name']);
         $templatesObj->setVar('tpl_desc', $_POST['tpl_desc']);
         $templatesObj->setVar('tpl_file', $_POST['tpl_file']);
-        
+
         for ($i = 1; $i <= $_POST['counter']; $i++) {
             if (!$_POST['name_'.$i] == '') {
                 $options[] = array('name' => $_POST['name_' . $i], 'valid' => $_POST['valid_' . $i], 'value' => $_POST['value_' . $i], 'type' => $_POST['type_' . $i]);
@@ -280,7 +280,7 @@ switch ($op) {
         $templatesObj->setVar('tpl_author', $_POST['tpl_author']);
         $tplDate_create = date_create_from_format(_SHORTDATESTRING, $_POST['tpl_date_create']);
         $templatesObj->setVar('tpl_date_create', $tplDate_create->getTimestamp());
-        
+
         // Insert Data
         if ($templatesHandler->insert($templatesObj)) {
             if ($_POST['addopt'] > 0) {

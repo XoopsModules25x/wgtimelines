@@ -21,14 +21,14 @@
  * @version        $Id: 1.0 footer.php 13070 Sat 2016-10-01 05:42:18Z XOOPS Development Team $
  */
 if(count($xoBreadcrumbs) > 1) {
-	$GLOBALS['xoopsTpl']->assign('xoBreadcrumbs', $xoBreadcrumbs);
+    $GLOBALS['xoopsTpl']->assign('xoBreadcrumbs', $xoBreadcrumbs);
 }
 $GLOBALS['xoopsTpl']->assign('adv', $wgtimelines->getConfig('advertise'));
-// 
+//
 $GLOBALS['xoopsTpl']->assign('bookmarks', $wgtimelines->getConfig('bookmarks'));
 $GLOBALS['xoopsTpl']->assign('fbcomments', $wgtimelines->getConfig('fbcomments'));
-// 
+//
 $GLOBALS['xoopsTpl']->assign('admin', WGTIMELINES_ADMIN);
 $GLOBALS['xoopsTpl']->assign('copyright', $copyright);
-// 
+//
 include_once XOOPS_ROOT_PATH .'/footer.php';

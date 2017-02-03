@@ -35,15 +35,15 @@ $adminMenu->addInfoBoxLine(_AM_WGTIMELINES_STATISTICS, '<label>'._AM_WGTIMELINES
 $adminMenu->addInfoBoxLine(_AM_WGTIMELINES_STATISTICS, '<label>'._AM_WGTIMELINES_THEREARE_TEMPLATES.'</label>', $countTemplates);
 // Upload Folders
 $folder = array(
-	WGTIMELINES_UPLOAD_PATH,
-	WGTIMELINES_UPLOAD_PATH . '/images/',
-	WGTIMELINES_UPLOAD_PATH . '/images/timelines/',
-	WGTIMELINES_UPLOAD_PATH . '/images/items/'
+    WGTIMELINES_UPLOAD_PATH,
+    WGTIMELINES_UPLOAD_PATH . '/images/',
+    WGTIMELINES_UPLOAD_PATH . '/images/timelines/',
+    WGTIMELINES_UPLOAD_PATH . '/images/items/'
 );
 // Uploads Folders Created
 foreach(array_keys($folder) as $i) {
-	$adminMenu->addConfigBoxLine($folder[$i], 'folder');
-	$adminMenu->addConfigBoxLine(array($folder[$i], '777'), 'chmod');
+    $adminMenu->addConfigBoxLine($folder[$i], 'folder');
+    $adminMenu->addConfigBoxLine(array($folder[$i], '777'), 'chmod');
 }
 
 // Render Index

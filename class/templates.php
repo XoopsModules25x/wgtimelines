@@ -103,7 +103,7 @@ class WgtimelinesTemplates extends XoopsObject
         $tpl_options = $this->getVar('tpl_options', 'N');
         $options = unserialize($tpl_options);
         $eletray = array();
-        
+
         foreach ($options as $option) {
             switch ($option['name']) {
                 case 'panel_pos':
@@ -503,7 +503,7 @@ class WgtimelinesTemplates extends XoopsObject
             $eletray[$i]->addElement(new XoopsFormText('', 'value_'.$i, 20, 255, ''), false);
             $form->addElement($eletray[$i], false);
         }
-        
+
         // Form label tpl_version
         $form->addElement(new XoopsFormText(_AM_WGTIMELINES_TEMPLATE_VERSION, 'tpl_version', 20, 255, $this->getVar('tpl_version')), true);
         // Form label tpl_author
@@ -511,7 +511,7 @@ class WgtimelinesTemplates extends XoopsObject
         // Form label tpl_date_create
         $tplDate_create = $this->isNew() ? time() : $this->getVar('tpl_date_create');
         $form->addElement(new XoopsFormTextDateSelect(_AM_WGTIMELINES_DATE_CREATE, 'tpl_date_create', '', $tplDate_create));
-        
+
         $form->addElement(new XoopsFormRadioYN(_AM_WGTIMELINES_TEMPLATE_ADDOPT, 'addopt', 0, _YES, _NO), false);
         // To Save
         $form->addElement(new XoopsFormHidden('counter', $i));
@@ -562,7 +562,7 @@ class WgtimelinesTemplates extends XoopsObject
         $ret['file'] = $this->getVar('tpl_file');
         $options = unserialize($this->getVar('tpl_options', 'N'));
         $ret_options = array();
-        
+
         foreach ($options as $option) {
             // get proper option name
             switch ($option['name']) {

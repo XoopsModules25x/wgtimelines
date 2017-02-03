@@ -20,7 +20,7 @@
  * @author         goffy (wedega.com) - Email:<webmaster@wedega.com> - Website:<http://xoops.wedega.com>
  * @version        $Id: 1.0 templates.php 13070 Sat 2016-10-01 05:42:15Z XOOPS Development Team $
  */
- 
+
 /**
  * Class Object WgtimelinesTplsetsdefault
  */

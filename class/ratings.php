@@ -208,10 +208,10 @@ class WgtimelinesRatingsHandler extends XoopsPersistableObjectHandler
         $ItemRating['nb_ratings'] = 0;
         $ItemRating['avg_rate_value'] = 0;
         $ItemRating['size'] = 0;
-        
+
         $rating_unitwidth = 25;
         $max_units = 5;
-        
+
         $criteria   = new Criteria('rate_itemid', $rate_itemid);
         $wgtimelines = WgtimelinesHelper::getInstance();
         $ratingObjs = $wgtimelines->getHandler('ratings')->getObjects($criteria);
@@ -229,7 +229,7 @@ class WgtimelinesRatingsHandler extends XoopsPersistableObjectHandler
             }
         }
         unset($ratingObj);
-        
+
         $ItemRating['uid']            = $uid;
         $ItemRating['nb_ratings']     = $count;
         $ItemRating['avg_rate_value'] = 0;
@@ -244,7 +244,7 @@ class WgtimelinesRatingsHandler extends XoopsPersistableObjectHandler
         $ItemRating['maxsize'] = ($max_units * $rating_unitwidth) . 'px';
         $ItemRating['voted']   = $voted;
         $ItemRating['ip']      = $ip;
-        
+
         return $ItemRating;
     }
 
