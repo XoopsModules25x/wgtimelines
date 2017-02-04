@@ -1,4 +1,9 @@
 ==============================================================
+Change Log for wgTimelines - 2017-02-04 Version 1.06  RC3
+==============================================================
+ - fixed bug in block items (cifug/goffy)
+ 
+==============================================================
 Change Log for wgTimelines - 2017-02-03 Version 1.06  RC2
 ==============================================================
  - fixed problem with hiding empty paragraphs (goffy)
