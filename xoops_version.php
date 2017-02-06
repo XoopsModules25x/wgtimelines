@@ -226,13 +226,21 @@ $modversion['config'][$c]['description'] = '_MI_WGTIMELINES_RATINGBARS_DESC';
 $modversion['config'][$c]['formtype']    = 'yesno';
 $modversion['config'][$c]['valuetype']   = 'int';
 $modversion['config'][$c]['default']     = 1;
+
+$group_handler = xoops_getHandler('group');
+$group_arr     = $group_handler->getObjects();
+$ratingbar_groups = array();
+foreach (array_keys($group_arr) as $i) {
+    $ratingbar_groups[$group_arr[$i]->getVar('name')] = $group_arr[$i]->getVar('groupid');
+}
 $c++;
 $modversion['config'][$c]['name']        = 'ratingbar_groups';
 $modversion['config'][$c]['title']       = '_MI_WGTIMELINES_RATINGBAR_GROUPS';
 $modversion['config'][$c]['description'] = '_MI_WGTIMELINES_RATINGBAR_GROUPS_DESC';
-$modversion['config'][$c]['formtype']    = 'group_multi';
+$modversion['config'][$c]['formtype']    = 'select_multi';
 $modversion['config'][$c]['valuetype']   = 'array';
-$modversion['config'][$c]['default']     = '1';
+$modversion['config'][$c]['default']     = array('1');
+$modversion['config'][$c]['options']     = $ratingbar_groups;
 ++$c;
 // Timeline name
 $modversion['config'][$c]['name']        = 'tl_name';

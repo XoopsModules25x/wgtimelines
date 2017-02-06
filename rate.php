@@ -35,10 +35,10 @@ switch ($op) {
         $rating       = XoopsRequest::getInt('rating');
         $tl_id        = XoopsRequest::getInt('tl_id', 0);
 
-        $groups       = (isset($GLOBALS['xoopsUser']) && is_object($GLOBALS['xoopsUser'])) ? $GLOBALS['xoopsUser']->getGroups() : XOOPS_GROUP_ANONYMOUS;
         // Checking permissions
         $rate_allowed = false;
         if ($wgtimelines->getConfig('ratingbars')) {
+            $groups = (isset($GLOBALS['xoopsUser']) && is_object($GLOBALS['xoopsUser'])) ? $GLOBALS['xoopsUser']->getGroups() : XOOPS_GROUP_ANONYMOUS;
             foreach ($groups as $group) {
                 if (XOOPS_GROUP_ADMIN == $group || in_array($group, $wgtimelines->getConfig('ratingbar_groups'))) {
                     $rate_allowed = true;
