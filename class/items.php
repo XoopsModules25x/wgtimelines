@@ -40,7 +40,7 @@ class WgtimelinesItems extends XoopsObject
         $this->initVar('item_content', XOBJ_DTYPE_TXTAREA);
         $this->initVar('item_image', XOBJ_DTYPE_TXTBOX);
         $this->initVar('item_date', XOBJ_DTYPE_INT);
-        $this->initVar('item_year', XOBJ_DTYPE_INT);
+        $this->initVar('item_year', XOBJ_DTYPE_TXTBOX);
         $this->initVar('item_icon', XOBJ_DTYPE_TXTBOX);
         $this->initVar('item_weight', XOBJ_DTYPE_INT);
         $this->initVar('item_online', XOBJ_DTYPE_INT);
@@ -197,7 +197,7 @@ class WgtimelinesItems extends XoopsObject
         }
         $ret['image'] = $this->getVar('item_image');
         if ($this->getVar('item_date') > 0) $ret['date'] = formatTimestamp($this->getVar('item_date'), 's');
-        if ($this->getVar('item_year') > 0) $ret['year'] = $this->getVar('item_year');
+        $ret['year'] = $this->getVar('item_year');
         $ret['icon'] = $this->getVar('item_icon');
         $ret['weight'] = $this->getVar('item_weight');
         $ret['reads'] = $this->getVar('item_reads');

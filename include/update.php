@@ -53,6 +53,11 @@ function xoops_module_update_wgtimelines(&$module, $prev_version = null)
         $ret = update_wgtimelines_v106($module);
     }
     $errors = $module->getErrors();
+    if ($prev_version < 107) {
+        $ret = update_wgtimelines_v107($module);
+    }
+    $errors = $module->getErrors();
+    
     // create table 'wgtimelines_tplsetsdefault' in any case
     $ret = update_tplsetsdefault($module);
     $errors = $module->getErrors();
@@ -102,6 +107,28 @@ function update_tplsetsdefault(&$module)
         }
     }
 
+    return true;
+}
+
+/**
+ * @param $module
+ *
+ * @return bool
+ */
+function update_wgtimelines_v107(&$module)
+{
+    $sql = 'ALTER TABLE `' . $GLOBALS['xoopsDB']->prefix('wgtimelines_items') . '` CHANGE `item_year` `item_year` VARCHAR(50) NULL DEFAULT NULL;';
+    if (!$result = $GLOBALS['xoopsDB']->queryF($sql)) {
+        xoops_error($GLOBALS['xoopsDB']->error() . '<br>' . $sql);
+        $module->setErrors('error when changing fieldtype of item_year to varchar');
+        return false;
+    }
+    $sql = "UPDATE `" . $GLOBALS['xoopsDB']->prefix('wgtimelines_items') . "` SET `item_year` = '' WHERE `" . $GLOBALS['xoopsDB']->prefix('wgtimelines_items') . "`.`item_year` = 0;";
+    if (!$result = $GLOBALS['xoopsDB']->queryF($sql)) {
+        xoops_error($GLOBALS['xoopsDB']->error() . '<br>' . $sql);
+        $module->setErrors('error when changing fieldtype of item_year to varchar');
+        return false;
+    }    
     return true;
 }
 

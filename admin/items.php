@@ -126,7 +126,7 @@ switch($op) {
         } else {
             $itemsObj->setVar('item_date', 0);
         }
-        $itemsObj->setVar('item_year', isset($_POST['item_year']) ? $_POST['item_year'] : 0);
+        $itemsObj->setVar('item_year', isset($_POST['item_year']) ? $_POST['item_year'] : '');
         $itemsObj->setVar('item_icon', isset($_POST['item_icon']) ? $_POST['item_icon'] : 'none');
         $itemsObj->setVar('item_weight', isset($_POST['item_weight']) ? $_POST['item_weight'] : 0);
         $itemsObj->setVar('item_reads', isset($_POST['item_reads']) ? $_POST['item_reads'] : 0);

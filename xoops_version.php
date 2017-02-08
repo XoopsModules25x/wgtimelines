@@ -25,7 +25,7 @@
 $dirname = basename(__DIR__);
 // ------------------- Informations ------------------- //
 $modversion['name']                = _MI_WGTIMELINES_NAME;
-$modversion['version']             = '1.06';
+$modversion['version']             = '1.07';
 $modversion['description']         = _MI_WGTIMELINES_DESC;
 $modversion['author']              = 'goffy (wedega.com)';
 $modversion['author_mail']         = 'webmaster@wedega.com';
@@ -57,8 +57,8 @@ $modversion['support_url']         = 'http://xoops.org/modules/newbb';
 $modversion['support_name']        = 'Support Forum';
 $modversion['module_website_url']  = 'xoops.wedega.com';
 $modversion['module_website_name'] = 'XOOPS on Wedega';
-$modversion['release']             = '02/03/2017'; // mm/dd/yyyy
-$modversion['module_status']       = 'RC3';
+$modversion['release']             = '02/08/2017'; // mm/dd/yyyy
+$modversion['module_status']       = 'RC1';
 $modversion['system_menu']         = 1;
 $modversion['hasAdmin']            = 1;
 $modversion['hasMain']             = 1;

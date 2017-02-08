@@ -1,4 +1,9 @@
 ==============================================================
+Change Log for wgTimelines - 2017-02-08 Version 1.07  RC1
+==============================================================
+ - changed field item_year to varchar (mamba/goffy)
+ 
+==============================================================
 Change Log for wgTimelines - 2017-02-04 Version 1.06  RC3
 ==============================================================
  - fixed bug in block items (cifug/goffy)
