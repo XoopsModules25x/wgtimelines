@@ -1,4 +1,10 @@
 ==============================================================
+Change Log for wgTimelines - 2017-02-09 Version 1.07  RC2
+==============================================================
+ - fixed bug show/hide timeline description (frank/goffy)
+ - fixed bug in creation file name for image upload (frank/goffy)
+ 
+==============================================================
 Change Log for wgTimelines - 2017-02-08 Version 1.07  RC1
 ==============================================================
  - changed field item_year to varchar (mamba/goffy)

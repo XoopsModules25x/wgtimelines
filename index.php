@@ -59,7 +59,7 @@ if ($timelinesCount > 0) {
         foreach (array_keys($timelinesAll) as $i) {
             $tl_template  = $timelinesAll[$i]->getVar('tl_template');
             $tl_name      = $timelinesAll[$i]->getVar('tl_name');
-            $tl_desc      = $timelinesAll[$i]->getVar('tl_desc', 'n');
+            $tl_desc      = $timelinesAll[$i]->getVar('tl_desc', 'show');
             $tl_sortby    = $timelinesAll[$i]->getVar('tl_sortby');
             $tl_limit     = $timelinesAll[$i]->getVar('tl_limit');
             // get template and template options
@@ -220,8 +220,8 @@ if ($timelinesCount > 0) {
         $GLOBALS['xoTheme']->addStylesheet($style, null);
         foreach (array_keys($timelinesAll) as $i) {
             $timelines[$i] = $timelinesAll[$i]->getValuesTimelines();
-            if ($wgtimelines->getConfig('tl_description') < 2) {
-                $timelines[$i]['tl_desc'] = 'aaa';
+            if ($wgtimelines->getConfig('tl_description') > 1) {
+                $timelines[$i]['timeline_desc'] = $timelines[$i]['desc'];
             }
             $keywords[] = $timelinesAll[$i]->getVar('tl_name');
         }

@@ -9,7 +9,7 @@
 			<div class="col-xs-12 cols-sm-12">
 		<{/if}>
 		<p class="timeline-list-link"><a href="<{$wgtimelines_url}>/index.php?op=list&amp;tl_id=<{$timeline.id}>" title="<{$timeline.name}>"><{$timeline.name}></a></p>
-		<p><{$timeline.desc}></p>
+		<{if $timeline.timeline_desc}><p><{$timeline.timeline_desc}></p><{/if}>
 		</div>
 	</div>
 <{/foreach}>

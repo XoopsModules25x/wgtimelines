@@ -45,6 +45,7 @@ class WgtimelinesTimelines extends XoopsObject
         $this->initVar('tl_online', XOBJ_DTYPE_INT);
         $this->initVar('tl_submitter', XOBJ_DTYPE_INT);
         $this->initVar('tl_date_create', XOBJ_DTYPE_INT);
+        $this->initVar('dohtml', XOBJ_DTYPE_INT, 1, false);
     }
 
     /**

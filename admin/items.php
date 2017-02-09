@@ -107,8 +107,8 @@ switch($op) {
                                             $wgtimelines->getConfig('mimetypes'),
                                             $wgtimelines->getConfig('maxsize'), null, null);
         if($uploader->fetchMedia($_POST['xoops_upload_file'][0])) {
-            $extension = preg_replace('/^.+\.([^.]+)$/sU', '', $_FILES['attachedfile']['name']);
-            $imgName = str_replace(' ', '', $_POST['item_name']).'.'.$extension;
+            $filename = pathinfo($_FILES['attachedfile']['name'], PATHINFO_FILENAME);
+            $imgName = preg_replace('/[^a-zA-Z0-9\.\_\-]/', '', $filename) . ".";
             $uploader->setPrefix($imgName);
             $uploader->fetchMedia($_POST['xoops_upload_file'][0]);
             if(!$uploader->upload()) {
