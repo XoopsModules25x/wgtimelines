@@ -1,4 +1,9 @@
 ==============================================================
+Change Log for wgTimelines - 2017-02-09 Version 1.07  RC3
+==============================================================
+ - fixed html output problem (goffy)
+ 
+==============================================================
 Change Log for wgTimelines - 2017-02-09 Version 1.07  RC2
 ==============================================================
  - fixed bug show/hide timeline description (frank/goffy)

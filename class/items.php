@@ -186,7 +186,7 @@ class WgtimelinesItems extends XoopsObject
         $ret['tl_name'] = $timeline_obj->getVar('tl_name');
         $ret['title'] = $this->getVar('item_title');
         $ret['content'] = $this->getVar('item_content', 'show');
-        $content = $this->getVar('item_content', 'n');
+        $content = $this->getVar('item_content', 'show'); //show wichtig bei tl_limit>0
         $tl_limit = $timeline_obj->getVar('tl_limit');
         $ret['tl_limit'] = $tl_limit;
         $ret['content_admin'] = $wgtimelines->truncateHtml($content);
