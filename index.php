@@ -87,6 +87,14 @@ if ($timelinesCount > 0) {
 
             // Define Stylesheet
             $GLOBALS['xoTheme']->addStylesheet($style, null);
+            // assets for magnific popup
+            if ($wgtimelines->getConfig('use_magnific') == 1) {
+                $GLOBALS['xoTheme']->addStylesheet(WGTIMELINES_URL . '/assets/css/magnific-popup.css');
+                $GLOBALS['xoTheme']->addStylesheet(WGTIMELINES_URL . '/assets/css/wgtimelines.magnific.css');
+                $GLOBALS['xoTheme']->addScript(WGTIMELINES_URL . '/assets/js/jquery.magnific-popup.min.js', array('type' => 'text/javascript'));
+                $GLOBALS['xoTheme']->addScript(WGTIMELINES_URL . '/assets/js/wgtimelines.magnific.js', array('type' => 'text/javascript'));
+                $GLOBALS['xoopsTpl']->assign('use_magnific', true);
+            }
             //
             $GLOBALS['xoopsTpl']->assign('xoops_icons32_url', XOOPS_ICONS32_URL);
             $GLOBALS['xoopsTpl']->assign('wgtimelines_url', WGTIMELINES_URL);

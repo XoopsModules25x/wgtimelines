@@ -40,7 +40,7 @@ define('_AM_WGTIMELINES_FORM_UPLOAD_IMAGE', 'Bilder hochladen');
 define('_AM_WGTIMELINES_SUBMITTER', 'Einsender');
 define('_AM_WGTIMELINES_DATE_CREATE', 'Erstellt am');
 define('_AM_WGTIMELINES_ONLINE', 'Online');
-
+define('_AM_WGTIMELINES_COPY', 'Kopieren');
 // Lists
 define('_AM_WGTIMELINES_TIMELINES_LIST', 'Liste der Zeitreihen');
 define('_AM_WGTIMELINES_ITEMS_LIST', 'Liste der Einräge');
@@ -61,6 +61,11 @@ define('_AM_WGTIMELINES_TIMELINE_SORTBY_Y_DESC', 'Jahr/Datum absteigend');
 define('_AM_WGTIMELINES_TIMELINE_SORTBY_ADMIN', 'Im Admin angezeigte Reihenfolge');
 define('_AM_WGTIMELINES_TIMELINE_LIMIT', 'Zeichenbegrenzung');
 define('_AM_WGTIMELINES_TIMELINE_LIMIT_DESC', '0 = gesamter Text wird angezeigt, ansonsten kann der weitere Text mit "Mehr lesen" angezeigt werden');
+define('_AM_WGTIMELINES_TIMELINE_DATETIME', 'Datum/Uhrzeit anzeigen (sofern von der Vorlage unterstützt)');
+define('_AM_WGTIMELINES_TIMELINE_DATETIME_NO', 'Nein');
+define('_AM_WGTIMELINES_TIMELINE_DATETIME_ONLY_D', 'Nur Datum');
+define('_AM_WGTIMELINES_TIMELINE_DATETIME_ONLY_T', 'Nur Uhrzeit');
+define('_AM_WGTIMELINES_TIMELINE_DATETIME_BOTH', 'Datum und Uhrzeit');
 // Template add/edit
 define('_AM_WGTIMELINES_TEMPLATE_ADD', 'Vorlage hinzufügen');
 define('_AM_WGTIMELINES_TEMPLATE_EDIT', 'Vorlage bearbeiten');
@@ -155,7 +160,7 @@ define('_AM_WGTIMELINES_ITEM_TL_ID', 'Zeitreihe');
 define('_AM_WGTIMELINES_ITEM_TITLE', 'Titel');
 define('_AM_WGTIMELINES_ITEM_CONTENT', 'Inhalt');
 define('_AM_WGTIMELINES_ITEM_IMAGE', 'Bild');
-define('_AM_WGTIMELINES_ITEM_DATE', 'Datum');
+define('_AM_WGTIMELINES_ITEM_DATE', 'Datum/Zeit');
 define('_AM_WGTIMELINES_ITEM_YEAR', 'Jahr');
 define('_AM_WGTIMELINES_ITEM_ICON', 'Icon');
 define('_AM_WGTIMELINES_ITEM_READS', 'Gelesen');

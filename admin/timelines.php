@@ -52,6 +52,15 @@ switch($op) {
                 } else {
                     $timeline['sortby_text'] = _AM_WGTIMELINES_TIMELINE_SORTBY_ADMIN;
                 }
+                if ($timeline['tl_datetime'] == 1) {
+                    $timeline['datetime_text'] = _AM_WGTIMELINES_TIMELINE_DATETIME_ONLY_D;
+                } else if ($timeline['tl_datetime'] == 2) {
+                    $timeline['datetime_text'] = _AM_WGTIMELINES_TIMELINE_DATETIME_ONLY_T;
+                } else if ($timeline['tl_datetime'] == 3) {
+                    $timeline['datetime_text'] = _AM_WGTIMELINES_TIMELINE_DATETIME_BOTH;
+                } else {
+                    $timeline['datetime_text'] = _AM_WGTIMELINES_TIMELINE_DATETIME_NO;
+                }
                 $GLOBALS['xoopsTpl']->append('timelines_list', $timeline);
                 unset($timeline);
             }
@@ -114,6 +123,7 @@ switch($op) {
         $timelinesObj->setVar('tl_template', isset($_POST['tl_template']) ? $_POST['tl_template'] : 0);
         $timelinesObj->setVar('tl_sortby', isset($_POST['tl_sortby']) ? $_POST['tl_sortby'] : 0);
         $timelinesObj->setVar('tl_limit', isset($_POST['tl_limit']) ? $_POST['tl_limit'] : 0);
+        $timelinesObj->setVar('tl_datetime', isset($_POST['tl_datetime']) ? $_POST['tl_datetime'] : 0);
         $timelinesObj->setVar('tl_online', isset($_POST['tl_online']) ? $_POST['tl_online'] : 0);
         $timelinesObj->setVar('tl_submitter', isset($_POST['tl_submitter']) ? $_POST['tl_submitter'] : 0);
         $timelineDate_create = date_create_from_format(_SHORTDATESTRING, $_POST['tl_date_create']);

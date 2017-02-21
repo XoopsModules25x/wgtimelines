@@ -11,6 +11,7 @@
             <th class="center"><{$smarty.const._AM_WGTIMELINES_TIMELINE_TEMPLATE}></th>
             <th class="center"><{$smarty.const._AM_WGTIMELINES_TIMELINE_SORTBY}></th>
 			<th class="center"><{$smarty.const._AM_WGTIMELINES_TIMELINE_LIMIT}></th>
+            <th class="center"><{$smarty.const._AM_WGTIMELINES_TIMELINE_DATETIME}></th>
             <th class="center"><{$smarty.const._AM_WGTIMELINES_ONLINE}></th>
             <th class="center"><{$smarty.const._AM_WGTIMELINES_SUBMITTER}></th>
             <th class="center"><{$smarty.const._AM_WGTIMELINES_DATE_CREATE}></th>
@@ -27,6 +28,7 @@
             <td class="center"><{$timeline.template}></td>
             <td class="center"><{$timeline.sortby_text}></td>
 			<td class="center"><{$timeline.limit}></td>
+            <td class="center"><{$timeline.datetime_text}></td>
             <td class="center">
                 <a href="timelines.php?op=set_onoff&amp;tl_id=<{$timeline.id}>" title="<{$timeline.online}>">
                     <{if $timeline.online == 1}>

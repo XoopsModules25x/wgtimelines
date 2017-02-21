@@ -44,26 +44,34 @@
                     </div>
                     <div class="timeline-body">
                         <{if $panel_imgpos == 'top' && $item.image}>
-                            <span class='col-sm-12'><img class='img-timeline img-timeline-<{$panel_imgpos}> img-responsive <{$imgstyle}>' src='<{$wgtimelines_upload_url}>/images/items/<{$item.image}>' alt='items' /></span>
+                            <span class="col-sm-12">
+                                <{if $use_magnific}><a class="image-popup-no-margins" href="<{$wgtimelines_upload_url}>/images/items/<{$item.image}>"><{/if}>
+                                <img class="img-timeline img-timeline-<{$panel_imgpos}> img-responsive <{$imgstyle}> " src="<{$wgtimelines_upload_url}>/images/items/<{$item.image}>"  alt="<{$item.title}>" />
+                                <{if $use_magnific}></a><{/if}>
+                            </span>
                         <{/if}>
-						<span class='col-sm-12'>
+						<span class="col-sm-12">
                         <p><{$item.content}></p>
 						<{if $item.readmore}>
-							<p class='timeline-item-readmore right'>
+							<p class="timeline-item-readmore right">
 								<a href="items.php?op=read&amp;item_id=<{$item.id}>" title="<{$smarty.const._MA_WGTIMELINES_READMORE}>"><{$smarty.const._MA_WGTIMELINES_READMORE}>...</a>
 							</p>
 						<{/if}>
 						</span>
                         <{if $panel_imgpos == 'bottom' && $item.image}>
-                            <span class='col-sm-12'><img class='img-timeline img-timeline-<{$panel_imgpos}> img-responsive <{$imgstyle}>' src='<{$wgtimelines_upload_url}>/images/items/<{$item.image}>' alt='items' /></span>
+                            <span class="col-sm-12">
+                                <{if $use_magnific}><a class="image-popup-no-margins" href="<{$wgtimelines_upload_url}>/images/items/<{$item.image}>"><{/if}>
+                                <img class="img-timeline img-timeline-<{$panel_imgpos}> img-responsive <{$imgstyle}> " src="<{$wgtimelines_upload_url}>/images/items/<{$item.image}>"  alt="<{$item.title}>" />
+                                <{if $use_magnific}></a><{/if}>
+                            </span>
                         <{/if}>
                     </div>
 					<{if $rating}>
-						<span class='col-xs-12 col-sm-12 timeline-item-reads'><{include file='db:wgtimelines_ratingbar.tpl'}></span>
+						<span class="col-xs-12 col-sm-12 timeline-item-reads"><{include file='db:wgtimelines_ratingbar.tpl'}></span>
 					<{/if}>
                     <{if $showreads}>
-						<span class='col-xs-12 col-sm-6 timeline-item-reads timeline-footer-left'>
-							<i class='glyphicon glyphicon-eye-open'> <{$smarty.const._MA_WGTIMELINES_ITEM_READS}>: <{$item.reads}></i>
+						<span class="col-xs-12 col-sm-6 timeline-item-reads timeline-footer-left">
+							<i class="glyphicon glyphicon-eye-open"> <{$smarty.const._MA_WGTIMELINES_ITEM_READS}>: <{$item.reads}></i>
 						</span>
 					<{/if}>	
 					
@@ -73,7 +81,7 @@
                         </span>
                     <{/if}>
 					<{if $isAdmin}>
-						<p class='admin-area right'>
+						<p class="admin-area right">
 							<a href="admin/items.php?op=edit&amp;ui=user&amp;item_id=<{$item.id}>" title="<{$smarty.const._EDIT}>">
 								<img src="<{xoModuleIcons16 edit.png}>" alt="items" />
 							</a>

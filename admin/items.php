@@ -83,9 +83,32 @@ switch($op) {
         $itemsObj = $itemsHandler->create();
         $form = $itemsObj->getFormItems();
         $GLOBALS['xoopsTpl']->assign('form', $form->render());
-
+    break;
+    case 'editcopy':
+        $templateMain = 'wgtimelines_admin_items.tpl';
+        $GLOBALS['xoopsTpl']->assign('navigation', $adminMenu->addNavigation('items.php'));
+        $adminMenu->addItemButton(_AM_WGTIMELINES_ITEMS_LIST, 'items.php', 'list');
+        $GLOBALS['xoopsTpl']->assign('buttons', $adminMenu->renderButton());
+        // Get Form
+        $itemsObj = $itemsHandler->create();
+        $itemsObjOld = $itemsHandler->get($itemId);
+        $itemsObj->unsetNew();
+        $itemsObj->setVar('item_tl_id',   $itemsObjOld->getVar('item_tl_id'));
+        $itemsObj->setVar('item_title',   $itemsObjOld->getVar('item_title'));
+        $itemsObj->setVar('item_content', $itemsObjOld->getVar('item_content'));
+        $itemsObj->setVar('item_image',   $itemsObjOld->getVar('item_image'));
+        $itemsObj->setVar('item_date',    $itemsObjOld->getVar('item_date'));
+        $itemsObj->setVar('item_year',    $itemsObjOld->getVar('item_year'));
+        $itemsObj->setVar('item_icon',    $itemsObjOld->getVar('item_icon'));
+        $itemsObj->setVar('item_weight',  $itemsObjOld->getVar('item_weight'));
+        $itemsObj->setVar('item_reads',   0);
+        $itemsObj->setVar('item_online',  0);
+        unset($itemsObjOld);
+        $form = $itemsObj->getFormItems('items.php?op=save_copy');
+        $GLOBALS['xoopsTpl']->assign('form', $form->render());
     break;
     case 'save':
+    case 'save_copy':
         // Security Check
         if(!$GLOBALS['xoopsSecurity']->check()) {
             redirect_header('items.php', 3, implode(',', $GLOBALS['xoopsSecurity']->getErrors()));
@@ -120,12 +143,7 @@ switch($op) {
         } else {
             $itemsObj->setVar('item_image', $_POST['item_image']);
         }
-        $itemDate = date_create_from_format(_SHORTDATESTRING, $_POST['item_date']);
-        if ($itemDate) {
-            $itemsObj->setVar('item_date', $itemDate->getTimestamp());
-        } else {
-            $itemsObj->setVar('item_date', 0);
-        }
+        $itemsObj->setVar('item_date', strtotime($_POST['item_date']['date']) + intval($_POST['item_date']['time']));
         $itemsObj->setVar('item_year', isset($_POST['item_year']) ? $_POST['item_year'] : '');
         $itemsObj->setVar('item_icon', isset($_POST['item_icon']) ? $_POST['item_icon'] : 'none');
         $itemsObj->setVar('item_weight', isset($_POST['item_weight']) ? $_POST['item_weight'] : 0);

@@ -25,7 +25,7 @@
 $dirname = basename(__DIR__);
 // ------------------- Informations ------------------- //
 $modversion['name']                = _MI_WGTIMELINES_NAME;
-$modversion['version']             = '1.07';
+$modversion['version']             = '1.08';
 $modversion['description']         = _MI_WGTIMELINES_DESC;
 $modversion['author']              = 'goffy (wedega.com)';
 $modversion['author_mail']         = 'webmaster@wedega.com';
@@ -58,7 +58,7 @@ $modversion['support_name']        = 'Support Forum';
 $modversion['module_website_url']  = 'xoops.wedega.com';
 $modversion['module_website_name'] = 'XOOPS on Wedega';
 $modversion['release']             = '02/08/2017'; // mm/dd/yyyy
-$modversion['module_status']       = 'RC3';
+$modversion['module_status']       = 'RC1';
 $modversion['system_menu']         = 1;
 $modversion['hasAdmin']            = 1;
 $modversion['hasMain']             = 1;
@@ -320,4 +320,12 @@ $modversion['config'][$c]['formtype']    = 'select';
 $modversion['config'][$c]['valuetype']   = 'int';
 $modversion['config'][$c]['default']     = 1;
 $modversion['config'][$c]['options']     = array(_MI_WGTIMELINES_STARTPAGE_LIST => 1, _MI_WGTIMELINES_STARTPAGE_FIRST => 3);
+++$c;
+// start page for module
+$modversion['config'][$c]['name']        = 'use_magnific';
+$modversion['config'][$c]['title']       = '_MI_WGTIMELINES_MAGNIFIC';
+$modversion['config'][$c]['description'] = '_MI_WGTIMELINES_MAGNIFIC_DESC';
+$modversion['config'][$c]['formtype']    = 'yesno';
+$modversion['config'][$c]['valuetype']   = 'int';
+$modversion['config'][$c]['default']     = 0;
 ++$c;

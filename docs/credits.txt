@@ -8,3 +8,5 @@ Glyphicons: Includes over 250 glyphs in font format from the Glyphicon Halflings
 Joshua P. Larson (http://codepen.io/jplhomer/pen/lgfus)
 Bruno Rodrigues (http://codepen.io/itbruno/pen/KwarLp)
 CodyHouse
+
+Magnific Popup by Dmitry Semenov http://dimsemenov.com/plugins/magnific-popup/

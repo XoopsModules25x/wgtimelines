@@ -40,42 +40,48 @@
             <li id="<{$item.badgecontent}>" class="selected">
                 <{if $orientation == 'horizontal'}>
                     <{if $item.image}>
-                        <div class='slider-img-horizontal'>
-                            <img class="img-responsive center <{$imgstyle}>" src="<{$wgtimelines_upload_url}>/images/items/<{$item.image}>" alt="<{$item.title}>" "/>
+                        <div class="slider-img-horizontal">
+                            <{if $use_magnific}><a class="image-popup-no-margins" href="<{$wgtimelines_upload_url}>/images/items/<{$item.image}>"><{/if}>
+                            <img class="img-timeline img-timeline-<{$panel_imgpos}> img-responsive <{$imgstyle}> " src="<{$wgtimelines_upload_url}>/images/items/<{$item.image}>"  alt="<{$item.title}>" />
+                            <{if $use_magnific}></a><{/if}>
                         </div>
-                        <div class=''>
+                        <div class="">
                     <{else}>
-                        <div id="item<{$item.id}>" class='slider-content'>
+                        <div id="item<{$item.id}>" class="slider-content">
                     <{/if}>
                             <h2><{$item.title}></h2>
                             <p><{$item.content}></p>
 							<{if $item.readmore}>
-								<p class='timeline-item-readmore right'>
+								<p class="timeline-item-readmore right">
 									<a href="items.php?op=read&amp;item_id=<{$item.id}>" title="<{$smarty.const._MA_WGTIMELINES_READMORE}>"><{$smarty.const._MA_WGTIMELINES_READMORE}>...</a>
 								</p>
 							<{/if}>
                         </div>
                 <{else}>
                     <{if $item.image}>
-                    <div class='col-xs-12 col-sm-12'><img class="img-responsive center <{$imgstyle}>" src="<{$wgtimelines_upload_url}>/images/items/<{$item.image}>" alt="<{$item.title}>" "/></div>
+                    <div class="col-xs-12 col-sm-12">
+                        <{if $use_magnific}><a class="image-popup-no-margins" href="<{$wgtimelines_upload_url}>/images/items/<{$item.image}>"><{/if}>
+                        <img class="img-timeline img-timeline-<{$panel_imgpos}> img-responsive <{$imgstyle}> " src="<{$wgtimelines_upload_url}>/images/items/<{$item.image}>"  alt="<{$item.title}>" />
+                        <{if $use_magnific}></a><{/if}>
+                    </div>
                     <{/if}>
-                    <div id="item<{$item.id}>" class='col-xs-12 col-sm-12'>
+                    <div id="item<{$item.id}>" class="col-xs-12 col-sm-12">
                         <h2><{$item.title}></h2>
                         <p><{$item.content}></p>
 						<{if $item.readmore}>
-							<p class='timeline-item-readmore right'>
+							<p class="timeline-item-readmore right">
 								<a href="items.php?op=read&amp;item_id=<{$item.id}>" title="<{$smarty.const._MA_WGTIMELINES_READMORE}>"><{$smarty.const._MA_WGTIMELINES_READMORE}>...</a>
 							</p>
 						<{/if}>
                     </div>
                 <{/if}>
 				<{if $showreads}>
-					<div class='col-xs-12 col-sm-6 timeline-item-reads pull-left'>
-						<i class='glyphicon glyphicon-eye-open'> <{$smarty.const._MA_WGTIMELINES_ITEM_READS}>: <{$item.reads}></i>
+					<div class="col-xs-12 col-sm-6 timeline-item-reads pull-left">
+						<i class="glyphicon glyphicon-eye-open"> <{$smarty.const._MA_WGTIMELINES_ITEM_READS}>: <{$item.reads}></i>
 					</div><br>
 				<{/if}>	
 				<{if $isAdmin}>
-					<div class='col-xs-12 col-sm-6 admin-area pull-right'>
+					<div class="col-xs-12 col-sm-6 admin-area pull-right">
 						<a href="admin/items.php?op=edit&amp;ui=user&amp;item_id=<{$item.id}>" title="<{$smarty.const._EDIT}>">
 							<img src="<{xoModuleIcons16 edit.png}>" alt="items" />
 						</a>
@@ -85,7 +91,7 @@
 					</div><br>
 				<{/if}>
 				<{if $rating}>
-					<div class='col-xs-12 col-sm-12 timeline-item-rating pull-left'><{include file='db:wgtimelines_ratingbar.tpl'}></div>
+					<div class="col-xs-12 col-sm-12 timeline-item-rating pull-left"><{include file='db:wgtimelines_ratingbar.tpl'}></div>
 				<{/if}>	
 			</li>
             <{/foreach}>

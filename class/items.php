@@ -40,6 +40,7 @@ class WgtimelinesItems extends XoopsObject
         $this->initVar('item_content', XOBJ_DTYPE_TXTAREA);
         $this->initVar('item_image', XOBJ_DTYPE_TXTBOX);
         $this->initVar('item_date', XOBJ_DTYPE_INT);
+        $this->initVar('item_item', XOBJ_DTYPE_INT);
         $this->initVar('item_year', XOBJ_DTYPE_TXTBOX);
         $this->initVar('item_icon', XOBJ_DTYPE_TXTBOX);
         $this->initVar('item_weight', XOBJ_DTYPE_INT);
@@ -130,8 +131,8 @@ class WgtimelinesItems extends XoopsObject
         $imageTray->addElement($fileSelectTray);
         $form->addElement($imageTray);
         // Form Text Date Select
-        $itemDate = $this->isNew() ? 0 : $this->getVar('item_date');
-        $form->addElement(new XoopsFormTextDateSelect(_AM_WGTIMELINES_ITEM_DATE, 'item_date', '', $itemDate));
+        $itemDate = $this->isNew() ? mktime(0, 0, 0, date("m"), date("d"), date("Y")) : $this->getVar('item_date');
+        $form->addElement(new XoopsFormDateTime(_AM_WGTIMELINES_ITEM_DATE, 'item_date', 15, $itemDate));
         // Form Text ItemYear
         if ($this->isNew()) {
             $itemYear = formatTimestamp(time(), 'Y');
@@ -196,7 +197,26 @@ class WgtimelinesItems extends XoopsObject
             $ret['content_admin'] = $wgtimelines->truncateHtml($content, $timeline_obj->getVar('tl_limit'));
         }
         $ret['image'] = $this->getVar('item_image');
-        if ($this->getVar('item_date') > 0) $ret['date'] = formatTimestamp($this->getVar('item_date'), 's');
+        if ($this->getVar('item_date') > 0) {
+            $tl_datetime = $timeline_obj->getVar('tl_datetime');
+            switch ($tl_datetime) {
+                case 1:
+                    $ret['date'] = formatTimestamp($this->getVar('item_date'), 's');
+                break;
+                case 2:
+                    $ret['date'] = formatTimestamp($this->getVar('item_date'), 'H:i');
+                break;
+                case 3:
+                    $ret['date'] = formatTimestamp($this->getVar('item_date'), 'm');
+                break;
+                case '0':
+                default:
+                    $ret['date'] = "";
+                break;
+            }
+            $ret['date_admin'] = formatTimestamp($this->getVar('item_date'), 'm');
+        }
+        //if ($this->getVar('item_time') > 0) $ret['time'] = formatTimestamp($this->getVar('item_time'), 'H:i');
         $ret['year'] = $this->getVar('item_year');
         $ret['icon'] = $this->getVar('item_icon');
         $ret['weight'] = $this->getVar('item_weight');

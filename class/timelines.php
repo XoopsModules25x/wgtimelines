@@ -42,6 +42,7 @@ class WgtimelinesTimelines extends XoopsObject
         $this->initVar('tl_template', XOBJ_DTYPE_INT);
         $this->initVar('tl_sortby', XOBJ_DTYPE_INT);
         $this->initVar('tl_limit', XOBJ_DTYPE_INT);
+        $this->initVar('tl_datetime', XOBJ_DTYPE_INT);
         $this->initVar('tl_online', XOBJ_DTYPE_INT);
         $this->initVar('tl_submitter', XOBJ_DTYPE_INT);
         $this->initVar('tl_date_create', XOBJ_DTYPE_INT);
@@ -134,6 +135,14 @@ class WgtimelinesTimelines extends XoopsObject
         // Form Text TlLimit
         $tlLimit = $this->isNew() ? 0 : $this->getVar('tl_limit');
         $form->addElement(new XoopsFormText(_AM_WGTIMELINES_TIMELINE_LIMIT . '<br>' . _AM_WGTIMELINES_TIMELINE_LIMIT_DESC, 'tl_limit', 20, 255, $tlLimit), true);
+        // Form Text tlDateTime
+        $tlDateTime = $this->isNew() ? 1 : $this->getVar('tl_datetime');
+        $tlDateTimeSelect = new XoopsFormSelect(_AM_WGTIMELINES_TIMELINE_DATETIME, 'tl_datetime', $tlDateTime);
+        $tlDateTimeSelect->addOption(0, _AM_WGTIMELINES_TIMELINE_DATETIME_NO);
+        $tlDateTimeSelect->addOption(1, _AM_WGTIMELINES_TIMELINE_DATETIME_ONLY_D);
+        $tlDateTimeSelect->addOption(2, _AM_WGTIMELINES_TIMELINE_DATETIME_ONLY_T);
+        $tlDateTimeSelect->addOption(3, _AM_WGTIMELINES_TIMELINE_DATETIME_BOTH);
+        $form->addElement($tlDateTimeSelect, true);
         // Form Text TlWeight
         $timelinesHandler = $wgtimelines->getHandler('timelines');
         $tlWeight = $this->isNew() ? ($timelinesHandler->getCountTimelines() + 1) : $this->getVar('tl_weight');

@@ -37,7 +37,7 @@
             <td class="center"><{$item.title}></td>
             <td class=""><{$item.content_admin}></td>
             <td class="center"><img src="<{$wgtimelines_upload_url}>/images/items/<{$item.image}>" alt="<{$item.title}>" style="max-width:100px;" /></td>
-            <td class="center"><{$item.date}></td>
+            <td class="center"><{$item.date_admin}></td>
             <td class="center"><{$item.year}></td>
 			<td class="center"><i class='glyphicon glyphicon-<{$item.icon}>'></i></td>
 			<td class="center"><{$item.reads}></td>
@@ -52,9 +52,12 @@
             </td>
             <td class="center"><{$item.submitter}></td>
             <td class="center"><{$item.date_create}></td>
-            <td class="center  width5">
+            <td class="center">
                 <a href="items.php?op=edit&amp;item_id=<{$item.id}>" title="<{$smarty.const._EDIT}>">
                     <img src="<{xoModuleIcons16 edit.png}>" alt="items" />
+                </a>
+                <a href="items.php?op=editcopy&amp;item_id=<{$item.id}>" title="<{$smarty.const._AM_WGTIMELINES_COPY}>">
+                    <img src="<{xoModuleIcons16 editcopy.png}>" alt="items" />
                 </a>
                 <a href="items.php?op=delete&amp;item_id=<{$item.id}>" title="<{$smarty.const._DELETE}>">
                     <img src="<{xoModuleIcons16 delete.png}>" alt="items" />
