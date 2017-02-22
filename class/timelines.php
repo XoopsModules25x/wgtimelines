@@ -101,7 +101,7 @@ class WgtimelinesTimelines extends XoopsObject
         $editorConfigs['width'] = '100%';
         $editorConfigs['height'] = '200px';
         $editorConfigs['editor'] = $wgtimelines->getConfig('wgtimelines_editor');
-        $form->addElement(new XoopsFormEditor(_AM_WGTIMELINES_TIMELINE_DESC, 'tl_desc', $editorConfigs), true);
+        $form->addElement(new XoopsFormEditor(_AM_WGTIMELINES_TIMELINE_DESC, 'tl_desc', $editorConfigs), false);
         // Form Upload Image
         $getTimelineImage = $this->getVar('tl_image');
         $itemImage = $getTimelineImage ?: 'blank.gif';
@@ -146,7 +146,7 @@ class WgtimelinesTimelines extends XoopsObject
         $form->addElement($tlDateTimeSelect, true);
         // Form Radio Yes/No tl_magnific
         $tlMagnific = $this->isNew() ? 0 : $this->getVar('tl_magnific');
-        $form->addElement(new XoopsFormRadioYN(_AM_WGTIMELINES_TIMELINE_MAGNIFIC . _AM_WGTIMELINES_TIMELINE_MAGNIFIC_DESC, 'tl_magnific', $tlMagnific));
+        $form->addElement(new XoopsFormRadioYN(_AM_WGTIMELINES_TIMELINE_MAGNIFIC . '<br>' . _AM_WGTIMELINES_TIMELINE_MAGNIFIC_DESC, 'tl_magnific', $tlMagnific));
         // Form Text TlWeight
         $timelinesHandler = $wgtimelines->getHandler('timelines');
         $tlWeight = $this->isNew() ? ($timelinesHandler->getCountTimelines() + 1) : $this->getVar('tl_weight');
