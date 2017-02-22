@@ -74,8 +74,7 @@ define('_MI_WGTIMELINES_RATINGBARS', 'Bewertung anzeigen');
 define('_MI_WGTIMELINES_RATINGBARS_DESC', 'Definieren Sie bitte, ob eine Bewertung der Einträge möglich sein und angezeigt werden soll');
 define('_MI_WGTIMELINES_RATINGBAR_GROUPS', 'Gruppen mit der Berechtigung zum Bewerten');
 define('_MI_WGTIMELINES_RATINGBAR_GROUPS_DESC', 'Bestimmen Sie bitte die Gruppen, die Zeitreiheneinträge bewerten dürfen');
-define('_MI_WGTIMELINES_MAGNIFIC', 'Magnific Popup verwenden');
-define('_MI_WGTIMELINES_MAGNIFIC_DESC', 'Definieren Sie bitte, ob die Bilder bei den Einträgen mittels jquery magnific-popup gezoomt werden können sollen');
+
 // ---------------- End ----------------
 //Help
 define('_MI_WGTIMELINES_DIRNAME', basename(dirname(dirname(__DIR__))));

@@ -1,5 +1,10 @@
 ==============================================================
-Change Log for wgTimelines - 2017-02-09 Version 1.08  RC1
+Change Log for wgTimelines - 2017-02-22 Version 1.09  RC1
+==============================================================
+ - moved option for magnific popup from preferences to timeline options (goffy)
+ 
+==============================================================
+Change Log for wgTimelines - 2017-02-20 Version 1.08  RC1
 ==============================================================
  - added possibility to use time besides date (cifug/zap_english/goffy)
  -- new field tl_datetime to table timelines

@@ -74,8 +74,7 @@ define('_MI_WGTIMELINES_RATINGBARS', 'Show rating');
 define('_MI_WGTIMELINES_RATINGBARS_DESC', 'Define, whether a rating of the items should be possible and shown');
 define('_MI_WGTIMELINES_RATINGBAR_GROUPS', 'Groups with permission to rate');
 define('_MI_WGTIMELINES_RATINGBAR_GROUPS_DESC', 'Please define the groups, which have the permission to rate a timeline item');
-define('_MI_WGTIMELINES_MAGNIFIC', 'Use magnific popup');
-define('_MI_WGTIMELINES_MAGNIFIC_DESC', 'Please define, whether you want to use jquery magnific-popup for zooming the item images');
+
 // ---------------- End ----------------
 //Help
 define('_MI_WGTIMELINES_DIRNAME', basename(dirname(dirname(__DIR__))));

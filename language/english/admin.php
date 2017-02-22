@@ -61,11 +61,14 @@ define('_AM_WGTIMELINES_TIMELINE_SORTBY_Y_DESC', 'Year/Date descending');
 define('_AM_WGTIMELINES_TIMELINE_SORTBY_ADMIN', 'Sort order in admin area');
 define('_AM_WGTIMELINES_TIMELINE_LIMIT', 'Limit of characters');
 define('_AM_WGTIMELINES_TIMELINE_LIMIT_DESC', '0 = complete text will be shown, otherwise you can display the full text with "Read more"');
-define('_AM_WGTIMELINES_TIMELINE_DATETIME', 'Show date/time (if supported by template)');
+define('_AM_WGTIMELINES_TIMELINE_DATETIME', 'Show date/time');
+define('_AM_WGTIMELINES_TIMELINE_DATETIME_DESC', ' (if supported by template)');
 define('_AM_WGTIMELINES_TIMELINE_DATETIME_NO', 'None');
 define('_AM_WGTIMELINES_TIMELINE_DATETIME_ONLY_D', 'Only date');
 define('_AM_WGTIMELINES_TIMELINE_DATETIME_ONLY_T', 'Only time');
 define('_AM_WGTIMELINES_TIMELINE_DATETIME_BOTH', 'Date and time');
+define('_AM_WGTIMELINES_TIMELINE_MAGNIFIC', 'Use magnific popup');
+define('_AM_WGTIMELINES_TIMELINE_MAGNIFIC_DESC', 'Please define, whether you want to use jquery magnific-popup for zooming the item images');
 // Template add/edit
 define('_AM_WGTIMELINES_TEMPLATE_ADD', 'Add Template');
 define('_AM_WGTIMELINES_TEMPLATE_EDIT', 'Edit Template');

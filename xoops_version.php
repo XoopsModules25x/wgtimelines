@@ -25,7 +25,7 @@
 $dirname = basename(__DIR__);
 // ------------------- Informations ------------------- //
 $modversion['name']                = _MI_WGTIMELINES_NAME;
-$modversion['version']             = '1.08';
+$modversion['version']             = '1.09';
 $modversion['description']         = _MI_WGTIMELINES_DESC;
 $modversion['author']              = 'goffy (wedega.com)';
 $modversion['author_mail']         = 'webmaster@wedega.com';
@@ -320,12 +320,4 @@ $modversion['config'][$c]['formtype']    = 'select';
 $modversion['config'][$c]['valuetype']   = 'int';
 $modversion['config'][$c]['default']     = 1;
 $modversion['config'][$c]['options']     = array(_MI_WGTIMELINES_STARTPAGE_LIST => 1, _MI_WGTIMELINES_STARTPAGE_FIRST => 3);
-++$c;
-// start page for module
-$modversion['config'][$c]['name']        = 'use_magnific';
-$modversion['config'][$c]['title']       = '_MI_WGTIMELINES_MAGNIFIC';
-$modversion['config'][$c]['description'] = '_MI_WGTIMELINES_MAGNIFIC_DESC';
-$modversion['config'][$c]['formtype']    = 'yesno';
-$modversion['config'][$c]['valuetype']   = 'int';
-$modversion['config'][$c]['default']     = 0;
 ++$c;

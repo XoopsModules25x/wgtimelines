@@ -12,6 +12,7 @@
             <th class="center"><{$smarty.const._AM_WGTIMELINES_TIMELINE_SORTBY}></th>
 			<th class="center"><{$smarty.const._AM_WGTIMELINES_TIMELINE_LIMIT}></th>
             <th class="center"><{$smarty.const._AM_WGTIMELINES_TIMELINE_DATETIME}></th>
+            <th class="center"><{$smarty.const._AM_WGTIMELINES_TIMELINE_MAGNIFIC}></th>
             <th class="center"><{$smarty.const._AM_WGTIMELINES_ONLINE}></th>
             <th class="center"><{$smarty.const._AM_WGTIMELINES_SUBMITTER}></th>
             <th class="center"><{$smarty.const._AM_WGTIMELINES_DATE_CREATE}></th>
@@ -29,6 +30,13 @@
             <td class="center"><{$timeline.sortby_text}></td>
 			<td class="center"><{$timeline.limit}></td>
             <td class="center"><{$timeline.datetime_text}></td>
+            <td class="center">
+                <{if $timeline.magnific == 1}>
+                    <img src="<{xoModuleIcons16 on.png}>" alt="<{$smarty.const._YES}>" />
+                <{else}>
+                    <img src="<{xoModuleIcons16 off.png}>" alt="<{$smarty.const._NO}>" />
+                <{/if}>
+            </td>
             <td class="center">
                 <a href="timelines.php?op=set_onoff&amp;tl_id=<{$timeline.id}>" title="<{$timeline.online}>">
                     <{if $timeline.online == 1}>

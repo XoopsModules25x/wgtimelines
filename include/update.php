@@ -61,6 +61,10 @@ function xoops_module_update_wgtimelines(&$module, $prev_version = null)
         $ret = update_wgtimelines_v108($module);
     }
     $errors = $module->getErrors();
+    if ($prev_version < 109) {
+        $ret = update_wgtimelines_v109($module);
+    }
+    $errors = $module->getErrors();
     
     // create table 'wgtimelines_tplsetsdefault' in any case
     $ret = update_tplsetsdefault($module);
@@ -119,6 +123,23 @@ function update_tplsetsdefault(&$module)
  *
  * @return bool
  */
+function update_wgtimelines_v109(&$module)
+{
+    // create new field
+    $sql = 'ALTER TABLE `' . $GLOBALS['xoopsDB']->prefix('wgtimelines_timelines') . "` ADD `tl_magnific` int(1) NOT NULL DEFAULT '0' AFTER `tl_datetime`;";
+    if (!$result = $GLOBALS['xoopsDB']->queryF($sql)) {
+        xoops_error($GLOBALS['xoopsDB']->error() . '<br>' . $sql);
+        $module->setErrors('error when adding new field tl_magnific to table wgtimelines_timelines');
+        return false;
+    } 
+    return true;
+}
+
+/**
+ * @param $module
+ *
+ * @return bool
+ */
 function update_wgtimelines_v108(&$module)
 {
     // update existing data
@@ -142,6 +163,7 @@ function update_wgtimelines_v108(&$module)
     } 
     return true;
 }
+
 /**
  * @param $module
  *

@@ -43,6 +43,7 @@ class WgtimelinesTimelines extends XoopsObject
         $this->initVar('tl_sortby', XOBJ_DTYPE_INT);
         $this->initVar('tl_limit', XOBJ_DTYPE_INT);
         $this->initVar('tl_datetime', XOBJ_DTYPE_INT);
+        $this->initVar('tl_magnific', XOBJ_DTYPE_INT);
         $this->initVar('tl_online', XOBJ_DTYPE_INT);
         $this->initVar('tl_submitter', XOBJ_DTYPE_INT);
         $this->initVar('tl_date_create', XOBJ_DTYPE_INT);
@@ -137,12 +138,15 @@ class WgtimelinesTimelines extends XoopsObject
         $form->addElement(new XoopsFormText(_AM_WGTIMELINES_TIMELINE_LIMIT . '<br>' . _AM_WGTIMELINES_TIMELINE_LIMIT_DESC, 'tl_limit', 20, 255, $tlLimit), true);
         // Form Text tlDateTime
         $tlDateTime = $this->isNew() ? 1 : $this->getVar('tl_datetime');
-        $tlDateTimeSelect = new XoopsFormSelect(_AM_WGTIMELINES_TIMELINE_DATETIME, 'tl_datetime', $tlDateTime);
+        $tlDateTimeSelect = new XoopsFormSelect(_AM_WGTIMELINES_TIMELINE_DATETIME . _AM_WGTIMELINES_TIMELINE_DATETIME_DESC, 'tl_datetime', $tlDateTime);
         $tlDateTimeSelect->addOption(0, _AM_WGTIMELINES_TIMELINE_DATETIME_NO);
         $tlDateTimeSelect->addOption(1, _AM_WGTIMELINES_TIMELINE_DATETIME_ONLY_D);
         $tlDateTimeSelect->addOption(2, _AM_WGTIMELINES_TIMELINE_DATETIME_ONLY_T);
         $tlDateTimeSelect->addOption(3, _AM_WGTIMELINES_TIMELINE_DATETIME_BOTH);
         $form->addElement($tlDateTimeSelect, true);
+        // Form Radio Yes/No tl_magnific
+        $tlMagnific = $this->isNew() ? 0 : $this->getVar('tl_magnific');
+        $form->addElement(new XoopsFormRadioYN(_AM_WGTIMELINES_TIMELINE_MAGNIFIC . _AM_WGTIMELINES_TIMELINE_MAGNIFIC_DESC, 'tl_magnific', $tlMagnific));
         // Form Text TlWeight
         $timelinesHandler = $wgtimelines->getHandler('timelines');
         $tlWeight = $this->isNew() ? ($timelinesHandler->getCountTimelines() + 1) : $this->getVar('tl_weight');
@@ -180,6 +184,8 @@ class WgtimelinesTimelines extends XoopsObject
         $ret['weight'] = $this->getVar('tl_weight');
         $ret['sortby'] = $this->getVar('tl_sortby');
         $ret['limit'] = $this->getVar('tl_limit');
+        $ret['datetime'] = $this->getVar('tl_datetime');
+        $ret['magnific'] = $this->getVar('tl_magnific');
         $ret['online'] = $this->getVar('tl_online');
         $templates = $wgtimelines->getHandler('templates');
         $template_obj = $templates->get($this->getVar('tl_template'));

@@ -61,11 +61,14 @@ define('_AM_WGTIMELINES_TIMELINE_SORTBY_Y_DESC', 'Jahr/Datum absteigend');
 define('_AM_WGTIMELINES_TIMELINE_SORTBY_ADMIN', 'Im Admin angezeigte Reihenfolge');
 define('_AM_WGTIMELINES_TIMELINE_LIMIT', 'Zeichenbegrenzung');
 define('_AM_WGTIMELINES_TIMELINE_LIMIT_DESC', '0 = gesamter Text wird angezeigt, ansonsten kann der weitere Text mit "Mehr lesen" angezeigt werden');
-define('_AM_WGTIMELINES_TIMELINE_DATETIME', 'Datum/Uhrzeit anzeigen (sofern von der Vorlage unterstützt)');
+define('_AM_WGTIMELINES_TIMELINE_DATETIME', 'Datum/Uhrzeit anzeigen');
+define('_AM_WGTIMELINES_TIMELINE_DATETIME_DESC', ' (sofern von der Vorlage unterstützt)');
 define('_AM_WGTIMELINES_TIMELINE_DATETIME_NO', 'Nein');
 define('_AM_WGTIMELINES_TIMELINE_DATETIME_ONLY_D', 'Nur Datum');
 define('_AM_WGTIMELINES_TIMELINE_DATETIME_ONLY_T', 'Nur Uhrzeit');
 define('_AM_WGTIMELINES_TIMELINE_DATETIME_BOTH', 'Datum und Uhrzeit');
+define('_AM_WGTIMELINES_TIMELINE_MAGNIFIC', 'Magnific Popup verwenden');
+define('_AM_WGTIMELINES_TIMELINE_MAGNIFIC_DESC', 'Definieren Sie bitte, ob die Bilder bei den Einträgen mittels jquery magnific-popup gezoomt werden können sollen');
 // Template add/edit
 define('_AM_WGTIMELINES_TEMPLATE_ADD', 'Vorlage hinzufügen');
 define('_AM_WGTIMELINES_TEMPLATE_EDIT', 'Vorlage bearbeiten');

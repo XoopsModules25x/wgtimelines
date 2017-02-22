@@ -62,6 +62,7 @@ if ($timelinesCount > 0) {
             $tl_desc      = $timelinesAll[$i]->getVar('tl_desc', 'show');
             $tl_sortby    = $timelinesAll[$i]->getVar('tl_sortby');
             $tl_limit     = $timelinesAll[$i]->getVar('tl_limit');
+            $tl_magnific  = $timelinesAll[$i]->getVar('tl_magnific');
             // get template and template options
             $template_obj = $templatesHandler->get($tl_template);
             $template     = $template_obj->getValuesTemplates();
@@ -88,7 +89,7 @@ if ($timelinesCount > 0) {
             // Define Stylesheet
             $GLOBALS['xoTheme']->addStylesheet($style, null);
             // assets for magnific popup
-            if ($wgtimelines->getConfig('use_magnific') == 1) {
+            if ($tl_magnific == 1) {
                 $GLOBALS['xoTheme']->addStylesheet(WGTIMELINES_URL . '/assets/css/magnific-popup.css');
                 $GLOBALS['xoTheme']->addStylesheet(WGTIMELINES_URL . '/assets/css/wgtimelines.magnific.css');
                 $GLOBALS['xoTheme']->addScript(WGTIMELINES_URL . '/assets/js/jquery.magnific-popup.min.js', array('type' => 'text/javascript'));

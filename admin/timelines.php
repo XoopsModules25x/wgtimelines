@@ -124,6 +124,7 @@ switch($op) {
         $timelinesObj->setVar('tl_sortby', isset($_POST['tl_sortby']) ? $_POST['tl_sortby'] : 0);
         $timelinesObj->setVar('tl_limit', isset($_POST['tl_limit']) ? $_POST['tl_limit'] : 0);
         $timelinesObj->setVar('tl_datetime', isset($_POST['tl_datetime']) ? $_POST['tl_datetime'] : 0);
+        $timelinesObj->setVar('tl_magnific', isset($_POST['tl_magnific']) ? $_POST['tl_magnific'] : 0);
         $timelinesObj->setVar('tl_online', isset($_POST['tl_online']) ? $_POST['tl_online'] : 0);
         $timelinesObj->setVar('tl_submitter', isset($_POST['tl_submitter']) ? $_POST['tl_submitter'] : 0);
         $timelineDate_create = date_create_from_format(_SHORTDATESTRING, $_POST['tl_date_create']);
