@@ -1,4 +1,10 @@
 ==============================================================
+Change Log for wgTimelines - 2017-03-04 Version 1.09  RC2
+==============================================================
+ - removed useless language vars (cesagonchu/goffy)
+ - corrected help files (cesagonchu/goffy)
+ 
+==============================================================
 Change Log for wgTimelines - 2017-02-22 Version 1.09  RC1
 ==============================================================
  - moved option for magnific popup from preferences to timeline options (goffy)

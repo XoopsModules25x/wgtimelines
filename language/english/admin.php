@@ -178,11 +178,3 @@ define('_AM_WGTIMELINES_FORM_DELETE', 'Clear');
 // ---------------- Admin Others ----------------
 define('_AM_WGTIMELINES_MAINTAINEDBY', ' is maintained by ');
 // ---------------- End ----------------
-
-define('_AM_WGTIMELINES_RATING_ADD', 'Add Rating');
-define('_AM_WGTIMELINES_RATING_EDIT', 'Edit Rating');
-define('_AM_WGTIMELINES_RATING_ITEMID', 'Item ID');
-define('_AM_WGTIMELINES_RATING_VALUE', 'Value');
-define('_AM_WGTIMELINES_RATING_UID', 'User ID');
-define('_AM_WGTIMELINES_RATING_IP', 'IP');
-define('_AM_WGTIMELINES_RATING_DATE', 'Date');

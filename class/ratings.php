@@ -65,55 +65,6 @@ class WgtimelinesRatings extends XoopsObject
     }
 
     /**
-     * Get form
-     *
-     * @param mixed $action
-     * @return XoopsThemeForm
-     */
-    public function getFormRatings($action = false)
-    {
-        $wgtimelines = WgtimelinesHelper::getInstance();
-        if ($action === false) {
-            $action = $_SERVER['REQUEST_URI'];
-        }
-        // Permissions for uploader
-        /** @var XoopsGroupPermHandler $gpermHandler */
-        $gpermHandler = xoops_getHandler('groupperm');
-        $groups = is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->getGroups() : XOOPS_GROUP_ANONYMOUS;
-        if ($GLOBALS['xoopsUser']) {
-            $permissionUpload = true;
-            if (!$GLOBALS['xoopsUser']->isAdmin($GLOBALS['xoopsModule']->mid())) {
-                $permissionUpload = $gpermHandler->checkRight('', 32, $groups, $GLOBALS['xoopsModule']->getVar('mid')) ? true : false;
-            }
-        } else {
-            $permissionUpload = $gpermHandler->checkRight('', 32, $groups, $GLOBALS['xoopsModule']->getVar('mid')) ? true : false;
-        }
-        // Title
-        $title = $this->isNew() ? sprintf(_AM_WGTIMELINES_RATING_ADD) : sprintf(_AM_WGTIMELINES_RATING_EDIT);
-        // Get Theme Form
-        xoops_load('XoopsFormLoader');
-        $form = new XoopsThemeForm($title, 'form', $action, 'post', true);
-        $form->setExtra('enctype="multipart/form-data"');
-        // Form Text RateItemid
-        $rateItemid = $this->isNew() ? '0' : $this->getVar('rate_itemid');
-        $form->addElement(new XoopsFormText(_AM_WGTIMELINES_RATING_ITEMID, 'rate_itemid', 20, 150, $rateItemid), true);
-        // Form Text RateValue
-        $rateValue = $this->isNew() ? '0' : $this->getVar('rate_value');
-        $form->addElement(new XoopsFormText(_AM_WGTIMELINES_RATING_VALUE, 'rate_value', 20, 150, $rateValue), true);
-        // Form Select User
-        $form->addElement(new XoopsFormSelectUser(_AM_WGTIMELINES_RATING_UID, 'rate_uid', false, $this->getVar('rate_uid')), true);
-        // Form Text RateIp
-        $form->addElement(new XoopsFormText(_AM_WGTIMELINES_RATING_IP, 'rate_ip', 50, 255, $this->getVar('rate_ip')), true);
-        // Form Text Date Select
-        $rateDate = $this->isNew() ? 0 : $this->getVar('rate_date');
-        $form->addElement(new XoopsFormTextDateSelect(_AM_WGTIMELINES_RATING_DATE, 'rate_date', '', $rateDate));
-        // To Save
-        $form->addElement(new XoopsFormHidden('op', 'save'));
-        $form->addElement(new XoopsFormButton('', 'submit', _SUBMIT, 'submit'));
-        return $form;
-    }
-
-    /**
      * Get Values
      * @param null $keys
      * @param null $format
