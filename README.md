@@ -1,5 +1,5 @@
 ![alt XOOPS CMS](http://xoops.org/images/logoXoops4GithubRepository.png)
-##wgTimelines module for  [XOOPS CMS 2.5.8+](https://xoops.org)
+##wgTimelines module for  [XOOPS CMS 2.5.7+](https://xoops.org)
 [![Software License](https://img.shields.io/badge/license-GPL-brightgreen.svg?style=flat)](LICENSE)
 [![Latest Pre-Release](https://img.shields.io/github/tag/ggoffy/wgtimelines.svg?style=flat)](https://github.com/ggoffy/wgtimelines/tags/)
 [![Latest Version](https://img.shields.io/github/release/ggoffy/wgtimelines.svg?style=flat)](https://github.com/ggoffy/wgtimelines/releases/)
