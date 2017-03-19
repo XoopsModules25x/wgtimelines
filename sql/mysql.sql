@@ -20,6 +20,8 @@ CREATE TABLE `wgtimelines_timelines` (
   `tl_template` INT(8) NOT NULL DEFAULT '0',
   `tl_sortby` INT(1) NOT NULL DEFAULT '0',
   `tl_limit` INT(8) NOT NULL DEFAULT '0',
+  `tl_datetime` INT(1) NOT NULL DEFAULT '0',
+  `tl_magnific` INT(1) NOT NULL DEFAULT '0',
   `tl_online` INT(1) NOT NULL DEFAULT '0',
   `tl_submitter` INT(8) NOT NULL DEFAULT '0',
   `tl_date_create` INT(8) NOT NULL DEFAULT '0',
@@ -37,7 +39,8 @@ CREATE TABLE `wgtimelines_items` (
   `item_content` TEXT NOT NULL,
   `item_image` VARCHAR(200) NOT NULL DEFAULT '',
   `item_date` INT(8) DEFAULT NULL,
-  `item_year` INT(8) DEFAULT NULL,
+  `item_time` INT(8) DEFAULT NULL,
+  `item_year` VARCHAR(50) NOT NULL DEFAULT '',
   `item_icon` VARCHAR(200) NOT NULL DEFAULT '',
   `item_reads` INT(8) NOT NULL DEFAULT '0',
   `item_weight` INT(8) NOT NULL DEFAULT '0',
@@ -95,6 +98,7 @@ CREATE TABLE `wgtimelines_tplsetsdefault` (
   `tpl_weight` INT(8) NOT NULL DEFAULT '0',
   `tpl_version` VARCHAR(10) NOT NULL DEFAULT '1',
   `tpl_author` VARCHAR(200) NOT NULL DEFAULT '',
+  `tpl_date_create` INT(8) NOT NULL DEFAULT '0',
   PRIMARY KEY (`tpl_id`)
 ) ENGINE=InnoDB;
 
