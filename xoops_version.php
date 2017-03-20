@@ -172,7 +172,7 @@ $modversion['config'][$c]['title']       = '_MI_WGTIMELINES_KEYWORDS';
 $modversion['config'][$c]['description'] = '_MI_WGTIMELINES_KEYWORDS_DESC';
 $modversion['config'][$c]['formtype']    = 'textbox';
 $modversion['config'][$c]['valuetype']   = 'text';
-$modversion['config'][$c]['default']     = 'wgtimelines, timelines, items, templates';
+$modversion['config'][$c]['default']     = _MI_WGTIMELINES_KEYWORDS_DEFAULT;
 ++$c;
 // Editor
 xoops_load('xoopseditorhandler');

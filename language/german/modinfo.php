@@ -41,6 +41,7 @@ define('_MI_WGTIMELINES_USER_PAGER', 'User Listenzeilen');
 define('_MI_WGTIMELINES_USER_PAGER_DESC', 'Anzahl der Zeilen für Listen auf Userseite');
 define('_MI_WGTIMELINES_KEYWORDS', 'Schlüsselwörter');
 define('_MI_WGTIMELINES_KEYWORDS_DESC', 'Bitte Ihre Schlüsselwörter eingeben (getrennt durch Beistrich)');
+define('_MI_WGTIMELINES_KEYWORDS_DEFAULT', 'wgtimelines, Zeitreihe, Chronik, Einträge, vorlagenbasiert, bootstrap, XOOPS');
 define('_MI_WGTIMELINES_EDITOR', 'Editor');
 define('_MI_WGTIMELINES_EDITOR_DESC', 'Bitte Editor für die Eingabefelder wählen');
 define('_MI_WGTIMELINES_MAXSIZE', 'Maximale Größe');

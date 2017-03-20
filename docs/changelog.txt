@@ -2,6 +2,7 @@
 Change Log for wgTimelines - 2017-03-19 Version 1.09  RC3
 ==============================================================
  - fixed bug in mysql.sql (goffy)
+ - corrected language files (cesagonchu/goffy)
  
 ==============================================================
 Change Log for wgTimelines - 2017-03-04 Version 1.09  RC2
