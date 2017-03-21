@@ -69,6 +69,7 @@ define('_AM_WGTIMELINES_TIMELINE_DATETIME_ONLY_T', 'Only time');
 define('_AM_WGTIMELINES_TIMELINE_DATETIME_BOTH', 'Date and time');
 define('_AM_WGTIMELINES_TIMELINE_MAGNIFIC', 'Use magnific popup');
 define('_AM_WGTIMELINES_TIMELINE_MAGNIFIC_DESC', 'Please define, whether you want to use jquery magnific-popup for zooming the item images');
+define('_AM_WGTIMELINES_TIMELINE_SELECT', 'Please select timeline');
 // Template add/edit
 define('_AM_WGTIMELINES_TEMPLATE_ADD', 'Add Template');
 define('_AM_WGTIMELINES_TEMPLATE_EDIT', 'Edit Template');

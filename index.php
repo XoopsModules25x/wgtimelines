@@ -47,8 +47,8 @@ $timelinesAll = $timelinesHandler->getAll($criteria);
 
 if ($tl_id == 0 && $startpage == 3 && $timelinesCount > 0) {
     // Get first timeline
-    foreach (array_keys($timelinesAll) as $i) {
-        $tl_id  = $timelinesAll[$i]->getvar('tl_id');
+    foreach (array_keys($timelinesAll) as $t) {
+        $tl_id  = $timelinesAll[$t]->getvar('tl_id');
     }
 }
 
@@ -56,13 +56,13 @@ unset($criteria);
 if ($timelinesCount > 0) {
     if ($tl_id > 0) {
         // display one timeline
-        foreach (array_keys($timelinesAll) as $i) {
-            $tl_template  = $timelinesAll[$i]->getVar('tl_template');
-            $tl_name      = $timelinesAll[$i]->getVar('tl_name');
-            $tl_desc      = $timelinesAll[$i]->getVar('tl_desc', 'show');
-            $tl_sortby    = $timelinesAll[$i]->getVar('tl_sortby');
-            $tl_limit     = $timelinesAll[$i]->getVar('tl_limit');
-            $tl_magnific  = $timelinesAll[$i]->getVar('tl_magnific');
+        foreach (array_keys($timelinesAll) as $t) {
+            $tl_template  = $timelinesAll[$t]->getVar('tl_template');
+            $tl_name      = $timelinesAll[$t]->getVar('tl_name');
+            $tl_desc      = $timelinesAll[$t]->getVar('tl_desc', 'show');
+            $tl_sortby    = $timelinesAll[$t]->getVar('tl_sortby');
+            $tl_limit     = $timelinesAll[$t]->getVar('tl_limit');
+            $tl_magnific  = $timelinesAll[$t]->getVar('tl_magnific');
             // get template and template options
             $template_obj = $templatesHandler->get($tl_template);
             $template     = $template_obj->getValuesTemplates();
@@ -138,7 +138,7 @@ if ($timelinesCount > 0) {
                 $crazycolors = 0;
                 foreach (array_keys($itemsAll) as $i) {
                     $j++;
-                    $items[$j] = $itemsAll[$i]->getValuesItems();
+                    $items[$j] = $itemsAll[$i]->getValuesItems($timelinesAll[$t]);
                     // option panel pos
                     if ($tplpanel_pos === 'alternate') {
                         $alternate = $alternate == 0 ? 1 : 0;
@@ -224,7 +224,9 @@ if ($timelinesCount > 0) {
         // show list
         $GLOBALS['xoopsOption']['template_main'] = 'wgtimelines_index.tpl';
         include_once XOOPS_ROOT_PATH .'/header.php';
-
+        
+        $templatesAll = $templatesHandler->getAll();
+        
         // Define Stylesheet
         $GLOBALS['xoTheme']->addStylesheet($style, null);
         foreach (array_keys($timelinesAll) as $i) {
@@ -232,6 +234,7 @@ if ($timelinesCount > 0) {
             if ($wgtimelines->getConfig('tl_description') > 1) {
                 $timelines[$i]['timeline_desc'] = $timelines[$i]['desc'];
             }
+            // $timelines[$i]['timeline_desc'] = $timelines[$i]['desc'];
             $keywords[] = $timelinesAll[$i]->getVar('tl_name');
         }
         $GLOBALS['xoopsTpl']->assign('timelines', $timelines);

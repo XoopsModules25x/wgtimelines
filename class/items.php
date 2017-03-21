@@ -176,14 +176,12 @@ class WgtimelinesItems extends XoopsObject
      * @param null $maxDepth
      * @return array
      */
-    public function getValuesItems($keys = null, $format = null, $maxDepth = null)
+    public function getValuesItems($timeline_obj, $keys = null, $format = null, $maxDepth = null)
     {
         $wgtimelines = WgtimelinesHelper::getInstance();
         $ret = $this->getValues($keys, $format, $maxDepth);
         $ret['id'] = $this->getVar('item_id');
         $ret['tl_id'] = $this->getVar('item_tl_id');
-        $timelines = $wgtimelines->getHandler('timelines');
-        $timeline_obj = $timelines->get($this->getVar('item_tl_id'));
         $ret['tl_name'] = $timeline_obj->getVar('tl_name');
         $ret['title'] = $this->getVar('item_title');
         $ret['content'] = $this->getVar('item_content', 'show');

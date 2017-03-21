@@ -89,7 +89,7 @@ if ($itemsCount > 0) {
     $inverted = 0;
     $crazycolors = 0;
     $j++;
-    $items[$j] = $itemsObj->getValuesItems();
+    $items[$j] = $itemsObj->getValuesItems($timeline_obj);
     if ($wgtimelines->getConfig('ratingbars')) {
         $items[$j]['rating'] = $ratingsHandler->getItemRating($items[$j]['id']);
     }

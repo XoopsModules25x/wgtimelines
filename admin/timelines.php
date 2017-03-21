@@ -41,6 +41,8 @@ switch($op) {
         $GLOBALS['xoopsTpl']->assign('wgtimelines_url', WGTIMELINES_URL);
         $GLOBALS['xoopsTpl']->assign('wgtimelines_icons_url', WGTIMELINES_ICONS_URL);
         $GLOBALS['xoopsTpl']->assign('wgtimelines_upload_url', WGTIMELINES_UPLOAD_URL);
+
+        $templatesAll = $templatesHandler->getAll();
         // Table view timelines
         if($timelinesCount > 0) {
             foreach(array_keys($timelinesAll) as $i) {
@@ -61,6 +63,7 @@ switch($op) {
                 } else {
                     $timeline['datetime_text'] = _AM_WGTIMELINES_TIMELINE_DATETIME_NO;
                 }
+            $timeline['template'] = $templatesAll[$timeline['tl_template']]->getVar('tpl_name');
                 $GLOBALS['xoopsTpl']->append('timelines_list', $timeline);
                 unset($timeline);
             }

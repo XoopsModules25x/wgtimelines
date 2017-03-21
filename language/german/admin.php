@@ -69,6 +69,7 @@ define('_AM_WGTIMELINES_TIMELINE_DATETIME_ONLY_T', 'Nur Uhrzeit');
 define('_AM_WGTIMELINES_TIMELINE_DATETIME_BOTH', 'Datum und Uhrzeit');
 define('_AM_WGTIMELINES_TIMELINE_MAGNIFIC', 'Magnific Popup verwenden');
 define('_AM_WGTIMELINES_TIMELINE_MAGNIFIC_DESC', 'Definieren Sie bitte, ob die Bilder bei den Einträgen mittels jquery magnific-popup gezoomt werden können sollen');
+define('_AM_WGTIMELINES_TIMELINE_SELECT', 'Bitte Zeitreihe auswählen');
 // Template add/edit
 define('_AM_WGTIMELINES_TEMPLATE_ADD', 'Vorlage hinzufügen');
 define('_AM_WGTIMELINES_TEMPLATE_EDIT', 'Vorlage bearbeiten');

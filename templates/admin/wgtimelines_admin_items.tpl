@@ -1,3 +1,7 @@
+<{if $form_select}>
+	<div class="form_select"><{$form_select}></div>
+<{/if}>
+<br>
 <!-- Header -->
 <{include file='db:wgtimelines_admin_header.tpl'}>
 <{if $items_list}>
@@ -86,5 +90,5 @@
 </div>
 
 <{/if}>
-<br></br />
+<br /><br />
 <!-- Footer --><{include file='db:wgtimelines_admin_footer.tpl'}>

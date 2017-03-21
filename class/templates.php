@@ -530,7 +530,6 @@ class WgtimelinesTemplates extends XoopsObject
      */
     public function getValuesTemplates($keys = null, $format = null, $maxDepth = null)
     {
-        $wgtimelines = WgtimelinesHelper::getInstance();
         $ret = $this->getValues($keys, $format, $maxDepth);
         $ret['id'] = $this->getVar('tpl_id');
         $ret['name'] = $this->getVar('tpl_name');
@@ -554,7 +553,6 @@ class WgtimelinesTemplates extends XoopsObject
      */
     public function getValuesTemplatesAdmin($keys = null, $format = null, $maxDepth = null)
     {
-        $wgtimelines = WgtimelinesHelper::getInstance();
         $ret = $this->getValues($keys, $format, $maxDepth);
         $ret['id'] = $this->getVar('tpl_id');
         $ret['name'] = $this->getVar('tpl_name');
