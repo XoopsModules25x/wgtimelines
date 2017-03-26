@@ -50,6 +50,7 @@
 				<a href="templates.php?op=reset&amp;tpl_id=<{$template.id}>" title="<{$smarty.const._AM_WGTIMELINES_TEMPLATE_RESETVERSION}>">
 					<img src="<{$wgtimelines_icons_url}>/16/reset.png" alt="<{$smarty.const._AM_WGTIMELINES_TEMPLATE_RESETVERSION}>" />
 				</a>
+                <{if $template.newversion}><a href="templates.php?op=update&amp;tpl_id=<{$template.id}>" title="<{$smarty.const._AM_WGTIMELINES_TEMPLATE_NEWVERSION}>"><img src="<{$wgtimelines_icons_url}>/16/newversion.png" alt="<{$smarty.const._AM_WGTIMELINES_TEMPLATE_NEWVERSION}>" /></a><{/if}>
             </td>
         </tr>
 

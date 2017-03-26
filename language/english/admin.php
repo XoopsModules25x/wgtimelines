@@ -29,7 +29,7 @@ define('_AM_WGTIMELINES_THEREARE_TEMPLATES', "There are <span class='bold'>%s</s
 // ---------------- Admin Files ----------------
 // There aren't
 define('_AM_WGTIMELINES_THEREARENT_TIMELINES', "There aren't timelines");
-define('_AM_WGTIMELINES_THEREARENT_ITEMS', "There aren't items");
+define('_AM_WGTIMELINES_THEREARENT_ITEMS', "There aren't items for selected timeline: ");
 define('_AM_WGTIMELINES_THEREARENT_TEMPLATES', "There aren't templates");
 // Save/Delete
 define('_AM_WGTIMELINES_FORM_OK', 'Successfully saved');
@@ -87,6 +87,25 @@ define('_AM_WGTIMELINES_TEMPLATE_RESETVERSION', 'Reset to default values');
 define('_AM_WGTIMELINES_TEMPLATE_SURE_RESET', 'With the reset all your personal settings will be deleted. Do you want to continue?');
 define('_AM_WGTIMELINES_TEMPLATE_NOTSUPPORTED', "This template isn't supported anymore by the developer's team");
 define('_AM_WGTIMELINES_TEMPLATE_NEWTEMPLATE', 'A new template is available');
+// template description
+define('_AM_WGTIMELINES_TEMPLATE_D_RESPONSIVE_NOT', 'Not fully responsive');
+define('_AM_WGTIMELINES_TEMPLATE_D_RESPONSIVE_TABLE', 'Responsive table timeline');
+define('_AM_WGTIMELINES_TEMPLATE_D_RESPONSIVE_HTML', 'Responsive html timeline');
+define('_AM_WGTIMELINES_TEMPLATE_D_RESPONSIVE_BOOTSTRAP', 'Responsive bootstrap timeline');
+define('_AM_WGTIMELINES_TEMPLATE_D_BOOTSTRAP_IMG', 'Responsive images in bootstrap styles');
+define('_AM_WGTIMELINES_TEMPLATE_D_POS_IMG', 'Position of images on panel selectable');
+define('_AM_WGTIMELINES_TEMPLATE_D_VERTICAL', 'Vertical timeline');
+define('_AM_WGTIMELINES_TEMPLATE_D_VERT_HORIZ', 'Vertical or horizontal timeline');
+define('_AM_WGTIMELINES_TEMPLATE_D_COLORS', 'Selectable colors');
+define('_AM_WGTIMELINES_TEMPLATE_D_BORDERS', 'Selectable borders');
+define('_AM_WGTIMELINES_TEMPLATE_D_SHADOWS', 'Selectable box shadows');
+define('_AM_WGTIMELINES_TEMPLATE_D_BADGES', 'Selectable badges');
+define('_AM_WGTIMELINES_TEMPLATE_D_GLYPHICONS', 'Glyphicons for badges available');
+define('_AM_WGTIMELINES_TEMPLATE_D_FADE', 'Fade-In animation on scrolling');
+define('_AM_WGTIMELINES_TEMPLATE_D_JQUERY', 'JQuery slider timeline');
+define('_AM_WGTIMELINES_TEMPLATE_D_AUTOPLAY', 'Autoplay options');
+define('_AM_WGTIMELINES_TEMPLATE_D_COLORS2', 'Four different recurring colors for panels selectable');
+define('_AM_WGTIMELINES_TEMPLATE_D_FADE2', 'Selectable Fade-In animation on scrolling');
 // Elements of Template options
 define('_AM_WGTIMELINES_TEMPLATE_NONE', 'None');
 define('_AM_WGTIMELINES_TEMPLATE_LEFT', 'Left');

@@ -169,19 +169,20 @@ class WgtimelinesTplsetsdefaultHandler extends XoopsPersistableObjectHandler
                 echo 'Error update_tplsetsdefault in checkTplsetsdefault';
                 return false;
             }
+        } else {
+            $sql = 'UPDATE `' . $GLOBALS['xoopsDB']->prefix('wgtimelines_tplsetsdefault') . '` SET `' . $GLOBALS['xoopsDB']->prefix('wgtimelines_tplsetsdefault') . '`.`tpl_date_create` = ' . time();
+            if (!$result = $GLOBALS['xoopsDB']->queryF($sql)) {
+                echo 'Error updating date for wgtimelines_tplsetsdefault in checkTplsetsdefault:';
+                return false;
+            }
         }
+        $tplsetsdefaultCount = $this->getCountTplsetsdefault();
         $templatesCount = WgtimelinesHelper::getInstance()->getHandler('templates')->getCountTemplates();
         if ($tplsetsdefaultCount > $templatesCount) {
             $db = $GLOBALS['xoopsDB'];
             $sql = 'INSERT INTO `' . $db->prefix('wgtimelines_templates') . '` SELECT `' . $db->prefix('wgtimelines_tplsetsdefault') . '`.* FROM `' . $db->prefix('wgtimelines_tplsetsdefault') . '` LEFT JOIN `' . $db->prefix('wgtimelines_templates') . '` ON `' . $db->prefix('wgtimelines_tplsetsdefault') . '`.tpl_id = `' . $db->prefix('wgtimelines_templates') . '`.tpl_id WHERE (((`' . $db->prefix('wgtimelines_templates') . '`.tpl_id) Is Null));';
-            if ($db->queryF($sql)) {
-                $sql = 'UPDATE `' . $GLOBALS['xoopsDB']->prefix('wgtimelines_templates') . '` SET `' . $GLOBALS['xoopsDB']->prefix('wgtimelines_templates') . '`.`tpl_date_create` = ' . time();
-                if (!$result = $GLOBALS['xoopsDB']->queryF($sql)) {
-                    echo 'Error updating date for new in checkTplsetsdefault:';
-                    return false;
-                }
-            } else {
-                echo 'Error insert new in checkTplsetsdefault:';
+            if (!$db->queryF($sql)) {
+                echo 'Error insert default templates to templates table in checkTplsetsdefault:';
                 return false;
             }
         }

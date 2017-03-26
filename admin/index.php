@@ -25,6 +25,11 @@ include __DIR__ . '/header.php';
 $countTimelines = $timelinesHandler->getCount();
 $countItems     = $itemsHandler->getCount();
 $countTemplates = $templatesHandler->getCount();
+if ($countTemplates == 0) {
+    // check default template set after install
+    $tplsetsdefaultHandler->checkTplsetsdefault();
+    $countTemplates = $templatesHandler->getCount();
+}
 // Template Index
 $templateMain = 'wgtimelines_admin_index.tpl';
 // InfoBox Statistics
@@ -45,7 +50,6 @@ foreach(array_keys($folder) as $i) {
     $adminMenu->addConfigBoxLine($folder[$i], 'folder');
     $adminMenu->addConfigBoxLine(array($folder[$i], '777'), 'chmod');
 }
-
 // Render Index
 $GLOBALS['xoopsTpl']->assign('navigation', $adminMenu->addNavigation('index.php'));
 $GLOBALS['xoopsTpl']->assign('index', $adminMenu->renderIndex());

@@ -88,15 +88,7 @@ class WgtimelinesTemplates extends XoopsObject
         // Form Text TplName
         $form->addElement(new XoopsFormText(_AM_WGTIMELINES_TEMPLATE_NAME, 'tpl_name', 50, 255, $this->getVar('tpl_name')), true);
         // Form Text Area TplDesc
-        $editorConfigs = array();
-        $editorConfigs['name'] = 'tpl_desc';
-        $editorConfigs['value'] = $this->getVar('tpl_desc', 'e');
-        $editorConfigs['rows'] = 5;
-        $editorConfigs['cols'] = 40;
-        $editorConfigs['width'] = '100%';
-        $editorConfigs['height'] = '100px';
-        $editorConfigs['editor'] = $wgtimelines->getConfig('wgtimelines_editor');
-        $form->addElement(new XoopsFormEditor(_AM_WGTIMELINES_TEMPLATE_DESC, 'tpl_desc', $editorConfigs), true);
+        $form->addElement(new XoopsFormLabel(_AM_WGTIMELINES_TEMPLATE_DESC, $this->convertTplDesc($this->getVar('tpl_desc', 'n'))));
         // Form Text TplFile
         $form->addElement(new XoopsFormText(_AM_WGTIMELINES_TEMPLATE_FILE, 'tpl_file', 50, 255, $this->getVar('tpl_file')), true);
         // Form Text Area TplOptions
@@ -477,6 +469,7 @@ class WgtimelinesTemplates extends XoopsObject
         $editorConfigs['height'] = '100px';
         $editorConfigs['editor'] = $wgtimelines->getConfig('wgtimelines_editor');
         $form->addElement(new XoopsFormEditor(_AM_WGTIMELINES_TEMPLATE_DESC, 'tpl_desc', $editorConfigs), true);
+        $form->addElement(new XoopsFormLabel(_AM_WGTIMELINES_TEMPLATE_DESC, $this->convertTplDesc($this->getVar('tpl_desc', 'n'))));
         // Form Text TplFile
         $form->addElement(new XoopsFormText(_AM_WGTIMELINES_TEMPLATE_FILE, 'tpl_file', 50, 255, $this->getVar('tpl_file')), true);
         // load options
@@ -543,6 +536,27 @@ class WgtimelinesTemplates extends XoopsObject
         $ret['options'] = $options;
         return $ret;
     }
+    
+    /**
+     * Convert values for template description in admin area
+     * @param $tpl_desc
+     * @return string
+     */
+    private function convertTplDesc($tpl_desc) 
+    {
+        $desc_arr = explode(' ', $tpl_desc);
+        if (defined($desc_arr[0])) {
+            // creating list hardcoded is necessary for displaying in forms
+            $desc_show = '<ul>';
+            foreach ($desc_arr as $desc_item) {
+                $desc_show .= '<li>' . constant($desc_item) . '</li>';
+            }
+            $desc_show .= '</ul>';
+        } else {
+            $desc_show = $tpl_desc; //version 1.09 or older
+        }
+        return $desc_show;
+    }
 
     /**
      * Get Values for admin area
@@ -556,7 +570,8 @@ class WgtimelinesTemplates extends XoopsObject
         $ret = $this->getValues($keys, $format, $maxDepth);
         $ret['id'] = $this->getVar('tpl_id');
         $ret['name'] = $this->getVar('tpl_name');
-        $ret['desc'] = $this->getVar('tpl_desc', 'n');
+        $desc_show = $this->convertTplDesc($this->getVar('tpl_desc', 'n'));
+        $ret['desc'] = $desc_show;
         $ret['file'] = $this->getVar('tpl_file');
         $options = unserialize($this->getVar('tpl_options', 'N'));
         $ret_options = array();

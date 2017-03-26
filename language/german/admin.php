@@ -29,7 +29,7 @@ define('_AM_WGTIMELINES_THEREARE_TEMPLATES', "Es gibt <span class='bold'>%s</spa
 // ---------------- Admin Files ----------------
 // There aren't
 define('_AM_WGTIMELINES_THEREARENT_TIMELINES', 'Es gibt keine Zeitreihen');
-define('_AM_WGTIMELINES_THEREARENT_ITEMS', 'Es gibt keine Einträge');
+define('_AM_WGTIMELINES_THEREARENT_ITEMS', 'Es gibt keine Einträge für die ausgewählte Zeitreihe: ');
 define('_AM_WGTIMELINES_THEREARENT_TEMPLATES', 'Es gibt keine Vorlagen');
 // Save/Delete
 define('_AM_WGTIMELINES_FORM_OK', 'Erfolgreich gespeichert');
@@ -87,6 +87,25 @@ define('_AM_WGTIMELINES_TEMPLATE_RESETVERSION', 'Die Standardwerte wiederherstel
 define('_AM_WGTIMELINES_TEMPLATE_SURE_RESET', 'Durch die Wiederherstellen der Standardwerte gehen Ihre Einstellungen verloren. Wollen Sie fortsetzen?');
 define('_AM_WGTIMELINES_TEMPLATE_NOTSUPPORTED', 'Diese Vorlage wird vom Entwicklerteam nicht mehr unterstützt');
 define('_AM_WGTIMELINES_TEMPLATE_NEWTEMPLATE', 'Eine neue Vorlage ist verfügbar');
+// template description
+define('_AM_WGTIMELINES_TEMPLATE_D_RESPONSIVE_NOT', 'Nicht voll responsive');
+define('_AM_WGTIMELINES_TEMPLATE_D_RESPONSIVE_TABLE', 'Responsive Tabellenzeitreihe');
+define('_AM_WGTIMELINES_TEMPLATE_D_RESPONSIVE_HTML', 'Responsive Html-Zeitreihe');
+define('_AM_WGTIMELINES_TEMPLATE_D_RESPONSIVE_BOOTSTRAP', 'Responsive Bootstrap-Zeitreihe');
+define('_AM_WGTIMELINES_TEMPLATE_D_BOOTSTRAP_IMG', 'Responsive Bilder im Bootstrap-Stil');
+define('_AM_WGTIMELINES_TEMPLATE_D_POS_IMG', 'Position der Bilder auf dem Panel wählbar');
+define('_AM_WGTIMELINES_TEMPLATE_D_VERTICAL', 'Vertikale Zeitreihe');
+define('_AM_WGTIMELINES_TEMPLATE_D_VERT_HORIZ', 'Vertikale oder horizontale Zeitreihe');
+define('_AM_WGTIMELINES_TEMPLATE_D_COLORS', 'Wählbare Farben');
+define('_AM_WGTIMELINES_TEMPLATE_D_BORDERS', 'Wählbare Rahmen');
+define('_AM_WGTIMELINES_TEMPLATE_D_SHADOWS', 'Wählbare Boxschatten');
+define('_AM_WGTIMELINES_TEMPLATE_D_BADGES', 'Wählbare Knotenpunkte');
+define('_AM_WGTIMELINES_TEMPLATE_D_GLYPHICONS', 'Glyphicons für Knotenpunkte wählbar');
+define('_AM_WGTIMELINES_TEMPLATE_D_FADE', 'Fade-In-Animation beim Scrollen');
+define('_AM_WGTIMELINES_TEMPLATE_D_JQUERY', 'JQuery-Slider Zeitreihe');
+define('_AM_WGTIMELINES_TEMPLATE_D_AUTOPLAY', 'Autoplay-Optionen');
+define('_AM_WGTIMELINES_TEMPLATE_D_COLORS2', 'Vier verschiedene wiederkehrende Farben für das Panel wählbar');
+define('_AM_WGTIMELINES_TEMPLATE_D_FADE2', 'Wählbare Fade-In-Animation beim Scrollen');
 // Elements of Template options
 define('_AM_WGTIMELINES_TEMPLATE_NONE', 'Ohne');
 define('_AM_WGTIMELINES_TEMPLATE_LEFT', 'Links');
