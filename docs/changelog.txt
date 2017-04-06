@@ -1,4 +1,9 @@
 ==============================================================
+Change Log for wgTimelines - 2017-04-06 Version 1.10  RC
+==============================================================
+ - removed options social bookmarks, facebook and disqus comments (alfred/goffy)
+ 
+==============================================================
 Change Log for wgTimelines - 2017-03-24 Version 1.10  RC1
 ==============================================================
  - switched template description to language vars (cesagonchu/goffy)

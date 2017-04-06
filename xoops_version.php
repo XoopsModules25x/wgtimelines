@@ -58,7 +58,7 @@ $modversion['support_name']        = 'Support Forum';
 $modversion['module_website_url']  = 'xoops.wedega.com';
 $modversion['module_website_name'] = 'XOOPS on Wedega';
 $modversion['release']             = '02/08/2017'; // mm/dd/yyyy
-$modversion['module_status']       = 'RC1';
+$modversion['module_status']       = 'RC2';
 $modversion['system_menu']         = 1;
 $modversion['hasAdmin']            = 1;
 $modversion['hasMain']             = 1;
@@ -287,30 +287,6 @@ $modversion['config'][$c] = array(
         'png'   => 'image/png'
     )
 );
-// Bookmarks
-++$c;
-$modversion['config'][$c]['name']        = 'bookmarks';
-$modversion['config'][$c]['title']       = '_MI_WGTIMELINES_BOOKMARKS';
-$modversion['config'][$c]['description'] = '_MI_WGTIMELINES_BOOKMARKS_DESC';
-$modversion['config'][$c]['formtype']    = 'yesno';
-$modversion['config'][$c]['valuetype']   = 'int';
-$modversion['config'][$c]['default']     = 0;
-++$c;
-// Facebook Comments
-$modversion['config'][$c]['name']        = 'facebook_comments';
-$modversion['config'][$c]['title']       = '_MI_WGTIMELINES_FACEBOOK_COMMENTS';
-$modversion['config'][$c]['description'] = '_MI_WGTIMELINES_FACEBOOK_COMMENTS_DESC';
-$modversion['config'][$c]['formtype']    = 'yesno';
-$modversion['config'][$c]['valuetype']   = 'int';
-$modversion['config'][$c]['default']     = 0;
-++$c;
-// Disqus Comments
-$modversion['config'][$c]['name']        = 'disqus_comments';
-$modversion['config'][$c]['title']       = '_MI_WGTIMELINES_DISQUS_COMMENTS';
-$modversion['config'][$c]['description'] = '_MI_WGTIMELINES_DISQUS_COMMENTS_DESC';
-$modversion['config'][$c]['formtype']    = 'yesno';
-$modversion['config'][$c]['valuetype']   = 'int';
-$modversion['config'][$c]['default']     = 0;
 ++$c;
 // start page for module
 $modversion['config'][$c]['name']        = 'startpage';
@@ -320,4 +296,3 @@ $modversion['config'][$c]['formtype']    = 'select';
 $modversion['config'][$c]['valuetype']   = 'int';
 $modversion['config'][$c]['default']     = 1;
 $modversion['config'][$c]['options']     = array(_MI_WGTIMELINES_STARTPAGE_LIST => 1, _MI_WGTIMELINES_STARTPAGE_FIRST => 3);
-++$c;
