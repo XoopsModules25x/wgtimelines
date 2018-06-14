@@ -11,7 +11,7 @@ You can add descriptions and/or logos to your individual timelines, and for each
 Most of the templates on user side are fully responsive, but for proper displaying you must use a Bootstrap theme. Depending on the template you can select various options like colors, border styles, badges and many more.
                                                                                                                        
 ####Demos: 
-* http://xoops.wedega.com/modules/wgtimelines/
+* https://xoops.wedega.com/modules/wgtimelines/
 * http://xoops.org/modules/wgtimelines/index.php?op=list&tl_id=1
 
 [![Tutorial Available](http://xoops.org/images/tutorial-available-blue.svg)](https://www.gitbook.com/book/xoops/wgtimelines-tutorial/) Tutorial: see [GitBook](https://www.gitbook.com/book/xoops/wgtimelines-tutorial/).

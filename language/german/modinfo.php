@@ -17,7 +17,7 @@
  * @package        wgtimelines
  * @since          1.0
  * @min_xoops      2.5.7
- * @author         goffy (wedega.com) - Email:<webmaster@wedega.com> - Website:<http://xoops.wedega.com>
+ * @author         goffy (wedega.com) - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
  * @version        $Id: 1.0 modinfo.php 13070 Sat 2016-10-01 05:42:16Z XOOPS Development Team $
  */
 // ---------------- Admin Main ----------------
@@ -45,7 +45,7 @@ define('_MI_WGTIMELINES_KEYWORDS_DEFAULT', 'wgtimelines, Zeitreihe, Chronik, Ein
 define('_MI_WGTIMELINES_EDITOR', 'Editor');
 define('_MI_WGTIMELINES_EDITOR_DESC', 'Bitte Editor für die Eingabefelder wählen');
 define('_MI_WGTIMELINES_MAXSIZE', 'Maximale Größe');
-define('_MI_WGTIMELINES_MAXSIZE_DESC', 'Definieren Sie bitte die maximale Größe für einen Dateiupload in byte');
+define('_MI_WGTIMELINES_MAXSIZE_DESC', 'Definieren Sie bitte die maximale Größe für einen Dateiupload. Sie müssen den Wert in byte angeben (10485760 = 1 MB)');
 define('_MI_WGTIMELINES_MIMETYPES', 'Mime Types');
 define('_MI_WGTIMELINES_MIMETYPES_DESC', 'Definieren Sie bitte die zulässigen Dateitypen');
 define('_MI_WGTIMELINES_BREADCRUMBS', 'Breadcrumb-Navigation anzeigen');

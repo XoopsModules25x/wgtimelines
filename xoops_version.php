@@ -17,7 +17,7 @@
  * @package        wgtimelines
  * @since          1.0
  * @min_xoops      2.5.7
- * @author         goffy (wedega.com) - Email:<webmaster@wedega.com> - Website:<http://xoops.wedega.com>
+ * @author         goffy (wedega.com) - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
  * @version        $Id: 1.0 xoops_version.php 13070 Sat 2016-10-01 05:42:19Z XOOPS Development Team $
  */
 
@@ -29,7 +29,7 @@ $modversion['version']             = '1.10';
 $modversion['description']         = _MI_WGTIMELINES_DESC;
 $modversion['author']              = 'goffy (wedega.com)';
 $modversion['author_mail']         = 'webmaster@wedega.com';
-$modversion['author_website_url']  = 'http://xoops.wedega.com';
+$modversion['author_website_url']  = 'https://xoops.wedega.com';
 $modversion['author_website_name'] = 'XOOPS on Wedega';
 $modversion['credits']             = 'XOOPS Development Team';
 $modversion['license']             = 'GPL 3.0 or later';
@@ -51,14 +51,14 @@ $modversion['sysicons16']          = '../../Frameworks/moduleclasses/icons/16';
 $modversion['sysicons32']          = '../../Frameworks/moduleclasses/icons/32';
 $modversion['modicons16']          = 'assets/icons/16';
 $modversion['modicons32']          = 'assets/icons/32';
-$modversion['demo_site_url']       = 'http://xoops.wedega.com';
+$modversion['demo_site_url']       = 'https://xoops.wedega.com';
 $modversion['demo_site_name']      = 'Wedega Xoops Site';
 $modversion['support_url']         = 'http://xoops.org/modules/newbb';
 $modversion['support_name']        = 'Support Forum';
 $modversion['module_website_url']  = 'xoops.wedega.com';
 $modversion['module_website_name'] = 'XOOPS on Wedega';
-$modversion['release']             = '02/08/2017'; // mm/dd/yyyy
-$modversion['module_status']       = 'RC2';
+$modversion['release']             = '14/06/2018'; // mm/dd/yyyy
+$modversion['module_status']       = 'Final';
 $modversion['system_menu']         = 1;
 $modversion['hasAdmin']            = 1;
 $modversion['hasMain']             = 1;
