@@ -44,6 +44,7 @@ class WgtimelinesTimelines extends XoopsObject
         $this->initVar('tl_limit', XOBJ_DTYPE_INT);
         $this->initVar('tl_datetime', XOBJ_DTYPE_INT);
         $this->initVar('tl_magnific', XOBJ_DTYPE_INT);
+		$this->initVar('tl_expired', XOBJ_DTYPE_INT);
         $this->initVar('tl_online', XOBJ_DTYPE_INT);
         $this->initVar('tl_submitter', XOBJ_DTYPE_INT);
         $this->initVar('tl_date_create', XOBJ_DTYPE_INT);
@@ -147,7 +148,13 @@ class WgtimelinesTimelines extends XoopsObject
         // Form Radio Yes/No tl_magnific
         $tlMagnific = $this->isNew() ? 0 : $this->getVar('tl_magnific');
         $form->addElement(new XoopsFormRadioYN(_AM_WGTIMELINES_TIMELINE_MAGNIFIC . '<br>' . _AM_WGTIMELINES_TIMELINE_MAGNIFIC_DESC, 'tl_magnific', $tlMagnific));
-        // Form Text TlWeight
+        // Form Text tlExpired
+        $tlExpired = $this->isNew() ? 0 : $this->getVar('tl_expired');
+        $tlExpiredSelect = new XoopsFormSelect(_AM_WGTIMELINES_TIMELINE_EXPIRED, 'tl_expired', $tlExpired);
+        $tlExpiredSelect->addOption(WGTIMELINES_TIMELINE_EXPIRED_SHOW, _AM_WGTIMELINES_TIMELINE_EXPIRED_SHOW);
+        $tlExpiredSelect->addOption(WGTIMELINES_TIMELINE_EXPIRED_HIDE, _AM_WGTIMELINES_TIMELINE_EXPIRED_HIDE);
+        $form->addElement($tlExpiredSelect, true);
+		// Form Text TlWeight
         $timelinesHandler = $wgtimelines->getHandler('timelines');
         $tlWeight = $this->isNew() ? ($timelinesHandler->getCountTimelines() + 1) : $this->getVar('tl_weight');
         $form->addElement(new XoopsFormHidden('tl_weight', $tlWeight));
@@ -186,6 +193,16 @@ class WgtimelinesTimelines extends XoopsObject
         $ret['limit'] = $this->getVar('tl_limit');
         $ret['datetime'] = $this->getVar('tl_datetime');
         $ret['magnific'] = $this->getVar('tl_magnific');
+		$ret['expired'] = $this->getVar('tl_expired');
+		switch ( $this->getVar('tl_expired') ) {
+			case WGTIMELINES_TIMELINE_EXPIRED_HIDE:
+				$ret['expired_text'] = _AM_WGTIMELINES_TIMELINE_EXPIRED_HIDE;
+			break;
+			case WGTIMELINES_TIMELINE_EXPIRED_SHOW:
+			default:
+				$ret['expired_text'] = _AM_WGTIMELINES_TIMELINE_EXPIRED_SHOW;
+			break;
+		}
         $ret['online'] = $this->getVar('tl_online');
         $ret['submitter'] = XoopsUser::getUnameFromId($this->getVar('tl_submitter'));
         $ret['date_create'] = formatTimestamp($this->getVar('tl_date_create'), 's');

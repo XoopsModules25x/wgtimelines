@@ -13,6 +13,7 @@
 			<th class="center"><{$smarty.const._AM_WGTIMELINES_TIMELINE_LIMIT}></th>
             <th class="center"><{$smarty.const._AM_WGTIMELINES_TIMELINE_DATETIME}></th>
             <th class="center"><{$smarty.const._AM_WGTIMELINES_TIMELINE_MAGNIFIC}></th>
+			<th class="center"><{$smarty.const._AM_WGTIMELINES_TIMELINE_EXPIRED}></th>
             <th class="center"><{$smarty.const._AM_WGTIMELINES_ONLINE}></th>
             <th class="center"><{$smarty.const._AM_WGTIMELINES_SUBMITTER}></th>
             <th class="center"><{$smarty.const._AM_WGTIMELINES_DATE_CREATE}></th>
@@ -37,6 +38,7 @@
                     <img src="<{xoModuleIcons16 off.png}>" alt="<{$smarty.const._NO}>" />
                 <{/if}>
             </td>
+			<td class="center"><{$timeline.expired_text}></td>
             <td class="center">
                 <a href="timelines.php?op=set_onoff&amp;tl_id=<{$timeline.id}>" title="<{$timeline.online}>">
                     <{if $timeline.online == 1}>

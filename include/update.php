@@ -64,6 +64,9 @@ function xoops_module_update_wgtimelines(&$module, $prev_version = null)
     if ($prev_version < 109) {
         $ret = update_wgtimelines_v109($module);
     }
+	if ($prev_version < 111) {
+        $ret = update_wgtimelines_v111($module);
+    }
     $errors = $module->getErrors();
     
     // create table 'wgtimelines_tplsetsdefault' in any case
@@ -115,6 +118,23 @@ function update_tplsetsdefault(&$module)
         }
     }
 
+    return true;
+}
+
+/**
+ * @param $module
+ *
+ * @return bool
+ */
+function update_wgtimelines_v111(&$module)
+{
+    // create new field
+    $sql = 'ALTER TABLE `' . $GLOBALS['xoopsDB']->prefix('wgtimelines_timelines') . "` ADD `tl_expired` int(1) NOT NULL DEFAULT '0' AFTER `tl_magnific`;";
+    if (!$result = $GLOBALS['xoopsDB']->queryF($sql)) {
+        xoops_error($GLOBALS['xoopsDB']->error() . '<br>' . $sql);
+        $module->setErrors('error when adding new field tl_expired to table wgtimelines_timelines');
+        return false;
+    } 
     return true;
 }
 
