@@ -2,6 +2,7 @@
 Change Log for wgTimelines - 2018-11-16 Version 1.11  RC1
 ==============================================================
  - added setting for timeline: hide expired items (goffy/frank)
+ - fixed bug in sql (alain/goffy)
  
 ==============================================================
 Change Log for wgTimelines - 2018-06-14 Version 1.10  Final
