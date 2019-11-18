@@ -20,6 +20,9 @@
  * @author         goffy (wedega.com) - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
  * @version        $Id: 1.0 admin.php 13070 Sat 2016-10-01 05:42:16Z XOOPS Development Team $
  */
+
+require_once __DIR__ . '/common.php';
+
 // ---------------- Admin Index ----------------
 define('_AM_WGTIMELINES_STATISTICS', 'Statistics');
 // There are
@@ -69,10 +72,6 @@ define('_AM_WGTIMELINES_TIMELINE_DATETIME_ONLY_T', 'Only time');
 define('_AM_WGTIMELINES_TIMELINE_DATETIME_BOTH', 'Date and time');
 define('_AM_WGTIMELINES_TIMELINE_MAGNIFIC', 'Use magnific popup');
 define('_AM_WGTIMELINES_TIMELINE_MAGNIFIC_DESC', 'Please define, whether you want to use jquery magnific-popup for zooming the item images');
-define('_AM_WGTIMELINES_TIMELINE_EXPIRED', 'Expired items');
-define('_AM_WGTIMELINES_TIMELINE_EXPIRED_DESC', "If you use 'date/time' then you can hide expired items");
-define('_AM_WGTIMELINES_TIMELINE_EXPIRED_SHOW', 'Continue showing them');
-define('_AM_WGTIMELINES_TIMELINE_EXPIRED_HIDE', 'Hide them');
 define('_AM_WGTIMELINES_TIMELINE_SELECT', 'Please select timeline');
 // Template add/edit
 define('_AM_WGTIMELINES_TEMPLATE_ADD', 'Add Template');

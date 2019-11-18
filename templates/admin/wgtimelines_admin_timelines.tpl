@@ -13,7 +13,7 @@
 			<th class="center"><{$smarty.const._AM_WGTIMELINES_TIMELINE_LIMIT}></th>
             <th class="center"><{$smarty.const._AM_WGTIMELINES_TIMELINE_DATETIME}></th>
             <th class="center"><{$smarty.const._AM_WGTIMELINES_TIMELINE_MAGNIFIC}></th>
-			<th class="center"><{$smarty.const._AM_WGTIMELINES_TIMELINE_EXPIRED}></th>
+			<th class="center"><{$smarty.const._CO_WGTIMELINES_TIMELINE_EXPIRED}></th>
             <th class="center"><{$smarty.const._AM_WGTIMELINES_ONLINE}></th>
             <th class="center"><{$smarty.const._AM_WGTIMELINES_SUBMITTER}></th>
             <th class="center"><{$smarty.const._AM_WGTIMELINES_DATE_CREATE}></th>

@@ -25,24 +25,39 @@ $moduleHandler = xoops_getHandler('module');
 $xoopsModule = XoopsModule::getByDirname($dirname);
 $moduleInfo = $moduleHandler->get($xoopsModule->getVar('mid'));
 $sysPathIcon32 = $moduleInfo->getInfo('sysicons32');
-$i = 1;
-$adminmenu[$i]['title'] = _MI_WGTIMELINES_ADMENU1;
-$adminmenu[$i]['link'] = 'admin/index.php';
-$adminmenu[$i]['icon'] = $sysPathIcon32.'/dashboard.png';
-++$i;
-$adminmenu[$i]['title'] = _MI_WGTIMELINES_ADMENU2;
-$adminmenu[$i]['link'] = 'admin/timelines.php';
-$adminmenu[$i]['icon'] = 'assets/icons/32/timelines.png';
-++$i;
-$adminmenu[$i]['title'] = _MI_WGTIMELINES_ADMENU3;
-$adminmenu[$i]['link'] = 'admin/items.php';
-$adminmenu[$i]['icon'] = 'assets/icons/32/items.png';
-++$i;
-$adminmenu[$i]['title'] = _MI_WGTIMELINES_ADMENU4;
-$adminmenu[$i]['link'] = 'admin/templates.php';
-$adminmenu[$i]['icon'] = 'assets/icons/32/templates.png';
-++$i;
-$adminmenu[$i]['title'] = _MI_WGTIMELINES_ABOUT;
-$adminmenu[$i]['link'] = 'admin/about.php';
-$adminmenu[$i]['icon'] = $sysPathIcon32.'/about.png';
-unset($i);
+
+$adminmenu[] = [
+    'title' => _MI_WGTIMELINES_ADMENU1,
+    'link'  => 'admin/index.php',
+    'icon'  => $sysPathIcon32 .'/dashboard.png',
+];
+
+$adminmenu[] = [
+    'title' => _MI_WGTIMELINES_ADMENU2,
+    'link'  => 'admin/timelines.php',
+    'icon'  => 'assets/icons/32/timelines.png',
+];
+
+$adminmenu[] = [
+    'title' => _MI_WGTIMELINES_ADMENU3,
+    'link'  => 'admin/items.php',
+    'icon'  => 'assets/icons/32/items.png',
+];
+
+$adminmenu[] = [
+    'title' => _MI_WGTIMELINES_ADMENU4,
+    'link'  => 'admin/templates.php',
+    'icon'  => 'assets/icons/32/templates.png',
+];
+
+$adminmenu[] = [
+    'title' => _MI_WGTIMELINES_FEEDBACK,
+    'link'  => 'admin/feedback.php',
+    'icon'  => 'assets/icons/32/feedback.png',
+];
+
+$adminmenu[] = [
+    'title' => _MI_WGTIMELINES_ABOUT,
+    'link'  => 'admin/about.php',
+    'icon'  => $sysPathIcon32 .'/about.png',
+];

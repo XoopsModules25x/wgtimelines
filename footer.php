@@ -23,10 +23,10 @@
 if(count($xoBreadcrumbs) > 1) {
     $GLOBALS['xoopsTpl']->assign('xoBreadcrumbs', $xoBreadcrumbs);
 }
-$GLOBALS['xoopsTpl']->assign('adv', $wgtimelines->getConfig('advertise'));
+$GLOBALS['xoopsTpl']->assign('adv', $helper->getConfig('advertise'));
 //
-$GLOBALS['xoopsTpl']->assign('bookmarks', $wgtimelines->getConfig('bookmarks'));
-$GLOBALS['xoopsTpl']->assign('fbcomments', $wgtimelines->getConfig('fbcomments'));
+$GLOBALS['xoopsTpl']->assign('bookmarks', $helper->getConfig('bookmarks'));
+$GLOBALS['xoopsTpl']->assign('fbcomments', $helper->getConfig('fbcomments'));
 //
 $GLOBALS['xoopsTpl']->assign('admin', WGTIMELINES_ADMIN);
 $GLOBALS['xoopsTpl']->assign('copyright', $copyright);

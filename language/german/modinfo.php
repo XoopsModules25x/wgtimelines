@@ -20,6 +20,9 @@
  * @author         goffy (wedega.com) - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
  * @version        $Id: 1.0 modinfo.php 13070 Sat 2016-10-01 05:42:16Z XOOPS Development Team $
  */
+
+require_once __DIR__ . '/common.php';
+
 // ---------------- Admin Main ----------------
 define('_MI_WGTIMELINES_NAME', 'wgTimelines');
 define('_MI_WGTIMELINES_DESC', 'Dieses Modul ermöglicht das Erstellen von Chroniken/Zeitreihen und die Anzeige in verschiedenen Varianten.');
@@ -28,6 +31,7 @@ define('_MI_WGTIMELINES_ADMENU1', 'Dashboard');
 define('_MI_WGTIMELINES_ADMENU2', 'Zeitreihen');
 define('_MI_WGTIMELINES_ADMENU3', 'Einträge');
 define('_MI_WGTIMELINES_ADMENU4', 'Vorlagen');
+define('_MI_WGTIMELINES_FEEDBACK', 'Feedback');
 define('_MI_WGTIMELINES_ABOUT', 'Über');
 // Blocks
 define('_MI_WGTIMELINES_TIMELINES_BLOCK_TIMELINE', 'Block Zeitreihen');

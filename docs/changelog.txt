@@ -1,86 +1,78 @@
-==============================================================
-Change Log for wgTimelines - 2018-11-16 Version 1.11  RC1
-==============================================================
+<h5>1.12 RC1</h5>  [2019/11/09]
+<hr>
+ - changed to namespaces (goffy)
+ - added common classes of mamba (goffy)
+ - added feedback (goffy)
+
+<h5>1.11 RC1</h5>  [2018/11/16]
+<hr>
  - added setting for timeline: hide expired items (goffy/frank)
  - fixed bug in sql (alain/goffy)
  
-==============================================================
-Change Log for wgTimelines - 2018-06-14 Version 1.10  Final
-==============================================================
+<h5>1.10  Final</h5>  [2018-06-149]
+<hr>
  - final (goffy)
- 
-==============================================================
-Change Log for wgTimelines - 2017-04-06 Version 1.10  RC2
-==============================================================
+
+<h5>1.10 RC2</h5>  [2017-04-06]
+<hr> 
  - removed options social bookmarks, facebook and disqus comments (alfred/goffy)
- 
-==============================================================
-Change Log for wgTimelines - 2017-03-24 Version 1.10  RC1
-==============================================================
+
+<h5>1.10 RC1</h5>  [2017-03-24]
+<hr> 
  - switched template description to language vars (cesagonchu/goffy)
- 
-==============================================================
-Change Log for wgTimelines - 2017-03-19 Version 1.09  RC4
-==============================================================
+
+<h5>1.09 RC4</h5>  [2017-03-19]
+<hr> 
  - reduced number of xoopsObjects (mage/goffy)
- 
-==============================================================
-Change Log for wgTimelines - 2017-03-19 Version 1.09  RC3
-==============================================================
+
+<h5>1.09 RC3</h5>  [2017-03-19]
+<hr> 
  - fixed bug in mysql.sql (goffy)
  - corrected language files (cesagonchu/goffy)
- 
-==============================================================
-Change Log for wgTimelines - 2017-03-04 Version 1.09  RC2
-==============================================================
+
+<h5>1.09 RC2</h5>  [2017-03-04]
+<hr> 
  - removed useless language vars (cesagonchu/goffy)
  - corrected help files (cesagonchu/goffy)
- 
-==============================================================
-Change Log for wgTimelines - 2017-02-22 Version 1.09  RC1
-==============================================================
+
+<h5>1.09 RC1</h5>  [2017-02-22]
+<hr> 
  - moved option for magnific popup from preferences to timeline options (goffy)
- 
-==============================================================
-Change Log for wgTimelines - 2017-02-20 Version 1.08  RC1
-==============================================================
+
+<h5>1.08 RC1</h5>  [2017-02-20]
+<hr> 
  - added possibility to use time besides date (cifug/zap_english/goffy)
  -- new field tl_datetime to table timelines
  - added possibility to clone items (cifug/zap_english/goffy) 
  - added magnific popup lightbox (mamba/goffy)
- 
-==============================================================
-Change Log for wgTimelines - 2017-02-09 Version 1.07  RC3
-==============================================================
+
+<h5>1.07 RC3</h5>  [2017-02-09]
+<hr> 
  - fixed html output problem (goffy)
- 
-==============================================================
-Change Log for wgTimelines - 2017-02-09 Version 1.07  RC2
-==============================================================
+
+<h5>1.07 RC2</h5>  [2017-02-09]
+<hr> 
  - fixed bug show/hide timeline description (frank/goffy)
  - fixed bug in creation file name for image upload (frank/goffy)
- 
-==============================================================
-Change Log for wgTimelines - 2017-02-08 Version 1.07  RC1
-==============================================================
+
+<h5>1.07 RC1</h5>  [2017-02-08]
+<hr> 
  - changed field item_year to varchar (mamba/goffy)
- 
-==============================================================
-Change Log for wgTimelines - 2017-02-04 Version 1.06  RC3
-==============================================================
+
+<h5>1.06  RC3</h5>  [2017-02-04]
+<hr> 
  - fixed bug in block items (cifug/goffy)
  - changed permission system to allow also guest to vote (cifug/goffy)
- 
-==============================================================
-Change Log for wgTimelines - 2017-02-03 Version 1.06  RC2
-==============================================================
+
+<h5>1.06 RC2</h5>  [2017-02-03]
+<hr> 
  - fixed problem with hiding empty paragraphs (goffy)
  - cosmetics (replaced tabs by 4 spaces, trailing spaces) (goffy)
  - fixed output problems (replace $this->getVar('...', 'n') by $this->getVar('...', 'show')) (mage);
- 
-==============================================================
-Change Log for wgTimelines - 2017-01-23 Version 1.06  RC1
-==============================================================
+
+<h5>1.06 RC1</h5>  [2017-01-2]
+<hr> 
+
  - add extra Help Pages (mamba)
  - Hardening to type safe (mamba)
  - removed unused "static" from function truncateHtml  (mamba)
@@ -90,15 +82,13 @@ Change Log for wgTimelines - 2017-01-23 Version 1.06  RC1
  - added missing $modversion['tables'][5] = 'wgtimelines_ratings'; (mamba)
  - replaced < br /> with < br > (mamba)
 
-==============================================================
-Change Log for wgTimelines - 2016/12/28 Version 1.06 Beta 1
-==============================================================
+<h5>1.06 Beta 1</h5>  [2016/12/28]
+<hr>
  - add star rating for items (mamba/goffy)
  - fixed bugs (mamba/goffy)
- 
-==============================================================
-Change Log for wgTimelines - 2016/12/09 Version 1.05 Beta 1
-==============================================================
+
+<h5>1.05 Beta 1</h5>  [2016/12/09]
+<hr> 
  - add field "item_reads" to table items (mamba/goffy)
  - add fields "tl_limit", "tl_desc", "tl_image" to table timelines (goffy)
  - add possibility to insert description for timelines (goffy)
@@ -109,37 +99,32 @@ Change Log for wgTimelines - 2016/12/09 Version 1.05 Beta 1
  - add possibility to show a single image (mamba/goffy)
  - add block for last/new/random items (mamba/goffy)
  - updated default templates table and animated (goffy)
- 
-==============================================================
-Change Log for wgTimelines - 2016/12/04 Version 1.04 Beta 1
-==============================================================
+
+<h5>1.04 Beta 1</h5>  [2016/12/04]
+<hr> 
  - add field "item_online" to table items (mamba/goffy)
  - add possibility to save item without link to timeline (mamba/goffy)
  - fixed bug in pagination (mamba/goffy)
- 
-==============================================================
-Change Log for wgTimelines - 2016/11/22 Version 1.03 Beta 2
-==============================================================
+
+<h5>1.03 RC1</h5>  [2016/11/22]
+<hr>
  - fixed bug proper showing of html on front end (mamba/goffy)
  - added usage of versions of templates (goffy)
  - added truncateHTML to helper class (mamba/lucio/goffy)
  - added proper description for options in templates admin side (goffy)
  - added new fields tpl_version and tpl_author to wgtimelines_templates (goffy)
- 
-==============================================================
-Change Log for wgTimelines - 2016/11/20 Version 1.02
-==============================================================
+
+<h5>1.02 RC1</h5>  [2016/11/20]
+<hr>
  - added glyphicons for badges (goffy)
- 
-==============================================================
-Change Log for wgTimelines - 2016/11/13 Version 1.01
-==============================================================
+
+<h5>1.01 RC1</h5>  [2016/11/13]
+<hr>
  - added form button trays (cancel/reset/submit) to forms (goffy)
  - added new template facebook, crazy colors, single column (goffy) 
- 
-==============================================================
-Change Log for wgTimelines - 2016/10/01 5:42:18 Version 1.0
-==============================================================
+
+<h5>1.0 </h5>  [2016/10/01]
+<hr>
  - Original release wgtimelines (goffy (wedega.com))
  - Callable calls in loops termination condition (mamba)
  - Reference mismatch (mamba)

@@ -29,7 +29,7 @@ switch ($op) {
     case 'list':
     default:
         $start = XoopsRequest::getInt('start', 0);
-        $limit = XoopsRequest::getInt('limit', $wgtimelines->getConfig('adminpager'));
+        $limit = XoopsRequest::getInt('limit', $helper->getConfig('adminpager'));
         $templateMain = 'wgtimelines_admin_templates.tpl';
 
         // check default template set
@@ -76,9 +76,9 @@ switch ($op) {
     break;
     case 'new':
         $templateMain = 'wgtimelines_admin_templates.tpl';
-        $GLOBALS['xoopsTpl']->assign('navigation', $adminMenu->addNavigation('templates.php'));
-        $adminMenu->addItemButton(_AM_WGTIMELINES_TEMPLATES_LIST, 'templates.php', 'list');
-        $GLOBALS['xoopsTpl']->assign('buttons', $adminMenu->renderButton());
+        $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('templates.php'));
+        $adminObject->addItemButton(_AM_WGTIMELINES_TEMPLATES_LIST, 'templates.php', 'list');
+        $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->renderButton());
         // Get Form
         $templatesObj = $templatesHandler->create();
         $form = $templatesObj->getFormTemplates();
@@ -298,12 +298,12 @@ switch ($op) {
     case 'edit':
     case 'edit-master':
         $templateMain = 'wgtimelines_admin_templates.tpl';
-        $GLOBALS['xoopsTpl']->assign('navigation', $adminMenu->addNavigation('templates.php'));
-        $adminMenu->addItemButton(_AM_WGTIMELINES_TEMPLATES_LIST, 'templates.php', 'list');
+        $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('templates.php'));
+        $adminObject->addItemButton(_AM_WGTIMELINES_TEMPLATES_LIST, 'templates.php', 'list');
         if ($op === 'edit-master') {
-            $adminMenu->addItemButton(_AM_WGTIMELINES_TEMPLATE_ADD, 'templates.php?op=new', 'add');
+            $adminObject->addItemButton(_AM_WGTIMELINES_TEMPLATE_ADD, 'templates.php?op=new', 'add');
         }
-        $GLOBALS['xoopsTpl']->assign('buttons', $adminMenu->renderButton());
+        $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->renderButton());
         // Get Form
         $templatesObj = $templatesHandler->get($tplId);
         if ($op === 'edit-master') {

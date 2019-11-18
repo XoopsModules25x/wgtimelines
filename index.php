@@ -20,18 +20,22 @@
  * @author         goffy (wedega.com) - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
  * @version        $Id: 1.0 timelines.php 13070 Sat 2016-10-01 05:42:14Z XOOPS Development Team $
  */
+
+use XoopsModules\Wgtimelines;
+use XoopsModules\Wgtimelines\Constants;
+
 include __DIR__ . '/header.php';
 // get timeline id
 $tl_id = XoopsRequest::getInt('tl_id', 0);
 $start = XoopsRequest::getInt('start', 0);
-$limit = XoopsRequest::getInt('limit', $wgtimelines->getConfig('userpager'));
+$limit = XoopsRequest::getInt('limit', $helper->getConfig('userpager'));
 
-$startpage = $wgtimelines->getConfig('startpage', 0);
+$startpage = $helper->getConfig('startpage', 0);
 
-$criteria = new CriteriaCompo();
-$criteria->add(new Criteria('tl_online', 1));
+$criteria = new \CriteriaCompo();
+$criteria->add(new \Criteria('tl_online', 1));
 if ($tl_id > 0) {
-    $criteria->add(new Criteria('tl_id', $tl_id));
+    $criteria->add(new \Criteria('tl_id', $tl_id));
 }
 $criteria->setSort('tl_weight ASC, tl_id');
 $criteria->setOrder('ASC');
@@ -103,16 +107,16 @@ if ($timelinesCount > 0) {
             if (isset($GLOBALS['xoopsUser']) && is_object($GLOBALS['xoopsUser']) && $GLOBALS['xoopsUser']->isAdmin()) {
                 $GLOBALS['xoopsTpl']->assign('isAdmin', 1);
             }
-            if ($wgtimelines->getConfig('ratingbars')) {
-                $GLOBALS['xoopsTpl']->assign('rating', $wgtimelines->getConfig('ratingbars'));
+            if ($helper->getConfig('ratingbars')) {
+                $GLOBALS['xoopsTpl']->assign('rating', $helper->getConfig('ratingbars'));
                 $GLOBALS['xoopsTpl']->assign('save', 'save-index');
             }
             // get items
-            $criteria = new CriteriaCompo();
-            $criteria->add(new Criteria('item_tl_id', $tl_id));
-            $criteria->add(new Criteria('item_online', 1));
-			if ( WGTIMELINES_TIMELINE_EXPIRED_HIDE == $tl_expired ) { //=== does not work
-				$criteria->add(new Criteria('item_date', time(), '>'));
+            $criteria = new \CriteriaCompo();
+            $criteria->add(new \Criteria('item_tl_id', $tl_id));
+            $criteria->add(new \Criteria('item_online', 1));
+			if ( Constants::WGTIMELINES_TIMELINE_EXPIRED_HIDE == $tl_expired ) { //=== does not work
+				$criteria->add(new \Criteria('item_date', time(), '>'));
 			}
             if ($limit > 0) {
                 $criteria->setStart($start);
@@ -187,7 +191,7 @@ if ($timelinesCount > 0) {
                         $items[$j]['content'] = $items[$j]['content_summary'];
                         $items[$j]['readmore'] = 1;
                     }
-                    if ($wgtimelines->getConfig('ratingbars')) {
+                    if ($helper->getConfig('ratingbars')) {
                         $items[$j]['rating'] = $ratingsHandler->getItemRating($items[$j]['id']);
                     }
                     $keywords[] = $itemsAll[$i]->getVar('item_title');
@@ -212,14 +216,14 @@ if ($timelinesCount > 0) {
             } else {
                 $GLOBALS['xoopsTpl']->assign('error', _MA_WGTIMELINES_THEREARENT_ITEMS);
             }
-            if ($wgtimelines->getConfig('tl_name') == 1) {
+            if ($helper->getConfig('tl_name') == 1) {
                 $GLOBALS['xoopsTpl']->assign('timeline_name', $tl_name);
             }
-            if ($wgtimelines->getConfig('tl_description') == 3) {
+            if ($helper->getConfig('tl_description') == 3) {
                 $GLOBALS['xoopsTpl']->assign('timeline_desc', $tl_desc);
             }
             // Breadcrumbs
-            if ($wgtimelines->getConfig('breadcrumbs')) {
+            if ($helper->getConfig('breadcrumbs')) {
                 $xoBreadcrumbs[] = array('title' => $tl_name);
                 $GLOBALS['xoopsTpl']->assign('breadcrumbs', 1);
             }
@@ -235,7 +239,7 @@ if ($timelinesCount > 0) {
         $GLOBALS['xoTheme']->addStylesheet($style, null);
         foreach (array_keys($timelinesAll) as $i) {
             $timelines[$i] = $timelinesAll[$i]->getValuesTimelines();
-            if ($wgtimelines->getConfig('tl_description') > 1) {
+            if ($helper->getConfig('tl_description') > 1) {
                 $timelines[$i]['timeline_desc'] = $timelines[$i]['desc'];
             }
             // $timelines[$i]['timeline_desc'] = $timelines[$i]['desc'];
@@ -255,11 +259,11 @@ if ($timelinesCount > 0) {
         }
     }
 
-    $GLOBALS['xoopsTpl']->assign('welcome', $wgtimelines->getConfig('welcome'));
+    $GLOBALS['xoopsTpl']->assign('welcome', $helper->getConfig('welcome'));
 
 
     // Keywords
-    wgtimelinesMetaKeywords($wgtimelines->getConfig('keywords').', '. implode(',', $keywords));
+    wgtimelinesMetaKeywords($helper->getConfig('keywords').', '. implode(',', $keywords));
     unset($keywords);
 } else {
     $GLOBALS['xoopsOption']['template_main'] = 'wgtimelines_index.tpl';

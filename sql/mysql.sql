@@ -40,7 +40,6 @@ CREATE TABLE `wgtimelines_items` (
   `item_content` TEXT NOT NULL,
   `item_image` VARCHAR(200) NOT NULL DEFAULT '',
   `item_date` INT(8) DEFAULT NULL,
-  `item_time` INT(8) DEFAULT NULL,
   `item_year` VARCHAR(50) NOT NULL DEFAULT '',
   `item_icon` VARCHAR(200) NOT NULL DEFAULT '',
   `item_reads` INT(8) NOT NULL DEFAULT '0',

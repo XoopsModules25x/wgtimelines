@@ -44,7 +44,7 @@ switch($op) {
         $form_select->setExtra('enctype="multipart/form-data"');
         $timeline_select = new XoopsFormSelect(_AM_WGTIMELINES_TIMELINE_SELECT, "tl_id", $tl_id);
         $timeline_select->addOption(0, _AM_WGTIMELINES_ITEM_NONE);
-        $crit_tl = new CriteriaCompo();
+        $crit_tl = new \CriteriaCompo();
         $crit_tl->setSort('tl_weight ASC, tl_id');
         $crit_tl->setOrder('ASC');
         $timeline_select->addOptionArray($timelinesHandler->getList($crit_tl));
@@ -55,13 +55,13 @@ switch($op) {
         // show details of selected timeline
         $GLOBALS['xoTheme']->addScript(WGTIMELINES_URL . '/assets/js/sortable-items.js');
         $start = XoopsRequest::getInt('start', 0);
-        $limit = XoopsRequest::getInt('limit', $wgtimelines->getConfig('adminpager'));
-        $GLOBALS['xoopsTpl']->assign('navigation', $adminMenu->addNavigation('items.php'));
-        $adminMenu->addItemButton(_AM_WGTIMELINES_ITEM_ADD, 'items.php?op=new', 'add');
-        $GLOBALS['xoopsTpl']->assign('buttons', $adminMenu->renderButton());
+        $limit = XoopsRequest::getInt('limit', $helper->getConfig('adminpager'));
+        $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('items.php'));
+        $adminObject->addItemButton(_AM_WGTIMELINES_ITEM_ADD, 'items.php?op=new&amp;tl_id=' . $tl_id, 'add');
+        $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->renderButton());
         $timeline_obj = $timelinesHandler->get($tl_id);
-        $critItems = new CriteriaCompo();
-        $critItems->add(new Criteria('item_tl_id', $tl_id));
+        $critItems = new \CriteriaCompo();
+        $critItems->add(new \Criteria('item_tl_id', $tl_id));
         $itemsCount = $itemsHandler->getCount($critItems);
         $critItems->setStart($start);
         $critItems->setLimit($limit);
@@ -106,19 +106,22 @@ switch($op) {
     break;
     case 'new':
         $templateMain = 'wgtimelines_admin_items.tpl';
-        $GLOBALS['xoopsTpl']->assign('navigation', $adminMenu->addNavigation('items.php'));
-        $adminMenu->addItemButton(_AM_WGTIMELINES_ITEMS_LIST, 'items.php', 'list');
-        $GLOBALS['xoopsTpl']->assign('buttons', $adminMenu->renderButton());
+        $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('items.php'));
+        $adminObject->addItemButton(_AM_WGTIMELINES_ITEMS_LIST, 'items.php', 'list');
+        $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->renderButton());
         // Get Form
         $itemsObj = $itemsHandler->create();
+        if ($tl_id > 0) {
+            $itemsObj->setVar('item_tl_id', $tl_id);
+        }
         $form = $itemsObj->getFormItems();
         $GLOBALS['xoopsTpl']->assign('form', $form->render());
     break;
     case 'editcopy':
         $templateMain = 'wgtimelines_admin_items.tpl';
-        $GLOBALS['xoopsTpl']->assign('navigation', $adminMenu->addNavigation('items.php'));
-        $adminMenu->addItemButton(_AM_WGTIMELINES_ITEMS_LIST, 'items.php', 'list');
-        $GLOBALS['xoopsTpl']->assign('buttons', $adminMenu->renderButton());
+        $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('items.php'));
+        $adminObject->addItemButton(_AM_WGTIMELINES_ITEMS_LIST, 'items.php', 'list');
+        $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->renderButton());
         // Get Form
         $itemsObj = $itemsHandler->create();
         $itemsObjOld = $itemsHandler->get($itemId);
@@ -157,8 +160,8 @@ switch($op) {
         // Set Var item_image
         include_once XOOPS_ROOT_PATH .'/class/uploader.php';
         $uploader = new XoopsMediaUploader(WGTIMELINES_UPLOAD_IMAGE_PATH.'/items/',
-                                            $wgtimelines->getConfig('mimetypes'),
-                                            $wgtimelines->getConfig('maxsize'), null, null);
+                                            $helper->getConfig('mimetypes'),
+                                            $helper->getConfig('maxsize'), null, null);
         if($uploader->fetchMedia($_POST['xoops_upload_file'][0])) {
             $filename = pathinfo($_FILES['attachedfile']['name'], PATHINFO_FILENAME);
             $imgName = preg_replace('/[^a-zA-Z0-9\.\_\-]/', '', $filename) . ".";
@@ -198,10 +201,10 @@ switch($op) {
     break;
     case 'edit':
         $templateMain = 'wgtimelines_admin_items.tpl';
-        $GLOBALS['xoopsTpl']->assign('navigation', $adminMenu->addNavigation('items.php'));
-        $adminMenu->addItemButton(_AM_WGTIMELINES_ITEM_ADD, 'items.php?op=new', 'add');
-        $adminMenu->addItemButton(_AM_WGTIMELINES_ITEMS_LIST, 'items.php', 'list');
-        $GLOBALS['xoopsTpl']->assign('buttons', $adminMenu->renderButton());
+        $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('items.php'));
+        $adminObject->addItemButton(_AM_WGTIMELINES_ITEM_ADD, 'items.php?op=new', 'add');
+        $adminObject->addItemButton(_AM_WGTIMELINES_ITEMS_LIST, 'items.php', 'list');
+        $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->renderButton());
         // Get Form
         $itemsObj = $itemsHandler->get($itemId);
         $form = $itemsObj->getFormItems(false, $ui);

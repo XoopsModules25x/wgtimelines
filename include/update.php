@@ -67,6 +67,9 @@ function xoops_module_update_wgtimelines(&$module, $prev_version = null)
 	if ($prev_version < 111) {
         $ret = update_wgtimelines_v111($module);
     }
+    if ($prev_version < 112) {
+        $ret = update_wgtimelines_v112($module);
+    }
     $errors = $module->getErrors();
     
     // create table 'wgtimelines_tplsetsdefault' in any case
@@ -121,6 +124,23 @@ function update_tplsetsdefault(&$module)
     return true;
 }
 
+/**
+ * @param $module
+ *
+ * @return bool
+ */
+function update_wgtimelines_v112(&$module)
+{
+    // drop field
+    $sql = 'ALTER TABLE `' . $GLOBALS['xoopsDB']->prefix('wgtimelines_items') . "` DROP `item_time`;";
+    if (!$result = $GLOBALS['xoopsDB']->queryF($sql)) {
+        xoops_error($GLOBALS['xoopsDB']->error() . '<br>' . $sql);
+        $module->setErrors('error when dropping field item_time to table wgtimelines_items');
+        return false;
+    } 
+    return true;
+}  
+  
 /**
  * @param $module
  *
@@ -351,7 +371,7 @@ function update_wgtimelines_v10(&$module)
     if (count($tplids) > 0) {
         $tplfile_handler = xoops_getHandler('tplfile');
         $duplicate_files = $tplfile_handler->getObjects(
-            new Criteria('tpl_id', '(' . implode(',', $tplids) . ')', 'IN')
+            new \Criteria('tpl_id', '(' . implode(',', $tplids) . ')', 'IN')
         );
 
         if (count($duplicate_files) > 0) {

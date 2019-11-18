@@ -24,17 +24,17 @@ include_once XOOPS_ROOT_PATH.'/modules/wgtimelines/include/common.php';
 // Function show block
 function b_wgtimelines_items_show($options)
 {
-    include_once XOOPS_ROOT_PATH.'/modules/wgtimelines/class/items.php';
+    include_once XOOPS_ROOT_PATH.'/modules/wgtimelines/class/Items.php';
     $GLOBALS['xoopsTpl']->assign('wgtimelines_upload_url', WGTIMELINES_UPLOAD_URL);
     $block       = array();
     $limit       = $options[1];
     $lenghtTitle = $options[2];
     $typeBlock   = $options[3];
     $timelines   = $options[4];
-    $wgtimelines      = WgtimelinesHelper::getInstance();
-    $timelinesHandler = $wgtimelines->getHandler('timelines');
-    $itemsHandler     = $wgtimelines->getHandler('items');
-    $criteria = new CriteriaCompo();
+    $helper           = \XoopsModules\Wgtimelines\Helper::getInstance();
+    $timelinesHandler = $helper->getHandler('Timelines');
+    $itemsHandler     = $helper->getHandler('Items');
+    $criteria = new \CriteriaCompo();
     array_shift($options);
     array_shift($options);
     array_shift($options);
@@ -43,26 +43,26 @@ function b_wgtimelines_items_show($options)
     switch ($typeBlock) {
         // For the block: items last
         case 'last':
-            $criteria->add(new Criteria('item_online', 1));
+            $criteria->add(new \Criteria('item_online', 1));
             $criteria->setSort('item_date_create');
             $criteria->setOrder('DESC');
         break;
         // For the block: items new
         case 'new':
-            $criteria->add(new Criteria('item_display', 1));
-            $criteria->add(new Criteria('item_date_create', strtotime(date(_SHORTDATESTRING)), '>='));
-            $criteria->add(new Criteria('item_date_create', strtotime(date(_SHORTDATESTRING))+86400, '<='));
+            $criteria->add(new \Criteria('item_display', 1));
+            $criteria->add(new \Criteria('item_date_create', strtotime(date(_SHORTDATESTRING)), '>='));
+            $criteria->add(new \Criteria('item_date_create', strtotime(date(_SHORTDATESTRING))+86400, '<='));
             $criteria->setSort('item_date_create');
             $criteria->setOrder('ASC');
         break;
         // For the block: items random
         case 'random':
-            $criteria->add(new Criteria('item_online', 1));
+            $criteria->add(new \Criteria('item_online', 1));
             $criteria->setSort('RAND()');
         break;
     }
     if ($timelines > 0) {
-        $criteria->add(new Criteria('item_tl_id', $timelines));
+        $criteria->add(new \Criteria('item_tl_id', $timelines));
     }
     $criteria->setLimit($limit);
     $itemsAll = $itemsHandler->getAll($criteria);
@@ -94,8 +94,8 @@ function limitLength($text, $lenghtTitle)
 function b_wgtimelines_items_edit($options)
 {
     include_once XOOPS_ROOT_PATH.'/modules/wgtimelines/class/items.php';
-    $wgtimelines      = WgtimelinesHelper::getInstance();
-    $timelinesHandler = $wgtimelines->getHandler('timelines');
+    $wgtimelines      = \XoopsModules\Wgtimelines\Helper::getInstance();
+    $timelinesHandler = $helper->getHandler('Timelines');
 
     $GLOBALS['xoopsTpl']->assign('wgtimelines_upload_url', WGTIMELINES_UPLOAD_URL);
     $form  = _MB_WGTIMELINES_ITEMS_TO_DISPLAY . ': ';
@@ -109,8 +109,8 @@ function b_wgtimelines_items_edit($options)
     $form .= "<option value='random' " . ('random' === $options[3] ? "selected='selected'" : '') . '>' . _MB_WGTIMELINES_ITEMS_RANDOM . '</option>';
     $form .= '</select><br><br>';
 
-    $criteria = new CriteriaCompo();
-    $criteria->add(new Criteria('tl_id', 0, '!='));
+    $criteria = new \CriteriaCompo();
+    $criteria->add(new \Criteria('tl_id', 0, '!='));
     $criteria->setSort('tl_weight');
     $criteria->setOrder('ASC');
     $timelinesAll = $timelinesHandler->getAll($criteria);

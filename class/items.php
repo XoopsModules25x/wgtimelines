@@ -1,4 +1,7 @@
 <?php
+
+namespace XoopsModules\Wgtimelines;
+
 /*
  You may not change or alter any portion of this comment or credits
  of supporting developers from this source code or any supporting source code
@@ -20,12 +23,15 @@
  * @author         goffy (wedega.com) - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
  * @version        $Id: 1.0 items.php 13070 Sat 2016-10-01 05:42:14Z XOOPS Development Team $
  */
+ 
+use XoopsModules\Wgtimelines;
+ 
 defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
 /**
  * Class Object WgtimelinesItems
  */
-class WgtimelinesItems extends XoopsObject
+class Items extends \XoopsObject
 {
     /**
      * Constructor
@@ -77,13 +83,13 @@ class WgtimelinesItems extends XoopsObject
     /**
      * Get form
      *
-     * @param mixed  $action
+     * @param mixed $action
      * @param string $ui
-     * @return XoopsThemeForm
+     * @return \XoopsThemeForm
      */
     public function getFormItems($action = false, $ui = 'admin')
     {
-        $wgtimelines = WgtimelinesHelper::getInstance();
+        $helper = \XoopsModules\Wgtimelines\Helper::getInstance();
         if ($action === false) {
             $action = $_SERVER['REQUEST_URI'];
         }
@@ -91,16 +97,16 @@ class WgtimelinesItems extends XoopsObject
         $title = $this->isNew() ? sprintf(_AM_WGTIMELINES_ITEM_ADD) : sprintf(_AM_WGTIMELINES_ITEM_EDIT);
         // Get Theme Form
         xoops_load('XoopsFormLoader');
-        $form = new XoopsThemeForm($title, 'form', $action, 'post', true);
+        $form = new \XoopsThemeForm($title, 'form', $action, 'post', true);
         $form->setExtra('enctype="multipart/form-data"');
         // Form Table Items
-        $timelinesHandler = $wgtimelines->getHandler('timelines');
-        $itemTl_idSelect = new XoopsFormSelect(_AM_WGTIMELINES_ITEM_TL_ID, 'item_tl_id', $this->getVar('item_tl_id'));
+        $timelinesHandler = $helper->getHandler('Timelines');
+        $itemTl_idSelect = new \XoopsFormSelect(_AM_WGTIMELINES_ITEM_TL_ID, 'item_tl_id', $this->getVar('item_tl_id'));
         $itemTl_idSelect->addOption(0, _AM_WGTIMELINES_ITEM_NONE);
         $itemTl_idSelect->addOptionArray($timelinesHandler->getList());
         $form->addElement($itemTl_idSelect, true);
         // Form Text ItemTitle
-        $form->addElement(new XoopsFormText(_AM_WGTIMELINES_ITEM_TITLE, 'item_title', 50, 255, $this->getVar('item_title')));
+        $form->addElement(new \XoopsFormText(_AM_WGTIMELINES_ITEM_TITLE, 'item_title', 50, 255, $this->getVar('item_title')));
         // Form editor ItemContent
         $editorConfigs = array();
         $editorConfigs['name'] = 'item_content';
@@ -109,68 +115,69 @@ class WgtimelinesItems extends XoopsObject
         $editorConfigs['cols'] = 40;
         $editorConfigs['width'] = '100%';
         $editorConfigs['height'] = '400px';
-        $editorConfigs['editor'] = $wgtimelines->getConfig('wgtimelines_editor');
-        $form->addElement(new XoopsFormEditor(_AM_WGTIMELINES_ITEM_CONTENT, 'item_content', $editorConfigs), true);
+        $editorConfigs['editor'] = $helper->getConfig('wgtimelines_editor');
+        $form->addElement(new \XoopsFormEditor(_AM_WGTIMELINES_ITEM_CONTENT, 'item_content', $editorConfigs), true);
         // Form Upload Image
         $getItemImage = $this->getVar('item_image');
         $itemImage = $getItemImage ?: 'blank.gif';
         $imageDirectory = '/uploads/wgtimelines/images/items';
-        $imageTray = new XoopsFormElementTray(_AM_WGTIMELINES_ITEM_IMAGE, '<br>');
-        $imageSelect = new XoopsFormSelect(sprintf(_AM_WGTIMELINES_FORM_IMAGE_PATH, ".{$imageDirectory}/"), 'item_image', $itemImage, 5);
-        $imageArray = XoopsLists::getImgListAsArray(XOOPS_ROOT_PATH . $imageDirectory);
+        $imageTray = new \XoopsFormElementTray(_AM_WGTIMELINES_ITEM_IMAGE, '<br>');
+        $imageSelect = new \XoopsFormSelect(sprintf(_AM_WGTIMELINES_FORM_IMAGE_PATH, ".{$imageDirectory}/"), 'item_image', $itemImage, 5);
+        $imageArray = \XoopsLists::getImgListAsArray(XOOPS_ROOT_PATH . $imageDirectory);
         foreach ($imageArray as $image1) {
             $imageSelect->addOption("{$image1}", $image1);
         }
         $imageSelect->setExtra("onchange='showImgSelected(\"image1\", \"item_image\", \"".$imageDirectory . '", "", "' . XOOPS_URL . "\")'");
         $imageTray->addElement($imageSelect, false);
-        $imageTray->addElement(new XoopsFormLabel('', "<br><img src='".XOOPS_URL . '/' . $imageDirectory . '/' . $itemImage . '\' name=\'image1\' id=\'image1\' alt=\'\' style=\'max-width:100px;\' />'));
+        $imageTray->addElement(new \XoopsFormLabel('', "<br><img src='".XOOPS_URL . '/' . $imageDirectory . '/' . $itemImage . '\' name=\'image1\' id=\'image1\' alt=\'\' style=\'max-width:100px;\' />'));
         // Form File
-        $fileSelectTray = new XoopsFormElementTray('', '<br>');
-        $fileSelectTray->addElement(new XoopsFormFile(_AM_WGTIMELINES_FORM_UPLOAD_IMAGE, 'attachedfile', $wgtimelines->getConfig('maxsize')));
-        $fileSelectTray->addElement(new XoopsFormLabel(''));
+        $fileSelectTray = new \XoopsFormElementTray('', '<br>');
+        $fileSelectTray->addElement(new \XoopsFormFile(_AM_WGTIMELINES_FORM_UPLOAD_IMAGE, 'attachedfile', $helper->getConfig('maxsize')));
+        $fileSelectTray->addElement(new \XoopsFormLabel(''));
         $imageTray->addElement($fileSelectTray);
         $form->addElement($imageTray);
         // Form Text Date Select
         $itemDate = $this->isNew() ? mktime(0, 0, 0, date("m"), date("d"), date("Y")) : $this->getVar('item_date');
-        $form->addElement(new XoopsFormDateTime(_AM_WGTIMELINES_ITEM_DATE, 'item_date', 15, $itemDate));
+        $form->addElement(new \XoopsFormDateTime(_AM_WGTIMELINES_ITEM_DATE, 'item_date', 15, $itemDate));
         // Form Text ItemYear
         if ($this->isNew()) {
             $itemYear = formatTimestamp(time(), 'Y');
         } else {
             $itemYear = $this->getVar('item_year');
         }
-        $form->addElement(new XoopsFormText(_AM_WGTIMELINES_ITEM_YEAR . "<br><span class='font-size:70%'> " . _AM_WGTIMELINES_ITEM_YEAR_ICON_DESC . '</span>', 'item_year', 20, 255, $itemYear));
+        $form->addElement(new \XoopsFormText(_AM_WGTIMELINES_ITEM_YEAR . "<br><span class='font-size:70%'> " . _AM_WGTIMELINES_ITEM_YEAR_ICON_DESC . '</span>', 'item_year', 20, 255, $itemYear));
 
         $item_icon = $this->isNew() ? 'none' : $this->getVar('item_icon');
-        $item_icon = new XoopsFormRadio(_AM_WGTIMELINES_ITEM_ICON . "<br><span class='font-size:70%'> " . _AM_WGTIMELINES_ITEM_YEAR_ICON_DESC . '</span>', 'item_icon', $item_icon);
+        $item_icon = new \XoopsFormRadio(_AM_WGTIMELINES_ITEM_ICON . "<br><span class='font-size:70%'> " . _AM_WGTIMELINES_ITEM_YEAR_ICON_DESC . '</span>', 'item_icon', $item_icon);
         $item_icon->addOption('none', _AM_WGTIMELINES_ITEM_NONE . '<br>');
         $this->addGlyphicons($item_icon);
         $form->addElement($item_icon);
 
         // Form Text ItemWeight
-        $itemsHandler = $wgtimelines->getHandler('items');
+        $itemsHandler = $helper->getHandler('Items');
         $itemWeight = $this->isNew() ? ($itemsHandler->getCountItems() + 1) : $this->getVar('item_weight');
-        $form->addElement(new XoopsFormHidden('item_weight', $itemWeight));
+        $form->addElement(new \XoopsFormHidden('item_weight', $itemWeight));
         // Form Text ItemReads
         $itemReads = $this->isNew() ? 0 : $this->getVar('item_reads');
-        $form->addElement(new XoopsFormText(_AM_WGTIMELINES_ITEM_READS, 'item_reads', 20, 255, $itemReads));
+        $form->addElement(new \XoopsFormText(_AM_WGTIMELINES_ITEM_READS, 'item_reads', 20, 255, $itemReads));
         // Form Radio Yes/No
         $itemOnline = $this->isNew() ? 0 : $this->getVar('item_online');
-        $form->addElement(new XoopsFormRadioYN(_AM_WGTIMELINES_ONLINE, 'item_online', $itemOnline));
+        $form->addElement(new \XoopsFormRadioYN(_AM_WGTIMELINES_ONLINE, 'item_online', $itemOnline));
         // Form Select User
-        $form->addElement(new XoopsFormSelectUser(_AM_WGTIMELINES_SUBMITTER, 'item_submitter', false, $this->getVar('item_submitter')));
+        $form->addElement(new \XoopsFormSelectUser(_AM_WGTIMELINES_SUBMITTER, 'item_submitter', false, $this->getVar('item_submitter')));
         // Form Text Date Select
         $itemDate_create = $this->isNew() ? 0 : $this->getVar('item_date_create');
-        $form->addElement(new XoopsFormTextDateSelect(_AM_WGTIMELINES_DATE_CREATE, 'item_date_create', '', $itemDate_create));
+        $form->addElement(new \XoopsFormTextDateSelect(_AM_WGTIMELINES_DATE_CREATE, 'item_date_create', '', $itemDate_create));
         // To Save
-        $form->addElement(new XoopsFormHidden('op', 'save'));
-        $form->addElement(new XoopsFormHidden('ui', $ui));
-        $form->addElement(new XoopsFormButtonTray('', _SUBMIT, 'submit', '', false));
+        $form->addElement(new \XoopsFormHidden('op', 'save'));
+        $form->addElement(new \XoopsFormHidden('ui', $ui));
+        $form->addElement(new \XoopsFormButtonTray('', _SUBMIT, 'submit', '', false));
         return $form;
     }
 
     /**
      * Get Values
+     * @param $timeline_obj
      * @param null $keys
      * @param null $format
      * @param null $maxDepth
@@ -178,7 +185,7 @@ class WgtimelinesItems extends XoopsObject
      */
     public function getValuesItems($timeline_obj, $keys = null, $format = null, $maxDepth = null)
     {
-        $wgtimelines = WgtimelinesHelper::getInstance();
+        $helper = \XoopsModules\Wgtimelines\Helper::getInstance();
         $ret = $this->getValues($keys, $format, $maxDepth);
         $ret['id'] = $this->getVar('item_id');
         $ret['tl_id'] = $this->getVar('item_tl_id');
@@ -188,11 +195,11 @@ class WgtimelinesItems extends XoopsObject
         $content = $this->getVar('item_content', 'show'); //show wichtig bei tl_limit>0
         $tl_limit = $timeline_obj->getVar('tl_limit');
         $ret['tl_limit'] = $tl_limit;
-        $ret['content_admin'] = $wgtimelines->truncateHtml($content);
+        $ret['content_admin'] = $helper->truncateHtml($content);
         $ret['content_summary'] = '';
         if ($tl_limit > 0 && strlen(strip_tags($content)) > $tl_limit) {
-            $ret['content_summary'] = $wgtimelines->truncateHtml($content, $timeline_obj->getVar('tl_limit'));
-            $ret['content_admin'] = $wgtimelines->truncateHtml($content, $timeline_obj->getVar('tl_limit'));
+            $ret['content_summary'] = $helper->truncateHtml($content, $timeline_obj->getVar('tl_limit'));
+            $ret['content_admin'] = $helper->truncateHtml($content, $timeline_obj->getVar('tl_limit'));
         }
         $ret['image'] = $this->getVar('item_image');
         if ($this->getVar('item_date') > 0) {
@@ -214,13 +221,12 @@ class WgtimelinesItems extends XoopsObject
             }
             $ret['date_admin'] = formatTimestamp($this->getVar('item_date'), 'm');
         }
-        //if ($this->getVar('item_time') > 0) $ret['time'] = formatTimestamp($this->getVar('item_time'), 'H:i');
         $ret['year'] = $this->getVar('item_year');
         $ret['icon'] = $this->getVar('item_icon');
         $ret['weight'] = $this->getVar('item_weight');
         $ret['reads'] = $this->getVar('item_reads');
         $ret['online'] = $this->getVar('item_online');
-        $ret['submitter'] = XoopsUser::getUnameFromId($this->getVar('item_submitter'));
+        $ret['submitter'] = \XoopsUser::getUnameFromId($this->getVar('item_submitter'));
         $ret['date_create'] = formatTimestamp($this->getVar('item_date_create'), 's');
         return $ret;
       }
@@ -512,115 +518,5 @@ class WgtimelinesItems extends XoopsObject
         // $item_icon->addOption('menu-down', "<i class='glyphicon glyphicon-menu-down'></i> menu-down ");
         // $item_icon->addOption('menu-up', "<i class='glyphicon glyphicon-menu-up'></i> menu-up ");
         return $item_icon;
-    }
-}
-
-/**
- * Class Object Handler WgtimelinesItems
- */
-class WgtimelinesItemsHandler extends XoopsPersistableObjectHandler
-{
-    /**
-     * Constructor
-     *
-     * @param null|XoopsDatabase $db
-     */
-    public function __construct(XoopsDatabase $db)
-    {
-        parent::__construct($db, 'wgtimelines_items', 'wgtimelinesitems', 'item_id', 'item_content');
-    }
-
-    /**
-     * @param bool $isNew
-     *
-     * @return XoopsObject
-     */
-    public function create($isNew = true)
-    {
-        return parent::create($isNew);
-    }
-
-    /**
-     * retrieve a field
-     *
-     * @param int  $i field id
-     * @param null $fields
-     * @return mixed reference to the <a href='psi_element://Get'>Get</a> object
-     *                object
-     */
-    public function get($i = null, $fields = null)
-    {
-        return parent::get($i, $fields);
-    }
-
-    /**
-     * get inserted id
-     *
-     * @param null
-     * @return integer reference to the {@link Get} object
-     */
-    public function getInsertId()
-    {
-        return $this->db->getInsertId();
-    }
-
-    /**
-     * Get Count Items in the database
-     * @param int    $start
-     * @param int    $limit
-     * @param string $sort
-     * @param string $order
-     * @return int
-     */
-    public function getCountItems($start = 0, $limit = 0, $sort = 'item_id', $order = 'ASC')
-    {
-        $crCountItems = new CriteriaCompo();
-        $crCountItems = $this->getItemsCriteria($crCountItems, $start, $limit, $sort, $order);
-        return parent::getCount($crCountItems);
-    }
-
-    /**
-     * Get Count Items per timeline in the database
-     * @param int $tl_id
-     * @return int
-     */
-    public function getCountItemsTl($tl_id = 0)
-    {
-        $crCountItems = new CriteriaCompo();
-        $crCountItems->add(new Criteria('item_tl_id', $tl_id));
-        return parent::getCount($crCountItems);
-    }
-
-    /**
-     * Get All Items in the database
-     * @param int    $start
-     * @param int    $limit
-     * @param string $sort
-     * @param string $order
-     * @return array
-     */
-    public function getAllItems($start = 0, $limit = 0, $sort = 'item_tl_id ASC, item_weight ASC, item_id', $order = 'ASC')
-    {
-        $crAllItems = new CriteriaCompo();
-        $crAllItems = $this->getItemsCriteria($crAllItems, $start, $limit, $sort, $order);
-        return parent::getAll($crAllItems);
-    }
-
-    /**
-     * Get Criteria Items
-     * @param $crItems
-     * @param $start
-     * @param $limit
-     * @param $sort
-     * @param $order
-     * @return
-     */
-    private function getItemsCriteria($crItems, $start, $limit, $sort, $order)
-    {
-        $crItems->setStart($start);
-        $crItems->setLimit($limit);
-        $crItems->setSort($sort);
-        $crItems->setOrder($order);
-        return $crItems;
     }
 }

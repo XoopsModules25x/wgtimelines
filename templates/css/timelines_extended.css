@@ -54,7 +54,7 @@
 .timeline .timeline-item .timeline-badge .fa,
 .timeline .timeline-item .timeline-badge .glyphicon {
   top: 2px;
-  left: 0px;
+  left: 0;
 }
 .timeline .timeline-item .timeline-panel {
   position: relative;
@@ -135,7 +135,7 @@
 .timeline-horizontal {
   list-style: none;
   position: relative;
-  padding: 20px 0px 20px 0px;
+  padding: 20px 0 20px 0;
   display: inline-block;
 }
 .timeline-horizontal:before {
@@ -153,7 +153,7 @@
   width: 20%;
   min-width: 320px;
   float: none !important;
-  padding-left: 0px;
+  padding-left: 0;
   padding-right: 20px;
   margin: 0 auto;
   vertical-align: bottom;
@@ -184,7 +184,7 @@
 }
 .timeline-horizontal .timeline-item .timeline-badge {
   top: auto;
-  bottom: 0px;
+  bottom: 0;
   left: 43px;
 }
 .timeline-item-reads {

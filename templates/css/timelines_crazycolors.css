@@ -46,7 +46,7 @@
 .timeline > li > .timeline-panel-4 {
   width: 45%;
   float: left;
-  border: 0px solid #d4d4d4;
+  border: 0 solid #d4d4d4;
   padding: 20px;
   position: relative;
 }

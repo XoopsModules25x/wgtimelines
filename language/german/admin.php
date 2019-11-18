@@ -20,6 +20,9 @@
  * @author         goffy (wedega.com) - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
  * @version        $Id: 1.0 admin.php 13070 Sat 2016-10-01 05:42:16Z XOOPS Development Team $
  */
+
+require_once __DIR__ . '/common.php';
+
 // ---------------- Admin Index ----------------
 define('_AM_WGTIMELINES_STATISTICS', 'Statistik');
 // There are
@@ -69,10 +72,6 @@ define('_AM_WGTIMELINES_TIMELINE_DATETIME_ONLY_T', 'Nur Uhrzeit');
 define('_AM_WGTIMELINES_TIMELINE_DATETIME_BOTH', 'Datum und Uhrzeit');
 define('_AM_WGTIMELINES_TIMELINE_MAGNIFIC', 'Magnific Popup verwenden');
 define('_AM_WGTIMELINES_TIMELINE_MAGNIFIC_DESC', 'Definieren Sie bitte, ob die Bilder bei den Einträgen mittels jquery magnific-popup gezoomt werden können sollen');
-define('_AM_WGTIMELINES_TIMELINE_EXPIRED', 'Abgelaufene Einträge');
-define('_AM_WGTIMELINES_TIMELINE_EXPIRED_DESC', "Wenn Sie 'Datum/Uhrzeit' verwenden, dann können sie abgelaufene Einträge ausblenden");
-define('_AM_WGTIMELINES_TIMELINE_EXPIRED_SHOW', 'Weiterhin anzeigen');
-define('_AM_WGTIMELINES_TIMELINE_EXPIRED_HIDE', 'Nicht mehr anzeigen');
 define('_AM_WGTIMELINES_TIMELINE_SELECT', 'Bitte Zeitreihe auswählen');
 // Template add/edit
 define('_AM_WGTIMELINES_TEMPLATE_ADD', 'Vorlage hinzufügen');

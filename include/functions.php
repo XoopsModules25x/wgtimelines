@@ -102,10 +102,10 @@ function wgtimelinesMetaDescription($content)
 function wgtimelines_RewriteUrl($module, $array, $type = 'content')
 {
     $comment = '';
-    $wgtimelines = WgtimelinesHelper::getInstance();
-    $templates = $wgtimelines->getHandler('templates');
-    $lenght_id = $wgtimelines->getConfig('lenght_id');
-    $rewrite_url = $wgtimelines->getConfig('rewrite_url');
+    $helper = \XoopsModules\Wgtimelines\Helper::getInstance();
+    $templates = $helper->getHandler('Templates');
+    $lenght_id = $helper->getConfig('lenght_id');
+    $rewrite_url = $helper->getConfig('rewrite_url');
 
     if ($lenght_id != 0) {
         $id = $array['content_id'];
@@ -180,6 +180,8 @@ function wgtimelines_RewriteUrl($module, $array, $type = 'content')
             return XOOPS_URL . $rewrite_base . $module_name . $type . $topic_name . $page . $rewrite_ext;
             break;
     }
+
+    return '';
 }
 
 /**
@@ -196,9 +198,9 @@ function wgtimelines_Filter($url, $type = '', $module = 'wgtimelines')
 {
 
     // Get regular expression from module setting. default setting is : `[^a-z0-9]`i
-    $wgtimelines = WgtimelinesHelper::getInstance();
-    $templates = $wgtimelines->getHandler('templates');
-    $regular_expression = $wgtimelines->getConfig('regular_expression');
+    $helper = \XoopsModules\Wgtimelines\Helper::getInstance();
+    $templates = $helper->getHandler('Templates');
+    $regular_expression = $helper->getConfig('regular_expression');
 
     $url = strip_tags($url);
     $url = preg_replace("`\[.*\]`U", '', $url);

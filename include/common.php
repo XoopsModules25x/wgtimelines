@@ -47,6 +47,3 @@ $copyright = "<a href='https://xoops.wedega.com' title='XOOPS on Wedega' target=
 include_once XOOPS_ROOT_PATH .'/class/xoopsrequest.php';
 include_once WGTIMELINES_PATH .'/class/helper.php';
 include_once WGTIMELINES_PATH .'/include/functions.php';
-// constants
-define('WGTIMELINES_TIMELINE_EXPIRED_SHOW', 0);
-define('WGTIMELINES_TIMELINE_EXPIRED_HIDE', 1);

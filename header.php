@@ -20,6 +20,11 @@
  * @author         goffy (wedega.com) - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
  * @version        $Id: 1.0 header.php 13070 Sat 2016-10-01 05:42:18Z XOOPS Development Team $
  */
+
+use XoopsModules\Wgtimelines;
+// use XoopsModules\Wgtimelines\Constants;
+use XoopsModules\Wgtimelines\Helper;
+
 include dirname(dirname(__DIR__)) .'/mainfile.php';
 include __DIR__ .'/include/common.php';
 $dirname = basename(__DIR__);
@@ -27,11 +32,11 @@ $dirname = basename(__DIR__);
 $xoBreadcrumbs = array();
 $xoBreadcrumbs[] = array('title' => _MA_WGTIMELINES_TITLE, 'link' => WGTIMELINES_URL . '/');
 // Get instance of module
-$wgtimelines      = WgtimelinesHelper::getInstance();
-$timelinesHandler = $wgtimelines->getHandler('timelines');
-$itemsHandler     = $wgtimelines->getHandler('items');
-$templatesHandler = $wgtimelines->getHandler('templates');
-$ratingsHandler   = $wgtimelines->getHandler('ratings');
+$helper           = \XoopsModules\Wgtimelines\Helper::getInstance();
+$timelinesHandler = $helper->getHandler('Timelines');
+$itemsHandler     = $helper->getHandler('Items');
+$templatesHandler = $helper->getHandler('Templates');
+$ratingsHandler   = $helper->getHandler('ratings');
 // Permission
 include_once XOOPS_ROOT_PATH .'/class/xoopsform/grouppermform.php';
 $gpermHandler = xoops_getHandler('groupperm');

@@ -22,17 +22,20 @@
  */
 include dirname(dirname(dirname(__DIR__))) .'/include/cp_header.php';
 include_once dirname(__DIR__) .'/include/common.php';
+
+// $helper = \XoopsModules\Wgtimelines\Helper::getInstance();
+
 $sysPathIcon16   = '../' . $GLOBALS['xoopsModule']->getInfo('sysicons16');
 $sysPathIcon32   = '../' . $GLOBALS['xoopsModule']->getInfo('sysicons32');
 $pathModuleAdmin = $GLOBALS['xoopsModule']->getInfo('dirmoduleadmin');
 $modPathIcon16   = $GLOBALS['xoopsModule']->getInfo('modicons16');
 $modPathIcon32   = $GLOBALS['xoopsModule']->getInfo('modicons32');
 // Get instance of module
-$wgtimelines           = WgtimelinesHelper::getInstance();
-$timelinesHandler      = $wgtimelines->getHandler('timelines');
-$itemsHandler          = $wgtimelines->getHandler('items');
-$templatesHandler      = $wgtimelines->getHandler('templates');
-$tplsetsdefaultHandler = $wgtimelines->getHandler('tplsetsdefault');
+$helper                = \XoopsModules\Wgtimelines\Helper::getInstance();
+$timelinesHandler      = $helper->getHandler('Timelines');
+$itemsHandler          = $helper->getHandler('Items');
+$templatesHandler      = $helper->getHandler('Templates');
+$tplsetsdefaultHandler = $helper->getHandler('Tplsetsdefault');
 $myts = MyTextSanitizer::getInstance();
 //
 if(!isset($xoopsTpl) || !is_object($xoopsTpl)) {
@@ -54,7 +57,7 @@ if(file_exists($GLOBALS['xoops']->path($pathModuleAdmin.'/moduleadmin.php'))) {
     redirect_header('../../../admin.php.php', 5, _AM_MODULEADMIN_MISSING);
 }
 xoops_cp_header();
-$adminMenu = new ModuleAdmin();
+$adminObject = \Xmf\Module\Admin::getInstance();
 
 //load stylesheets and jquery for sortable
 $GLOBALS['xoTheme']->addStylesheet(WGTIMELINES_URL . '/assets/css/admin/style.css');

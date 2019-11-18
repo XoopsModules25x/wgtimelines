@@ -25,8 +25,8 @@ include __DIR__ . '/header.php';
 $item_id = XoopsRequest::getInt('item_id', 0);
 $tpltype = XoopsRequest::getString('tpltype', 'default');
 
-$crit_item = new CriteriaCompo();
-$crit_item->add(new Criteria('item_id', $item_id));
+$crit_item = new \CriteriaCompo();
+$crit_item->add(new \Criteria('item_id', $item_id));
 $itemsCount = $itemsHandler->getCount($crit_item);
 
 unset($crit_item);
@@ -75,8 +75,8 @@ if ($itemsCount > 0) {
     if (isset($GLOBALS['xoopsUser']) && is_object($GLOBALS['xoopsUser']) && $GLOBALS['xoopsUser']->isAdmin()) {
         $GLOBALS['xoopsTpl']->assign('isAdmin', 1);
     }
-    if ($wgtimelines->getConfig('ratingbars')) {
-        $GLOBALS['xoopsTpl']->assign('rating', $wgtimelines->getConfig('ratingbars'));
+    if ($helper->getConfig('ratingbars')) {
+        $GLOBALS['xoopsTpl']->assign('rating', $helper->getConfig('ratingbars'));
         $GLOBALS['xoopsTpl']->assign('save', 'save-item');
     }
 
@@ -90,7 +90,7 @@ if ($itemsCount > 0) {
     $crazycolors = 0;
     $j++;
     $items[$j] = $itemsObj->getValuesItems($timeline_obj);
-    if ($wgtimelines->getConfig('ratingbars')) {
+    if ($helper->getConfig('ratingbars')) {
         $items[$j]['rating'] = $ratingsHandler->getItemRating($items[$j]['id']);
     }
 
@@ -100,7 +100,7 @@ if ($itemsCount > 0) {
     $GLOBALS['xoopsTpl']->assign('items', $items);
     $GLOBALS['xoopsTpl']->assign('showreads', $tl_limit > 0);
     unset($items);
-    if ($wgtimelines->getConfig('tl_name') == 1) {
+    if ($helper->getConfig('tl_name') == 1) {
         $GLOBALS['xoopsTpl']->assign('timeline_name', $tl_name);
     }
     // set template options
@@ -111,7 +111,7 @@ if ($itemsCount > 0) {
     }
 
     // Breadcrumbs
-    if ($wgtimelines->getConfig('breadcrumbs')) {
+    if ($helper->getConfig('breadcrumbs')) {
         $xoBreadcrumbs[] = array('title' => $tl_name, 'link' => 'index.php?tl_id=' . $item_tl_id);
         $xoBreadcrumbs[] = array('title' => $itemsObj->getVar('item_title'));
         $GLOBALS['xoopsTpl']->assign('breadcrumbs', 1);
@@ -120,9 +120,9 @@ if ($itemsCount > 0) {
     echo 'invalid item id';
 }
 
-$GLOBALS['xoopsTpl']->assign('welcome', $wgtimelines->getConfig('welcome'));
+$GLOBALS['xoopsTpl']->assign('welcome', $helper->getConfig('welcome'));
 // Keywords
-wgtimelinesMetaKeywords($wgtimelines->getConfig('keywords').', '. implode(',', $keywords));
+wgtimelinesMetaKeywords($helper->getConfig('keywords').', '. implode(',', $keywords));
 unset($keywords);
 // Description
 wgtimelinesMetaDescription(_MA_WGTIMELINES_DESC);

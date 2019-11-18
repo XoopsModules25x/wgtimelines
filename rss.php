@@ -27,18 +27,18 @@ if (function_exists('mb_http_output')) {
     mb_http_output('pass');
 }
 //header ('Content-Type:text/xml; charset=UTF-8');
-$wgtimelines->getConfig('utf8') = false;
+//$helper->getConfig('utf8') = false;
 
 $tpl = new XoopsTpl();
 $tpl->xoops_setCaching(2); //1 = Cache global, 2 = Cache individual (for template)
 $tpl->xoops_setCacheTime($wgtimelines->geConfig('timecacherss')*60); // Time of the cache on seconds
 $categories = wgtimelinesMyGetItemIds('wgtimelines_view', 'wgtimelines');
-$criteria = new CriteriaCompo();
+$criteria = new \CriteriaCompo();
 
-$criteria->add(new Criteria('cat_status', 0, '!='));
-$criteria->add(new Criteria('cid', '(' . implode(',', $categories) . ')','IN'));
+$criteria->add(new \Criteria('cat_status', 0, '!='));
+$criteria->add(new \Criteria('cid', '(' . implode(',', $categories) . ')','IN'));
 if ($cid != 0){
-    $criteria->add(new Criteria('cid', $cid));
+    $criteria->add(new \Criteria('cid', $cid));
     $templates = $templatesHandler->get($cid);
     $title = $xoopsConfig['sitename'] . ' - ' . $xoopsModule->getVar('name') . ' - ' . $templates->getVar('tpl_tabletype');
 }else{

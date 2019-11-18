@@ -20,6 +20,10 @@
  * @author         goffy (wedega.com) - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
  * @version        $Id: 1.0 timelines.php 13070 Sat 2016-10-01 05:42:13Z XOOPS Development Team $
  */
+
+use XoopsModules\Wgtimelines;
+use XoopsModules\Wgtimelines\Constants;
+
 include __DIR__ . '/header.php';
 // It recovered the value of argument op in URL$
 $op = XoopsRequest::getString('op', 'list');
@@ -30,11 +34,11 @@ switch($op) {
     default:
         $GLOBALS['xoTheme']->addScript(WGTIMELINES_URL . '/assets/js/sortable-timelines.js');
         $start = XoopsRequest::getInt('start', 0);
-        $limit = XoopsRequest::getInt('limit', $wgtimelines->getConfig('adminpager'));
+        $limit = XoopsRequest::getInt('limit', $helper->getConfig('adminpager'));
         $templateMain = 'wgtimelines_admin_timelines.tpl';
-        $GLOBALS['xoopsTpl']->assign('navigation', $adminMenu->addNavigation('timelines.php'));
-        $adminMenu->addItemButton(_AM_WGTIMELINES_TIMELINE_ADD, 'timelines.php?op=new', 'add');
-        $GLOBALS['xoopsTpl']->assign('buttons', $adminMenu->renderButton());
+        $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('timelines.php'));
+        $adminObject->addItemButton(_AM_WGTIMELINES_TIMELINE_ADD, 'timelines.php?op=new', 'add');
+        $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->renderButton());
         $timelinesCount = $timelinesHandler->getCountTimelines();
         $timelinesAll = $timelinesHandler->getAllTimelines($start, $limit);
         $GLOBALS['xoopsTpl']->assign('timelines_count', $timelinesCount);
@@ -80,9 +84,9 @@ switch($op) {
     break;
     case 'new':
         $templateMain = 'wgtimelines_admin_timelines.tpl';
-        $GLOBALS['xoopsTpl']->assign('navigation', $adminMenu->addNavigation('timelines.php'));
-        $adminMenu->addItemButton(_AM_WGTIMELINES_TIMELINES_LIST, 'timelines.php', 'list');
-        $GLOBALS['xoopsTpl']->assign('buttons', $adminMenu->renderButton());
+        $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('timelines.php'));
+        $adminObject->addItemButton(_AM_WGTIMELINES_TIMELINES_LIST, 'timelines.php', 'list');
+        $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->renderButton());
         // Get Form
         $timelinesObj = $timelinesHandler->create();
         $form = $timelinesObj->getFormTimelines();
@@ -106,8 +110,8 @@ switch($op) {
         // Set Var tl_image
         include_once XOOPS_ROOT_PATH .'/class/uploader.php';
         $uploader = new XoopsMediaUploader(WGTIMELINES_UPLOAD_IMAGE_PATH.'/timelines/', 
-                                            $wgtimelines->getConfig('mimetypes'), 
-                                            $wgtimelines->getConfig('maxsize'), null, null);
+                                            $helper->getConfig('mimetypes'), 
+                                            $helper->getConfig('maxsize'), null, null);
         if($uploader->fetchMedia($_POST['xoops_upload_file'][0])) {
             $extension = preg_replace('/^.+\.([^.]+)$/sU', '', $_FILES['attachedfile']['name']);
             $imgName = str_replace(' ', '', $_POST['tl_name']).'.'.$extension;
@@ -128,7 +132,7 @@ switch($op) {
         $timelinesObj->setVar('tl_limit', isset($_POST['tl_limit']) ? $_POST['tl_limit'] : 0);
         $timelinesObj->setVar('tl_datetime', isset($_POST['tl_datetime']) ? $_POST['tl_datetime'] : 0);
         $timelinesObj->setVar('tl_magnific', isset($_POST['tl_magnific']) ? $_POST['tl_magnific'] : 0);
-		$timelinesObj->setVar('tl_expired', isset($_POST['tl_expired']) ? $_POST['tl_expired'] : WGTIMELINES_TIMELINE_EXPIRED_SHOW);
+		$timelinesObj->setVar('tl_expired', isset($_POST['tl_expired']) ? $_POST['tl_expired'] : Constants::WGTIMELINES_TIMELINE_EXPIRED_SHOW);
         $timelinesObj->setVar('tl_online', isset($_POST['tl_online']) ? $_POST['tl_online'] : 0);
         $timelinesObj->setVar('tl_submitter', isset($_POST['tl_submitter']) ? $_POST['tl_submitter'] : 0);
         $timelineDate_create = date_create_from_format(_SHORTDATESTRING, $_POST['tl_date_create']);
@@ -166,10 +170,10 @@ switch($op) {
     break;
     case 'edit':
         $templateMain = 'wgtimelines_admin_timelines.tpl';
-        $GLOBALS['xoopsTpl']->assign('navigation', $adminMenu->addNavigation('timelines.php'));
-        $adminMenu->addItemButton(_AM_WGTIMELINES_TIMELINE_ADD, 'timelines.php?op=new', 'add');
-        $adminMenu->addItemButton(_AM_WGTIMELINES_TIMELINES_LIST, 'timelines.php', 'list');
-        $GLOBALS['xoopsTpl']->assign('buttons', $adminMenu->renderButton());
+        $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('timelines.php'));
+        $adminObject->addItemButton(_AM_WGTIMELINES_TIMELINE_ADD, 'timelines.php?op=new', 'add');
+        $adminObject->addItemButton(_AM_WGTIMELINES_TIMELINES_LIST, 'timelines.php', 'list');
+        $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->renderButton());
         // Get Form
         $timelinesObj = $timelinesHandler->get($tlId);
         $form = $timelinesObj->getFormTimelines();
@@ -183,8 +187,8 @@ switch($op) {
                 redirect_header('timelines.php', 3, implode(', ', $GLOBALS['xoopsSecurity']->getErrors()));
             }
             // delete all items first
-            $crit_items = new CriteriaCompo();
-            $crit_items->add(new Criteria('item_tl_id', $tlId));
+            $crit_items = new \CriteriaCompo();
+            $crit_items->add(new \Criteria('item_tl_id', $tlId));
             $itemsCount = $itemsHandler->getCount($crit_items);
             if ($itemsCount > 0) {
                 if(!$itemsHandler->deleteAll($crit_items, true)) {

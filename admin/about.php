@@ -22,6 +22,6 @@
  */
 include __DIR__ . '/header.php';
 $templateMain = 'wgtimelines_admin_about.tpl';
-$GLOBALS['xoopsTpl']->assign('navigation', $adminMenu->addNavigation('about.php'));
-$GLOBALS['xoopsTpl']->assign('about', $adminMenu->renderAbout('6KJ7RW5DR3VTJ', false));
+$GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('about.php'));
+$GLOBALS['xoopsTpl']->assign('about', $adminObject->renderAbout('', false));
 include __DIR__ . '/footer.php';
