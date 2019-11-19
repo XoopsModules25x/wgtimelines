@@ -20,6 +20,9 @@
  * @author         goffy (wedega.com) - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
  * @version        $Id: 1.0 header.php 13070 Sat 2016-10-01 05:42:16Z XOOPS Development Team $
  */
+
+include dirname(__DIR__) . '/preloads/autoloader.php';
+
 include dirname(dirname(dirname(__DIR__))) .'/include/cp_header.php';
 include_once dirname(__DIR__) .'/include/common.php';
 
