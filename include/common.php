@@ -44,6 +44,6 @@ if (!defined('WGTIMELINES_PATH')) {
 $localLogo = WGTIMELINES_IMAGE_URL . '/wedega.png';
 // Module Information
 $copyright = "<a href='https://xoops.wedega.com' title='XOOPS on Wedega' target='_blank'><img src='".$localLogo . '\' alt=\'XOOPS on Wedega\' /></a>';
-include_once XOOPS_ROOT_PATH .'/class/xoopsrequest.php';
+
 include_once WGTIMELINES_PATH .'/class/Helper.php';
 include_once WGTIMELINES_PATH .'/include/functions.php';

@@ -20,8 +20,11 @@
  * @author         TDM XOOPS - Email:<info@email.com> - Website:<http://xoops.org>
  * @version        $Id: 1.0 rate.php 13070 Wed 2016-12-14 22:22:38Z XOOPS Development Team $
  */
+
+use Xmf\Request;
+
 include __DIR__ . '/header.php';
-$op     = XoopsRequest::getString('op', 'default');
+$op = Request::getString('op', 'default');
 
 switch ($op) {
     case 'save-index':
@@ -31,9 +34,9 @@ switch ($op) {
             redirect_header('index.php', 3, implode(',', $GLOBALS['xoopsSecurity']->getErrors()));
         }
 
-        $itemid       = XoopsRequest::getInt('item_id');
-        $rating       = XoopsRequest::getInt('rating');
-        $tl_id        = XoopsRequest::getInt('tl_id', 0);
+        $itemid = Request::getInt('item_id');
+        $rating = Request::getInt('rating');
+        $tl_id  = Request::getInt('tl_id', 0);
 
         // Checking permissions
         $rate_allowed = false;

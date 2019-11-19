@@ -20,12 +20,15 @@
  * @author         goffy (wedega.com) - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
  * @version        $Id: 1.0 items.php 13070 Sat 2016-10-01 05:42:14Z XOOPS Development Team $
  */
+
+use Xmf\Request;
+
 include __DIR__ . '/header.php';
 // It recovered the value of argument op in URL$
-$op     = XoopsRequest::getString('op', 'list');
-$ui     = XoopsRequest::getString('ui', 'admin');
-$itemId = XoopsRequest::getInt('item_id');
-$tl_id  = XoopsRequest::getInt('tl_id', 0);
+$op     = Request::getString('op', 'list');
+$ui     = Request::getString('ui', 'admin');
+$itemId = Request::getInt('item_id');
+$tl_id  = Request::getInt('tl_id', 0);
     
 $GLOBALS['xoTheme']->addStylesheet(WGTIMELINES_URL . '/assets/css/admin/glyphicons.css');
 
@@ -54,8 +57,8 @@ switch($op) {
         
         // show details of selected timeline
         $GLOBALS['xoTheme']->addScript(WGTIMELINES_URL . '/assets/js/sortable-items.js');
-        $start = XoopsRequest::getInt('start', 0);
-        $limit = XoopsRequest::getInt('limit', $helper->getConfig('adminpager'));
+        $start = Request::getInt('start', 0);
+        $limit = Request::getInt('limit', $helper->getConfig('adminpager'));
         $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('items.php'));
         $adminObject->addItemButton(_AM_WGTIMELINES_ITEM_ADD, 'items.php?op=new&amp;tl_id=' . $tl_id, 'add');
         $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->renderButton());
@@ -152,9 +155,10 @@ switch($op) {
             $itemsObj = $itemsHandler->create();
         }
         // Set Vars
-        $item_tl_id = isset($_POST['item_tl_id']) ? $_POST['item_tl_id'] : 0;
+        $item_tl_id = Request::getInt('item_tl_id', 0);
         $itemsObj->setVar('item_tl_id', $item_tl_id);
-        $itemsObj->setVar('item_title', $_POST['item_title']);
+        $itemsObj->setVar('item_title', Request::getString['item_title']);
+        $itemsObj->setVar('item_title', Request::getString['item_title']);
         //fix for avoid hiding empty paragraphs in some browsers (instead of: $itemsObj->setVar('item_content', $_POST['item_content']);
         $itemsObj->setVar('item_content', preg_replace('/<p><\/p>/', '<p>&nbsp;</p>', $_POST['item_content']));
         // Set Var item_image

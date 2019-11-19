@@ -20,10 +20,13 @@
  * @author         goffy (wedega.com) - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
  * @version        $Id: 1.0 timelines.php 13070 Sat 2016-10-01 05:42:14Z XOOPS Development Team $
  */
+
+use Xmf\Request;
+
 include __DIR__ . '/header.php';
 
-$item_id = XoopsRequest::getInt('item_id', 0);
-$tpltype = XoopsRequest::getString('tpltype', 'default');
+$item_id = Request::getInt('item_id', 0);
+$tpltype = Request::getString('tpltype', 'default');
 
 $crit_item = new \CriteriaCompo();
 $crit_item->add(new \Criteria('item_id', $item_id));

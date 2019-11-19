@@ -23,12 +23,13 @@
 
 use XoopsModules\Wgtimelines;
 use XoopsModules\Wgtimelines\Constants;
+use Xmf\Request;
 
 include __DIR__ . '/header.php';
 // get timeline id
-$tl_id = XoopsRequest::getInt('tl_id', 0);
-$start = XoopsRequest::getInt('start', 0);
-$limit = XoopsRequest::getInt('limit', $helper->getConfig('userpager'));
+$tl_id = Request::getInt('tl_id', 0);
+$start = Request::getInt('start', 0);
+$limit = Request::getInt('limit', $helper->getConfig('userpager'));
 
 $startpage = $helper->getConfig('startpage', 0);
 

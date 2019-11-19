@@ -23,18 +23,19 @@
 
 use XoopsModules\Wgtimelines;
 use XoopsModules\Wgtimelines\Constants;
+use Xmf\Request;
 
 include __DIR__ . '/header.php';
 // It recovered the value of argument op in URL$
-$op = XoopsRequest::getString('op', 'list');
+$op = Request::getString('op', 'list');
 // Request tl_id
-$tlId = XoopsRequest::getInt('tl_id');
+$tlId = Request::getInt('tl_id');
 switch($op) {
     case 'list':
     default:
         $GLOBALS['xoTheme']->addScript(WGTIMELINES_URL . '/assets/js/sortable-timelines.js');
-        $start = XoopsRequest::getInt('start', 0);
-        $limit = XoopsRequest::getInt('limit', $helper->getConfig('adminpager'));
+        $start = Request::getInt('start', 0);
+        $limit = Request::getInt('limit', $helper->getConfig('adminpager'));
         $templateMain = 'wgtimelines_admin_timelines.tpl';
         $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('timelines.php'));
         $adminObject->addItemButton(_AM_WGTIMELINES_TIMELINE_ADD, 'timelines.php?op=new', 'add');

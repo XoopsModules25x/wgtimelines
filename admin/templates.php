@@ -20,16 +20,19 @@
  * @author         goffy (wedega.com) - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
  * @version        $Id: 1.0 templates.php 13070 Sat 2016-10-01 05:42:15Z XOOPS Development Team $
  */
+
+use Xmf\Request;
+
 include __DIR__ . '/header.php';
 // It recovered the value of argument op in URL$
-$op = XoopsRequest::getString('op', 'list');
+$op = Request::getString('op', 'list');
 // Request tpl_id
-$tplId = XoopsRequest::getInt('tpl_id');
+$tplId = Request::getInt('tpl_id');
 switch ($op) {
     case 'list':
     default:
-        $start = XoopsRequest::getInt('start', 0);
-        $limit = XoopsRequest::getInt('limit', $helper->getConfig('adminpager'));
+        $start = Request::getInt('start', 0);
+        $limit = Request::getInt('limit', $helper->getConfig('adminpager'));
         $templateMain = 'wgtimelines_admin_templates.tpl';
 
         // check default template set
