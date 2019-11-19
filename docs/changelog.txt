@@ -3,6 +3,7 @@
  - changed to namespaces (goffy)
  - added common classes of mamba (goffy)
  - added feedback (goffy)
+ - changed install/update in order to use common config (goffy)
 
 <h5>1.11 RC1</h5>  [2018/11/16]
 <hr>

@@ -169,9 +169,8 @@ if ($timelinesCount > 0) {
                         $items[$j]['badgecontent'] = $items[$j]['showyear'];
                     } elseif ($badgecontent === 'glyphicon') {
                         $items[$j]['badgecontent'] = "<i class='glyphicon glyphicon-" .$itemsAll[$i]->getVar('item_icon') . '\'></i> ';
-                    } else {
-                        // badgecontent = none
                     }
+
                     // specials for crazy colors
                     if ($template['name']=== 'Crazy Colors') {
                         $crazycolors++;

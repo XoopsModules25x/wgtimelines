@@ -198,7 +198,6 @@ Main components
   margin-top: 0;
 }
 .cd-timeline-content .cd-date {
-  font-size: 13px;
   font-size: 1.2rem;
   display: inline-block;
   float: left;
@@ -207,7 +206,6 @@ Main components
   visibility: hidden;
 }
 .cd-timeline-content .cd-date-sm {
-  font-size: 13px;
   font-size: 1.2rem;
   visibility: hidden;
   opacity: .7;

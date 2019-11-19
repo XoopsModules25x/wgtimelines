@@ -45,10 +45,7 @@
   background-color: #7c7c7c;
   border: 3px solid #ffffff;
   z-index: 100;
-  border-top-right-radius: 50%;
-  border-top-left-radius: 50%;
-  border-bottom-right-radius: 50%;
-  border-bottom-left-radius: 50%;
+  border-radius: 50%;
 }
 .timeline .timeline-item .timeline-badge i,
 .timeline .timeline-item .timeline-badge .fa,

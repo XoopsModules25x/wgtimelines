@@ -424,8 +424,6 @@ class Templates extends \XoopsObject
 
                 case 'default':
                 default:
-                    if ($option['valid'] > 0) {
-                    }
                     break;
             }
         }

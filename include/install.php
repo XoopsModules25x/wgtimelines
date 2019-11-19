@@ -20,38 +20,84 @@
  * @author         goffy (wedega.com) - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
  * @version        $Id: 1.0 install.php 13070 Sat 2016-10-01 05:42:17Z XOOPS Development Team $
  */
-// Copy base file
-$indexFile = XOOPS_UPLOAD_PATH.'/index.html';
-$blankFile = XOOPS_UPLOAD_PATH.'/blank.gif';
-// Making of uploads/wgtimelines folder
-$wgtimelines = XOOPS_UPLOAD_PATH.'/wgtimelines';
-if(!is_dir($wgtimelines)) {
-    mkdir($wgtimelines, 0777);
-    chmod($wgtimelines, 0777);
+
+use XoopsModules\Wgtimelines;
+use XoopsModules\Wgtimelines\Common;
+
+/**
+ * @param  \XoopsModule $module
+ * @return bool
+ */
+function xoops_module_pre_install_wgtimelines(\XoopsModule $module)
+{
+    require dirname(__DIR__) . '/preloads/autoloader.php';
+    /** @var Wgtimelines\Utility $utility */
+    $utility = new Wgtimelines\Utility();
+
+    //check for minimum XOOPS version
+    $xoopsSuccess = $utility::checkVerXoops($module);
+
+    // check for minimum PHP version
+    $phpSuccess = $utility::checkVerPhp($module);
+
+    if (false !== $xoopsSuccess && false !== $phpSuccess) {
+        $moduleTables = &$module->getInfo('tables');
+        foreach ($moduleTables as $table) {
+            $GLOBALS['xoopsDB']->queryF('DROP TABLE IF EXISTS ' . $GLOBALS['xoopsDB']->prefix($table) . ';');
+        }
+    }
+
+    return $xoopsSuccess && $phpSuccess;
 }
-copy($indexFile, $wgtimelines.'/index.html');
-// Making of images folder
-$images = $wgtimelines.'/images';
-if(!is_dir($images)) {
-    mkdir($images, 0777);
-    chmod($images, 0777);
+
+/**
+ * @param \XoopsModule $module
+ *
+ * @return bool|string
+ */
+function xoops_module_install_wgtimelines(\XoopsModule $module)
+{
+    require dirname(__DIR__) . '/preloads/autoloader.php';
+
+    /** @var Wgtimelines\Helper $helper */
+    /** @var Wgtimelines\Utility $utility */
+    /** @var Common\Configurator $configurator */
+    $helper       = Wgtimelines\Helper::getInstance();
+    $utility      = new Wgtimelines\Utility();
+    $configurator = new Common\Configurator();
+
+    // Load language files
+    $helper->loadLanguage('admin');
+    $helper->loadLanguage('modinfo');
+    $helper->loadLanguage('common');
+
+    //  ---  CREATE FOLDERS ---------------
+    if ($configurator->uploadFolders && is_array($configurator->uploadFolders)) {
+        //    foreach (array_keys($GLOBALS['uploadFolders']) as $i) {
+        foreach (array_keys($configurator->uploadFolders) as $i) {
+            $utility::createFolder($configurator->uploadFolders[$i]);
+        }
+    }
+
+    //  ---  COPY blank.gif FILES ---------------
+    if ($configurator->copyBlankFiles && is_array($configurator->copyBlankFiles)) {
+        $file = dirname(__DIR__) . '/assets/images/blank.gif';
+        foreach (array_keys($configurator->copyBlankFiles) as $i) {
+            $dest = $configurator->copyBlankFiles[$i] . '/blank.gif';
+            $utility::copyFile($file, $dest);
+        }
+    }
+
+/* 
+    //  ---  COPY test folder files ---------------
+    if ($configurator->copyTestFolders && is_array($configurator->copyTestFolders)) {
+        //        $file =  dirname(__DIR__) . '/testdata/images/';
+        foreach (array_keys($configurator->copyTestFolders) as $i) {
+            $src  = $configurator->copyTestFolders[$i][0];
+            $dest = $configurator->copyTestFolders[$i][1];
+            $utility::rcopy($src, $dest);
+        }
+    } */
+
+    return true;
 }
-copy($indexFile, $images.'/index.html');
-copy($blankFile, $images.'/blank.gif');
-// Making of images/timelines uploads folder
-$timelines = $images.'/timelines';
-if(!is_dir($timelines)) {
-    mkdir($timelines, 0777);
-    chmod($timelines, 0777);
-}
-copy($indexFile, $timelines.'/index.html');
-copy($blankFile, $timelines.'/blank.gif');
-// Making of images/items uploads folder
-$items = $images.'/items';
-if(!is_dir($items)) {
-    mkdir($items, 0777);
-    chmod($items, 0777);
-}
-copy($indexFile, $items.'/index.html');
-copy($blankFile, $items.'/blank.gif');
-// ------------------- Install Footer ------------------- //
