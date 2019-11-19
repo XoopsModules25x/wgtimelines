@@ -1,5 +1,7 @@
 ![alt XOOPS CMS](http://xoops.org/images/logoXoops4GithubRepository.png)
-##wgTimelines module for  [XOOPS CMS 2.5.7+](https://xoops.org)
+
+wgTimelines module for  [XOOPS CMS 2.5.7+](https://xoops.org)
+
 [![Software License](https://img.shields.io/badge/license-GPL-brightgreen.svg?style=flat)](LICENSE)
 [![Latest Pre-Release](https://img.shields.io/github/tag/ggoffy/wgtimelines.svg?style=flat)](https://github.com/ggoffy/wgtimelines/tags/)
 [![Latest Version](https://img.shields.io/github/release/ggoffy/wgtimelines.svg?style=flat)](https://github.com/ggoffy/wgtimelines/releases/)
@@ -10,7 +12,7 @@ You can add descriptions and/or logos to your individual timelines, and for each
                                                                                                                        
 Most of the templates on user side are fully responsive, but for proper displaying you must use a Bootstrap theme. Depending on the template you can select various options like colors, border styles, badges and many more.
                                                                                                                        
-####Demos: 
+Demos: 
 * https://xoops.wedega.com/modules/wgtimelines/
 * http://xoops.org/modules/wgtimelines/index.php?op=list&tl_id=1
 
