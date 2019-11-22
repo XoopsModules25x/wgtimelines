@@ -2,7 +2,7 @@
     tl_id: '1'
     tl_name: 'Timeline Example Table'
     tl_desc: ''
-    tl_image: blank.gif
+    tl_image: image_0.5dd811c0eb217.jpg
     tl_weight: '1'
     tl_template: '1'
     tl_sortby: '0'
@@ -167,7 +167,7 @@
     tl_id: '12'
     tl_name: 'Timeline Example Single Column'
     tl_desc: ''
-    tl_image: blank.gif
+    tl_image: image_0.5dd811d3da352.jpg
     tl_weight: '3'
     tl_template: '12'
     tl_sortby: '0'

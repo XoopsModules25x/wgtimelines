@@ -100,9 +100,9 @@ switch ($op) {
         }
 
         // Set Vars
-        $templatesObj->setVar('tpl_name', $_POST['tpl_name']);
-        $templatesObj->setVar('tpl_desc', $_POST['tpl_desc']);
-        $templatesObj->setVar('tpl_file', $_POST['tpl_file']);
+        $templatesObj->setVar('tpl_name', Request::getString('tpl_name'));
+        $templatesObj->setVar('tpl_desc', Request::getString('tpl_desc'));
+        $templatesObj->setVar('tpl_file', Request::getString('tpl_file'));
 
         $options = array();
         $options[] = array('name' => 'tabletype',

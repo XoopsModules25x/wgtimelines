@@ -110,25 +110,14 @@ class Timelines extends \XoopsObject
         $editorConfigs['height'] = '200px';
         $editorConfigs['editor'] = $helper->getConfig('wgtimelines_editor');
         $form->addElement(new \XoopsFormEditor(_AM_WGTIMELINES_TIMELINE_DESC, 'tl_desc', $editorConfigs), false);
-        // Form Upload Image
-        $getTimelineImage = $this->getVar('tl_image');
-        $itemImage = $getTimelineImage ?: 'blank.gif';
-        $imageDirectory = '/uploads/wgtimelines/images/timelines';
-        $imageTray = new \XoopsFormElementTray(_AM_WGTIMELINES_TIMELINE_IMAGE, '<br>');
-        $imageSelect = new \XoopsFormSelect(sprintf(_AM_WGTIMELINES_FORM_IMAGE_PATH, ".{$imageDirectory}/"), 'tl_image', $itemImage, 5);
-        $imageArray = \XoopsLists::getImgListAsArray(XOOPS_ROOT_PATH . $imageDirectory);
-        foreach ($imageArray as $image1) {
-            $imageSelect->addOption("{$image1}", $image1);
-        }
-        $imageSelect->setExtra("onchange='showImgSelected(\"image1\", \"tl_image\", \"".$imageDirectory . '", "", "' . XOOPS_URL . "\")'");
-        $imageTray->addElement($imageSelect, false);
-        $imageTray->addElement(new \XoopsFormLabel('', "<br><img src='".XOOPS_URL . '/' . $imageDirectory . '/' . $itemImage . '\' name=\'image1\' id=\'image1\' alt=\'\' style=\'max-width:100px;\' />'));
-        // Form File
-        $fileSelectTray = new \XoopsFormElementTray('', '<br>');
-        $fileSelectTray->addElement(new \XoopsFormFile(_AM_WGTIMELINES_FORM_UPLOAD_IMAGE, 'attachedfile', $helper->getConfig('maxsize')));
-        $fileSelectTray->addElement(new \XoopsFormLabel(''));
-        $imageTray->addElement($fileSelectTray);
-        $form->addElement($imageTray);
+        // Form Image
+        if (!$this->isNew()) {
+            $timelineID = $this->getVar('tl_id');
+            $imgButton = "<input type='button' value='...' onclick='window.location.href=\"" . XOOPS_URL . "/modules/wgtimelines/admin/image_editor.php?op=edit_timeline&tl_id=$timelineID\"'>";
+            $tlImage = $this->getVar('tl_image');
+            $imageDirectory = '/uploads/wgtimelines/images/timelines';
+            $form->addElement(new \XoopsFormLabel(_AM_WGTIMELINES_ITEM_IMAGE,"<img src='".XOOPS_URL . "$imageDirectory/$tlImage' name='image1' id='image1' alt='$tlImage' style='max-width:100px;' />$imgButton"));
+        } 
         // Form Table Templates
         $templatesHandler = $helper->getHandler('Templates');
         $cat_templateSelect = new \XoopsFormSelect(_AM_WGTIMELINES_TIMELINE_TEMPLATE, 'tl_template', $this->getVar('tl_template'));

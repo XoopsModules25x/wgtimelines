@@ -105,9 +105,9 @@ switch($op) {
             $timelinesObj = $timelinesHandler->create();
         }
         // Set Vars
-        $timelinesObj->setVar('tl_name', $_POST['tl_name']);
+        $timelinesObj->setVar('tl_name', Request::getString('tl_name'));
         //fix for avoid hiding empty paragraphs in some browsers (instead of: $timelinesObj->setVar('tl_desc', $_POST['tl_desc']);
-        $timelinesObj->setVar('tl_desc', preg_replace('/<p><\/p>/', '<p>&nbsp;</p>', $_POST['tl_desc']));
+        $timelinesObj->setVar('tl_desc', preg_replace('/<p><\/p>/', '<p>&nbsp;</p>', Request::getString('tl_desc')));
         // Set Var tl_image
         include_once XOOPS_ROOT_PATH .'/class/uploader.php';
         $uploader = new XoopsMediaUploader(WGTIMELINES_UPLOAD_IMAGE_PATH.'/timelines/', 
@@ -125,17 +125,17 @@ switch($op) {
                 $timelinesObj->setVar('tl_image', $uploader->getSavedFileName());
             }
         } else {
-            $timelinesObj->setVar('tl_image', $_POST['tl_image']);
+            $timelinesObj->setVar('tl_image', Request::getString('tl_image'));
         }
-        $timelinesObj->setVar('tl_weight', isset($_POST['tl_weight']) ? $_POST['tl_weight'] : 0);
-        $timelinesObj->setVar('tl_template', isset($_POST['tl_template']) ? $_POST['tl_template'] : 0);
-        $timelinesObj->setVar('tl_sortby', isset($_POST['tl_sortby']) ? $_POST['tl_sortby'] : 0);
-        $timelinesObj->setVar('tl_limit', isset($_POST['tl_limit']) ? $_POST['tl_limit'] : 0);
-        $timelinesObj->setVar('tl_datetime', isset($_POST['tl_datetime']) ? $_POST['tl_datetime'] : 0);
-        $timelinesObj->setVar('tl_magnific', isset($_POST['tl_magnific']) ? $_POST['tl_magnific'] : 0);
-		$timelinesObj->setVar('tl_expired', isset($_POST['tl_expired']) ? $_POST['tl_expired'] : Constants::WGTIMELINES_TIMELINE_EXPIRED_SHOW);
-        $timelinesObj->setVar('tl_online', isset($_POST['tl_online']) ? $_POST['tl_online'] : 0);
-        $timelinesObj->setVar('tl_submitter', isset($_POST['tl_submitter']) ? $_POST['tl_submitter'] : 0);
+        $timelinesObj->setVar('tl_weight',    Request::getInt('tl_weight'));
+        $timelinesObj->setVar('tl_template',  Request::getInt('tl_template'));
+        $timelinesObj->setVar('tl_sortby',    Request::getInt('tl_sortby'));
+        $timelinesObj->setVar('tl_limit',     Request::getInt('tl_limit'));
+        $timelinesObj->setVar('tl_datetime',  Request::getInt('tl_datetime'));
+        $timelinesObj->setVar('tl_magnific',  Request::getInt('tl_magnific'));
+		$timelinesObj->setVar('tl_expired',   Request::getInt('tl_expired', Constants::WGTIMELINES_TIMELINE_EXPIRED_SHOW));
+        $timelinesObj->setVar('tl_online',    Request::getInt('tl_online'));
+        $timelinesObj->setVar('tl_submitter', Request::getInt('tl_submitter'));
         $timelineDate_create = date_create_from_format(_SHORTDATESTRING, $_POST['tl_date_create']);
         $timelinesObj->setVar('tl_date_create', $timelineDate_create->getTimestamp());
         // Insert Data
@@ -224,7 +224,7 @@ switch($op) {
         break;
 
     case 'order':
-        $torder = $_POST['torder'];
+        $torder = Request::getInt('torder');
         echo "torder:$echo";
         for ($i = 0, $iMax = count($torder); $i < $iMax; $i++){
             $timelinesObj = $timelinesHandler->get($torder[$i]);

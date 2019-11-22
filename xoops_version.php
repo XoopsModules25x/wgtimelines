@@ -42,8 +42,8 @@ $modversion['release_file']        = XOOPS_URL . '/modules/wgtimelines/docs/rele
 $modversion['release_date']        = '2016/09/27';
 $modversion['manual']              = 'link to manual file';
 $modversion['manual_file']         = XOOPS_URL . '/modules/wgtimelines/docs/install.txt';
-$modversion['min_php']             = '5.5';
-$modversion['min_xoops']           = '2.5.7';
+$modversion['min_php']             = '7.0';
+$modversion['min_xoops']           = '2.5.10';
 $modversion['min_admin']           = '1.1';
 $modversion['min_db']              = array('mysql' => '5.1', 'mysqli' => '5.1');
 $modversion['image']               = 'assets/images/wgtimelines_logo.png';
@@ -66,8 +66,8 @@ $modversion['hasAdmin']            = 1;
 $modversion['hasMain']             = 1;
 $modversion['adminindex']          = 'admin/index.php';
 $modversion['adminmenu']           = 'admin/menu.php';
-$modversion['onInstall']           = 'include/install.php';
-$modversion['onUpdate']            = 'include/update.php';
+$modversion['onInstall']           = 'include/oninstall.php';
+$modversion['onUpdate']            = 'include/onupdate.php';
 $modversion['onUninstall']         = 'include/onuninstall.php';
 // ------------------- Help files ------------------- //
 $modversion['helpsection'] = array(
@@ -86,6 +86,7 @@ $modversion['templates'][] = array('file' => 'wgtimelines_admin_timelines.tpl', 
 $modversion['templates'][] = array('file' => 'wgtimelines_admin_items.tpl', 'description' => '', 'type' => 'admin');
 $modversion['templates'][] = array('file' => 'wgtimelines_admin_templates.tpl', 'description' => '', 'type' => 'admin');
 $modversion['templates'][] = array('file' => 'wgtimelines_admin_footer.tpl', 'description' => '', 'type' => 'admin');
+$modversion['templates'][] = array('file' => 'wgtimelines_admin_image_editor.tpl', 'description' => '', 'type' => 'admin');
 // User
 $modversion['templates'][] = array('file' => 'wgtimelines_header.tpl', 'description' => '');
 $modversion['templates'][] = array('file' => 'wgtimelines_index.tpl', 'description' => '');
@@ -279,14 +280,52 @@ $modversion['config'][] = array(
 );
 
 //Uploads : max size for image upload
-$modversion['config'][] = array(
-    'name'        => 'maxsize',
-    'title'       => '_MI_WGTIMELINES_MAXSIZE',
+include_once __DIR__ . '/include/xoops_version.inc.php';
+$iniPostMaxSize = wgtimelinesReturnBytes(ini_get('post_max_size'));
+$iniUploadMaxFileSize = wgtimelinesReturnBytes(ini_get('upload_max_filesize'));
+$maxSize = min($iniPostMaxSize, $iniUploadMaxFileSize);
+if ($maxSize > 10000 * 1048576) {
+    $increment = 500;
+}
+if ($maxSize <= 10000 * 1048576){
+    $increment = 200;
+}
+if ($maxSize <= 5000 * 1048576){
+    $increment = 100;
+}
+if ($maxSize <= 2500 * 1048576){
+    $increment = 50;
+}
+if ($maxSize <= 1000 * 1048576){
+    $increment = 20;
+}
+if ($maxSize <= 500 * 1048576){
+    $increment = 10;
+}
+if ($maxSize <= 100 * 1048576){
+    $increment = 2;
+}
+if ($maxSize <= 50 * 1048576){
+    $increment = 1;
+}
+if ($maxSize <= 25 * 1048576){
+    $increment = 0.5;
+}
+$optionMaxsize = [];
+$i = $increment;
+while ($i* 1048576 <= $maxSize) {
+    $optionMaxsize[$i . ' ' . _MI_WGTIMELINES_SIZE_MB] = $i * 1048576;
+    $i += $increment;
+}
+$modversion['config'][] = [
+    'name' => 'maxsize',
+    'title' => '_MI_WGTIMELINES_MAXSIZE',
     'description' => '_MI_WGTIMELINES_MAXSIZE_DESC',
-    'formtype'    => 'textbox',
-    'valuetype'   => 'int',
-    'default'     => 10485760
-); // 1 MB
+    'formtype' => 'select',
+    'valuetype' => 'int',
+    'default' => 3145728,
+    'options' => $optionMaxsize,
+];
 
 //Uploads : mimetypes of images
 $modversion['config'][] = array(
@@ -306,6 +345,45 @@ $modversion['config'][] = array(
         'png'   => 'image/png'
     )
 );
+
+// Uploads : max width of images for upload
+$modversion['config'][] = [
+    'name'        => 'maxwidth',
+    'title'       => '_MI_WGTIMELINES_MAXWIDTH',
+    'description' => '_MI_WGTIMELINES_MAXWIDTH_DESC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'int',
+    'default'     => 5000,
+];
+
+// Uploads : max height of images for upload
+$modversion['config'][] = [
+    'name'        => 'maxheight',
+    'title'       => '_MI_WGTIMELINES_MAXHEIGHT',
+    'description' => '_MI_WGTIMELINES_MAXHEIGHT_DESC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'int',
+    'default'     => 5000,
+];
+// Uploads : max width of images for upload
+$modversion['config'][] = [
+    'name'        => 'maxwidth_imgeditor',
+    'title'       => '_MI_WGTIMELINES_MAXWIDTH_IMGEDITOR',
+    'description' => '_MI_WGTIMELINES_MAXWIDTH_IMGEDITOR_DESC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'int',
+    'default'     => 400,
+];
+
+// Uploads : max height of images for upload
+$modversion['config'][] = [
+    'name'        => 'maxheight_imgeditor',
+    'title'       => '_MI_WGTIMELINES_MAXHEIGHT_IMGEDITOR',
+    'description' => '_MI_WGTIMELINES_MAXHEIGHT_IMGEDITOR_DESC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'int',
+    'default'     => 400,
+];
 
 // start page for module
 $modversion['config'][] = array(

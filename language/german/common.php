@@ -28,6 +28,7 @@ define('_CO_WGTIMELINES_TIMELINE_EXPIRED', 'Abgelaufene Einträge');
 define('_CO_WGTIMELINES_TIMELINE_EXPIRED_DESC', "Wenn Sie 'Datum/Uhrzeit' verwenden, dann können sie abgelaufene Einträge ausblenden");
 define('_CO_WGTIMELINES_TIMELINE_EXPIRED_SHOW', 'Weiterhin anzeigen');
 define('_CO_WGTIMELINES_TIMELINE_EXPIRED_HIDE', 'Nicht mehr anzeigen');
+define('_CO_WGTIMELINES_ADMIN', 'Administation');
 
 //Sample Data
 define('CO_' . $moduleDirNameUpper . '_' . 'ADD_SAMPLEDATA', 'Importe Beispieldaten (ALLE vorhandenen Daten werden gelöscht)');

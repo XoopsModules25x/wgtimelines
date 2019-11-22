@@ -117,25 +117,16 @@ class Items extends \XoopsObject
         $editorConfigs['height'] = '400px';
         $editorConfigs['editor'] = $helper->getConfig('wgtimelines_editor');
         $form->addElement(new \XoopsFormEditor(_AM_WGTIMELINES_ITEM_CONTENT, 'item_content', $editorConfigs), true);
-        // Form Upload Image
-        $getItemImage = $this->getVar('item_image');
-        $itemImage = $getItemImage ?: 'blank.gif';
-        $imageDirectory = '/uploads/wgtimelines/images/items';
-        $imageTray = new \XoopsFormElementTray(_AM_WGTIMELINES_ITEM_IMAGE, '<br>');
-        $imageSelect = new \XoopsFormSelect(sprintf(_AM_WGTIMELINES_FORM_IMAGE_PATH, ".{$imageDirectory}/"), 'item_image', $itemImage, 5);
-        $imageArray = \XoopsLists::getImgListAsArray(XOOPS_ROOT_PATH . $imageDirectory);
-        foreach ($imageArray as $image1) {
-            $imageSelect->addOption("{$image1}", $image1);
+        
+        // Form Image
+        if (!$this->isNew()) {
+            $itemID = $this->getVar('item_id');
+            $imgButton = "<input type='button' value='...' onclick='window.location.href=\"" . XOOPS_URL . "/modules/wgtimelines/admin/image_editor.php?op=edit_item&item_id=$itemID\"'>";
+            $itemImage = $this->getVar('item_image');
+            $imageDirectory = '/uploads/wgtimelines/images/items';
+            $form->addElement(new \XoopsFormLabel(_AM_WGTIMELINES_ITEM_IMAGE,"<img src='".XOOPS_URL . "$imageDirectory/$itemImage' name='image1' id='image1' alt='$itemImage' style='max-width:100px;' />$imgButton"));
         }
-        $imageSelect->setExtra("onchange='showImgSelected(\"image1\", \"item_image\", \"".$imageDirectory . '", "", "' . XOOPS_URL . "\")'");
-        $imageTray->addElement($imageSelect, false);
-        $imageTray->addElement(new \XoopsFormLabel('', "<br><img src='".XOOPS_URL . '/' . $imageDirectory . '/' . $itemImage . '\' name=\'image1\' id=\'image1\' alt=\'\' style=\'max-width:100px;\' />'));
-        // Form File
-        $fileSelectTray = new \XoopsFormElementTray('', '<br>');
-        $fileSelectTray->addElement(new \XoopsFormFile(_AM_WGTIMELINES_FORM_UPLOAD_IMAGE, 'attachedfile', $helper->getConfig('maxsize')));
-        $fileSelectTray->addElement(new \XoopsFormLabel(''));
-        $imageTray->addElement($fileSelectTray);
-        $form->addElement($imageTray);
+
         // Form Text Date Select
         $itemDate = $this->isNew() ? mktime(0, 0, 0, date("m"), date("d"), date("Y")) : $this->getVar('item_date');
         $form->addElement(new \XoopsFormDateTime(_AM_WGTIMELINES_ITEM_DATE, 'item_date', 15, $itemDate));

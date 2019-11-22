@@ -116,7 +116,7 @@ class TplsetsdefaultHandler extends \XoopsPersistableObjectHandler
             // should be only after installing module
             $module_handler  = xoops_getHandler('module');
             $module          = $module_handler->getByDirname(WGTIMELINES_DIRNAME);
-            include_once WGTIMELINES_PATH . '/include/update.php';
+            include_once WGTIMELINES_PATH . '/include/onupdate.php';
             if (!update_tplsetsdefault($module)) {
                 echo 'Error update_tplsetsdefault in checkTplsetsdefault';
                 return false;

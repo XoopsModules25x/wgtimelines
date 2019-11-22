@@ -1,7 +1,4 @@
 <?php
-
-namespace XoopsModules\Wgtimelines;
-
 /*
  * You may not change or alter any portion of this comment or credits
  * of supporting developers from this source code or any supporting source code
@@ -20,26 +17,23 @@ namespace XoopsModules\Wgtimelines;
  * @author       XOOPS Development Team
  */
 
-//defined('XOOPS_ROOT_PATH') || die('Restricted access';
-
 /**
- * class Constants
+ * @param $val
+ * @return float|int
  */
-class Constants
+function wgtimelinesReturnBytes($val)
 {
-    /**#@+
-     * Constant definition
-     */
-
-    // common constants
-    // constants for expiration
-    const WGTIMELINES_TIMELINE_EXPIRED_SHOW = 0;
-    const WGTIMELINES_TIMELINE_EXPIRED_HIDE = 1;
-    
-    // common constants
-    // constants for image class
-    const IMAGECLASS_ITEM = 1;
-    const IMAGECLASS_TIMELINE = 2;
-
-
+    switch (mb_substr($val, -1)) {
+        case 'K':
+        case 'k':
+            return (int)$val * 1024;
+        case 'M':
+        case 'm':
+            return (int)$val * 1048576;
+        case 'G':
+        case 'g':
+            return (int)$val * 1073741824;
+        default:
+            return $val;
+    }
 }

@@ -201,3 +201,39 @@ define('_AM_WGTIMELINES_FORM_DELETE', 'Clear');
 // ---------------- Admin Others ----------------
 define('_AM_WGTIMELINES_MAINTAINEDBY', ' is maintained by ');
 // ---------------- End ----------------
+// image editor
+define('_AM_WGTIMELINES_IMG_EDITOR', 'Image editor');
+define('_AM_WGTIMELINES_IMG_EDITOR_CREATE', 'Create image');
+define('_AM_WGTIMELINES_IMG_EDITOR_APPLY', 'Apply');
+define('_AM_WGTIMELINES_IMG_EDITOR_IMAGE_EDIT', 'Edit album image');
+define('_AM_WGTIMELINES_IMG_EDITOR_CURRENT', 'Current');
+define('_AM_WGTIMELINES_IMG_EDITOR_USE_EXISTING', 'Use existing image');
+define('_AM_WGTIMELINES_IMG_EDITOR_GRID', 'Create an image grid');
+define('_AM_WGTIMELINES_IMG_EDITOR_GRID4', 'Use 4 images');
+define('_AM_WGTIMELINES_IMG_EDITOR_GRID6', 'Use 6 images');
+define('_AM_WGTIMELINES_IMG_EDITOR_GRID_SRC1', 'Select image 1');
+define('_AM_WGTIMELINES_IMG_EDITOR_GRID_SRC2', 'Select image 2');
+define('_AM_WGTIMELINES_IMG_EDITOR_GRID_SRC3', 'Select image 3');
+define('_AM_WGTIMELINES_IMG_EDITOR_GRID_SRC4', 'Select image 4');
+define('_AM_WGTIMELINES_IMG_EDITOR_GRID_SRC5', 'Select image 5');
+define('_AM_WGTIMELINES_IMG_EDITOR_GRID_SRC6', 'Select image 6');
+define('_AM_WGTIMELINES_IMG_EDITOR_CROP', 'Crop image');
+define('_AM_WGTIMELINES_IMG_EDITOR_CROP_MOVE', 'Move');
+define('_AM_WGTIMELINES_IMG_EDITOR_CROP_ZOOMIN', 'Zoom in');
+define('_AM_WGTIMELINES_IMG_EDITOR_CROP_ZOOMOUT', 'Zomm out');
+define('_AM_WGTIMELINES_IMG_EDITOR_CROP_MOVE_LEFT', 'Move left');
+define('_AM_WGTIMELINES_IMG_EDITOR_CROP_MOVE_RIGHT', 'Move right');
+define('_AM_WGTIMELINES_IMG_EDITOR_CROP_MOVE_UP', 'Move up');
+define('_AM_WGTIMELINES_IMG_EDITOR_CROP_MOVE_DOWN', 'Move down');
+define('_AM_WGTIMELINES_IMG_EDITOR_CROP_ROTATE_LEFT', 'Rotate left');
+define('_AM_WGTIMELINES_IMG_EDITOR_CROP_ROTATE_RIGHT', 'Rotate right');
+define('_AM_WGTIMELINES_IMG_EDITOR_CROP_FLIP_HORIZONTAL', 'Flip horizontal');
+define('_AM_WGTIMELINES_IMG_EDITOR_CROP_FLIP_VERTICAL', 'Flip vertical');
+define('_AM_WGTIMELINES_IMG_EDITOR_CROP_ASPECTRATIO', 'Aspect ratio');
+define('_AM_WGTIMELINES_IMG_EDITOR_CROP_ASPECTRATIO_FREE', 'Free');
+define('_AM_WGTIMELINES_IMG_EDITOR_CURRENT2', 'Source of current image');
+define('_AM_WGTIMELINES_IMG_EDITOR_RESXY', 'Resolution');
+define('_AM_WGTIMELINES_IMG_EDITOR_NOIMAGE', 'Currently there is no image linked');
+
+define('_AM_WGTIMELINES_FORM_ERROR_INVALID_ID', 'Invalid ID');
+define('_AM_WGTIMELINES_FORM_UPLOAD_IMG', 'Upload new image');

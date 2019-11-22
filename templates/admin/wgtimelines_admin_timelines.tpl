@@ -54,6 +54,9 @@
             <a href="timelines.php?op=edit&amp;tl_id=<{$timeline.id}>" title="<{$smarty.const._EDIT}>">
                 <img src="<{xoModuleIcons16 edit.png}>" alt="timelines" />
             </a>
+            <a href="image_editor.php?op=edit_timeline&amp;tl_id=<{$timeline.id}>" title="<{$smarty.const._AM_WGTIMELINES_IMG_EDITOR}>">
+                <img src="<{$wgtimelines_icons_url}>/16/image_editor.png" alt="<{$smarty.const._AM_WGTIMELINES_IMG_EDITOR}>">
+            </a>
             <a href="timelines.php?op=delete&amp;tl_id=<{$timeline.id}>" title="<{$smarty.const._DELETE}>">
                 <img src="<{xoModuleIcons16 delete.png}>" alt="timelines" />
             </a>

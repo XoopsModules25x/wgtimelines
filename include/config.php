@@ -41,11 +41,13 @@ function getConfig()
             XOOPS_UPLOAD_PATH . '/' . $moduleDirName . '/images',
             XOOPS_UPLOAD_PATH . '/' . $moduleDirName . '/images/items',
             XOOPS_UPLOAD_PATH . '/' . $moduleDirName . '/images/timelines',
+            XOOPS_UPLOAD_PATH . '/' . $moduleDirName . '/temp',
         ],
         'copyBlankFiles' => [
             XOOPS_UPLOAD_PATH . '/' . $moduleDirName . '/images',
             XOOPS_UPLOAD_PATH . '/' . $moduleDirName . '/images/items',
             XOOPS_UPLOAD_PATH . '/' . $moduleDirName . '/images/timelines',
+            XOOPS_UPLOAD_PATH . '/' . $moduleDirName . '/temp',
         ],
 
         'copyTestFolders' => [
@@ -57,10 +59,12 @@ function getConfig()
 
         'templateFolders' => [
             '/templates/',
-            //            '/templates/blocks/',
-            //            '/templates/admin/'
+            '/templates/blocks/',
+            '/templates/admin/'
         ],
         'oldFiles'        => [
+            '/include/install.php',
+            '/include/update.php',
         ],
         'oldFolders'      => [
         ],

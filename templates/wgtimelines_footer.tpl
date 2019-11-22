@@ -15,5 +15,5 @@
 <{/if}>
 <br>
 <{if $xoops_isadmin}>
-   <div class="text-center bold"><a href="<{$admin}>"><{$smarty.const._MA_WGTIMELINES_ADMIN}></a></div><br>
+   <div class="text-center bold"><a href="<{$admin}>"><{$smarty.const._CO_WGTIMELINES_ADMIN}></a></div><br>
 <{/if}>

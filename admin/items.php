@@ -157,10 +157,9 @@ switch($op) {
         // Set Vars
         $item_tl_id = Request::getInt('item_tl_id', 0);
         $itemsObj->setVar('item_tl_id', $item_tl_id);
-        $itemsObj->setVar('item_title', Request::getString['item_title']);
-        $itemsObj->setVar('item_title', Request::getString['item_title']);
+        $itemsObj->setVar('item_title', Request::getString('item_title'));
         //fix for avoid hiding empty paragraphs in some browsers (instead of: $itemsObj->setVar('item_content', $_POST['item_content']);
-        $itemsObj->setVar('item_content', preg_replace('/<p><\/p>/', '<p>&nbsp;</p>', $_POST['item_content']));
+        $itemsObj->setVar('item_content', preg_replace('/<p><\/p>/', '<p>&nbsp;</p>', Request::getString['item_content']));
         // Set Var item_image
         include_once XOOPS_ROOT_PATH .'/class/uploader.php';
         $uploader = new XoopsMediaUploader(WGTIMELINES_UPLOAD_IMAGE_PATH.'/items/',
@@ -180,13 +179,13 @@ switch($op) {
         } else {
             $itemsObj->setVar('item_image', $_POST['item_image']);
         }
-        $itemsObj->setVar('item_date', strtotime($_POST['item_date']['date']) + intval($_POST['item_date']['time']));
-        $itemsObj->setVar('item_year', isset($_POST['item_year']) ? $_POST['item_year'] : '');
-        $itemsObj->setVar('item_icon', isset($_POST['item_icon']) ? $_POST['item_icon'] : 'none');
-        $itemsObj->setVar('item_weight', isset($_POST['item_weight']) ? $_POST['item_weight'] : 0);
-        $itemsObj->setVar('item_reads', isset($_POST['item_reads']) ? $_POST['item_reads'] : 0);
-        $itemsObj->setVar('item_online', isset($_POST['item_online']) ? $_POST['item_online'] : 0);
-        $itemsObj->setVar('item_submitter', isset($_POST['item_submitter']) ? $_POST['item_submitter'] : 0);
+        $itemsObj->setVar('item_date',      strtotime($_POST['item_date']['date']) + intval($_POST['item_date']['time']));
+        $itemsObj->setVar('item_year',      Request::getString('item_year'));
+        $itemsObj->setVar('item_icon',      Request::getString('item_icon', 'none'));
+        $itemsObj->setVar('item_weight',    Request::getInt('item_weight'));
+        $itemsObj->setVar('item_reads',     Request::getInt('item_reads'));
+        $itemsObj->setVar('item_online',    Request::getInt('item_online'));
+        $itemsObj->setVar('item_submitter', Request::getInt('item_submitter'));
         $itemDate_create = date_create_from_format(_SHORTDATESTRING, $_POST['item_date_create']);
         $itemsObj->setVar('item_date_create', $itemDate_create->getTimestamp());
         // Insert Data
@@ -252,7 +251,7 @@ switch($op) {
         break;
 
     case 'order':
-        $iorder = $_POST['iorder'];
+        $iorder = Request::getInt('iorder');
         for ($i = 0, $iMax = count($iorder); $i < $iMax; $i++){
             $itemsObj = $itemsHandler->get($iorder[$i]);
             $itemsObj->setVar('item_weight',$i+1);

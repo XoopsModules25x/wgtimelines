@@ -77,6 +77,9 @@ function loadSampleData()
 
 function saveSampleData()
 {
+    $utility            = new Wgtimelines\Utility();
+    $configurator       = new Common\Configurator();
+
     $moduleDirName      = basename(dirname(__DIR__));
     $moduleDirNameUpper = mb_strtoupper($moduleDirName);
 
@@ -91,6 +94,15 @@ function saveSampleData()
     $skipColumns[] = 'gperm_id';
     \Xmf\Database\TableLoad::saveTableToYamlFile('group_permission', 'group_permission_' . date('Y-m-d H-i-s') . '.yml', $criteria, $skipColumns);
     unset($criteria);
+
+    //  ---  COPY test folder files ---------------
+    if (is_array($configurator->copyTestFolders) && count($configurator->copyTestFolders) > 0) {
+        foreach (array_keys($configurator->copyTestFolders) as $i) {
+            $src  = $configurator->copyTestFolders[$i][1];
+            $dest = $configurator->copyTestFolders[$i][0];
+            $utility::rcopy($src, $dest);
+        }
+    }
 
     redirect_header('../admin/index.php', 1, constant('CO_' . $moduleDirNameUpper . '_' . 'SAMPLEDATA_SUCCESS'));
 }
