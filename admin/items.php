@@ -103,8 +103,10 @@ switch($op) {
                 $GLOBALS['xoopsTpl']->assign('pagenav', $pagenav->renderNav(4));
             }
         } else {
-            $currentTl = ($tl_id == 0) ? _AM_WGTIMELINES_ITEM_NONE : $timelinesHandler->get($tl_id)->getVar('tl_name');
-            $GLOBALS['xoopsTpl']->assign('error', _AM_WGTIMELINES_THEREARENT_ITEMS . $currentTl);
+            if ($tl_id > 0) {
+                $currentTl = ($tl_id == 0) ? _AM_WGTIMELINES_ITEM_NONE : $timelinesHandler->get($tl_id)->getVar('tl_name');
+                $GLOBALS['xoopsTpl']->assign('error', _AM_WGTIMELINES_THEREARENT_ITEMS . $currentTl);
+            }
         }
         
     break;
