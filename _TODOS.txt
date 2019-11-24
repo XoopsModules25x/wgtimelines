@@ -1,1 +1,1 @@
-Implemetierung des Imagemanagers
+update: alle Dateien in Class mit Großbuchstaben versehen

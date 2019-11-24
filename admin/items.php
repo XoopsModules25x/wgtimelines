@@ -22,6 +22,7 @@
  */
 
 use Xmf\Request;
+use XoopsModules\Wgtimelines;
 
 include __DIR__ . '/header.php';
 // It recovered the value of argument op in URL$
@@ -146,9 +147,6 @@ switch($op) {
     case 'save':
     case 'save_copy':
         // Security Check
-        if(!$GLOBALS['xoopsSecurity']->check()) {
-            redirect_header('items.php', 3, implode(',', $GLOBALS['xoopsSecurity']->getErrors()));
-        }
         if(isset($itemId)) {
             $itemsObj = $itemsHandler->get($itemId);
         } else {
@@ -159,26 +157,45 @@ switch($op) {
         $itemsObj->setVar('item_tl_id', $item_tl_id);
         $itemsObj->setVar('item_title', Request::getString('item_title'));
         //fix for avoid hiding empty paragraphs in some browsers (instead of: $itemsObj->setVar('item_content', $_POST['item_content']);
-        $itemsObj->setVar('item_content', preg_replace('/<p><\/p>/', '<p>&nbsp;</p>', Request::getString['item_content']));
+        $itemsObj->setVar('item_content', preg_replace('/<p><\/p>/', '<p>&nbsp;</p>', Request::getString('item_content')));
+       
         // Set Var item_image
         include_once XOOPS_ROOT_PATH .'/class/uploader.php';
+        $fileName       = $_FILES['attachedfile']['name'];
+        $imageMimetype  = $_FILES['attachedfile']['type'];
+        $uploaderErrors = '';
         $uploader = new XoopsMediaUploader(WGTIMELINES_UPLOAD_IMAGE_PATH.'/items/',
                                             $helper->getConfig('mimetypes'),
                                             $helper->getConfig('maxsize'), null, null);
-        if($uploader->fetchMedia($_POST['xoops_upload_file'][0])) {
-            $filename = pathinfo($_FILES['attachedfile']['name'], PATHINFO_FILENAME);
-            $imgName = preg_replace('/[^a-zA-Z0-9\.\_\-]/', '', $filename) . ".";
+        if ($uploader->fetchMedia($_POST['xoops_upload_file'][0])) {
+            $extension = preg_replace('/^.+\.([^.]+)$/sU', '', $fileName);
+			$imgName   = mb_substr(str_replace(' ', '', $_POST['item_title']), 0, 20) . '_' . $extension;
             $uploader->setPrefix($imgName);
             $uploader->fetchMedia($_POST['xoops_upload_file'][0]);
-            if(!$uploader->upload()) {
-                $errors = $uploader->getErrors();
-                redirect_header('javascript:history.go(-1).php', 3, $errors);
+            if (!$uploader->upload()) {
+                $uploaderErrors = $uploader->getErrors();
             } else {
-                $itemsObj->setVar('item_image', $uploader->getSavedFileName());
+                $savedFilename = $uploader->getSavedFileName();
+                $itemsObj->setVar('item_image', $savedFilename);
+                // resize image
+                $maxwidth  = (int)$helper->getConfig('maxwidth_imgeditor');
+                $maxheight = (int)$helper->getConfig('maxheight_imgeditor');
+                $imgHandler                = new Wgtimelines\Resizer();
+                $imgHandler->sourceFile    = WGTIMELINES_UPLOAD_PATH . '/images/items/' . $savedFilename;
+                $imgHandler->endFile       = WGTIMELINES_UPLOAD_PATH . '/images/items/' . $savedFilename;
+                $imgHandler->imageMimetype = $imageMimetype;
+                $imgHandler->maxWidth      = $maxwidth;
+                $imgHandler->maxHeight     = $maxheight;
+                $result                    = $imgHandler->resizeImage();
+                $itemsObj->setVar('item_image', $savedFilename);
             }
         } else {
-            $itemsObj->setVar('item_image', $_POST['item_image']);
+            if ($fileName > '') {
+                $uploaderErrors = $uploader->getErrors();
+            }
+            $itemsObj->setVar('item_image', Request::getString('item_image'));
         }
+
         $itemsObj->setVar('item_date',      strtotime($_POST['item_date']['date']) + intval($_POST['item_date']['time']));
         $itemsObj->setVar('item_year',      Request::getString('item_year'));
         $itemsObj->setVar('item_icon',      Request::getString('item_icon', 'none'));

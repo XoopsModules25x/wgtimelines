@@ -95,10 +95,6 @@ switch($op) {
 
     break;
     case 'save':
-        // Security Check
-        if(!$GLOBALS['xoopsSecurity']->check()) {
-            redirect_header('timelines.php', 3, implode(',', $GLOBALS['xoopsSecurity']->getErrors()));
-        }
         if(isset($tlId)) {
             $timelinesObj = $timelinesHandler->get($tlId);
         } else {
@@ -110,23 +106,41 @@ switch($op) {
         $timelinesObj->setVar('tl_desc', preg_replace('/<p><\/p>/', '<p>&nbsp;</p>', Request::getString('tl_desc')));
         // Set Var tl_image
         include_once XOOPS_ROOT_PATH .'/class/uploader.php';
-        $uploader = new XoopsMediaUploader(WGTIMELINES_UPLOAD_IMAGE_PATH.'/timelines/', 
-                                            $helper->getConfig('mimetypes'), 
+        $fileName       = $_FILES['attachedfile']['name'];
+        $imageMimetype  = $_FILES['attachedfile']['type'];
+        $uploaderErrors = '';
+        $uploader = new XoopsMediaUploader(WGTIMELINES_UPLOAD_IMAGE_PATH.'/timelines/',
+                                            $helper->getConfig('mimetypes'),
                                             $helper->getConfig('maxsize'), null, null);
-        if($uploader->fetchMedia($_POST['xoops_upload_file'][0])) {
-            $extension = preg_replace('/^.+\.([^.]+)$/sU', '', $_FILES['attachedfile']['name']);
-            $imgName = str_replace(' ', '', $_POST['tl_name']).'.'.$extension;
+        if ($uploader->fetchMedia($_POST['xoops_upload_file'][0])) {
+            $extension = preg_replace('/^.+\.([^.]+)$/sU', '', $fileName);
+			$imgName   = mb_substr(str_replace(' ', '', $_POST['tl_name']), 0, 20) . '_' . $extension;
             $uploader->setPrefix($imgName);
             $uploader->fetchMedia($_POST['xoops_upload_file'][0]);
-            if(!$uploader->upload()) {
-                $errors = $uploader->getErrors();
-                redirect_header('javascript:history.go(-1).php', 3, $errors);
+            if (!$uploader->upload()) {
+                $uploaderErrors = $uploader->getErrors();
             } else {
-                $timelinesObj->setVar('tl_image', $uploader->getSavedFileName());
+                $savedFilename = $uploader->getSavedFileName();
+                $timelinesObj->setVar('tl_image', $savedFilename);
+                // resize image
+                $maxwidth  = (int)$helper->getConfig('maxwidth_imgeditor');
+                $maxheight = (int)$helper->getConfig('maxheight_imgeditor');
+                $imgHandler                = new Wgtimelines\Resizer();
+                $imgHandler->sourceFile    = WGTIMELINES_UPLOAD_PATH . '/images/timelines/' . $savedFilename;
+                $imgHandler->endFile       = WGTIMELINES_UPLOAD_PATH . '/images/timelines/' . $savedFilename;
+                $imgHandler->imageMimetype = $imageMimetype;
+                $imgHandler->maxWidth      = $maxwidth;
+                $imgHandler->maxHeight     = $maxheight;
+                $result                    = $imgHandler->resizeImage();
+                $timelinesObj->setVar('tl_image', $savedFilename);
             }
         } else {
+            if ($fileName > '') {
+                $uploaderErrors = $uploader->getErrors();
+            }
             $timelinesObj->setVar('tl_image', Request::getString('tl_image'));
         }
+
         $timelinesObj->setVar('tl_weight',    Request::getInt('tl_weight'));
         $timelinesObj->setVar('tl_template',  Request::getInt('tl_template'));
         $timelinesObj->setVar('tl_sortby',    Request::getInt('tl_sortby'));

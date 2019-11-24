@@ -5,6 +5,7 @@
  - added feedback (goffy)
  - changed install/update in order to use common config (goffy)
  - added image editor (goffy)
+ - readded direct upload for new item/timeline (goffy)
 
 <h5>1.11 RC1</h5>  [2018/11/16]
 <hr>

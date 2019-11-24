@@ -59,22 +59,22 @@
 				</div>
 				<div class='col-xs-12 col-sm-4'>
 					<button id='btnGridAdd1' type='button' class='btn <{$btn_style}>' style='display:inline;margin:5px' data-toggle='modal' data-target='#myModalImagePicker1'><{$smarty.const._AM_WGTIMELINES_IMG_EDITOR_GRID_SRC1}></button>
-					<img src='<{$wgtimelines_upload_image_url}>blank.gif' name='imageGrid1' id='imageGrid1' alt='imageGrid1' style='margin:5px;max-width:75px'>
+					<img src='<{$wgtimelines_upload_image_url}>blank.gif' id='imageGrid1' alt='imageGrid1' style='margin:5px;max-width:75px'>
 					<br>
 					<button id='btnGridAdd2' type='button' class='btn <{$btn_style}>' style='display:inline;margin:5px' data-toggle='modal' data-target='#myModalImagePicker2'><{$smarty.const._AM_WGTIMELINES_IMG_EDITOR_GRID_SRC2}></button>
-					<img src='<{$wgtimelines_upload_image_url}>blank.gif' name='imageGrid2' id='imageGrid2' alt='imageGrid2' style='margin:5px;max-width:75px'>
+					<img src='<{$wgtimelines_upload_image_url}>blank.gif' id='imageGrid2' alt='imageGrid2' style='margin:5px;max-width:75px'>
 					<br>
 					<button id='btnGridAdd3' type='button' class='btn <{$btn_style}>' style='display:inline;margin:5px' data-toggle='modal' data-target='#myModalImagePicker3'><{$smarty.const._AM_WGTIMELINES_IMG_EDITOR_GRID_SRC3}></button>
-					<img src='<{$wgtimelines_upload_image_url}>blank.gif' name='imageGrid3' id='imageGrid3' alt='imageGrid3' style='margin:5px;max-width:75px'>
+					<img src='<{$wgtimelines_upload_image_url}>blank.gif' id='imageGrid3' alt='imageGrid3' style='margin:5px;max-width:75px'>
 					<br>
 					<button id='btnGridAdd4' type='button' class='btn <{$btn_style}>' style='display:inline;margin:5px' data-toggle='modal' data-target='#myModalImagePicker4'><{$smarty.const._AM_WGTIMELINES_IMG_EDITOR_GRID_SRC4}></button>
-					<img src='<{$wgtimelines_upload_image_url}>blank.gif' name='imageGrid4' id='imageGrid4' alt='imageGrid4' style='margin:5px;max-width:75px'>
+					<img src='<{$wgtimelines_upload_image_url}>blank.gif' id='imageGrid4' alt='imageGrid4' style='margin:5px;max-width:75px'>
 					<br>
 					<button id='btnGridAdd5' type='button' class='btn <{$btn_style}>' style='display:inline;margin:5px' data-toggle='modal' data-target='#myModalImagePicker5' disabled='disabled'><{$smarty.const._AM_WGTIMELINES_IMG_EDITOR_GRID_SRC5}></button>
-					<img src='<{$wgtimelines_upload_image_url}>blank.gif' name='imageGrid5' id='imageGrid5' alt='imageGrid5' style='margin:5px;max-width:75px'>
+					<img src='<{$wgtimelines_upload_image_url}>blank.gif' id='imageGrid5' alt='imageGrid5' style='margin:5px;max-width:75px'>
 					<br>
 					<button id='btnGridAdd6' type='button' class='btn <{$btn_style}>' style='display:inline;margin:5px' data-toggle='modal' data-target='#myModalImagePicker6' disabled='disabled'><{$smarty.const._AM_WGTIMELINES_IMG_EDITOR_GRID_SRC6}></button>
-					<img src='<{$wgtimelines_upload_image_url}>blank.gif' name='imageGrid6' id='imageGrid6' alt='imageGrid6' style='margin:5px;max-width:75px'>
+					<img src='<{$wgtimelines_upload_image_url}>blank.gif' id='imageGrid6' alt='imageGrid6' style='margin:5px;max-width:75px'>
 				</div>
                 <div class='col-xs-12 col-sm-8'>
                     <img id='gridImg' class='img-responsive' src='<{$wgtimelines_upload_image_url}>blank.gif' alt='<{$smarty.const._AM_WGTIMELINES_IMG_EDITOR_GRID}>'>

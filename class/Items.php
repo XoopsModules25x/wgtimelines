@@ -119,11 +119,29 @@ class Items extends \XoopsObject
         $form->addElement(new \XoopsFormEditor(_AM_WGTIMELINES_ITEM_CONTENT, 'item_content', $editorConfigs), true);
         
         // Form Image
-        if (!$this->isNew()) {
+        $imageDirectory = '/uploads/wgtimelines/images/items';
+        if ($this->isNew()) {
+            $itemImage = 'blank.gif';
+            $imageTray = new \XoopsFormElementTray(_AM_WGTIMELINES_ITEM_IMAGE, '<br>');
+            $imageSelect = new \XoopsFormSelect(sprintf(_AM_WGTIMELINES_FORM_IMAGE_PATH, ".{$imageDirectory}/"), 'item_image', $itemImage, 5);
+            $imageArray = \XoopsLists::getImgListAsArray(XOOPS_ROOT_PATH . $imageDirectory);
+            foreach ($imageArray as $image1) {
+                $imageSelect->addOption("{$image1}", $image1);
+            }
+            $imageSelect->setExtra("onchange='showImgSelected(\"image1\", \"item_image\", \"".$imageDirectory . '", "", "' . XOOPS_URL . "\")'");
+            $imageTray->addElement($imageSelect, false);
+            $imageTray->addElement(new \XoopsFormLabel('', "<br><img src='".XOOPS_URL . "$imageDirectory/$itemImage' name='image1' id='image1' alt='$itemImage' style='max-width:100px;' />"));
+            // Form File
+            $fileSelectTray = new \XoopsFormElementTray('', '<br>');
+            $fileSelectTray->addElement(new \XoopsFormFile(_AM_WGTIMELINES_FORM_UPLOAD_IMAGE, 'attachedfile', $helper->getConfig('maxsize')));
+            $fileSelectTray->addElement(new \XoopsFormLabel(''));
+            $imageTray->addElement($fileSelectTray);
+            $form->addElement($imageTray);
+        } else {
             $itemID = $this->getVar('item_id');
             $imgButton = "<input type='button' value='...' onclick='window.location.href=\"" . XOOPS_URL . "/modules/wgtimelines/admin/image_editor.php?op=edit_item&item_id=$itemID\"'>";
             $itemImage = $this->getVar('item_image');
-            $imageDirectory = '/uploads/wgtimelines/images/items';
+            
             $form->addElement(new \XoopsFormLabel(_AM_WGTIMELINES_ITEM_IMAGE,"<img src='".XOOPS_URL . "$imageDirectory/$itemImage' name='image1' id='image1' alt='$itemImage' style='max-width:100px;' />$imgButton"));
         }
 
