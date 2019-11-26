@@ -1,3 +1,28 @@
+<style>
+    .toggle-buttons input[type="radio"] {
+        visibility: hidden;
+        margin:0 !important;
+        padding:0 !important;
+        -ms-transform: scale(0); /* IE 9 */
+        -webkit-transform: scale(0); /* Chrome, Safari, Opera */
+        transform: scale(0);
+    }
+    .toggle-buttons label {
+        border: 1px solid #333;
+        border-radius:5px;
+        padding:8px;
+        margin:0 !important;
+        line-height:35px;
+        
+    }
+    .toggle-buttons label i.glyphicon {
+        padding:0px;
+        width:150px;
+    }
+    .toggle-buttons input:checked + label {
+        background: #ddd;
+    }
+</style>
 <{if $form_select}>
 	<div class="form_select"><{$form_select}></div>
 <{/if}>

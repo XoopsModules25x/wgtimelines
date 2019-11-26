@@ -7,6 +7,7 @@
  - added image editor (goffy)
  - readded direct upload for new item/timeline (goffy)
  - fixed display problem (alain/goffy)
+ - glyphicons: transformed radio into toggle buttons (alain/goffy)
 
 <h5>1.11 RC1</h5>  [2018/11/16]
 <hr>
