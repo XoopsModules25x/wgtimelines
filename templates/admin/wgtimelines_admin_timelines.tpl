@@ -1,4 +1,4 @@
-<!-- Header -->
+﻿<!-- Header -->
 <{include file='db:wgtimelines_admin_header.tpl'}>
 <{if $timelines_list}>
 <table class='table table-bordered' id="sortable-timelines">
@@ -50,16 +50,13 @@
             </td>
             <td class="center"><{$timeline.submitter}></td>
             <td class="center"><{$timeline.date_create}></td>
-            <td class="center  width5">
-            <a href="timelines.php?op=edit&amp;tl_id=<{$timeline.id}>" title="<{$smarty.const._EDIT}>">
-                <img src="<{xoModuleIcons16 edit.png}>" alt="timelines" />
-            </a>
-            <a href="image_editor.php?op=edit_timeline&amp;tl_id=<{$timeline.id}>" title="<{$smarty.const._AM_WGTIMELINES_IMG_EDITOR}>">
-                <img src="<{$wgtimelines_icons_url}>/16/image_editor.png" alt="<{$smarty.const._AM_WGTIMELINES_IMG_EDITOR}>">
-            </a>
-            <a href="timelines.php?op=delete&amp;tl_id=<{$timeline.id}>" title="<{$smarty.const._DELETE}>">
-                <img src="<{xoModuleIcons16 delete.png}>" alt="timelines" />
-            </a>
+            <td class="center width5">
+                <a href="timelines.php?op=edit&amp;tl_id=<{$timeline.id}>" title="<{$smarty.const._EDIT}>">
+                    <img src="<{xoModuleIcons16 edit.png}>" alt="<{$smarty.const._EDIT}>" /></a>
+                <a href="image_editor.php?op=edit_timeline&amp;tl_id=<{$timeline.id}>" title="<{$smarty.const._AM_WGTIMELINES_IMG_EDITOR}>">
+                    <img src="<{$wgtimelines_icons_url}>/16/image_editor.png" alt="<{$smarty.const._AM_WGTIMELINES_IMG_EDITOR}>" /></a>
+                <a href="timelines.php?op=delete&amp;tl_id=<{$timeline.id}>" title="<{$smarty.const._DELETE}>">
+                    <img src="<{xoModuleIcons16 delete.png}>" alt="<{$smarty.const._DELETE}>" /></a>
             </td>
         </tr>
     <{/foreach}>
