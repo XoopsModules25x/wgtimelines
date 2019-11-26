@@ -8,11 +8,11 @@
         transform: scale(0);
     }
     .toggle-buttons label {
-        border: 1px solid #333;
+        border: 1px solid #ddd;
         border-radius:5px;
-        padding:8px;
+        padding:10px 8px 8px 8px;
         margin:0 !important;
-        line-height:35px;
+        line-height:40px;
         
     }
     .toggle-buttons label i.glyphicon {
@@ -21,6 +21,7 @@
     }
     .toggle-buttons input:checked + label {
         background: #ddd;
+        border: 1px solid #000;
     }
 </style>
 <{if $form_select}>
