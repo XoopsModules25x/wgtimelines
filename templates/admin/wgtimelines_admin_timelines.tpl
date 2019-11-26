@@ -42,11 +42,10 @@
             <td class="center">
                 <a href="timelines.php?op=set_onoff&amp;tl_id=<{$timeline.id}>" title="<{$timeline.online}>">
                     <{if $timeline.online == 1}>
-                        <img src="<{xoModuleIcons16 on.png}>" alt="<{$smarty.const._YES}>" />
+                        <img src="<{xoModuleIcons16 on.png}>" alt="<{$smarty.const._YES}>" /></a>
                     <{else}>
-                        <img src="<{xoModuleIcons16 off.png}>" alt="<{$smarty.const._NO}>" />
+                        <img src="<{xoModuleIcons16 off.png}>" alt="<{$smarty.const._NO}>" /></a>
                     <{/if}>
-                </a>
             </td>
             <td class="center"><{$timeline.submitter}></td>
             <td class="center"><{$timeline.date_create}></td>
