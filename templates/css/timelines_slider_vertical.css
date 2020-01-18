@@ -130,3 +130,12 @@
 				#prev.disabled {
 					opacity: 0.2;
 				}
+.timeline-item-reads  i{
+}
+.admin-area {
+	text-align:right;
+}
+.timelines_ratingblock {
+	margin:10px 0 5px 0;
+	border:0;
+}

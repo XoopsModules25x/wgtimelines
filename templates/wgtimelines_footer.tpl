@@ -1,9 +1,9 @@
 <{if $bookmarks != 0}>
-<{include file="db:system_bookmarks.html"}>
+<{include file="db:system_bookmarks.tpl"}>
 <{/if}>
 
 <{if $fbcomments != 0}>
-<{include file="db:system_fbcomments.html"}>
+<{include file="db:system_fbcomments.tpl"}>
 <{/if}>
 
 <{if $copyright}>
@@ -13,7 +13,7 @@
 <{if $pagenav != ''}>
     <div class="pull-right"><{$pagenav}></div>
 <{/if}>
-<br />
+<br>
 <{if $xoops_isadmin}>
-   <div class="text-center bold"><a href="<{$admin}>"><{$smarty.const._MA_WGTIMELINES_ADMIN}></a></div><br />
+   <div class="text-center bold"><a href="<{$admin}>"><{$smarty.const._CO_WGTIMELINES_ADMIN}></a></div><br>
 <{/if}>

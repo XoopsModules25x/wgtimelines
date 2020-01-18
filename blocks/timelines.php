@@ -17,33 +17,41 @@
  * @package        wgtimelines
  * @since          1.0
  * @min_xoops      2.5.7
- * @author         goffy (wedega.com) - Email:<webmaster@wedega.com> - Website:<http://xoops.wedega.com>
+ * @author         goffy (wedega.com) - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
  * @version        $Id: 1.0 timelines.php 13070 Sat 2016-10-01 05:42:14Z XOOPS Development Team $
  */
+
+use XoopsModules\Wgtimelines;
+use XoopsModules\Wgtimelines\Constants;
+use XoopsModules\Wgtimelines\Helper;
+
 include_once XOOPS_ROOT_PATH.'/modules/wgtimelines/include/common.php';
 // Function show block
 function b_wgtimelines_timelines_show($options)
 {
-    include_once XOOPS_ROOT_PATH.'/modules/wgtimelines/class/timelines.php';
+    $helper = \XoopsModules\Wgtimelines\Helper::getInstance();
+    include_once XOOPS_ROOT_PATH.'/modules/wgtimelines/class/Timelines.php';
     $myts = MyTextSanitizer::getInstance();
     $GLOBALS['xoopsTpl']->assign('wgtimelines_upload_url', WGTIMELINES_UPLOAD_URL);
     $block       = array();
-    $typeBlock   = $options[0];
+    // $typeBlock   = $options[0];
     $lenghtTitle = $options[1];
-    $wgtimelines = WgtimelinesHelper::getInstance();
-    $timelinesHandler = $wgtimelines->getHandler('timelines');
-    $criteria = new CriteriaCompo();
+    $timelinesHandler = $helper->getHandler('Timelines');
+    $criteria = new \CriteriaCompo();
     array_shift($options);
     array_shift($options);
-    $criteria->add(new Criteria('tl_online', 1));
-    $criteria->SetSort('tl_weight');
+    $criteria->add(new \Criteria('tl_online', 1));
+    $criteria->setSort('tl_weight');
     $criteria->setOrder('ASC');
     $timelinesAll = $timelinesHandler->getAll($criteria);
-	unset($criteria);
-    foreach(array_keys($timelinesAll) as $i)
-    {
+    unset($criteria);
+    foreach (array_keys($timelinesAll) as $i) {
         $block[$i]['id'] = $myts->htmlSpecialChars($timelinesAll[$i]->getVar('tl_id'));
-        $block[$i]['name'] = $myts->htmlSpecialChars($timelinesAll[$i]->getVar('tl_name'));
+        $tl_name = $myts->htmlSpecialChars($timelinesAll[$i]->getVar('tl_name'));
+        if ($lenghtTitle > 0) {
+            $tl_name = substr($tl_name, 0, $lenghtTitle);
+        }
+        $block[$i]['name'] = $tl_name;
         $block[$i]['url'] = WGTIMELINES_URL;
     }
     return $block;
@@ -52,26 +60,27 @@ function b_wgtimelines_timelines_show($options)
 // Function edit block
 function b_wgtimelines_timelines_edit($options)
 {
-    include_once XOOPS_ROOT_PATH.'/modules/wgtimelines/class/timelines.php';
-    $wgtimelines = WgtimelinesHelper::getInstance();
-    $timelinesHandler = $wgtimelines->getHandler('timelines');
+    include_once XOOPS_ROOT_PATH.'/modules/wgtimelines/class/Timelines.php';
+    $helper = \XoopsModules\Wgtimelines\Helper::getInstance();
+    $timelinesHandler = $helper->getHandler('Timelines');
     $GLOBALS['xoopsTpl']->assign('wgtimelines_upload_url', WGTIMELINES_UPLOAD_URL);
-    $form = "<input type='hidden' name='options[0]' value='".$options[0]."' />";
-    $form .= _MB_WGTIMELINES_TITLE_LENGTH." : <input type='text' name='options[1]' size='5' maxlength='255' value='".$options[1]."' /><br /><br />";
+    $form = "<input type='hidden' name='options[0]' value='".$options[0] . '\' />';
+    $form .= _MB_WGTIMELINES_TITLE_LENGTH." : <input type='text' name='options[1]' size='5' maxlength='255' value='".$options[1] . '\' /><br><br>';
     array_shift($options);
     array_shift($options);
-    $criteria = new CriteriaCompo();
-    $criteria->add(new Criteria('tl_id', 0, '!='));
-    $criteria->setSort('tl_id');
+    $criteria = new \CriteriaCompo();
+    $criteria->add(new \Criteria('tl_id', 0, '!='));
+    $criteria->setSort('tl_weight');
     $criteria->setOrder('ASC');
     $timelinesAll = $timelinesHandler->getAll($criteria);
     unset($criteria);
-    $form .= _MB_WGTIMELINES_TIMELINES_TO_DISPLAY."<br /><select name='options[]' multiple='multiple' size='5'>";
-    $form .= "<option value='0' " . (array_search(0, $options) === false ? "" : "selected='selected'") . ">" ._MB_WGTIMELINES_ALL_TIMELINES . "</option>";
+    $form .= _MB_WGTIMELINES_TIMELINES_TO_DISPLAY."<br><select name='options[]' multiple='multiple' size='5'>";
+    $form .= "<option value='0' " . (!in_array(0, $options) ? '' : "selected='selected'") . '>' . _MB_WGTIMELINES_ALL_TIMELINES . '</option>';
     foreach (array_keys($timelinesAll) as $i) {
         $tl_id = $timelinesAll[$i]->getVar('tl_id');
-        $form .= "<option value='" . $tl_id . "' " . (array_search($tl_id, $options) === false ? "" : "selected='selected'") . ">".$timelinesAll[$i]->getVar('tl_name')."</option>";
+        $form .= "<option value='" . $tl_id . '\' ' . (!in_array($tl_id, $options) ? '' : "selected='selected'") . '>'
+                 . $timelinesAll[$i]->getVar('tl_name') . '</option>';
     }
-    $form .= "</select>";
+    $form .= '</select>';
     return $form;
 }

@@ -17,13 +17,17 @@
  * @package        wgtimelines
  * @since          1.0
  * @min_xoops      2.5.7
- * @author         goffy (wedega.com) - Email:<webmaster@wedega.com> - Website:<http://xoops.wedega.com>
+ * @author         goffy (wedega.com) - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
  * @version        $Id: 1.0 common.php 13070 Sat 2016-10-01 05:42:18Z XOOPS Development Team $
  */
 
 if (!defined('WGTIMELINES_PATH')) {
-    if (!defined('XOOPS_ICONS32_PATH')) define('XOOPS_ICONS32_PATH', XOOPS_ROOT_PATH . '/Frameworks/moduleclasses/icons/32');
-    if (!defined('XOOPS_ICONS32_URL')) define('XOOPS_ICONS32_URL', XOOPS_URL . '/Frameworks/moduleclasses/icons/32');
+    if (!defined('XOOPS_ICONS32_PATH')) {
+        define('XOOPS_ICONS32_PATH', XOOPS_ROOT_PATH . '/Frameworks/moduleclasses/icons/32');
+    }
+    if (!defined('XOOPS_ICONS32_URL')) {
+        define('XOOPS_ICONS32_URL', XOOPS_URL . '/Frameworks/moduleclasses/icons/32');
+    }
     define('WGTIMELINES_DIRNAME', 'wgtimelines');
     define('WGTIMELINES_PATH', XOOPS_ROOT_PATH.'/modules/'.WGTIMELINES_DIRNAME);
     define('WGTIMELINES_URL', XOOPS_URL.'/modules/'.WGTIMELINES_DIRNAME);
@@ -39,7 +43,7 @@ if (!defined('WGTIMELINES_PATH')) {
 }
 $localLogo = WGTIMELINES_IMAGE_URL . '/wedega.png';
 // Module Information
-$copyright = "<a href='http://xoops.wedega.com' title='XOOPS on Wedega' target='_blank'><img src='".$localLogo."' alt='XOOPS on Wedega' /></a>";
-include_once XOOPS_ROOT_PATH .'/class/xoopsrequest.php';
-include_once WGTIMELINES_PATH .'/class/helper.php';
+$copyright = "<a href='https://xoops.wedega.com' title='XOOPS on Wedega' target='_blank'><img src='".$localLogo . '\' alt=\'XOOPS on Wedega\' /></a>';
+
+include_once WGTIMELINES_PATH .'/class/Helper.php';
 include_once WGTIMELINES_PATH .'/include/functions.php';

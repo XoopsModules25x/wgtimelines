@@ -17,7 +17,7 @@
  * @package        wgtimelines
  * @since          1.0
  * @min_xoops      2.5.7
- * @author         goffy (wedega.com) - Email:<webmaster@wedega.com> - Website:<http://xoops.wedega.com>
+ * @author         goffy (wedega.com) - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
  * @version        $Id: 1.0 rss.php 13070 Sat 2016-10-01 05:42:18Z XOOPS Development Team $
  */
 
@@ -27,18 +27,18 @@ if (function_exists('mb_http_output')) {
     mb_http_output('pass');
 }
 //header ('Content-Type:text/xml; charset=UTF-8');
-$wgtimelines->geConfig("utf8") = false;
+//$helper->getConfig('utf8') = false;
 
 $tpl = new XoopsTpl();
 $tpl->xoops_setCaching(2); //1 = Cache global, 2 = Cache individual (for template)
 $tpl->xoops_setCacheTime($wgtimelines->geConfig('timecacherss')*60); // Time of the cache on seconds
 $categories = wgtimelinesMyGetItemIds('wgtimelines_view', 'wgtimelines');
-$criteria = new CriteriaCompo();
+$criteria = new \CriteriaCompo();
 
-$criteria->add(new Criteria('cat_status', 0, '!='));
-$criteria->add(new Criteria('cid', '(' . implode(',', $categories) . ')','IN'));
+$criteria->add(new \Criteria('cat_status', 0, '!='));
+$criteria->add(new \Criteria('cid', '(' . implode(',', $categories) . ')','IN'));
 if ($cid != 0){
-    $criteria->add(new Criteria('cid', $cid));
+    $criteria->add(new \Criteria('cid', $cid));
     $templates = $templatesHandler->get($cid);
     $title = $xoopsConfig['sitename'] . ' - ' . $xoopsModule->getVar('name') . ' - ' . $templates->getVar('tpl_tabletype');
 }else{
@@ -60,7 +60,7 @@ if (!$tpl->is_cached('db:wgtimelines_rss.tpl', $cid)) {
     $tpl->assign('channel_category', 'Event');
     $tpl->assign('channel_generator', 'XOOPS - ' . htmlspecialchars($xoopsModule->getVar('tpl_tabletype'), ENT_QUOTES));
     $tpl->assign('channel_language', _LANGCODE);
-    if ( _LANGCODE == 'fr' ) {
+    if ( _LANGCODE === 'fr' ) {
         $tpl->assign('docs', 'http://www.scriptol.fr/rss/RSS-2.0.html');
     } else {
         $tpl->assign('docs', 'http://cyber.law.harvard.edu/rss/rss.html');
@@ -94,5 +94,5 @@ if (!$tpl->is_cached('db:wgtimelines_rss.tpl', $cid)) {
                                     'description' => htmlspecialchars($description_short, ENT_QUOTES)));
     }
 }
-header("Content-Type:text/xml; charset=" . _CHARSET);
+header('Content-Type:text/xml; charset=' . _CHARSET);
 $tpl->display('db:wgtimelines_rss.tpl', $cid);

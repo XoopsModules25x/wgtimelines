@@ -3,7 +3,10 @@ Read Me First
 
 Originally created by Goffy (Wedega - Webdesign Gabor).
 
-Credits for timeline templates:
+Credits:
+Glyphicons: Includes over 250 glyphs in font format from the Glyphicon Halflings set. Glyphicons Halflings are normally not available for free, but their creator has made them available for Bootstrap free of cost. As a thank you, we only ask that you include a link back to Glyphicons whenever possible.
 Joshua P. Larson (http://codepen.io/jplhomer/pen/lgfus)
 Bruno Rodrigues (http://codepen.io/itbruno/pen/KwarLp)
 CodyHouse
+
+Magnific Popup by Dmitry Semenov http://dimsemenov.com/plugins/magnific-popup/

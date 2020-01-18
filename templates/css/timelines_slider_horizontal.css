@@ -107,7 +107,6 @@
 		#next,
 		#prev {
 			position: absolute;
-			top: 0;
 			font-size: 70px;
 			top: 170px;
 			width: 22px;
@@ -133,3 +132,12 @@
 				#prev.disabled {
 					opacity: 0.2;
 				}
+.timeline-item-reads  i{
+}
+.admin-area {
+	text-align:right;
+}
+.timelines_ratingblock {
+	margin:0 0 5px 0;
+	border:0;
+}

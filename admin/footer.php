@@ -17,11 +17,11 @@
  * @package        wgtimelines
  * @since          1.0
  * @min_xoops      2.5.7
- * @author         goffy (wedega.com) - Email:<webmaster@wedega.com> - Website:<http://xoops.wedega.com>
+ * @author         goffy (wedega.com) - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
  * @version        $Id: 1.0 footer.php 13070 Sat 2016-10-01 05:42:16Z XOOPS Development Team $
  */
 if(isset($templateMain)) {
-	$GLOBALS['xoopsTpl']->assign('maintainedby', $wgtimelines->getConfig('maintainedby'));
-	$GLOBALS['xoopsTpl']->display("db:{$templateMain}");}
+    $GLOBALS['xoopsTpl']->display("db:{$templateMain}");
+}
 
 xoops_cp_footer();
