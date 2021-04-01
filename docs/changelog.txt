@@ -1,3 +1,7 @@
+<h5>1.12 final</h5>  [2021/04/01]
+<hr>
+ - moved to final (goffy)
+ 
 <h5>1.12 RC1</h5>  [2019/11/09]
 <hr>
  - changed to namespaces (goffy)
