@@ -23,18 +23,22 @@ declare(strict_types=1);
  * @author         goffy (wedega.com) - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
  * @version        $Id: 1.0 items.php 13070 Mon 2016-12-05 18:41:23Z XOOPS Development Team $
  */
+
+use XoopsModules\Wgtimelines\Helper;
+
 include_once XOOPS_ROOT_PATH.'/modules/wgtimelines/include/common.php';
+
 // Function show block
 function b_wgtimelines_items_show($options)
 {
     include_once XOOPS_ROOT_PATH.'/modules/wgtimelines/class/Items.php';
     $GLOBALS['xoopsTpl']->assign('wgtimelines_upload_url', WGTIMELINES_UPLOAD_URL);
     $block       = array();
-    $limit       = $options[1];
-    $lenghtTitle = $options[2];
+    $limit       = (int)$options[1];
+    $lenghtTitle = (int)$options[2];
     $typeBlock   = $options[3];
     $timelines   = $options[4];
-    $helper           = \XoopsModules\Wgtimelines\Helper::getInstance();
+    $helper           = Helper::getInstance();
     $timelinesHandler = $helper->getHandler('Timelines');
     $itemsHandler     = $helper->getHandler('Items');
     $criteria = new \CriteriaCompo();
@@ -97,7 +101,7 @@ function limitLength($text, $lenghtTitle)
 function b_wgtimelines_items_edit($options)
 {
     include_once XOOPS_ROOT_PATH.'/modules/wgtimelines/class/items.php';
-    $wgtimelines      = \XoopsModules\Wgtimelines\Helper::getInstance();
+    $helper = Helper::getInstance();
     $timelinesHandler = $helper->getHandler('Timelines');
 
     $GLOBALS['xoopsTpl']->assign('wgtimelines_upload_url', WGTIMELINES_UPLOAD_URL);

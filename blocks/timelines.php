@@ -38,7 +38,7 @@ function b_wgtimelines_timelines_show($options)
     $GLOBALS['xoopsTpl']->assign('wgtimelines_upload_url', WGTIMELINES_UPLOAD_URL);
     $block       = array();
     // $typeBlock   = $options[0];
-    $lenghtTitle = $options[1];
+    $lenghtTitle = (int)$options[1];
     $timelinesHandler = $helper->getHandler('Timelines');
     $criteria = new \CriteriaCompo();
     array_shift($options);
