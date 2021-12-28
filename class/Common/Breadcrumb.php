@@ -11,34 +11,39 @@ namespace XoopsModules\Wgtimelines\Common;
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
+
 /**
  * Breadcrumb Class
  *
- * @copyright   The XOOPS Project http://sourceforge.net/projects/xoops/
+ * @copyright   XOOPS Project (https://xoops.org)
  * @license     http://www.fsf.org/copyleft/gpl.html GNU public license
  * @author      lucio <lucio.rota@gmail.com>
  * @package     Wgtimelines
  *
  * Example:
- * $breadcrumb = new PedigreeBreadcrumb();
+ * $breadcrumb = new Common\Breadcrumb();
  * $breadcrumb->addLink( 'bread 1', 'index1.php' );
  * $breadcrumb->addLink( 'bread 2', '' );
  * $breadcrumb->addLink( 'bread 3', 'index3.php' );
  * echo $breadcrumb->render();
  */
-defined('XOOPS_ROOT_PATH') || die('XOOPS Root Path not defined');
+
+use XoopsModules\Wgtimelines;
+use XoopsModules\Wgtimelines\Common;
+
+\defined('XOOPS_ROOT_PATH') || exit('XOOPS Root Path not defined');
 
 /**
- * Class PedigreeBreadcrumb
+ * Class Breadcrumb
  */
 class Breadcrumb
 {
-    public  $dirname;
-    private $bread = [];
+    public string $dirname;
+    private array $bread = [];
 
     public function __construct()
     {
-        $this->dirname = basename(dirname(__DIR__));
+        $this->dirname = \basename(\dirname(__DIR__, 2));
     }
 
     /**
@@ -56,11 +61,11 @@ class Breadcrumb
     }
 
     /**
-     * Render Pedigree BreadCrumb
+     * Render BreadCrumb
      */
     public function render()
     {
-        if (!isset($GLOBALS['xoTheme']) || !is_object($GLOBALS['xoTheme'])) {
+        if (!isset($GLOBALS['xoTheme']) || !\is_object($GLOBALS['xoTheme'])) {
             require $GLOBALS['xoops']->path('class/theme.php');
             $GLOBALS['xoTheme'] = new \xos_opal_Theme();
         }

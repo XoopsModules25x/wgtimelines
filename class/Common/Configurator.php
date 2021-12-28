@@ -21,7 +21,6 @@ namespace XoopsModules\Wgtimelines\Common;
  * @since       1.05
  */
 
-// require_once dirname(dirname(__DIR__)) . '/include/common.php';
 
 /**
  * Class Configurator
@@ -36,6 +35,9 @@ class Configurator
     public $templateFolders = [];
     public $oldFiles        = [];
     public $oldFolders      = [];
+    public $renameTables    = [];
+    public $renameColumns   = [];
+    public $moduleStats     = [];
     public $modCopyright;
 
     /**
@@ -43,11 +45,7 @@ class Configurator
      */
     public function __construct()
     {
-        $moduleDirName = basename(dirname(__DIR__));
-        $capsDirName   = mb_strtoupper($moduleDirName);
-
-        require dirname(dirname(__DIR__)) . '/include/config.php';
-        $config = getConfig();
+        $config = require \dirname(__DIR__, 2) . '/config/config.php';
 
         $this->name            = $config->name;
         $this->paths           = $config->paths;
@@ -57,6 +55,9 @@ class Configurator
         $this->templateFolders = $config->templateFolders;
         $this->oldFiles        = $config->oldFiles;
         $this->oldFolders      = $config->oldFolders;
+        $this->renameTables    = $config->renameTables;
+        $this->renameColumns   = $config->renameColumns;
+        $this->moduleStats     = $config->moduleStats;
         $this->modCopyright    = $config->modCopyright;
     }
 }
