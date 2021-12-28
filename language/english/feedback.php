@@ -20,21 +20,24 @@
  * @author         XOOPS - Website:<https://xoops.org>
  */
 
-define('_FB_FORM_TITLE', 'Send a feedback');
-define('_FB_RECIPIENT', 'Recipient');
-define('_FB_NAME', 'Name');
-define('_FB_NAME_PLACEHOLER', 'Please enter your name');
-define('_FB_SITE', 'Website');
-define('_FB_SITE_PLACEHOLER', 'Please enter your website');
-define('_FB_MAIL', 'Email');
-define('_FB_MAIL_PLACEHOLER', 'Please enter your email');
-define('_FB_TYPE', 'Type of feedback');
-define('_FB_TYPE_SUGGESTION', 'Suggestions');
-define('_FB_TYPE_BUGS', 'Bugs');
-define('_FB_TYPE_TESTIMONIAL', 'Testimonials');
-define('_FB_TYPE_FEATURES', 'Features');
-define('_FB_TYPE_OTHERS', 'Misc');
-define('_FB_TYPE_CONTENT', 'Feedback content');
-define('_FB_SEND_FOR', 'Feedback for module ');
-define('_FB_SEND_SUCCESS', 'Feedback successfully sent');
-define('_FB_SEND_ERROR', 'An errror occured when feedback was sent!');
+$moduleDirName      = \basename(\dirname(__DIR__, 2));
+$moduleDirNameUpper = \mb_strtoupper($moduleDirName);
+
+\define('CO_' . $moduleDirNameUpper . '_' . 'FB_FORM_TITLE', 'Send a feedback');
+\define('CO_' . $moduleDirNameUpper . '_' . 'FB_RECIPIENT', 'Recipient');
+\define('CO_' . $moduleDirNameUpper . '_' . 'FB_NAME', 'Name');
+\define('CO_' . $moduleDirNameUpper . '_' . 'FB_NAME_PLACEHOLER', 'Please enter your name');
+\define('CO_' . $moduleDirNameUpper . '_' . 'FB_SITE', 'Website');
+\define('CO_' . $moduleDirNameUpper . '_' . 'FB_SITE_PLACEHOLER', 'Please enter your website');
+\define('CO_' . $moduleDirNameUpper . '_' . 'FB_MAIL', 'Email');
+\define('CO_' . $moduleDirNameUpper . '_' . 'FB_MAIL_PLACEHOLER', 'Please enter your email');
+\define('CO_' . $moduleDirNameUpper . '_' . 'FB_TYPE', 'Type of feedback');
+\define('CO_' . $moduleDirNameUpper . '_' . 'FB_TYPE_SUGGESTION', 'Suggestions');
+\define('CO_' . $moduleDirNameUpper . '_' . 'FB_TYPE_BUGS', 'Bugs');
+\define('CO_' . $moduleDirNameUpper . '_' . 'FB_TYPE_TESTIMONIAL', 'Testimonials');
+\define('CO_' . $moduleDirNameUpper . '_' . 'FB_TYPE_FEATURES', 'Features');
+\define('CO_' . $moduleDirNameUpper . '_' . 'FB_TYPE_OTHERS', 'Misc');
+\define('CO_' . $moduleDirNameUpper . '_' . 'FB_TYPE_CONTENT', 'Feedback content');
+\define('CO_' . $moduleDirNameUpper . '_' . 'FB_SEND_FOR', 'Feedback for module ');
+\define('CO_' . $moduleDirNameUpper . '_' . 'FB_SEND_SUCCESS', 'Feedback successfully sent');
+\define('CO_' . $moduleDirNameUpper . '_' . 'FB_SEND_ERROR', 'An errror occured when feedback was sent!');
