@@ -28,7 +28,7 @@ use XoopsModules\Wgtimelines;
 // use XoopsModules\Wgtimelines\Constants;
 use XoopsModules\Wgtimelines\Helper;
 
-include dirname(dirname(__DIR__)) .'/mainfile.php';
+include dirname(__DIR__, 2) .'/mainfile.php';
 include __DIR__ .'/include/common.php';
 $dirname = basename(__DIR__);
 // Breadcrumbs

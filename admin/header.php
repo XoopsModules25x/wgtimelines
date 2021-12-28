@@ -26,7 +26,7 @@ declare(strict_types=1);
 
 include dirname(__DIR__) . '/preloads/autoloader.php';
 
-include dirname(dirname(dirname(__DIR__))) .'/include/cp_header.php';
+include dirname(__DIR__, 3) .'/include/cp_header.php';
 include_once dirname(__DIR__) .'/include/common.php';
 
 // $helper = \XoopsModules\Wgtimelines\Helper::getInstance();

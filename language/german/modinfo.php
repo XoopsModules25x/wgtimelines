@@ -84,7 +84,7 @@ define('_MI_WGTIMELINES_RATINGBAR_GROUPS', 'Gruppen mit der Berechtigung zum Bew
 define('_MI_WGTIMELINES_RATINGBAR_GROUPS_DESC', 'Bestimmen Sie bitte die Gruppen, die Zeitreiheneinträge bewerten dürfen');
 // ---------------- End ----------------
 //Help
-define('_MI_WGTIMELINES_DIRNAME', basename(dirname(dirname(__DIR__))));
+define('_MI_WGTIMELINES_DIRNAME', basename(dirname(__DIR__, 2)));
 define('_MI_WGTIMELINES_HELP_HEADER', __DIR__.'/help/helpheader.html');
 define('_MI_WGTIMELINES_BACK_2_ADMIN', 'Zurück zur Administration von ');
 define('_MI_WGTIMELINES_OVERVIEW', 'Übersicht');

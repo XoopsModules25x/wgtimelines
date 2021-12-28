@@ -20,7 +20,7 @@ declare(strict_types=1);
 use XoopsModules\Wgtimelines;
 use XoopsModules\Wgtimelines\Common;
 
-require dirname(dirname(dirname(__DIR__))) . '/mainfile.php';
+require dirname(__DIR__, 3) . '/mainfile.php';
 include dirname(__DIR__) . '/preloads/autoloader.php';
 $op = \Xmf\Request::getCmd('op', '');
 
