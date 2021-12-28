@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace XoopsModules\Wgtimelines;
 /*
  You may not change or alter any portion of this comment or credits
