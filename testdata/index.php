@@ -20,8 +20,8 @@ declare(strict_types=1);
 use XoopsModules\Wgtimelines;
 use XoopsModules\Wgtimelines\Common;
 
-require dirname(__DIR__, 3) . '/mainfile.php';
-include dirname(__DIR__) . '/preloads/autoloader.php';
+require \dirname(__DIR__, 3) . '/mainfile.php';
+include \dirname(__DIR__) . '/preloads/autoloader.php';
 $op = \Xmf\Request::getCmd('op', '');
 
 switch ($op) {
@@ -37,8 +37,8 @@ switch ($op) {
 
 function loadSampleData()
 {
-    $moduleDirName      = basename(dirname(__DIR__));
-    $moduleDirNameUpper = mb_strtoupper($moduleDirName);
+    $moduleDirName      = \basename(\dirname(__DIR__));
+    $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
     $helper             = Wgtimelines\Helper::getInstance();
     $utility            = new Wgtimelines\Utility();
     $configurator       = new Common\Configurator();
@@ -66,16 +66,16 @@ function loadSampleData()
     loadTableFromArrayWithReplace($table, $tabledata, 'gperm_modid', $mid);
 
     //  ---  COPY test folder files ---------------
-    if (is_array($configurator->copyTestFolders) && count($configurator->copyTestFolders) > 0) {
-        //        $file =  dirname(__DIR__) . '/testdata/images/';
-        foreach (array_keys($configurator->copyTestFolders) as $i) {
+    if (\is_array($configurator->copyTestFolders) && \count($configurator->copyTestFolders) > 0) {
+        //        $file =  \dirname(__DIR__) . '/testdata/images/';
+        foreach (\array_keys($configurator->copyTestFolders) as $i) {
             $src  = $configurator->copyTestFolders[$i][0];
             $dest = $configurator->copyTestFolders[$i][1];
             $utility::rcopy($src, $dest);
         }
     }
 
-    redirect_header('../admin/index.php', 1, constant('CO_' . $moduleDirNameUpper . '_' . 'SAMPLEDATA_SUCCESS'));
+    \redirect_header('../admin/index.php', 1, \constant('CO_' . $moduleDirNameUpper . '_' . 'SAMPLEDATA_SUCCESS'));
 }
 
 function saveSampleData()
@@ -83,8 +83,8 @@ function saveSampleData()
     $utility            = new Wgtimelines\Utility();
     $configurator       = new Common\Configurator();
 
-    $moduleDirName      = basename(dirname(__DIR__));
-    $moduleDirNameUpper = mb_strtoupper($moduleDirName);
+    $moduleDirName      = \basename(\dirname(__DIR__));
+    $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
 
     $tables = \Xmf\Module\Helper::getHelper($moduleDirName)->getModule()->getInfo('tables');
 
@@ -99,30 +99,30 @@ function saveSampleData()
     unset($criteria);
 
     //  ---  COPY test folder files ---------------
-    if (is_array($configurator->copyTestFolders) && count($configurator->copyTestFolders) > 0) {
-        foreach (array_keys($configurator->copyTestFolders) as $i) {
+    if (\is_array($configurator->copyTestFolders) && \count($configurator->copyTestFolders) > 0) {
+        foreach (\array_keys($configurator->copyTestFolders) as $i) {
             $src  = $configurator->copyTestFolders[$i][1];
             $dest = $configurator->copyTestFolders[$i][0];
             $utility::rcopy($src, $dest);
         }
     }
 
-    redirect_header('../admin/index.php', 1, constant('CO_' . $moduleDirNameUpper . '_' . 'SAMPLEDATA_SUCCESS'));
+    \redirect_header('../admin/index.php', 1, \constant('CO_' . $moduleDirNameUpper . '_' . 'SAMPLEDATA_SUCCESS'));
 }
 
 function exportSchema()
 {
     try {
-        $moduleDirName      = basename(dirname(__DIR__));
-        $moduleDirNameUpper = mb_strtoupper($moduleDirName);
+        $moduleDirName      = \basename(\dirname(__DIR__));
+        $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
 
         $migrate = new \Xmf\Database\Migrate($moduleDirName);
         $migrate->saveCurrentSchema();
 
-        redirect_header('../admin/index.php', 1, constant('CO_' . $moduleDirNameUpper . '_' . 'EXPORT_SCHEMA_SUCCESS'));
+        \redirect_header('../admin/index.php', 1, \constant('CO_' . $moduleDirNameUpper . '_' . 'EXPORT_SCHEMA_SUCCESS'));
     }
     catch (\Exception $e) {
-        exit(constant('CO_' . $moduleDirNameUpper . '_' . 'EXPORT_SCHEMA_ERROR'));
+        exit(\constant('CO_' . $moduleDirNameUpper . '_' . 'EXPORT_SCHEMA_ERROR'));
     }
 }
 

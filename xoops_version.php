@@ -25,13 +25,13 @@ declare(strict_types=1);
  */
 
 //
-$moduleDirName      = basename(__DIR__);
-$moduleDirNameUpper = mb_strtoupper($moduleDirName);
+$moduleDirName      = \basename(__DIR__);
+$moduleDirNameUpper = \mb_strtoupper($moduleDirName);
 
 // ------------------- Informations ------------------- //
-$modversion['name']                = _MI_WGTIMELINES_NAME;
+$modversion['name']                = \_MI_WGTIMELINES_NAME;
 $modversion['version']             = '1.2.0';
-$modversion['description']         = _MI_WGTIMELINES_DESC;
+$modversion['description']         = \_MI_WGTIMELINES_DESC;
 $modversion['author']              = 'goffy (wedega.com)';
 $modversion['author_mail']         = 'webmaster@wedega.com';
 $modversion['author_website_url']  = 'https://xoops.wedega.com';
@@ -41,10 +41,10 @@ $modversion['license']             = 'GPL 3.0 or later';
 $modversion['license_url']         = 'http://www.gnu.org/licenses/gpl-3.0.en.html';
 $modversion['help']                = 'page=help';
 $modversion['release_info']        = 'release_info';
-$modversion['release_file']        = XOOPS_URL . '/modules/wgtimelines/docs/release_info file';
+$modversion['release_file']        = \XOOPS_URL . '/modules/wgtimelines/docs/release_info file';
 $modversion['release_date']        = '2021/12/29';
 $modversion['manual']              = 'link to manual file';
-$modversion['manual_file']         = XOOPS_URL . '/modules/wgtimelines/docs/install.txt';
+$modversion['manual_file']         = \XOOPS_URL . '/modules/wgtimelines/docs/install.txt';
 $modversion['min_php']             = '7.4';
 $modversion['min_xoops']           = '2.5.11 Beta1';
 $modversion['min_admin']           = '1.1';
@@ -74,10 +74,10 @@ $modversion['onUpdate']            = 'include/onupdate.php';
 $modversion['onUninstall']         = 'include/onuninstall.php';
 // ------------------- Help files ------------------- //
 $modversion['helpsection'] = array(
-    array('name' => _MI_WGTIMELINES_OVERVIEW, 'link' => 'page=help'),
-    array('name' => _MI_WGTIMELINES_DISCLAIMER, 'link' => 'page=disclaimer'),
-    array('name' => _MI_WGTIMELINES_LICENSE, 'link' => 'page=license'),
-    array('name' => _MI_WGTIMELINES_SUPPORT, 'link' => 'page=support'),
+    array('name' => \_MI_WGTIMELINES_OVERVIEW, 'link' => 'page=help'),
+    array('name' => \_MI_WGTIMELINES_DISCLAIMER, 'link' => 'page=disclaimer'),
+    array('name' => \_MI_WGTIMELINES_LICENSE, 'link' => 'page=license'),
+    array('name' => \_MI_WGTIMELINES_SUPPORT, 'link' => 'page=support'),
 );
 
 // ------------------- Templates ------------------- //
@@ -126,10 +126,10 @@ $modversion['hasSearch']      = 1;
 $modversion['search']['file'] = 'include/search.inc.php';
 $modversion['search']['func'] = 'wgtimelines_search';
 // ------------------- Submenu ------------------- //
-$currdirname = isset($GLOBALS['xoopsModule']) && is_object($GLOBALS['xoopsModule']) ? $GLOBALS['xoopsModule']->getVar('moduleDirName') : 'system';
+$currdirname = isset($GLOBALS['xoopsModule']) && \is_object($GLOBALS['xoopsModule']) ? $GLOBALS['xoopsModule']->getVar('moduleDirName') : 'system';
 if ($moduleDirName == $currdirname) {
     $subcount = 1;
-    $pathname = XOOPS_ROOT_PATH . '/modules/' . $moduleDirName;
+    $pathname = \XOOPS_ROOT_PATH . '/modules/' . $moduleDirName;
     include_once $pathname . '/include/common.php';
     // Get instance of module
     $helper = \XoopsModules\Wgtimelines\Helper::getInstance();
@@ -143,7 +143,7 @@ if ($moduleDirName == $currdirname) {
     $timelines_arr  = $timelinesHandler->getAll($timelines_crit);
 
     if ($timelines_rows > 1) {
-        foreach (array_keys($timelines_arr) as $i) {
+        foreach (\array_keys($timelines_arr) as $i) {
             $modversion['sub'][$subcount]['name']  = $timelines_arr[$i]->getVar('tl_name');
             $modversion['sub'][$subcount++]['url'] = 'index.php?tl_id=' . $timelines_arr[$i]->getVar('tl_id');
         }
@@ -154,8 +154,8 @@ if ($moduleDirName == $currdirname) {
 $b = 1;
 // Timelines
 $modversion['blocks'][$b]['file']        = 'timelines.php';
-$modversion['blocks'][$b]['name']        = _MI_WGTIMELINES_TIMELINES_BLOCK_TIMELINE;
-$modversion['blocks'][$b]['description'] = _MI_WGTIMELINES_TIMELINES_BLOCK_TIMELINE_DESC;
+$modversion['blocks'][$b]['name']        = \_MI_WGTIMELINES_TIMELINES_BLOCK_TIMELINE;
+$modversion['blocks'][$b]['description'] = \_MI_WGTIMELINES_TIMELINES_BLOCK_TIMELINE_DESC;
 $modversion['blocks'][$b]['show_func']   = 'b_wgtimelines_timelines_show';
 $modversion['blocks'][$b]['edit_func']   = 'b_wgtimelines_timelines_edit';
 $modversion['blocks'][$b]['template']    = 'wgtimelines_block_timelines.tpl';
@@ -163,8 +163,8 @@ $modversion['blocks'][$b]['options']     = 'tl|25|0';
 ++$b;
 // Items
 $modversion['blocks'][$b]['file']        = 'items.php';
-$modversion['blocks'][$b]['name']        = _MI_WGTIMELINES_ITEMS_BLOCK_ITEM;
-$modversion['blocks'][$b]['description'] = _MI_WGTIMELINES_ITEMS_BLOCK_ITEM_DESC;
+$modversion['blocks'][$b]['name']        = \_MI_WGTIMELINES_ITEMS_BLOCK_ITEM;
+$modversion['blocks'][$b]['description'] = \_MI_WGTIMELINES_ITEMS_BLOCK_ITEM_DESC;
 $modversion['blocks'][$b]['show_func']   = 'b_wgtimelines_items_show';
 $modversion['blocks'][$b]['edit_func']   = 'b_wgtimelines_items_edit';
 $modversion['blocks'][$b]['template']    = 'wgtimelines_block_items.tpl';
@@ -175,41 +175,41 @@ unset($b);
 // Keywords
 $modversion['config'][] = array(
     'name'        => 'keywords',
-    'title'       => '_MI_WGTIMELINES_KEYWORDS',
-    'description' => '_MI_WGTIMELINES_KEYWORDS_DESC',
+    'title'       => '\_MI_WGTIMELINES_KEYWORDS',
+    'description' => '\_MI_WGTIMELINES_KEYWORDS_DESC',
     'formtype'    => 'textbox',
     'valuetype'   => 'text',
-    'default'     => _MI_WGTIMELINES_KEYWORDS_DEFAULT
+    'default'     => \_MI_WGTIMELINES_KEYWORDS_DEFAULT
 );
 
 // Editor
-xoops_load('xoopseditorhandler');
+\xoops_load('xoopseditorhandler');
 $editorHandler            = XoopsEditorHandler::getInstance();
 $modversion['config'][] = array(
     'name'        => 'wgtimelines_editor',
-    'title'       => '_MI_WGTIMELINES_EDITOR',
-    'description' => '_MI_WGTIMELINES_EDITOR_DESC',
+    'title'       => '\_MI_WGTIMELINES_EDITOR',
+    'description' => '\_MI_WGTIMELINES_EDITOR_DESC',
     'formtype'    => 'select',
     'valuetype'   => 'text',
-    'options'     => array_flip($editorHandler->getList()),
+    'options'     => \array_flip($editorHandler->getList()),
     'default'     => 'dhtmltextarea'
 );
 
 // Welcome text
 $modversion['config'][] = array(
     'name'        => 'welcome',
-    'title'       => '_MI_WGTIMELINES_WELCOME',
-    'description' => '_MI_WGTIMELINES_WELCOME_DESC',
+    'title'       => '\_MI_WGTIMELINES_WELCOME',
+    'description' => '\_MI_WGTIMELINES_WELCOME_DESC',
     'formtype'    => 'textarea',
     'valuetype'   => 'text',
-    'default'     => _MI_WGTIMELINES_WELCOME_DEFAULT
+    'default'     => \_MI_WGTIMELINES_WELCOME_DEFAULT
 );
 
 // Admin pager
 $modversion['config'][] = array(
     'name'        => 'adminpager',
-    'title'       => '_MI_WGTIMELINES_ADMIN_PAGER',
-    'description' => '_MI_WGTIMELINES_ADMIN_PAGER_DESC',
+    'title'       => '\_MI_WGTIMELINES_ADMIN_PAGER',
+    'description' => '\_MI_WGTIMELINES_ADMIN_PAGER_DESC',
     'formtype'    => 'textbox',
     'valuetype'   => 'int',
     'default'     => 10
@@ -218,8 +218,8 @@ $modversion['config'][] = array(
 // User pager
 $modversion['config'][] = array(
     'name'        => 'userpager',
-    'title'       => '_MI_WGTIMELINES_USER_PAGER',
-    'description' => '_MI_WGTIMELINES_USER_PAGER_DESC',
+    'title'       => '\_MI_WGTIMELINES_USER_PAGER',
+    'description' => '\_MI_WGTIMELINES_USER_PAGER_DESC',
     'formtype'    => 'textbox',
     'valuetype'   => 'int',
     'default'     => 10
@@ -228,8 +228,8 @@ $modversion['config'][] = array(
 // Breadcrumbs
 $modversion['config'][] = array(
     'name'        => 'breadcrumbs',
-    'title'       => '_MI_WGTIMELINES_BREADCRUMBS',
-    'description' => '_MI_WGTIMELINES_BREADCRUMBS_DESC',
+    'title'       => '\_MI_WGTIMELINES_BREADCRUMBS',
+    'description' => '\_MI_WGTIMELINES_BREADCRUMBS_DESC',
     'formtype'    => 'yesno',
     'valuetype'   => 'int',
     'default'     => 1
@@ -238,23 +238,23 @@ $modversion['config'][] = array(
 // Rating bar
 $modversion['config'][] = array(
     'name'        => 'ratingbars',
-    'title'       => '_MI_WGTIMELINES_RATINGBARS',
-    'description' => '_MI_WGTIMELINES_RATINGBARS_DESC',
+    'title'       => '\_MI_WGTIMELINES_RATINGBARS',
+    'description' => '\_MI_WGTIMELINES_RATINGBARS_DESC',
     'formtype'    => 'yesno',
     'valuetype'   => 'int',
     'default'     => 1
 );
 
-$group_handler = xoops_getHandler('group');
+$group_handler = \xoops_getHandler('group');
 $group_arr     = $group_handler->getObjects();
 $ratingbar_groups = array();
-foreach (array_keys($group_arr) as $i) {
+foreach (\array_keys($group_arr) as $i) {
     $ratingbar_groups[$group_arr[$i]->getVar('name')] = $group_arr[$i]->getVar('groupid');
 }
 $modversion['config'][] = array(
     'name'        => 'ratingbar_groups',
-    'title'       => '_MI_WGTIMELINES_RATINGBAR_GROUPS',
-    'description' => '_MI_WGTIMELINES_RATINGBAR_GROUPS_DESC',
+    'title'       => '\_MI_WGTIMELINES_RATINGBAR_GROUPS',
+    'description' => '\_MI_WGTIMELINES_RATINGBAR_GROUPS_DESC',
     'formtype'    => 'select',
     'valuetype'   => 'array',
     'default'     => array('1'),
@@ -264,8 +264,8 @@ $modversion['config'][] = array(
 // Timeline name
 $modversion['config'][] = array(
     'name'        => 'tl_name',
-    'title'       => '_MI_WGTIMELINES_TIMELINE_NAME',
-    'description' => '_MI_WGTIMELINES_TIMELINE_NAME_DESC',
+    'title'       => '\_MI_WGTIMELINES_TIMELINE_NAME',
+    'description' => '\_MI_WGTIMELINES_TIMELINE_NAME_DESC',
     'formtype'    => 'yesno',
     'valuetype'   => 'int',
     'default'     => 1
@@ -274,18 +274,18 @@ $modversion['config'][] = array(
 // show timeline description
 $modversion['config'][] = array(
     'name'        => 'tl_description',
-    'title'       => '_MI_WGTIMELINES_TLDESC',
-    'description' => '_MI_WGTIMELINES_TLDESC_DESC',
+    'title'       => '\_MI_WGTIMELINES_TLDESC',
+    'description' => '\_MI_WGTIMELINES_TLDESC_DESC',
     'formtype'    => 'select',
     'valuetype'   => 'int',
     'default'     => 1,
-    'options'     => array(_MI_WGTIMELINES_TLDESC_NONE => 1, _MI_WGTIMELINES_TLDESC_ONLYLIST => 2, _MI_WGTIMELINES_TLDESC_ALL => 3)
+    'options'     => array(\_MI_WGTIMELINES_TLDESC_NONE => 1, \_MI_WGTIMELINES_TLDESC_ONLYLIST => 2, \_MI_WGTIMELINES_TLDESC_ALL => 3)
 );
 
 //Uploads : max size for image upload
 include_once __DIR__ . '/include/xoops_version.inc.php';
-$iniPostMaxSize = wgtimelinesReturnBytes(ini_get('post_max_size'));
-$iniUploadMaxFileSize = wgtimelinesReturnBytes(ini_get('upload_max_filesize'));
+$iniPostMaxSize = wgtimelinesReturnBytes(\ini_get('post_max_size'));
+$iniUploadMaxFileSize = wgtimelinesReturnBytes(\ini_get('upload_max_filesize'));
 $maxSize = min($iniPostMaxSize, $iniUploadMaxFileSize);
 if ($maxSize > 10000 * 1048576) {
     $increment = 500;
@@ -317,13 +317,13 @@ if ($maxSize <= 25 * 1048576){
 $optionMaxsize = [];
 $i = $increment;
 while ($i* 1048576 <= $maxSize) {
-    $optionMaxsize[$i . ' ' . _MI_WGTIMELINES_SIZE_MB] = $i * 1048576;
+    $optionMaxsize[$i . ' ' . \_MI_WGTIMELINES_SIZE_MB] = $i * 1048576;
     $i += $increment;
 }
 $modversion['config'][] = [
     'name' => 'maxsize',
-    'title' => '_MI_WGTIMELINES_MAXSIZE',
-    'description' => '_MI_WGTIMELINES_MAXSIZE_DESC',
+    'title' => '\_MI_WGTIMELINES_MAXSIZE',
+    'description' => '\_MI_WGTIMELINES_MAXSIZE_DESC',
     'formtype' => 'select',
     'valuetype' => 'int',
     'default' => 3145728,
@@ -333,8 +333,8 @@ $modversion['config'][] = [
 //Uploads : mimetypes of images
 $modversion['config'][] = array(
     'name'        => 'mimetypes',
-    'title'       => '_MI_WGTIMELINES_MIMETYPES',
-    'description' => '_MI_WGTIMELINES_MIMETYPES_DESC',
+    'title'       => '\_MI_WGTIMELINES_MIMETYPES',
+    'description' => '\_MI_WGTIMELINES_MIMETYPES_DESC',
     'formtype'    => 'select_multi',
     'valuetype'   => 'array',
     'default'     => array('image/gif', 'image/jpeg', 'image/png', 'image/jpg'),
@@ -352,8 +352,8 @@ $modversion['config'][] = array(
 // Uploads : max width of images for upload
 $modversion['config'][] = [
     'name'        => 'maxwidth',
-    'title'       => '_MI_WGTIMELINES_MAXWIDTH',
-    'description' => '_MI_WGTIMELINES_MAXWIDTH_DESC',
+    'title'       => '\_MI_WGTIMELINES_MAXWIDTH',
+    'description' => '\_MI_WGTIMELINES_MAXWIDTH_DESC',
     'formtype'    => 'textbox',
     'valuetype'   => 'int',
     'default'     => 5000,
@@ -362,8 +362,8 @@ $modversion['config'][] = [
 // Uploads : max height of images for upload
 $modversion['config'][] = [
     'name'        => 'maxheight',
-    'title'       => '_MI_WGTIMELINES_MAXHEIGHT',
-    'description' => '_MI_WGTIMELINES_MAXHEIGHT_DESC',
+    'title'       => '\_MI_WGTIMELINES_MAXHEIGHT',
+    'description' => '\_MI_WGTIMELINES_MAXHEIGHT_DESC',
     'formtype'    => 'textbox',
     'valuetype'   => 'int',
     'default'     => 5000,
@@ -371,8 +371,8 @@ $modversion['config'][] = [
 // Uploads : max width of images for upload
 $modversion['config'][] = [
     'name'        => 'maxwidth_imgeditor',
-    'title'       => '_MI_WGTIMELINES_MAXWIDTH_IMGEDITOR',
-    'description' => '_MI_WGTIMELINES_MAXWIDTH_IMGEDITOR_DESC',
+    'title'       => '\_MI_WGTIMELINES_MAXWIDTH_IMGEDITOR',
+    'description' => '\_MI_WGTIMELINES_MAXWIDTH_IMGEDITOR_DESC',
     'formtype'    => 'textbox',
     'valuetype'   => 'int',
     'default'     => 400,
@@ -381,8 +381,8 @@ $modversion['config'][] = [
 // Uploads : max height of images for upload
 $modversion['config'][] = [
     'name'        => 'maxheight_imgeditor',
-    'title'       => '_MI_WGTIMELINES_MAXHEIGHT_IMGEDITOR',
-    'description' => '_MI_WGTIMELINES_MAXHEIGHT_IMGEDITOR_DESC',
+    'title'       => '\_MI_WGTIMELINES_MAXHEIGHT_IMGEDITOR',
+    'description' => '\_MI_WGTIMELINES_MAXHEIGHT_IMGEDITOR_DESC',
     'formtype'    => 'textbox',
     'valuetype'   => 'int',
     'default'     => 400,
@@ -391,12 +391,12 @@ $modversion['config'][] = [
 // start page for module
 $modversion['config'][] = array(
     'name'        => 'startpage',
-    'title'       => '_MI_WGTIMELINES_STARTPAGE',
-    'description' => '_MI_WGTIMELINES_STARTPAGE_DESC',
+    'title'       => '\_MI_WGTIMELINES_STARTPAGE',
+    'description' => '\_MI_WGTIMELINES_STARTPAGE_DESC',
     'formtype'    => 'select',
     'valuetype'   => 'int',
     'default'     => 1,
-    'options'     => array(_MI_WGTIMELINES_STARTPAGE_LIST => 1, _MI_WGTIMELINES_STARTPAGE_FIRST => 3)
+    'options'     => array(\_MI_WGTIMELINES_STARTPAGE_LIST => 1, \_MI_WGTIMELINES_STARTPAGE_FIRST => 3)
 );
 
 /**

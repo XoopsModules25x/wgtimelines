@@ -34,7 +34,7 @@ $ui     = Request::getString('ui', 'admin');
 $itemId = Request::getInt('item_id');
 $tl_id  = Request::getInt('tl_id', 0);
     
-$GLOBALS['xoTheme']->addStylesheet(WGTIMELINES_URL . '/assets/css/admin/glyphicons.css');
+$GLOBALS['xoTheme']->addStylesheet(\WGTIMELINES_URL . '/assets/css/admin/glyphicons.css');
 
 switch($op) {
     case 'list':
@@ -42,15 +42,15 @@ switch($op) {
         $templateMain = 'wgtimelines_admin_items.tpl';
         // create form for selection of available timelines
         $timelinesCount = $timelinesHandler->getCountTimelines();
-        include_once(XOOPS_ROOT_PATH."/class/xoopsformloader.php");    
+        include_once(\XOOPS_ROOT_PATH."/class/xoopsformloader.php");    
 
         $action = "";
         $action = $_SERVER["REQUEST_URI"];
 
-        $form_select = new XoopsThemeForm(_AM_WGTIMELINES_TIMELINES_LIST, "form_filter", $action, "post", true);
+        $form_select = new \XoopsThemeForm(\_AM_WGTIMELINES_TIMELINES_LIST, "form_filter", $action, "post", true);
         $form_select->setExtra('enctype="multipart/form-data"');
-        $timeline_select = new XoopsFormSelect(_AM_WGTIMELINES_TIMELINE_SELECT, "tl_id", $tl_id);
-        $timeline_select->addOption(0, _AM_WGTIMELINES_ITEM_NONE);
+        $timeline_select = new \XoopsFormSelect(\_AM_WGTIMELINES_TIMELINE_SELECT, "tl_id", $tl_id);
+        $timeline_select->addOption(0, \_AM_WGTIMELINES_ITEM_NONE);
         $crit_tl = new \CriteriaCompo();
         $crit_tl->setSort('tl_weight ASC, tl_id');
         $crit_tl->setOrder('ASC');
@@ -60,11 +60,11 @@ switch($op) {
         $GLOBALS['xoopsTpl']->assign('form_select', $form_select->render());
         
         // show details of selected timeline
-        $GLOBALS['xoTheme']->addScript(WGTIMELINES_URL . '/assets/js/sortable-items.js');
+        $GLOBALS['xoTheme']->addScript(\WGTIMELINES_URL . '/assets/js/sortable-items.js');
         $start = Request::getInt('start', 0);
         $limit = Request::getInt('limit', $helper->getConfig('adminpager'));
         $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('items.php'));
-        $adminObject->addItemButton(_AM_WGTIMELINES_ITEM_ADD, 'items.php?op=new&amp;tl_id=' . $tl_id, 'add');
+        $adminObject->addItemButton(\_AM_WGTIMELINES_ITEM_ADD, 'items.php?op=new&amp;tl_id=' . $tl_id, 'add');
         $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->renderButton());
         $timeline_obj = $timelinesHandler->get($tl_id);
         $critItems = new \CriteriaCompo();
@@ -76,15 +76,15 @@ switch($op) {
         $critItems->setOrder('ASC');
         $itemsAll = $itemsHandler->getAll($critItems);
         $GLOBALS['xoopsTpl']->assign('items_count', $itemsCount);
-        $GLOBALS['xoopsTpl']->assign('wgtimelines_url', WGTIMELINES_URL);
-        $GLOBALS['xoopsTpl']->assign('wgtimelines_icons_url', WGTIMELINES_ICONS_URL);
-        $GLOBALS['xoopsTpl']->assign('wgtimelines_upload_url', WGTIMELINES_UPLOAD_URL);
+        $GLOBALS['xoopsTpl']->assign('wgtimelines_url', \WGTIMELINES_URL);
+        $GLOBALS['xoopsTpl']->assign('wgtimelines_icons_url', \WGTIMELINES_ICONS_URL);
+        $GLOBALS['xoopsTpl']->assign('wgtimelines_upload_url', \WGTIMELINES_UPLOAD_URL);
         
         // Table view items
         if($itemsCount > 0) {
             $nb_items_tl = 0;
             $timeline_id_prev = 0;
-            foreach(array_keys($itemsAll) as $i) {
+            foreach(\array_keys($itemsAll) as $i) {
                 $item = $itemsAll[$i]->getValuesItems($timeline_obj);
                 // vars for sortable
                 if ($timeline_id_prev == $item['item_tl_id']) {
@@ -101,14 +101,14 @@ switch($op) {
             }
             // Display Navigation
             if($itemsCount > $limit) {
-                include_once XOOPS_ROOT_PATH .'/class/pagenav.php';
-                $pagenav = new XoopsPageNav($itemsCount, $limit, $start, 'start', 'op=list&limit=' . $limit);
+                include_once \XOOPS_ROOT_PATH .'/class/pagenav.php';
+                $pagenav = new \XoopsPageNav($itemsCount, $limit, $start, 'start', 'op=list&limit=' . $limit);
                 $GLOBALS['xoopsTpl']->assign('pagenav', $pagenav->renderNav(4));
             }
         } else {
             if ($tl_id > 0) {
-                $currentTl = ($tl_id == 0) ? _AM_WGTIMELINES_ITEM_NONE : $timelinesHandler->get($tl_id)->getVar('tl_name');
-                $GLOBALS['xoopsTpl']->assign('error', _AM_WGTIMELINES_THEREARENT_ITEMS . $currentTl);
+                $currentTl = ($tl_id == 0) ? \_AM_WGTIMELINES_ITEM_NONE : $timelinesHandler->get($tl_id)->getVar('tl_name');
+                $GLOBALS['xoopsTpl']->assign('error', \_AM_WGTIMELINES_THEREARENT_ITEMS . $currentTl);
             }
         }
         
@@ -116,7 +116,7 @@ switch($op) {
     case 'new':
         $templateMain = 'wgtimelines_admin_items.tpl';
         $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('items.php'));
-        $adminObject->addItemButton(_AM_WGTIMELINES_ITEMS_LIST, 'items.php', 'list');
+        $adminObject->addItemButton(\_AM_WGTIMELINES_ITEMS_LIST, 'items.php', 'list');
         $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->renderButton());
         // Get Form
         $itemsObj = $itemsHandler->create();
@@ -129,7 +129,7 @@ switch($op) {
     case 'editcopy':
         $templateMain = 'wgtimelines_admin_items.tpl';
         $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('items.php'));
-        $adminObject->addItemButton(_AM_WGTIMELINES_ITEMS_LIST, 'items.php', 'list');
+        $adminObject->addItemButton(\_AM_WGTIMELINES_ITEMS_LIST, 'items.php', 'list');
         $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->renderButton());
         // Get Form
         $itemsObj = $itemsHandler->create();
@@ -162,19 +162,19 @@ switch($op) {
         $itemsObj->setVar('item_tl_id', $item_tl_id);
         $itemsObj->setVar('item_title', Request::getString('item_title'));
         //fix for avoid hiding empty paragraphs in some browsers (instead of: $itemsObj->setVar('item_content', $_POST['item_content']);
-        $itemsObj->setVar('item_content', preg_replace('/<p><\/p>/', '<p>&nbsp;</p>', Request::getString('item_content')));
+        $itemsObj->setVar('item_content', \preg_replace('/<p><\/p>/', '<p>&nbsp;</p>', Request::getString('item_content')));
        
         // Set Var item_image
-        include_once XOOPS_ROOT_PATH .'/class/uploader.php';
+        include_once \XOOPS_ROOT_PATH .'/class/uploader.php';
         $fileName       = $_FILES['attachedfile']['name'];
         $imageMimetype  = $_FILES['attachedfile']['type'];
         $uploaderErrors = '';
-        $uploader = new XoopsMediaUploader(WGTIMELINES_UPLOAD_IMAGE_PATH.'/items/',
+        $uploader = new \XoopsMediaUploader(\WGTIMELINES_UPLOAD_IMAGE_PATH.'/items/',
                                             $helper->getConfig('mimetypes'),
                                             $helper->getConfig('maxsize'), null, null);
         if ($uploader->fetchMedia($_POST['xoops_upload_file'][0])) {
-            $extension = preg_replace('/^.+\.([^.]+)$/sU', '', $fileName);
-			$imgName   = mb_substr(str_replace(' ', '', $_POST['item_title']), 0, 20) . '_' . $extension;
+            $extension = \preg_replace('/^.+\.([^.]+)$/sU', '', $fileName);
+			$imgName   = mb_substr(\str_replace(' ', '', $_POST['item_title']), 0, 20) . '_' . $extension;
             $uploader->setPrefix($imgName);
             $uploader->fetchMedia($_POST['xoops_upload_file'][0]);
             if (!$uploader->upload()) {
@@ -186,8 +186,8 @@ switch($op) {
                 $maxwidth  = (int)$helper->getConfig('maxwidth_imgeditor');
                 $maxheight = (int)$helper->getConfig('maxheight_imgeditor');
                 $imgHandler                = new Wgtimelines\Resizer();
-                $imgHandler->sourceFile    = WGTIMELINES_UPLOAD_PATH . '/images/items/' . $savedFilename;
-                $imgHandler->endFile       = WGTIMELINES_UPLOAD_PATH . '/images/items/' . $savedFilename;
+                $imgHandler->sourceFile    = \WGTIMELINES_UPLOAD_PATH . '/images/items/' . $savedFilename;
+                $imgHandler->endFile       = \WGTIMELINES_UPLOAD_PATH . '/images/items/' . $savedFilename;
                 $imgHandler->imageMimetype = $imageMimetype;
                 $imgHandler->maxWidth      = $maxwidth;
                 $imgHandler->maxHeight     = $maxheight;
@@ -201,7 +201,7 @@ switch($op) {
             $itemsObj->setVar('item_image', Request::getString('item_image'));
         }
 
-        $itemsObj->setVar('item_date',      strtotime($_POST['item_date']['date']) + intval($_POST['item_date']['time']));
+        $itemsObj->setVar('item_date',      \strtotime($_POST['item_date']['date']) + \intval($_POST['item_date']['time']));
         $itemsObj->setVar('item_year',      Request::getString('item_year'));
         $itemsObj->setVar('item_icon',      Request::getString('item_icon', 'none'));
         $itemsObj->setVar('item_weight',    Request::getInt('item_weight'));
@@ -213,9 +213,9 @@ switch($op) {
         // Insert Data
         if($itemsHandler->insert($itemsObj)) {
             if ($ui === 'user') {
-                redirect_header('../index.php?op=list&tl_id=' . $item_tl_id . '#item' . $itemId, 2, _AM_WGTIMELINES_FORM_OK);
+                \redirect_header('../index.php?op=list&tl_id=' . $item_tl_id . '#item' . $itemId, 2, \_AM_WGTIMELINES_FORM_OK);
             } else {
-                redirect_header('items.php?op=list&tl_id=' . $item_tl_id . '#iorder_' .  $itemId, 2, _AM_WGTIMELINES_FORM_OK);
+                \redirect_header('items.php?op=list&tl_id=' . $item_tl_id . '#iorder_' .  $itemId, 2, \_AM_WGTIMELINES_FORM_OK);
             }
         }
         // Get Form
@@ -227,8 +227,8 @@ switch($op) {
     case 'edit':
         $templateMain = 'wgtimelines_admin_items.tpl';
         $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('items.php'));
-        $adminObject->addItemButton(_AM_WGTIMELINES_ITEM_ADD, 'items.php?op=new', 'add');
-        $adminObject->addItemButton(_AM_WGTIMELINES_ITEMS_LIST, 'items.php', 'list');
+        $adminObject->addItemButton(\_AM_WGTIMELINES_ITEM_ADD, 'items.php?op=new', 'add');
+        $adminObject->addItemButton(\_AM_WGTIMELINES_ITEMS_LIST, 'items.php', 'list');
         $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->renderButton());
         // Get Form
         $itemsObj = $itemsHandler->get($itemId);
@@ -240,20 +240,20 @@ switch($op) {
         $itemsObj = $itemsHandler->get($itemId);
         if(isset($_REQUEST['ok']) && 1 == $_REQUEST['ok']) {
             if(!$GLOBALS['xoopsSecurity']->check()) {
-                redirect_header('items.php', 3, implode(', ', $GLOBALS['xoopsSecurity']->getErrors()));
+                \redirect_header('items.php', 3, \implode(', ', $GLOBALS['xoopsSecurity']->getErrors()));
             }
             $item_tl_id = $itemsObj->getVar('item_tl_id');
             if($itemsHandler->delete($itemsObj)) {
                 if ($ui === 'user') {
-                    redirect_header('../index.php?op=list&tl_id=' . $item_tl_id, 3, _AM_WGTIMELINES_FORM_DELETE_OK);
+                    \redirect_header('../index.php?op=list&tl_id=' . $item_tl_id, 3, \_AM_WGTIMELINES_FORM_DELETE_OK);
                 } else {
-                    redirect_header('items.php?op=list&tl_id=' . $item_tl_id . '#timeline' . $item_tl_id, 2, _AM_WGTIMELINES_FORM_DELETE_OK);
+                    \redirect_header('items.php?op=list&tl_id=' . $item_tl_id . '#timeline' . $item_tl_id, 2, \_AM_WGTIMELINES_FORM_DELETE_OK);
                 }
             } else {
                 $GLOBALS['xoopsTpl']->assign('error', $itemsObj->getHtmlErrors());
             }
         } else {
-            xoops_confirm(array('ok' => 1, 'item_id' => $itemId, 'item_tl_id' => $itemsObj->getVar('item_tl_id'), 'op' => 'delete', 'ui' => $ui), $_SERVER['REQUEST_URI'], sprintf(_AM_WGTIMELINES_FORM_SURE_DELETE, $itemsObj->getVar('item_title')));
+            xoops_confirm(array('ok' => 1, 'item_id' => $itemId, 'item_tl_id' => $itemsObj->getVar('item_tl_id'), 'op' => 'delete', 'ui' => $ui), $_SERVER['REQUEST_URI'], \sprintf(\_AM_WGTIMELINES_FORM_SURE_DELETE, $itemsObj->getVar('item_title')));
         }
 
     break;
@@ -265,7 +265,7 @@ switch($op) {
             // Set Var team_online
             $itemsObj->setVar('item_online', $item_online);
             if ($itemsHandler->insert($itemsObj, true)) {
-                redirect_header('items.php?op=list&tl_id='.$itemsObj->getVar('item_tl_id'), 2, _AM_WGTIMELINES_FORM_OK);
+                \redirect_header('items.php?op=list&tl_id='.$itemsObj->getVar('item_tl_id'), 2, \_AM_WGTIMELINES_FORM_OK);
             }
         } else {
             echo 'invalid params';
@@ -274,7 +274,7 @@ switch($op) {
 
     case 'order':
         $iorder = Request::getInt('iorder');
-        for ($i = 0, $iMax = count($iorder); $i < $iMax; $i++){
+        for ($i = 0, $iMax = \count($iorder); $i < $iMax; $i++){
             $itemsObj = $itemsHandler->get($iorder[$i]);
             $itemsObj->setVar('item_weight',$i+1);
             $itemsHandler->insert($itemsObj);

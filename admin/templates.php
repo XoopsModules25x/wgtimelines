@@ -45,17 +45,17 @@ switch ($op) {
         $templatesAll = $templatesHandler->getAllTemplates($start, $limit);
 
         $GLOBALS['xoopsTpl']->assign('templates_count', $templatesCount);
-        $GLOBALS['xoopsTpl']->assign('wgtimelines_url', WGTIMELINES_URL);
-        $GLOBALS['xoopsTpl']->assign('wgtimelines_upload_url', WGTIMELINES_UPLOAD_URL);
-        $GLOBALS['xoopsTpl']->assign('wgtimelines_icons_url', WGTIMELINES_ICONS_URL);
+        $GLOBALS['xoopsTpl']->assign('wgtimelines_url', \WGTIMELINES_URL);
+        $GLOBALS['xoopsTpl']->assign('wgtimelines_upload_url', \WGTIMELINES_UPLOAD_URL);
+        $GLOBALS['xoopsTpl']->assign('wgtimelines_icons_url', \WGTIMELINES_ICONS_URL);
         // Table view templates
         if ($templatesCount > 0) {
-            foreach (array_keys($templatesAll) as $i) {
+            foreach (\array_keys($templatesAll) as $i) {
                 $template = $templatesAll[$i]->getValuesTemplatesAdmin();
                 $obj_tplsetdefault = $tplsetsdefaultHandler->get($template['id']);
                 $template['newversion'] = 0;
                 $template['notsupported'] = 0;
-                if (is_object($obj_tplsetdefault)) {
+                if (\is_object($obj_tplsetdefault)) {
                     if ($template['tpl_version'] < $obj_tplsetdefault->getVar('tpl_version')) {
                         $template['newversion'] = 1;
                     }
@@ -63,7 +63,7 @@ switch ($op) {
                     $template['notsupported'] = 1;
                 }
                 $template['newtemplate'] = 0;
-                if ($template['tpl_date_create'] > (time()-2592000)) {
+                if ($template['tpl_date_create'] > (\time()-2592000)) {
                     $template['newtemplate'] = 1;
                 }
                 $GLOBALS['xoopsTpl']->append('templates_list', $template);
@@ -71,19 +71,19 @@ switch ($op) {
             }
             // Display Navigation
             if ($templatesCount > $limit) {
-                include_once XOOPS_ROOT_PATH .'/class/pagenav.php';
-                $pagenav = new XoopsPageNav($templatesCount, $limit, $start, 'start', 'op=list&limit=' . $limit);
+                include_once \XOOPS_ROOT_PATH .'/class/pagenav.php';
+                $pagenav = new \XoopsPageNav($templatesCount, $limit, $start, 'start', 'op=list&limit=' . $limit);
                 $GLOBALS['xoopsTpl']->assign('pagenav', $pagenav->renderNav(4));
             }
         } else {
-            $GLOBALS['xoopsTpl']->assign('error', _AM_WGTIMELINES_THEREARENT_TEMPLATES);
+            $GLOBALS['xoopsTpl']->assign('error', \_AM_WGTIMELINES_THEREARENT_TEMPLATES);
         }
 
     break;
     case 'new':
         $templateMain = 'wgtimelines_admin_templates.tpl';
         $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('templates.php'));
-        $adminObject->addItemButton(_AM_WGTIMELINES_TEMPLATES_LIST, 'templates.php', 'list');
+        $adminObject->addItemButton(\_AM_WGTIMELINES_TEMPLATES_LIST, 'templates.php', 'list');
         $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->renderButton());
         // Get Form
         $templatesObj = $templatesHandler->create();
@@ -94,7 +94,7 @@ switch ($op) {
     case 'save':
         // Security Check
         if (!$GLOBALS['xoopsSecurity']->check()) {
-            redirect_header('templates.php', 3, implode(',', $GLOBALS['xoopsSecurity']->getErrors()));
+            \redirect_header('templates.php', 3, \implode(',', $GLOBALS['xoopsSecurity']->getErrors()));
         }
         if (isset($tplId)) {
             $templatesObj = $templatesHandler->get($tplId);
@@ -253,7 +253,7 @@ switch ($op) {
 
         // Insert Data
         if ($templatesHandler->insert($templatesObj)) {
-            redirect_header('templates.php?op=list', 2, _AM_WGTIMELINES_FORM_OK);
+            \redirect_header('templates.php?op=list', 2, \_AM_WGTIMELINES_FORM_OK);
         }
         // Get Form
         $GLOBALS['xoopsTpl']->assign('error', $templatesObj->getHtmlErrors());
@@ -264,7 +264,7 @@ switch ($op) {
     case 'save-master':
         // Security Check
         if (!$GLOBALS['xoopsSecurity']->check()) {
-            redirect_header('templates.php', 3, implode(',', $GLOBALS['xoopsSecurity']->getErrors()));
+            \redirect_header('templates.php', 3, \implode(',', $GLOBALS['xoopsSecurity']->getErrors()));
         }
         if (isset($tplId)) {
             $templatesObj = $templatesHandler->get($tplId);
@@ -290,9 +290,9 @@ switch ($op) {
         // Insert Data
         if ($templatesHandler->insert($templatesObj)) {
             if ($_POST['addopt'] > 0) {
-                redirect_header('templates.php?op=edit-master&tpl_id=' . $tplId, 2, _AM_WGTIMELINES_FORM_OK);
+                \redirect_header('templates.php?op=edit-master&tpl_id=' . $tplId, 2, \_AM_WGTIMELINES_FORM_OK);
             } else {
-                redirect_header('templates.php?op=edit&tpl_id=' . $tplId, 2, _AM_WGTIMELINES_FORM_OK);
+                \redirect_header('templates.php?op=edit&tpl_id=' . $tplId, 2, \_AM_WGTIMELINES_FORM_OK);
             }
         }
         // Get Form
@@ -305,9 +305,9 @@ switch ($op) {
     case 'edit-master':
         $templateMain = 'wgtimelines_admin_templates.tpl';
         $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('templates.php'));
-        $adminObject->addItemButton(_AM_WGTIMELINES_TEMPLATES_LIST, 'templates.php', 'list');
+        $adminObject->addItemButton(\_AM_WGTIMELINES_TEMPLATES_LIST, 'templates.php', 'list');
         if ($op === 'edit-master') {
-            $adminObject->addItemButton(_AM_WGTIMELINES_TEMPLATE_ADD, 'templates.php?op=new', 'add');
+            $adminObject->addItemButton(\_AM_WGTIMELINES_TEMPLATE_ADD, 'templates.php?op=new', 'add');
         }
         $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->renderButton());
         // Get Form
@@ -325,7 +325,7 @@ switch ($op) {
         $templatesObj = $templatesHandler->get($tplId);
         if (isset($_REQUEST['ok']) && 1 == $_REQUEST['ok']) {
             if (!$GLOBALS['xoopsSecurity']->check()) {
-                redirect_header('templates.php', 3, implode(', ', $GLOBALS['xoopsSecurity']->getErrors()));
+                \redirect_header('templates.php', 3, \implode(', ', $GLOBALS['xoopsSecurity']->getErrors()));
             }
             $tplsetdefaultObj = $tplsetsdefaultHandler->get($tplId);
             // Set Vars
@@ -339,11 +339,11 @@ switch ($op) {
             $templatesObj->setVar('tpl_date_create', $tplsetdefaultObj->getVar('tpl_date_create'));
             // Insert Data
             if ($templatesHandler->insert($templatesObj)) {
-                redirect_header('templates.php?op=list', 2, _AM_WGTIMELINES_FORM_OK);
+                \redirect_header('templates.php?op=list', 2, \_AM_WGTIMELINES_FORM_OK);
             }
             $GLOBALS['xoopsTpl']->assign('error', $templatesObj->getHtmlErrors());
         } else {
-            $info = ($op === 'update') ? _AM_WGTIMELINES_TEMPLATE_SURE_UPDATE : _AM_WGTIMELINES_TEMPLATE_SURE_RESET;
+            $info = ($op === 'update') ? \_AM_WGTIMELINES_TEMPLATE_SURE_UPDATE : \_AM_WGTIMELINES_TEMPLATE_SURE_RESET;
             xoops_confirm(array('ok' => 1, 'tpl_id' => $tplId, 'op' => $op), $_SERVER['REQUEST_URI'], $info);
         }
 

@@ -143,7 +143,7 @@ class SysUtility
             if (\mb_strlen($text) <= $length) {
                 return $text;
             }
-            $truncate = \mb_substr($text, 0, $length - mb_strlen($ending));
+            $truncate = \mb_substr($text, 0, $length - \mb_strlen($ending));
         }
         // if the words shouldn't be cut in the middle...
         if (!$exact) {
@@ -190,7 +190,7 @@ class SysUtility
 
         $isAdmin = $helper->isUserAdmin();
 
-        if (\class_exists('XoopsFormEditor')) {
+        if (\class_exists('\XoopsFormEditor')) {
             if ($isAdmin) {
                 $descEditor = new \XoopsFormEditor(\ucfirst($options['name']), $helper->getConfig('editorAdmin'), $options, $nohtml = false, $onfailure = 'textarea');
             } else {

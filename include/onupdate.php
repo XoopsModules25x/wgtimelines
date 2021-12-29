@@ -55,7 +55,7 @@ function xoops_module_pre_update_wgtimelines(\XoopsModule $module)
  */
 function xoops_module_update_wgtimelines(&$module, $prev_version = null)
 {
-    require dirname(__DIR__) . '/preloads/autoloader.php';
+    require \dirname(__DIR__) . '/preloads/autoloader.php';
 
     $moduleDirName = $module->dirname();
     
@@ -121,8 +121,8 @@ function update_tplsetsdefault(&$module)
 {
     include_once __DIR__ . '/common.php';
     $db = $GLOBALS['xoopsDB'];
-    $sql_file_path = WGTIMELINES_PATH . '/sql/update.sql';
-    if (!file_exists($sql_file_path)) {
+    $sql_file_path = \WGTIMELINES_PATH . '/sql/update.sql';
+    if (!\file_exists($sql_file_path)) {
         $module->setErrors("error: update file '" . $sql_file_path . '\' not found');
         return false;
     } else {
@@ -132,9 +132,9 @@ function update_tplsetsdefault(&$module)
             $module->setErrors($db->error());
             return false;
         } else {
-            include_once XOOPS_ROOT_PATH . '/class/database/sqlutility.php';
+            include_once \XOOPS_ROOT_PATH . '/class/database/sqlutility.php';
             $sql_query = fread(fopen($sql_file_path, 'r'), filesize($sql_file_path));
-            $sql_query = trim($sql_query);
+            $sql_query = \trim($sql_query);
             SqlUtility::splitMySqlFile($pieces, $sql_query);
             foreach ($pieces as $piece) {
                 $prefixed_query = SqlUtility::prefixQuery($piece, $db->prefix());
@@ -177,11 +177,11 @@ function update_wgtimelines_v108(&$module)
     // update existing data
     $itemsHandler          = xoops_getModuleHandler('items', 'wgtimelines');
     $itemsAll = $itemsHandler->getAll();
-    foreach(array_keys($itemsAll) as $i) {
+    foreach(\array_keys($itemsAll) as $i) {
         $item_date = $itemsAll[$i]->getVar('item_date');
         if($item_date > 0) {
             $itemsObj = $itemsHandler->get($itemsAll[$i]->getVar("item_id"));
-            $itemsObj->setVar("item_date", mktime(0, 0, 0, date("m", $item_date), date("d", $item_date), date("Y", $item_date)));
+            $itemsObj->setVar("item_date", \mktime(0, 0, 0, date("m", $item_date), date("d", $item_date), date("Y", $item_date)));
             $itemsHandler->insert($itemsObj);
             unset($itemsObj);
         }

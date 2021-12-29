@@ -70,15 +70,15 @@ if ($itemsCount > 0) {
 
     $GLOBALS['xoopsOption']['template_main'] = 'wgtimelines_item_' . $tpltype . '.tpl';
 
-    include_once XOOPS_ROOT_PATH .'/header.php';
+    include_once \XOOPS_ROOT_PATH .'/header.php';
 
     // Define Stylesheet
     $GLOBALS['xoTheme']->addStylesheet($style, null);
     //
-    $GLOBALS['xoopsTpl']->assign('xoops_icons32_url', XOOPS_ICONS32_URL);
-    $GLOBALS['xoopsTpl']->assign('wgtimelines_url', WGTIMELINES_URL);
-    $GLOBALS['xoopsTpl']->assign('wgtimelines_icons_url', WGTIMELINES_ICONS_URL);
-    if (isset($GLOBALS['xoopsUser']) && is_object($GLOBALS['xoopsUser']) && $GLOBALS['xoopsUser']->isAdmin()) {
+    $GLOBALS['xoopsTpl']->assign('xoops_icons32_url', \XOOPS_ICONS32_URL);
+    $GLOBALS['xoopsTpl']->assign('wgtimelines_url', \WGTIMELINES_URL);
+    $GLOBALS['xoopsTpl']->assign('wgtimelines_icons_url', \WGTIMELINES_ICONS_URL);
+    if (isset($GLOBALS['xoopsUser']) && \is_object($GLOBALS['xoopsUser']) && $GLOBALS['xoopsUser']->isAdmin()) {
         $GLOBALS['xoopsTpl']->assign('isAdmin', 1);
     }
     if ($helper->getConfig('ratingbars')) {
@@ -128,10 +128,10 @@ if ($itemsCount > 0) {
 
 $GLOBALS['xoopsTpl']->assign('welcome', $helper->getConfig('welcome'));
 // Keywords
-wgtimelinesMetaKeywords($helper->getConfig('keywords').', '. implode(',', $keywords));
+wgtimelinesMetaKeywords($helper->getConfig('keywords').', '. \implode(',', $keywords));
 unset($keywords);
 // Description
-wgtimelinesMetaDescription(_MA_WGTIMELINES_DESC);
-$GLOBALS['xoopsTpl']->assign('xoops_mpageurl', WGTIMELINES_URL.'/timelines.php');
-$GLOBALS['xoopsTpl']->assign('wgtimelines_upload_url', WGTIMELINES_UPLOAD_URL);
+wgtimelinesMetaDescription(\_MA_WGTIMELINES_DESC);
+$GLOBALS['xoopsTpl']->assign('xoops_mpageurl', \WGTIMELINES_URL.'/timelines.php');
+$GLOBALS['xoopsTpl']->assign('wgtimelines_upload_url', \WGTIMELINES_UPLOAD_URL);
 include __DIR__ . '/footer.php';

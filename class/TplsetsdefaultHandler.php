@@ -116,15 +116,15 @@ class TplsetsdefaultHandler extends \XoopsPersistableObjectHandler
         $tplsetsdefaultCount = $this->getCountTplsetsdefault();
         if ($tplsetsdefaultCount == 0) {
             // should be only after installing module
-            $module_handler  = xoops_getHandler('module');
-            $module          = $module_handler->getByDirname(WGTIMELINES_DIRNAME);
-            include_once WGTIMELINES_PATH . '/include/onupdate.php';
+            $module_handler  = \xoops_getHandler('module');
+            $module          = $module_handler->getByDirname(\WGTIMELINES_DIRNAME);
+            include_once \WGTIMELINES_PATH . '/include/onupdate.php';
             if (!update_tplsetsdefault($module)) {
                 echo 'Error update_tplsetsdefault in checkTplsetsdefault';
                 return false;
             }
         } else {
-            $sql = 'UPDATE `' . $GLOBALS['xoopsDB']->prefix('wgtimelines_tplsetsdefault') . '` SET `' . $GLOBALS['xoopsDB']->prefix('wgtimelines_tplsetsdefault') . '`.`tpl_date_create` = ' . time();
+            $sql = 'UPDATE `' . $GLOBALS['xoopsDB']->prefix('wgtimelines_tplsetsdefault') . '` SET `' . $GLOBALS['xoopsDB']->prefix('wgtimelines_tplsetsdefault') . '`.`tpl_date_create` = ' . \time();
             if (!$result = $GLOBALS['xoopsDB']->queryF($sql)) {
                 echo 'Error updating date for wgtimelines_tplsetsdefault in checkTplsetsdefault:';
                 return false;

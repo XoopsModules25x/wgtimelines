@@ -25,21 +25,21 @@ declare(strict_types=1);
  */
 
 $cid = wgtimelines_CleanVars($_GET, 'cid', 0);
-include_once XOOPS_ROOT_PATH.'/class/template.php';
-if (function_exists('mb_http_output')) {
+include_once \XOOPS_ROOT_PATH.'/class/template.php';
+if (\function_exists('mb_http_output')) {
     mb_http_output('pass');
 }
 //header ('Content-Type:text/xml; charset=UTF-8');
 //$helper->getConfig('utf8') = false;
 
-$tpl = new XoopsTpl();
+$tpl = new \XoopsTpl();
 $tpl->xoops_setCaching(2); //1 = Cache global, 2 = Cache individual (for template)
 $tpl->xoops_setCacheTime($wgtimelines->geConfig('timecacherss')*60); // Time of the cache on seconds
 $categories = wgtimelinesMyGetItemIds('wgtimelines_view', 'wgtimelines');
 $criteria = new \CriteriaCompo();
 
 $criteria->add(new \Criteria('cat_status', 0, '!='));
-$criteria->add(new \Criteria('cid', '(' . implode(',', $categories) . ')','IN'));
+$criteria->add(new \Criteria('cid', '(' . \implode(',', $categories) . ')','IN'));
 if ($cid != 0){
     $criteria->add(new \Criteria('cid', $cid));
     $templates = $templatesHandler->get($cid);
@@ -55,9 +55,9 @@ unset($criteria);
 
 if (!$tpl->is_cached('db:wgtimelines_rss.tpl', $cid)) {
     $tpl->assign('channel_title', htmlspecialchars($title, ENT_QUOTES));
-    $tpl->assign('channel_link', XOOPS_URL.'/');
+    $tpl->assign('channel_link', \XOOPS_URL.'/');
     $tpl->assign('channel_desc', htmlspecialchars($xoopsConfig['slogan'], ENT_QUOTES));
-    $tpl->assign('channel_lastbuild', formatTimestamp(time(), 'rss'));
+    $tpl->assign('channel_lastbuild', \formatTimestamp(\time(), 'rss'));
     $tpl->assign('channel_webmaster', $xoopsConfig['adminmail']);
     $tpl->assign('channel_editor', $xoopsConfig['adminmail']);
     $tpl->assign('channel_category', 'Event');
@@ -68,8 +68,8 @@ if (!$tpl->is_cached('db:wgtimelines_rss.tpl', $cid)) {
     } else {
         $tpl->assign('docs', 'http://cyber.law.harvard.edu/rss/rss.html');
     }
-    $tpl->assign('image_url', XOOPS_URL . $xoopsModuleConfig['logorss']);
-    $dimention = getimagesize(XOOPS_ROOT_PATH . $xoopsModuleConfig['logorss']);
+    $tpl->assign('image_url', \XOOPS_URL . $xoopsModuleConfig['logorss']);
+    $dimention = \getimagesize(\XOOPS_ROOT_PATH . $xoopsModuleConfig['logorss']);
     if (empty($dimention[0])) {
         $width = 88;
     } else {
@@ -82,18 +82,18 @@ if (!$tpl->is_cached('db:wgtimelines_rss.tpl', $cid)) {
     }
     $tpl->assign('image_width', $width);
     $tpl->assign('image_height', $height);
-    foreach (array_keys($templatesArr) as $i) {
+    foreach (\array_keys($templatesArr) as $i) {
         $description = $templatesArr[$i]->getVar('description');
         //permet d'afficher uniquement la description courte
-        if (strpos($description,'[pagebreak]')==false){
+        if (\strpos($description,'[pagebreak]')==false){
             $description_short = $description;
         }else{
-            $description_short = substr($description,0,strpos($description,'[pagebreak]'));
+            $description_short = \substr($description,0,\strpos($description,'[pagebreak]'));
         }
         $tpl->append('items', array('title' => htmlspecialchars($templatesArr[$i]->getVar('tpl_tabletype'), ENT_QUOTES),
-                                    'link' => XOOPS_URL . '/modules/wgtimelines/single.php?cid=' . $templatesArr[$i]->getVar('cid') . '&amp;tpl_id=' . $templatesArr[$i]->getVar('tpl_id'),
-                                    'guid' => XOOPS_URL . '/modules/wgtimelines/single.php?cid=' . $templatesArr[$i]->getVar('cid') . '&amp;tpl_id=' . $templatesArr[$i]->getVar('tpl_id'),
-                                    'pubdate' => formatTimestamp($templatesArr[$i]->getVar('date'), 'rss'),
+                                    'link' => \XOOPS_URL . '/modules/wgtimelines/single.php?cid=' . $templatesArr[$i]->getVar('cid') . '&amp;tpl_id=' . $templatesArr[$i]->getVar('tpl_id'),
+                                    'guid' => \XOOPS_URL . '/modules/wgtimelines/single.php?cid=' . $templatesArr[$i]->getVar('cid') . '&amp;tpl_id=' . $templatesArr[$i]->getVar('tpl_id'),
+                                    'pubdate' => \formatTimestamp($templatesArr[$i]->getVar('date'), 'rss'),
                                     'description' => htmlspecialchars($description_short, ENT_QUOTES)));
     }
 }

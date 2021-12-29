@@ -37,7 +37,7 @@ function wgtimelines_search($queryarray, $andor, $limit, $offset, $userid)
     if ($userid !== 0) {
         $sql .= ' AND tpl_submitter=' . (int)$userid;
     }
-    if (is_array($queryarray) && $count = count($queryarray)) {
+    if (\is_array($queryarray) && $count = \count($queryarray)) {
         $sql .= ' AND (';
         for ($i = 1; $i < $count; ++$i) {
             $sql .= " $andor ";

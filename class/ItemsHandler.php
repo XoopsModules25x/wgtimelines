@@ -28,7 +28,7 @@ namespace XoopsModules\Wgtimelines;
 
 use XoopsModules\Wgtimelines;
 
-defined('XOOPS_ROOT_PATH') || die('Restricted access');
+\defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
 /**
  * Class Object Handler WgtimelinesItems

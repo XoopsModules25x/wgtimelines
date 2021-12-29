@@ -55,7 +55,7 @@ return (object)[
 
     'copyTestFolders' => [
         [
-            XOOPS_ROOT_PATH . '/modules/' . $moduleDirName . '/testdata/uploads',
+            \XOOPS_ROOT_PATH . '/modules/' . $moduleDirName . '/testdata/uploads',
             XOOPS_UPLOAD_PATH . '/' . $moduleDirName,
         ],
     ],
