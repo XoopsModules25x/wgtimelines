@@ -32,7 +32,7 @@ include __DIR__ . '/header.php';
 $op     = Request::getString('op', 'list');
 $ui     = Request::getString('ui', 'admin');
 $itemId = Request::getInt('item_id');
-$tl_id  = Request::getInt('tl_id', 0);
+$tl_id  = Request::getInt('tl_id');
     
 $GLOBALS['xoTheme']->addStylesheet(\WGTIMELINES_URL . '/assets/css/admin/glyphicons.css');
 
@@ -61,10 +61,10 @@ switch($op) {
         
         // show details of selected timeline
         $GLOBALS['xoTheme']->addScript(\WGTIMELINES_URL . '/assets/js/sortable-items.js');
-        $start = Request::getInt('start', 0);
+        $start = Request::getInt('start');
         $limit = Request::getInt('limit', $helper->getConfig('adminpager'));
         $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('items.php'));
-        $adminObject->addItemButton(\_AM_WGTIMELINES_ITEM_ADD, 'items.php?op=new&amp;tl_id=' . $tl_id, 'add');
+        $adminObject->addItemButton(\_AM_WGTIMELINES_ITEM_ADD, 'items.php?op=new&amp;tl_id=' . $tl_id);
         $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->renderButton());
         $timeline_obj = $timelinesHandler->get($tl_id);
         $critItems = new \CriteriaCompo();
@@ -103,7 +103,7 @@ switch($op) {
             if($itemsCount > $limit) {
                 include_once \XOOPS_ROOT_PATH .'/class/pagenav.php';
                 $pagenav = new \XoopsPageNav($itemsCount, $limit, $start, 'start', 'op=list&limit=' . $limit);
-                $GLOBALS['xoopsTpl']->assign('pagenav', $pagenav->renderNav(4));
+                $GLOBALS['xoopsTpl']->assign('pagenav', $pagenav->renderNav());
             }
         } else {
             if ($tl_id > 0) {
@@ -158,7 +158,7 @@ switch($op) {
             $itemsObj = $itemsHandler->create();
         }
         // Set Vars
-        $item_tl_id = Request::getInt('item_tl_id', 0);
+        $item_tl_id = Request::getInt('item_tl_id');
         $itemsObj->setVar('item_tl_id', $item_tl_id);
         $itemsObj->setVar('item_title', Request::getString('item_title'));
         //fix for avoid hiding empty paragraphs in some browsers (instead of: $itemsObj->setVar('item_content', $_POST['item_content']);
@@ -227,7 +227,7 @@ switch($op) {
     case 'edit':
         $templateMain = 'wgtimelines_admin_items.tpl';
         $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('items.php'));
-        $adminObject->addItemButton(\_AM_WGTIMELINES_ITEM_ADD, 'items.php?op=new', 'add');
+        $adminObject->addItemButton(\_AM_WGTIMELINES_ITEM_ADD, 'items.php?op=new');
         $adminObject->addItemButton(\_AM_WGTIMELINES_ITEMS_LIST, 'items.php', 'list');
         $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->renderButton());
         // Get Form
@@ -253,7 +253,7 @@ switch($op) {
                 $GLOBALS['xoopsTpl']->assign('error', $itemsObj->getHtmlErrors());
             }
         } else {
-            xoops_confirm(array('ok' => 1, 'item_id' => $itemId, 'item_tl_id' => $itemsObj->getVar('item_tl_id'), 'op' => 'delete', 'ui' => $ui), $_SERVER['REQUEST_URI'], \sprintf(\_AM_WGTIMELINES_FORM_SURE_DELETE, $itemsObj->getVar('item_title')));
+            xoops_confirm(['ok' => 1, 'item_id' => $itemId, 'item_tl_id' => $itemsObj->getVar('item_tl_id'), 'op' => 'delete', 'ui' => $ui], $_SERVER['REQUEST_URI'], \sprintf(\_AM_WGTIMELINES_FORM_SURE_DELETE, $itemsObj->getVar('item_title')));
         }
 
     break;

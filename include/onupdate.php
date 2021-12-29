@@ -95,7 +95,7 @@ function xoops_module_update_wgtimelines(&$module, $prev_version = null)
     if (!$migratehelper->createSchemaFromSqlfile()) {
         \xoops_error('Error: creation schema file failed!');
         return false;
-    };
+    }
 
     // run standard procedure for db migration
     $migrate->synchronizeSchema();
@@ -117,7 +117,7 @@ function xoops_module_update_wgtimelines(&$module, $prev_version = null)
  *
  * @return bool
  */
-function update_tplsetsdefault(&$module)
+function update_tplsetsdefault($module)
 {
     include_once __DIR__ . '/common.php';
     $db = $GLOBALS['xoopsDB'];
@@ -195,7 +195,7 @@ function update_wgtimelines_v108(&$module)
  *
  * @return bool
  */
-function update_wgtimelines_v107(&$module)
+function update_wgtimelines_v107($module)
 {
     $sql = "UPDATE `" . $GLOBALS['xoopsDB']->prefix('wgtimelines_items') . "` SET `item_year` = '' WHERE `" . $GLOBALS['xoopsDB']->prefix('wgtimelines_items') . "`.`item_year` = 0;";
     if (!$result = $GLOBALS['xoopsDB']->queryF($sql)) {

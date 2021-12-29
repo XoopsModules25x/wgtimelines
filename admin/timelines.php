@@ -37,11 +37,11 @@ switch($op) {
     case 'list':
     default:
         $GLOBALS['xoTheme']->addScript(\WGTIMELINES_URL . '/assets/js/sortable-timelines.js');
-        $start = Request::getInt('start', 0);
+        $start = Request::getInt('start');
         $limit = Request::getInt('limit', $helper->getConfig('adminpager'));
         $templateMain = 'wgtimelines_admin_timelines.tpl';
         $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('timelines.php'));
-        $adminObject->addItemButton(\_AM_WGTIMELINES_TIMELINE_ADD, 'timelines.php?op=new', 'add');
+        $adminObject->addItemButton(\_AM_WGTIMELINES_TIMELINE_ADD, 'timelines.php?op=new');
         $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->renderButton());
         $timelinesCount = $timelinesHandler->getCountTimelines();
         $timelinesAll = $timelinesHandler->getAllTimelines($start, $limit);
@@ -79,7 +79,7 @@ switch($op) {
             if($timelinesCount > $limit) {
                 include_once \XOOPS_ROOT_PATH .'/class/pagenav.php';
                 $pagenav = new \XoopsPageNav($timelinesCount, $limit, $start, 'start', 'op=list&limit=' . $limit);
-                $GLOBALS['xoopsTpl']->assign('pagenav', $pagenav->renderNav(4));
+                $GLOBALS['xoopsTpl']->assign('pagenav', $pagenav->renderNav());
             }
         } else {
             $GLOBALS['xoopsTpl']->assign('error', \_AM_WGTIMELINES_THEREARENT_TIMELINES);
@@ -190,7 +190,7 @@ switch($op) {
     case 'edit':
         $templateMain = 'wgtimelines_admin_timelines.tpl';
         $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('timelines.php'));
-        $adminObject->addItemButton(\_AM_WGTIMELINES_TIMELINE_ADD, 'timelines.php?op=new', 'add');
+        $adminObject->addItemButton(\_AM_WGTIMELINES_TIMELINE_ADD, 'timelines.php?op=new');
         $adminObject->addItemButton(\_AM_WGTIMELINES_TIMELINES_LIST, 'timelines.php', 'list');
         $GLOBALS['xoopsTpl']->assign('buttons', $adminObject->renderButton());
         // Get Form
@@ -211,7 +211,7 @@ switch($op) {
             $crit_items->add(new \Criteria('item_tl_id', $tlId));
             $itemsCount = $itemsHandler->getCount($crit_items);
             if ($itemsCount > 0) {
-                if(!$itemsHandler->deleteAll($crit_items, true)) {
+                if(!$itemsHandler->deleteAll($crit_items)) {
                     $GLOBALS['xoopsTpl']->assign('error', $itemsHandler->getHtmlErrors());
                     break;
                 }
@@ -223,7 +223,7 @@ switch($op) {
                 $GLOBALS['xoopsTpl']->assign('error', $timelinesObj->getHtmlErrors());
             }
         } else {
-            xoops_confirm(array('ok' => 1, 'tl_id' => $tlId, 'op' => 'delete'), $_SERVER['REQUEST_URI'], \sprintf(\_AM_WGTIMELINES_FORM_SURE_DELETE, $timelinesObj->getVar('tl_name')));
+            xoops_confirm(['ok' => 1, 'tl_id' => $tlId, 'op' => 'delete'], $_SERVER['REQUEST_URI'], \sprintf(\_AM_WGTIMELINES_FORM_SURE_DELETE, $timelinesObj->getVar('tl_name')));
         }
 
     break;

@@ -32,8 +32,8 @@ include \dirname(__DIR__, 2) .'/mainfile.php';
 include __DIR__ .'/include/common.php';
 $dirname = \basename(__DIR__);
 // Breadcrumbs
-$xoBreadcrumbs = array();
-$xoBreadcrumbs[] = array('title' => \_MA_WGTIMELINES_TITLE, 'link' => \WGTIMELINES_URL . '/');
+$xoBreadcrumbs = [];
+$xoBreadcrumbs[] = ['title' => \_MA_WGTIMELINES_TITLE, 'link' => \WGTIMELINES_URL . '/'];
 // Get instance of module
 $helper           = \XoopsModules\Wgtimelines\Helper::getInstance();
 $timelinesHandler = $helper->getHandler('Timelines');

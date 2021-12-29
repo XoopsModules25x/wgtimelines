@@ -134,7 +134,6 @@ function wgtimelines_RewriteUrl($module, $array, $type = 'content')
             $rewrite_base = '/modules/';
             $page = 'page=' . $array['content_alias'];
             return \XOOPS_URL . $rewrite_base . $module . '/' . $type . '.php?' . $topic_name . 'id=' . $id . '&amp;' . $page . $comment;
-            break;
 
         case 'rewrite':
             if ($topic_name) {
@@ -158,9 +157,8 @@ function wgtimelines_RewriteUrl($module, $array, $type = 'content')
             }
 
             return \XOOPS_URL . $rewrite_base . $module_name . $type . $topic_name  . $id . $page . $rewrite_ext;
-            break;
 
-         case 'short':
+        case 'short':
             if ($topic_name) {
                 $topic_name .= '/';
             }
@@ -181,7 +179,6 @@ function wgtimelines_RewriteUrl($module, $array, $type = 'content')
             }
 
             return \XOOPS_URL . $rewrite_base . $module_name . $type . $topic_name . $page . $rewrite_ext;
-            break;
     }
 
     return '';
@@ -210,9 +207,9 @@ function wgtimelines_Filter($url, $type = '', $module = 'wgtimelines')
     $url = \preg_replace('`&(amp;)?#?[a-z0-9]+;`i', '-', $url);
     $url = htmlentities($url, ENT_COMPAT, 'utf-8');
     $url = \preg_replace('`&([a-z])(acute|uml|circ|grave|ring|cedil|slash|tilde|caron|lig);`i', "\1", $url);
-    $url = \preg_replace(array($regular_expression,
+    $url = \preg_replace([$regular_expression,
                               '`[-]+`'
-                        ), '-', $url);
+                        ], '-', $url);
     $url = ($url == '') ? $type : strtolower(\trim($url, '-'));
     return $url;
 }

@@ -33,7 +33,7 @@ function b_wgtimelines_items_show($options)
 {
     include_once \XOOPS_ROOT_PATH.'/modules/wgtimelines/class/Items.php';
     $GLOBALS['xoopsTpl']->assign('wgtimelines_upload_url', \WGTIMELINES_UPLOAD_URL);
-    $block       = array();
+    $block       = [];
     $limit       = (int)$options[1];
     $lenghtTitle = (int)$options[2];
     $typeBlock   = $options[3];

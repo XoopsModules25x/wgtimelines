@@ -78,8 +78,7 @@ class Items extends \XoopsObject
      */
     public function getNewInsertedIdItems()
     {
-        $newInsertedId = $GLOBALS['xoopsDB']->getInsertId();
-        return $newInsertedId;
+        return $GLOBALS['xoopsDB']->getInsertId();
     }
 
     /**
@@ -110,7 +109,7 @@ class Items extends \XoopsObject
         // Form Text ItemTitle
         $form->addElement(new \XoopsFormText(\_AM_WGTIMELINES_ITEM_TITLE, 'item_title', 50, 255, $this->getVar('item_title')));
         // Form editor ItemContent
-        $editorConfigs = array();
+        $editorConfigs = [];
         $editorConfigs['name'] = 'item_content';
         $editorConfigs['value'] = $this->getVar('item_content', 'e');
         $editorConfigs['rows'] = 5;
@@ -260,18 +259,17 @@ class Items extends \XoopsObject
      */
     public function toArrayItems()
     {
-        $ret = array();
+        $ret = [];
         $vars =& $this->getVars();
         foreach (\array_keys($vars) as $var) {
             $ret[$var] = $this->getVar('"{$var}"');
         }
         return $ret;
     }
-    
+
     /**
      * Returns an array with all glyphicons
      *
-     * @param $item_icon
      * @return array
      */
     public function arrGlyphicons()

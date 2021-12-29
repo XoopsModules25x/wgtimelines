@@ -33,24 +33,23 @@ $GLOBALS['xoopsOption']['template_main'] = 'wgtimelines_admin_image_editor.tpl';
 
 require_once \XOOPS_ROOT_PATH . '/header.php';
 
-/** @var \XoopsModules\Wgtimelines\Utility $utility */
 $utility = new \XoopsModules\Wgtimelines\Utility();
 
 $op         = Request::getString('op', 'list');
-$itemId     = Request::getInt('item_id', 0);
+$itemId     = Request::getInt('item_id');
 $origin     = Request::getString('imageOrigin');
-$timelineId = Request::getInt('tl_id', 0);
-$start      = Request::getInt('start', 0);
+$timelineId = Request::getInt('tl_id');
+$start      = Request::getInt('start');
 $limit      = Request::getInt('limit', $helper->getConfig('adminpager'));
 
 // get all objects/classes/vars needed for image editor
 $imageClass = 0;
 $imgCurrent = [];
 if ('item_id' === $origin) {
-    $itemId = Request::getInt('imageIdCrop', 0);
+    $itemId = Request::getInt('imageIdCrop');
 }
 if ('tl_id' === $origin) {
-    $timelineId = Request::getInt('imageIdCrop', 0);
+    $timelineId = Request::getInt('imageIdCrop');
 }
 if ( 0 < $itemId ) {
 	$imageId      = $itemId;
@@ -161,13 +160,13 @@ switch ($op) {
     case 'creategrid':
         // create an image grid based on given sources
         $type   = Request::getInt('type', 4);
-        $src[1] = Request::getString('src1', '');
-        $src[2] = Request::getString('src2', '');
-        $src[3] = Request::getString('src3', '');
-        $src[4] = Request::getString('src4', '');
-        $src[5] = Request::getString('src5', '');
-        $src[6] = Request::getString('src6', '');
-        $target = Request::getString('target', '');
+        $src[1] = Request::getString('src1');
+        $src[2] = Request::getString('src2');
+        $src[3] = Request::getString('src3');
+        $src[4] = Request::getString('src4');
+        $src[5] = Request::getString('src5');
+        $src[6] = Request::getString('src6');
+        $target = Request::getString('target');
         // replace thumbs dir by dir for medium images, only for wggallery
         // $src[1] = \str_replace('/thumbs/', '/medium/', $src[1]);
         // $src[2] = \str_replace('/thumbs/', '/medium/', $src[2]);
@@ -244,7 +243,7 @@ switch ($op) {
 
     case 'cropimage':
         // save base64_image and resize to maxwidth/maxheight
-        $base64_image_content = Request::getString('croppedImage', '');
+        $base64_image_content = Request::getString('croppedImage');
         if (\preg_match('/^(data:\s*image\/(\w+);base64,)/', $base64_image_content, $result)) {
             $type = $result[2];
             \file_put_contents($imgTemp, base64_decode(\str_replace($result[1], '', $base64_image_content), true));

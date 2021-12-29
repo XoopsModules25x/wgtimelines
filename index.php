@@ -30,8 +30,8 @@ use Xmf\Request;
 
 include __DIR__ . '/header.php';
 // get timeline id
-$tl_id = Request::getInt('tl_id', 0);
-$start = Request::getInt('start', 0);
+$tl_id = Request::getInt('tl_id');
+$start = Request::getInt('start');
 $limit = Request::getInt('limit', $helper->getConfig('userpager'));
 
 $startpage = $helper->getConfig('startpage', 0);
@@ -101,8 +101,8 @@ if ($timelinesCount > 0) {
             if ($tl_magnific == 1) {
                 $GLOBALS['xoTheme']->addStylesheet(\WGTIMELINES_URL . '/assets/css/magnific-popup.css');
                 $GLOBALS['xoTheme']->addStylesheet(\WGTIMELINES_URL . '/assets/css/wgtimelines.magnific.css');
-                $GLOBALS['xoTheme']->addScript(\WGTIMELINES_URL . '/assets/js/jquery.magnific-popup.min.js', array('type' => 'text/javascript'));
-                $GLOBALS['xoTheme']->addScript(\WGTIMELINES_URL . '/assets/js/wgtimelines.magnific.js', array('type' => 'text/javascript'));
+                $GLOBALS['xoTheme']->addScript(\WGTIMELINES_URL . '/assets/js/jquery.magnific-popup.min.js', ['type' => 'text/javascript']);
+                $GLOBALS['xoTheme']->addScript(\WGTIMELINES_URL . '/assets/js/wgtimelines.magnific.js', ['type' => 'text/javascript']);
                 $GLOBALS['xoopsTpl']->assign('use_magnific', true);
             }
             //
@@ -138,9 +138,9 @@ if ($timelinesCount > 0) {
             }
             $itemsCount = $itemsHandler->getCount($criteria);
             $itemsAll = $itemsHandler->getAll($criteria);
-            $keywords = array();
+            $keywords = [];
             if ($itemsCount > 0) {
-                $items = array();
+                $items = [];
 
                 // Get All Items
                 $year = '';
@@ -214,7 +214,7 @@ if ($timelinesCount > 0) {
                 if ($itemsCount > $limit) {
                     include_once \XOOPS_ROOT_PATH .'/class/pagenav.php';
                     $pagenav = new \XoopsPageNav($itemsCount, $limit, $start, 'start', 'op=list&limit=' . $limit . '&tl_id=' . $tl_id);
-                    $GLOBALS['xoopsTpl']->assign('pagenav', $pagenav->renderNav(4));
+                    $GLOBALS['xoopsTpl']->assign('pagenav', $pagenav->renderNav());
                 }
             } else {
                 $GLOBALS['xoopsTpl']->assign('error', \_MA_WGTIMELINES_THEREARENT_ITEMS);
@@ -227,7 +227,7 @@ if ($timelinesCount > 0) {
             }
             // Breadcrumbs
             if ($helper->getConfig('breadcrumbs')) {
-                $xoBreadcrumbs[] = array('title' => $tl_name);
+                $xoBreadcrumbs[] = ['title' => $tl_name];
                 $GLOBALS['xoopsTpl']->assign('breadcrumbs', 1);
             }
         }
@@ -258,7 +258,7 @@ if ($timelinesCount > 0) {
         if ($timelinesCount > $limit) {
             include_once \XOOPS_ROOT_PATH .'/class/pagenav.php';
             $pagenav = new \XoopsPageNav($timelinesCount, $limit, $start, 'start', 'op=list&limit=' . $limit);
-            $GLOBALS['xoopsTpl']->assign('pagenav', $pagenav->renderNav(4));
+            $GLOBALS['xoopsTpl']->assign('pagenav', $pagenav->renderNav());
         }
     }
 

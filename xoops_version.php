@@ -48,7 +48,7 @@ $modversion['manual_file']         = \XOOPS_URL . '/modules/wgtimelines/docs/ins
 $modversion['min_php']             = '7.4';
 $modversion['min_xoops']           = '2.5.11 Beta1';
 $modversion['min_admin']           = '1.1';
-$modversion['min_db']              = array('mysql' => '5.1', 'mysqli' => '5.1');
+$modversion['min_db']              = ['mysql' => '5.1', 'mysqli' => '5.1'];
 $modversion['image']               = 'assets/images/wgtimelines_logo.png';
 $modversion['dirname']             = $moduleDirName;
 $modversion['dirmoduleadmin']      = 'Frameworks/moduleclasses/moduleadmin';
@@ -73,45 +73,45 @@ $modversion['onInstall']           = 'include/oninstall.php';
 $modversion['onUpdate']            = 'include/onupdate.php';
 $modversion['onUninstall']         = 'include/onuninstall.php';
 // ------------------- Help files ------------------- //
-$modversion['helpsection'] = array(
-    array('name' => \_MI_WGTIMELINES_OVERVIEW, 'link' => 'page=help'),
-    array('name' => \_MI_WGTIMELINES_DISCLAIMER, 'link' => 'page=disclaimer'),
-    array('name' => \_MI_WGTIMELINES_LICENSE, 'link' => 'page=license'),
-    array('name' => \_MI_WGTIMELINES_SUPPORT, 'link' => 'page=support'),
-);
+$modversion['helpsection'] = [
+    ['name' => \_MI_WGTIMELINES_OVERVIEW, 'link' => 'page=help'],
+    ['name' => \_MI_WGTIMELINES_DISCLAIMER, 'link' => 'page=disclaimer'],
+    ['name' => \_MI_WGTIMELINES_LICENSE, 'link' => 'page=license'],
+    ['name' => \_MI_WGTIMELINES_SUPPORT, 'link' => 'page=support'],
+];
 
 // ------------------- Templates ------------------- //
 // Admin
-$modversion['templates'][] = array('file' => 'wgtimelines_admin_about.tpl', 'description' => '', 'type' => 'admin');
-$modversion['templates'][] = array('file' => 'wgtimelines_admin_header.tpl', 'description' => '', 'type' => 'admin');
-$modversion['templates'][] = array('file' => 'wgtimelines_admin_index.tpl', 'description' => '', 'type' => 'admin');
-$modversion['templates'][] = array('file' => 'wgtimelines_admin_timelines.tpl', 'description' => '', 'type' => 'admin');
-$modversion['templates'][] = array('file' => 'wgtimelines_admin_items.tpl', 'description' => '', 'type' => 'admin');
-$modversion['templates'][] = array('file' => 'wgtimelines_admin_templates.tpl', 'description' => '', 'type' => 'admin');
-$modversion['templates'][] = array('file' => 'wgtimelines_admin_footer.tpl', 'description' => '', 'type' => 'admin');
-$modversion['templates'][] = array('file' => 'wgtimelines_admin_image_editor.tpl', 'description' => '', 'type' => 'admin');
+$modversion['templates'][] = ['file' => 'wgtimelines_admin_about.tpl', 'description' => '', 'type' => 'admin'];
+$modversion['templates'][] = ['file' => 'wgtimelines_admin_header.tpl', 'description' => '', 'type' => 'admin'];
+$modversion['templates'][] = ['file' => 'wgtimelines_admin_index.tpl', 'description' => '', 'type' => 'admin'];
+$modversion['templates'][] = ['file' => 'wgtimelines_admin_timelines.tpl', 'description' => '', 'type' => 'admin'];
+$modversion['templates'][] = ['file' => 'wgtimelines_admin_items.tpl', 'description' => '', 'type' => 'admin'];
+$modversion['templates'][] = ['file' => 'wgtimelines_admin_templates.tpl', 'description' => '', 'type' => 'admin'];
+$modversion['templates'][] = ['file' => 'wgtimelines_admin_footer.tpl', 'description' => '', 'type' => 'admin'];
+$modversion['templates'][] = ['file' => 'wgtimelines_admin_image_editor.tpl', 'description' => '', 'type' => 'admin'];
 // User
-$modversion['templates'][] = array('file' => 'wgtimelines_header.tpl', 'description' => '');
-$modversion['templates'][] = array('file' => 'wgtimelines_index.tpl', 'description' => '');
-$modversion['templates'][] = array('file' => 'wgtimelines_item_default.tpl', 'description' => '');
-$modversion['templates'][] = array('file' => 'wgtimelines_item_table.tpl', 'description' => '');
-$modversion['templates'][] = array('file' => 'wgtimelines_timelines_table.tpl', 'description' => '');
-$modversion['templates'][] = array('file' => 'wgtimelines_timelines_simple.tpl', 'description' => '');
-$modversion['templates'][] = array('file' => 'wgtimelines_timelines_colorful.tpl', 'description' => '');
-$modversion['templates'][] = array('file' => 'wgtimelines_timelines_cleanhtml.tpl', 'description' => '');
-$modversion['templates'][] = array('file' => 'wgtimelines_timelines_animated.tpl', 'description' => '');
-$modversion['templates'][] = array('file' => 'wgtimelines_timelines_bigpicture.tpl', 'description' => '');
-$modversion['templates'][] = array('file' => 'wgtimelines_timelines_slider.tpl', 'description' => '');
-$modversion['templates'][] = array('file' => 'wgtimelines_timelines_extended.tpl', 'description' => '');
-$modversion['templates'][] = array('file' => 'wgtimelines_timelines_facebook.tpl', 'description' => '');
-$modversion['templates'][] = array('file' => 'wgtimelines_timelines_crazycolors.tpl', 'description' => '');
-$modversion['templates'][] = array('file' => 'wgtimelines_timelines_animated_2.tpl', 'description' => '');
-$modversion['templates'][] = array('file' => 'wgtimelines_timelines_single.tpl', 'description' => '');
-$modversion['templates'][] = array('file' => 'wgtimelines_breadcrumbs.tpl', 'description' => '');
-$modversion['templates'][] = array('file' => 'wgtimelines_ratingbar.tpl', 'description' => '');
-$modversion['templates'][] = array('file' => 'wgtimelines_rss.tpl', 'description' => '');
-$modversion['templates'][] = array('file' => 'wgtimelines_search.tpl', 'description' => '');
-$modversion['templates'][] = array('file' => 'wgtimelines_footer.tpl', 'description' => '');
+$modversion['templates'][] = ['file' => 'wgtimelines_header.tpl', 'description' => ''];
+$modversion['templates'][] = ['file' => 'wgtimelines_index.tpl', 'description' => ''];
+$modversion['templates'][] = ['file' => 'wgtimelines_item_default.tpl', 'description' => ''];
+$modversion['templates'][] = ['file' => 'wgtimelines_item_table.tpl', 'description' => ''];
+$modversion['templates'][] = ['file' => 'wgtimelines_timelines_table.tpl', 'description' => ''];
+$modversion['templates'][] = ['file' => 'wgtimelines_timelines_simple.tpl', 'description' => ''];
+$modversion['templates'][] = ['file' => 'wgtimelines_timelines_colorful.tpl', 'description' => ''];
+$modversion['templates'][] = ['file' => 'wgtimelines_timelines_cleanhtml.tpl', 'description' => ''];
+$modversion['templates'][] = ['file' => 'wgtimelines_timelines_animated.tpl', 'description' => ''];
+$modversion['templates'][] = ['file' => 'wgtimelines_timelines_bigpicture.tpl', 'description' => ''];
+$modversion['templates'][] = ['file' => 'wgtimelines_timelines_slider.tpl', 'description' => ''];
+$modversion['templates'][] = ['file' => 'wgtimelines_timelines_extended.tpl', 'description' => ''];
+$modversion['templates'][] = ['file' => 'wgtimelines_timelines_facebook.tpl', 'description' => ''];
+$modversion['templates'][] = ['file' => 'wgtimelines_timelines_crazycolors.tpl', 'description' => ''];
+$modversion['templates'][] = ['file' => 'wgtimelines_timelines_animated_2.tpl', 'description' => ''];
+$modversion['templates'][] = ['file' => 'wgtimelines_timelines_single.tpl', 'description' => ''];
+$modversion['templates'][] = ['file' => 'wgtimelines_breadcrumbs.tpl', 'description' => ''];
+$modversion['templates'][] = ['file' => 'wgtimelines_ratingbar.tpl', 'description' => ''];
+$modversion['templates'][] = ['file' => 'wgtimelines_rss.tpl', 'description' => ''];
+$modversion['templates'][] = ['file' => 'wgtimelines_search.tpl', 'description' => ''];
+$modversion['templates'][] = ['file' => 'wgtimelines_footer.tpl', 'description' => ''];
 // ------------------- Mysql ------------------- //
 $modversion['sqlfile']['mysql'] = 'sql/mysql.sql';
 // Tables
@@ -173,19 +173,19 @@ $modversion['blocks'][$b]['options']     = 'item|5|25|last|0';
 unset($b);
 // ------------------- Config ------------------- //
 // Keywords
-$modversion['config'][] = array(
+$modversion['config'][] = [
     'name'        => 'keywords',
     'title'       => '\_MI_WGTIMELINES_KEYWORDS',
     'description' => '\_MI_WGTIMELINES_KEYWORDS_DESC',
     'formtype'    => 'textbox',
     'valuetype'   => 'text',
     'default'     => \_MI_WGTIMELINES_KEYWORDS_DEFAULT
-);
+];
 
 // Editor
 \xoops_load('xoopseditorhandler');
 $editorHandler            = XoopsEditorHandler::getInstance();
-$modversion['config'][] = array(
+$modversion['config'][] = [
     'name'        => 'wgtimelines_editor',
     'title'       => '\_MI_WGTIMELINES_EDITOR',
     'description' => '\_MI_WGTIMELINES_EDITOR_DESC',
@@ -193,94 +193,94 @@ $modversion['config'][] = array(
     'valuetype'   => 'text',
     'options'     => \array_flip($editorHandler->getList()),
     'default'     => 'dhtmltextarea'
-);
+];
 
 // Welcome text
-$modversion['config'][] = array(
+$modversion['config'][] = [
     'name'        => 'welcome',
     'title'       => '\_MI_WGTIMELINES_WELCOME',
     'description' => '\_MI_WGTIMELINES_WELCOME_DESC',
     'formtype'    => 'textarea',
     'valuetype'   => 'text',
     'default'     => \_MI_WGTIMELINES_WELCOME_DEFAULT
-);
+];
 
 // Admin pager
-$modversion['config'][] = array(
+$modversion['config'][] = [
     'name'        => 'adminpager',
     'title'       => '\_MI_WGTIMELINES_ADMIN_PAGER',
     'description' => '\_MI_WGTIMELINES_ADMIN_PAGER_DESC',
     'formtype'    => 'textbox',
     'valuetype'   => 'int',
     'default'     => 10
-);
+];
 
 // User pager
-$modversion['config'][] = array(
+$modversion['config'][] = [
     'name'        => 'userpager',
     'title'       => '\_MI_WGTIMELINES_USER_PAGER',
     'description' => '\_MI_WGTIMELINES_USER_PAGER_DESC',
     'formtype'    => 'textbox',
     'valuetype'   => 'int',
     'default'     => 10
-);
+];
 
 // Breadcrumbs
-$modversion['config'][] = array(
+$modversion['config'][] = [
     'name'        => 'breadcrumbs',
     'title'       => '\_MI_WGTIMELINES_BREADCRUMBS',
     'description' => '\_MI_WGTIMELINES_BREADCRUMBS_DESC',
     'formtype'    => 'yesno',
     'valuetype'   => 'int',
     'default'     => 1
-);
+];
 
 // Rating bar
-$modversion['config'][] = array(
+$modversion['config'][] = [
     'name'        => 'ratingbars',
     'title'       => '\_MI_WGTIMELINES_RATINGBARS',
     'description' => '\_MI_WGTIMELINES_RATINGBARS_DESC',
     'formtype'    => 'yesno',
     'valuetype'   => 'int',
     'default'     => 1
-);
+];
 
 $group_handler = \xoops_getHandler('group');
 $group_arr     = $group_handler->getObjects();
-$ratingbar_groups = array();
+$ratingbar_groups = [];
 foreach (\array_keys($group_arr) as $i) {
     $ratingbar_groups[$group_arr[$i]->getVar('name')] = $group_arr[$i]->getVar('groupid');
 }
-$modversion['config'][] = array(
+$modversion['config'][] = [
     'name'        => 'ratingbar_groups',
     'title'       => '\_MI_WGTIMELINES_RATINGBAR_GROUPS',
     'description' => '\_MI_WGTIMELINES_RATINGBAR_GROUPS_DESC',
     'formtype'    => 'select',
     'valuetype'   => 'array',
-    'default'     => array('1'),
+    'default'     => ['1'],
     'options'     => $ratingbar_groups
-);
+];
 
 // Timeline name
-$modversion['config'][] = array(
+$modversion['config'][] = [
     'name'        => 'tl_name',
     'title'       => '\_MI_WGTIMELINES_TIMELINE_NAME',
     'description' => '\_MI_WGTIMELINES_TIMELINE_NAME_DESC',
     'formtype'    => 'yesno',
     'valuetype'   => 'int',
     'default'     => 1
-);
+];
 
 // show timeline description
-$modversion['config'][] = array(
+$modversion['config'][] = [
     'name'        => 'tl_description',
     'title'       => '\_MI_WGTIMELINES_TLDESC',
     'description' => '\_MI_WGTIMELINES_TLDESC_DESC',
     'formtype'    => 'select',
     'valuetype'   => 'int',
     'default'     => 1,
-    'options'     => array(\_MI_WGTIMELINES_TLDESC_NONE => 1, \_MI_WGTIMELINES_TLDESC_ONLYLIST => 2, \_MI_WGTIMELINES_TLDESC_ALL => 3)
-);
+    'options'     => [\_MI_WGTIMELINES_TLDESC_NONE => 1, \_MI_WGTIMELINES_TLDESC_ONLYLIST => 2, \_MI_WGTIMELINES_TLDESC_ALL => 3]
+];
 
 //Uploads : max size for image upload
 include_once __DIR__ . '/include/xoops_version.inc.php';
@@ -331,14 +331,14 @@ $modversion['config'][] = [
 ];
 
 //Uploads : mimetypes of images
-$modversion['config'][] = array(
+$modversion['config'][] = [
     'name'        => 'mimetypes',
     'title'       => '\_MI_WGTIMELINES_MIMETYPES',
     'description' => '\_MI_WGTIMELINES_MIMETYPES_DESC',
     'formtype'    => 'select_multi',
     'valuetype'   => 'array',
-    'default'     => array('image/gif', 'image/jpeg', 'image/png', 'image/jpg'),
-    'options'     => array(
+    'default'     => ['image/gif', 'image/jpeg', 'image/png', 'image/jpg'],
+    'options'     => [
         'bmp'   => 'image/bmp',
         'gif'   => 'image/gif',
         'pjpeg' => 'image/pjpeg',
@@ -346,8 +346,8 @@ $modversion['config'][] = array(
         'jpg'   => 'image/jpg',
         'jpe'   => 'image/jpe',
         'png'   => 'image/png'
-    )
-);
+    ]
+];
 
 // Uploads : max width of images for upload
 $modversion['config'][] = [
@@ -389,15 +389,15 @@ $modversion['config'][] = [
 ];
 
 // start page for module
-$modversion['config'][] = array(
+$modversion['config'][] = [
     'name'        => 'startpage',
     'title'       => '\_MI_WGTIMELINES_STARTPAGE',
     'description' => '\_MI_WGTIMELINES_STARTPAGE_DESC',
     'formtype'    => 'select',
     'valuetype'   => 'int',
     'default'     => 1,
-    'options'     => array(\_MI_WGTIMELINES_STARTPAGE_LIST => 1, \_MI_WGTIMELINES_STARTPAGE_FIRST => 3)
-);
+    'options'     => [\_MI_WGTIMELINES_STARTPAGE_LIST => 1, \_MI_WGTIMELINES_STARTPAGE_FIRST => 3]
+];
 
 /**
  * Make Sample button visible?

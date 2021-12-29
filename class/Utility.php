@@ -256,7 +256,6 @@ class Utility
     public static function rewriteUrl($module, $array, $type = 'content')
     {
         $comment = '';
-        /** @var \XoopsModules\Wgtimelines\Helper $helper */
         $helper = \XoopsModules\Wgtimelines\Helper::getInstance();
         //$images = $helper->getHandler('Images');
         $lenght_id   = $helper->getConfig('lenght_id');
@@ -286,7 +285,6 @@ class Utility
                 $page         = 'page=' . $array['content_alias'];
 
                 return \XOOPS_URL . $rewrite_base . $module . '/' . $type . '.php?' . $topic_name . 'id=' . $id . '&amp;' . $page . $comment;
-                break;
             case 'rewrite':
                 if ($topic_name) {
                     $topic_name .= '/';
@@ -308,7 +306,6 @@ class Utility
                 }
 
                 return \XOOPS_URL . $rewrite_base . $module_name . $type . $topic_name . $id . $page . $rewrite_ext;
-                break;
             case 'short':
                 if ($topic_name) {
                     $topic_name .= '/';
@@ -329,7 +326,6 @@ class Utility
                 }
 
                 return \XOOPS_URL . $rewrite_base . $module_name . $type . $topic_name . $page . $rewrite_ext;
-                break;
         }
 
         return null;

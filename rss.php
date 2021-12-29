@@ -90,11 +90,11 @@ if (!$tpl->is_cached('db:wgtimelines_rss.tpl', $cid)) {
         }else{
             $description_short = \substr($description,0,\strpos($description,'[pagebreak]'));
         }
-        $tpl->append('items', array('title' => htmlspecialchars($templatesArr[$i]->getVar('tpl_tabletype'), ENT_QUOTES),
+        $tpl->append('items', ['title' => htmlspecialchars($templatesArr[$i]->getVar('tpl_tabletype'), ENT_QUOTES),
                                     'link' => \XOOPS_URL . '/modules/wgtimelines/single.php?cid=' . $templatesArr[$i]->getVar('cid') . '&amp;tpl_id=' . $templatesArr[$i]->getVar('tpl_id'),
                                     'guid' => \XOOPS_URL . '/modules/wgtimelines/single.php?cid=' . $templatesArr[$i]->getVar('cid') . '&amp;tpl_id=' . $templatesArr[$i]->getVar('tpl_id'),
                                     'pubdate' => \formatTimestamp($templatesArr[$i]->getVar('date'), 'rss'),
-                                    'description' => htmlspecialchars($description_short, ENT_QUOTES)));
+                                    'description' => htmlspecialchars($description_short, ENT_QUOTES)]);
     }
 }
 header('Content-Type:text/xml; charset=' . _CHARSET);

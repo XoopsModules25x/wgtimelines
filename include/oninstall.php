@@ -34,7 +34,6 @@ use XoopsModules\Wgtimelines\Common;
 function xoops_module_pre_install_wgtimelines(\XoopsModule $module)
 {
     require \dirname(__DIR__) . '/preloads/autoloader.php';
-    /** @var Wgtimelines\Utility $utility */
     $utility = new Wgtimelines\Utility();
 
     //check for minimum XOOPS version

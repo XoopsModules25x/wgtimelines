@@ -39,7 +39,7 @@ class RatingsHandler extends \XoopsPersistableObjectHandler
     /**
      * Constructor
      *
-     * @param null|\XoopsDatabase $db
+     * @param \XoopsDatabase $db
      */
     public function __construct(\XoopsDatabase $db)
     {
@@ -86,7 +86,7 @@ class RatingsHandler extends \XoopsPersistableObjectHandler
      */
     public function getItemRating($rate_itemid = 0)
     {
-        $ItemRating = array();
+        $ItemRating = [];
         $ItemRating['nb_ratings'] = 0;
         $ItemRating['avg_rate_value'] = 0;
         $ItemRating['size'] = 0;

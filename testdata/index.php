@@ -22,7 +22,7 @@ use XoopsModules\Wgtimelines\Common;
 
 require \dirname(__DIR__, 3) . '/mainfile.php';
 include \dirname(__DIR__) . '/preloads/autoloader.php';
-$op = \Xmf\Request::getCmd('op', '');
+$op = \Xmf\Request::getCmd('op');
 
 switch ($op) {
     case 'load':

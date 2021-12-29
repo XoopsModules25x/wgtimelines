@@ -68,8 +68,7 @@ class Ratings extends \XoopsObject
      */
     public function getNewInsertedIdRatings()
     {
-        $newInsertedId = $GLOBALS['xoopsDB']->getInsertId();
-        return $newInsertedId;
+        return $GLOBALS['xoopsDB']->getInsertId();
     }
 
     /**
@@ -98,7 +97,7 @@ class Ratings extends \XoopsObject
      */
     public function toArrayRatings()
     {
-        $ret = array();
+        $ret = [];
         $vars = $this->getVars();
         foreach (\array_keys($vars) as $var) {
             $ret[$var] = $this->getVar('"{$var}"');

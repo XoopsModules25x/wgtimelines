@@ -36,7 +36,7 @@ function b_wgtimelines_timelines_show($options)
     include_once \XOOPS_ROOT_PATH.'/modules/wgtimelines/class/Timelines.php';
     $myts = MyTextSanitizer::getInstance();
     $GLOBALS['xoopsTpl']->assign('wgtimelines_upload_url', \WGTIMELINES_UPLOAD_URL);
-    $block       = array();
+    $block       = [];
     // $typeBlock   = $options[0];
     $lenghtTitle = (int)$options[1];
     $timelinesHandler = $helper->getHandler('Timelines');

@@ -78,8 +78,7 @@ class Timelines extends \XoopsObject
      */
     public function getNewInsertedIdTimelines()
     {
-        $newInsertedId = $GLOBALS['xoopsDB']->getInsertId();
-        return $newInsertedId;
+        return $GLOBALS['xoopsDB']->getInsertId();
     }
 
     /**
@@ -103,7 +102,7 @@ class Timelines extends \XoopsObject
         // Form Text TlName
         $form->addElement(new \XoopsFormText(\_AM_WGTIMELINES_TIMELINE_NAME, 'tl_name', 50, 255, $this->getVar('tl_name')), true);
         // Form editor tl_desc
-        $editorConfigs = array();
+        $editorConfigs = [];
         $editorConfigs['name'] = 'tl_desc';
         $editorConfigs['value'] = $this->getVar('tl_desc', 'e');
         $editorConfigs['rows'] = 5;
@@ -231,7 +230,7 @@ class Timelines extends \XoopsObject
      */
     public function toArrayTimelines()
     {
-        $ret = array();
+        $ret = [];
         $vars =& $this->getVars();
         foreach (\array_keys($vars) as $var) {
             $ret[$var] = $this->getVar('"{$var}"');

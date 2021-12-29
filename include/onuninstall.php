@@ -37,10 +37,8 @@ function xoops_module_uninstall_wgtimelines(\XoopsModule $module)
 
     $moduleDirName      = \basename(\dirname(__DIR__));
     $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
-    /** @var Wgtimelines\Helper $helper */
     $helper = Wgtimelines\Helper::getInstance();
 
-    /** @var Wgtimelines\Utility $utility */
     $utility = new Wgtimelines\Utility();
 
     $success = true;

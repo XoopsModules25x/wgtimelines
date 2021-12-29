@@ -71,8 +71,7 @@ class Templates extends \XoopsObject
      */
     public function getNewInsertedIdTemplates()
     {
-        $newInsertedId = $GLOBALS['xoopsDB']->getInsertId();
-        return $newInsertedId;
+        return $GLOBALS['xoopsDB']->getInsertId();
     }
 
     /**
@@ -102,7 +101,7 @@ class Templates extends \XoopsObject
         // Form Text Area TplOptions
         $tpl_options = $this->getVar('tpl_options', 'N');
         $options = unserialize($tpl_options);
-        $eletray = array();
+        $eletray = [];
 
         foreach ($options as $option) {
             switch ($option['name']) {
@@ -466,7 +465,7 @@ class Templates extends \XoopsObject
         // Form Text TplName
         $form->addElement(new \XoopsFormText(\_AM_WGTIMELINES_TEMPLATE_NAME, 'tpl_name', 50, 255, $this->getVar('tpl_name')), true);
         // Form Text Area TplDesc
-        $editorConfigs = array();
+        $editorConfigs = [];
         $editorConfigs['name'] = 'tpl_desc';
         $editorConfigs['value'] = $this->getVar('tpl_desc', 'e');
         $editorConfigs['rows'] = 5;
@@ -481,7 +480,7 @@ class Templates extends \XoopsObject
         // load options
         $tpl_options = $this->getVar('tpl_options', 'N');
         $options = unserialize($tpl_options);
-        $eletray = array();
+        $eletray = [];
         $i = 0;
         $form->addElement(new \XoopsFormLabel(\_AM_WGTIMELINES_TEMPLATE_OPTIONS, $this->getVar('tpl_options', 'N')));
         foreach ($options as $option) {
@@ -580,7 +579,7 @@ class Templates extends \XoopsObject
         $ret['desc'] = $desc_show;
         $ret['file'] = $this->getVar('tpl_file');
         $options = unserialize($this->getVar('tpl_options', 'N'));
-        $ret_options = array();
+        $ret_options = [];
 
         foreach ($options as $option) {
             // get proper option name
@@ -773,11 +772,11 @@ class Templates extends \XoopsObject
                 $optval = \_AM_WGTIMELINES_TEMPLATE_BADGECONTENT_GLYPH;
             }
 
-            $ret_options[] = array('name' => $option['name'],
+            $ret_options[] = ['name' => $option['name'],
                                     'valid' => $option['valid'],
                                     'value' => $optval,
                                     'title' => $title,
-                                    'type' => $option['type']);
+                                    'type' => $option['type']];
         }
         $ret['options'] = $ret_options;
         $ret['version'] = $this->getVar('tpl_version');
@@ -794,7 +793,7 @@ class Templates extends \XoopsObject
      */
     public function toArrayTemplates()
     {
-        $ret = array();
+        $ret = [];
         $vars =& $this->getVars();
         foreach (\array_keys($vars) as $var) {
             $ret[$var] = $this->getVar('"{$var}"');

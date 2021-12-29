@@ -39,7 +39,7 @@ switch ($op) {
 
         $itemid = Request::getInt('item_id');
         $rating = Request::getInt('rating');
-        $tl_id  = Request::getInt('tl_id', 0);
+        $tl_id  = Request::getInt('tl_id');
 
         // Checking permissions
         $rate_allowed = false;

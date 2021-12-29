@@ -28,7 +28,7 @@ use Xmf\Request;
 
 include __DIR__ . '/header.php';
 
-$item_id = Request::getInt('item_id', 0);
+$item_id = Request::getInt('item_id');
 $tpltype = Request::getString('tpltype', 'default');
 
 $crit_item = new \CriteriaCompo();
@@ -86,9 +86,9 @@ if ($itemsCount > 0) {
         $GLOBALS['xoopsTpl']->assign('save', 'save-item');
     }
 
-    $keywords = array();
+    $keywords = [];
 
-    $items = array();
+    $items = [];
     $year = '';
     $alternate = 0;
     $j = 0;
@@ -118,8 +118,8 @@ if ($itemsCount > 0) {
 
     // Breadcrumbs
     if ($helper->getConfig('breadcrumbs')) {
-        $xoBreadcrumbs[] = array('title' => $tl_name, 'link' => 'index.php?tl_id=' . $item_tl_id);
-        $xoBreadcrumbs[] = array('title' => $itemsObj->getVar('item_title'));
+        $xoBreadcrumbs[] = ['title' => $tl_name, 'link' => 'index.php?tl_id=' . $item_tl_id];
+        $xoBreadcrumbs[] = ['title' => $itemsObj->getVar('item_title')];
         $GLOBALS['xoopsTpl']->assign('breadcrumbs', 1);
     }
 } else {
