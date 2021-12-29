@@ -30,7 +30,7 @@ $moduleDirNameUpper = mb_strtoupper($moduleDirName);
 
 // ------------------- Informations ------------------- //
 $modversion['name']                = _MI_WGTIMELINES_NAME;
-$modversion['version']             = '1.12';
+$modversion['version']             = '1.2.0';
 $modversion['description']         = _MI_WGTIMELINES_DESC;
 $modversion['author']              = 'goffy (wedega.com)';
 $modversion['author_mail']         = 'webmaster@wedega.com';
@@ -42,11 +42,11 @@ $modversion['license_url']         = 'http://www.gnu.org/licenses/gpl-3.0.en.htm
 $modversion['help']                = 'page=help';
 $modversion['release_info']        = 'release_info';
 $modversion['release_file']        = XOOPS_URL . '/modules/wgtimelines/docs/release_info file';
-$modversion['release_date']        = '2021/04/01';
+$modversion['release_date']        = '2021/12/29';
 $modversion['manual']              = 'link to manual file';
 $modversion['manual_file']         = XOOPS_URL . '/modules/wgtimelines/docs/install.txt';
-$modversion['min_php']             = '7.0';
-$modversion['min_xoops']           = '2.5.10';
+$modversion['min_php']             = '7.4';
+$modversion['min_xoops']           = '2.5.11 Beta1';
 $modversion['min_admin']           = '1.1';
 $modversion['min_db']              = array('mysql' => '5.1', 'mysqli' => '5.1');
 $modversion['image']               = 'assets/images/wgtimelines_logo.png';
@@ -62,7 +62,7 @@ $modversion['support_url']         = 'http://xoops.org/modules/newbb';
 $modversion['support_name']        = 'Support Forum';
 $modversion['module_website_url']  = 'xoops.wedega.com';
 $modversion['module_website_name'] = 'XOOPS on Wedega';
-$modversion['release']             = '01/04/2021'; // mm/dd/yyyy
+$modversion['release']             = '12/29/2021'; // mm/dd/yyyy
 $modversion['module_status']       = 'final';
 $modversion['system_menu']         = 1;
 $modversion['hasAdmin']            = 1;
