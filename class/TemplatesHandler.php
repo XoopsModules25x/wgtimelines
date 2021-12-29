@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace XoopsModules\Wgtimelines;
 /*
  You may not change or alter any portion of this comment or credits
@@ -25,7 +27,7 @@ namespace XoopsModules\Wgtimelines;
 
 use XoopsModules\Wgtimelines;
 
-defined('XOOPS_ROOT_PATH') || die('Restricted access');
+\defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
 /**
  * Class Object Handler Templates
@@ -35,7 +37,7 @@ class TemplatesHandler extends \XoopsPersistableObjectHandler
     /**
      * Constructor
      *
-     * @param null|\XoopsDatabase $db
+     * @param \XoopsDatabase $db
      */
     public function __construct(\XoopsDatabase $db)
     {

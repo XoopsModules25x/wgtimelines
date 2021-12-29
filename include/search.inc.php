@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /*
  You may not change or alter any portion of this comment or credits
  of supporting developers from this source code or any supporting source code
@@ -34,7 +37,7 @@ function wgtimelines_search($queryarray, $andor, $limit, $offset, $userid)
     if ($userid !== 0) {
         $sql .= ' AND tpl_submitter=' . (int)$userid;
     }
-    if (is_array($queryarray) && $count = count($queryarray)) {
+    if (\is_array($queryarray) && $count = \count($queryarray)) {
         $sql .= ' AND (';
         for ($i = 1; $i < $count; ++$i) {
             $sql .= " $andor ";
@@ -44,7 +47,7 @@ function wgtimelines_search($queryarray, $andor, $limit, $offset, $userid)
     }
     $sql .= " ORDER BY 'tpl_id' DESC";
     $result = $xoopsDB->query($sql, $limit, $offset);
-    $ret = array();
+    $ret = [];
     $i = 0;
     while ($myrow = $xoopsDB->fetchArray($result)) {
         $ret[$i]['image'] = 'assets/icons/32/blank.gif';

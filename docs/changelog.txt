@@ -1,3 +1,17 @@
+<h5>1.2.0 beta1</h5>  [2021/12/29]
+<hr>
+ - semantic versioning (goffy)
+ - declare strict_types (goffy)
+ - index.php instead index.html (goffy)
+ - default values in tpl files (goffy)
+ - fixed bug with missing image (goffy)
+ - function qualifiers (goffy)
+ - replaced tabs (goffy)
+ - dirname levels (goffy)
+ - php inspection code (goffy)
+ - security.md (goffy)
+ - new update with db migration (goffy)
+
 <h5>1.12 final</h5>  [2021/04/01]
 <hr>
  - moved to final (goffy)

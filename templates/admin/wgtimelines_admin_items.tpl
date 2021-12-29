@@ -24,13 +24,13 @@
         border: 1px solid #000;
     }
 </style>
-<{if $form_select}>
+<{if $form_select|default:false}>
 	<div class="form_select"><{$form_select}></div>
 <{/if}>
 <br>
 <!-- Header -->
 <{include file='db:wgtimelines_admin_header.tpl'}>
-<{if $items_list}>
+<{if $items_list|default:false}>
 	<table class='table table-bordered' id='sortable-items'>
 	<thead>
         <tr class="head">
@@ -94,25 +94,21 @@
         </tr>
     <{/foreach}>
     </tbody>
-
 <{/if}>
 
 </table>
 <div class="clear">&nbsp;</div>
-<{if $pagenav}>
+<{if $pagenav|default:false}>
 	<div class="xo-pagenav floatright"><{$pagenav}></div>
-<div class="clear spacer"></div>
-
+    <div class="clear spacer"></div>
 <{/if}>
 
 <{/if}>
-<{if $form}>
+<{if $form|default:false}>
 	<{$form}>
 <{/if}>
-<{if $error}>
-	<div class="errorMsg"><strong><{$error}></strong>
-</div>
-
+<{if $error|default:false}>
+	<div class="errorMsg"><strong><{$error}></strong></div>
 <{/if}>
 <br /><br />
 <!-- Footer --><{include file='db:wgtimelines_admin_footer.tpl'}>

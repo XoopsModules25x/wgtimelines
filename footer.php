@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /*
  You may not change or alter any portion of this comment or credits
  of supporting developers from this source code or any supporting source code
@@ -20,7 +23,7 @@
  * @author         goffy (wedega.com) - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
  * @version        $Id: 1.0 footer.php 13070 Sat 2016-10-01 05:42:18Z XOOPS Development Team $
  */
-if(count($xoBreadcrumbs) > 1) {
+if(\count($xoBreadcrumbs) > 1) {
     $GLOBALS['xoopsTpl']->assign('xoBreadcrumbs', $xoBreadcrumbs);
 }
 $GLOBALS['xoopsTpl']->assign('adv', $helper->getConfig('advertise'));
@@ -28,7 +31,7 @@ $GLOBALS['xoopsTpl']->assign('adv', $helper->getConfig('advertise'));
 $GLOBALS['xoopsTpl']->assign('bookmarks', $helper->getConfig('bookmarks'));
 $GLOBALS['xoopsTpl']->assign('fbcomments', $helper->getConfig('fbcomments'));
 //
-$GLOBALS['xoopsTpl']->assign('admin', WGTIMELINES_ADMIN);
+$GLOBALS['xoopsTpl']->assign('admin', \WGTIMELINES_ADMIN);
 $GLOBALS['xoopsTpl']->assign('copyright', $copyright);
 //
-include_once XOOPS_ROOT_PATH .'/footer.php';
+include_once \XOOPS_ROOT_PATH .'/footer.php';

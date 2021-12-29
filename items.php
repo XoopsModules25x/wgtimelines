@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /*
  You may not change or alter any portion of this comment or credits
  of supporting developers from this source code or any supporting source code
@@ -25,7 +28,7 @@ use Xmf\Request;
 
 include __DIR__ . '/header.php';
 
-$item_id = Request::getInt('item_id', 0);
+$item_id = Request::getInt('item_id');
 $tpltype = Request::getString('tpltype', 'default');
 
 $crit_item = new \CriteriaCompo();
@@ -67,15 +70,15 @@ if ($itemsCount > 0) {
 
     $GLOBALS['xoopsOption']['template_main'] = 'wgtimelines_item_' . $tpltype . '.tpl';
 
-    include_once XOOPS_ROOT_PATH .'/header.php';
+    include_once \XOOPS_ROOT_PATH .'/header.php';
 
     // Define Stylesheet
     $GLOBALS['xoTheme']->addStylesheet($style, null);
     //
-    $GLOBALS['xoopsTpl']->assign('xoops_icons32_url', XOOPS_ICONS32_URL);
-    $GLOBALS['xoopsTpl']->assign('wgtimelines_url', WGTIMELINES_URL);
-    $GLOBALS['xoopsTpl']->assign('wgtimelines_icons_url', WGTIMELINES_ICONS_URL);
-    if (isset($GLOBALS['xoopsUser']) && is_object($GLOBALS['xoopsUser']) && $GLOBALS['xoopsUser']->isAdmin()) {
+    $GLOBALS['xoopsTpl']->assign('xoops_icons32_url', \XOOPS_ICONS32_URL);
+    $GLOBALS['xoopsTpl']->assign('wgtimelines_url', \WGTIMELINES_URL);
+    $GLOBALS['xoopsTpl']->assign('wgtimelines_icons_url', \WGTIMELINES_ICONS_URL);
+    if (isset($GLOBALS['xoopsUser']) && \is_object($GLOBALS['xoopsUser']) && $GLOBALS['xoopsUser']->isAdmin()) {
         $GLOBALS['xoopsTpl']->assign('isAdmin', 1);
     }
     if ($helper->getConfig('ratingbars')) {
@@ -83,9 +86,9 @@ if ($itemsCount > 0) {
         $GLOBALS['xoopsTpl']->assign('save', 'save-item');
     }
 
-    $keywords = array();
+    $keywords = [];
 
-    $items = array();
+    $items = [];
     $year = '';
     $alternate = 0;
     $j = 0;
@@ -115,8 +118,8 @@ if ($itemsCount > 0) {
 
     // Breadcrumbs
     if ($helper->getConfig('breadcrumbs')) {
-        $xoBreadcrumbs[] = array('title' => $tl_name, 'link' => 'index.php?tl_id=' . $item_tl_id);
-        $xoBreadcrumbs[] = array('title' => $itemsObj->getVar('item_title'));
+        $xoBreadcrumbs[] = ['title' => $tl_name, 'link' => 'index.php?tl_id=' . $item_tl_id];
+        $xoBreadcrumbs[] = ['title' => $itemsObj->getVar('item_title')];
         $GLOBALS['xoopsTpl']->assign('breadcrumbs', 1);
     }
 } else {
@@ -125,10 +128,10 @@ if ($itemsCount > 0) {
 
 $GLOBALS['xoopsTpl']->assign('welcome', $helper->getConfig('welcome'));
 // Keywords
-wgtimelinesMetaKeywords($helper->getConfig('keywords').', '. implode(',', $keywords));
+wgtimelinesMetaKeywords($helper->getConfig('keywords').', '. \implode(',', $keywords));
 unset($keywords);
 // Description
-wgtimelinesMetaDescription(_MA_WGTIMELINES_DESC);
-$GLOBALS['xoopsTpl']->assign('xoops_mpageurl', WGTIMELINES_URL.'/timelines.php');
-$GLOBALS['xoopsTpl']->assign('wgtimelines_upload_url', WGTIMELINES_UPLOAD_URL);
+wgtimelinesMetaDescription(\_MA_WGTIMELINES_DESC);
+$GLOBALS['xoopsTpl']->assign('xoops_mpageurl', \WGTIMELINES_URL.'/timelines.php');
+$GLOBALS['xoopsTpl']->assign('wgtimelines_upload_url', \WGTIMELINES_UPLOAD_URL);
 include __DIR__ . '/footer.php';

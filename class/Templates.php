@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace XoopsModules\Wgtimelines;
 
 /*
@@ -26,7 +28,7 @@ namespace XoopsModules\Wgtimelines;
 
 use XoopsModules\Wgtimelines;
 
-defined('XOOPS_ROOT_PATH') || die('Restricted access');
+\defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
 /**
  * Class Object Templates
@@ -40,15 +42,15 @@ class Templates extends \XoopsObject
      */
     public function __construct()
     {
-        $this->initVar('tpl_id', XOBJ_DTYPE_INT);
-        $this->initVar('tpl_name', XOBJ_DTYPE_TXTBOX);
-        $this->initVar('tpl_desc', XOBJ_DTYPE_TXTAREA);
-        $this->initVar('tpl_file', XOBJ_DTYPE_TXTBOX);
-        $this->initVar('tpl_options', XOBJ_DTYPE_TXTAREA);
-        $this->initVar('tpl_weight', XOBJ_DTYPE_TXTBOX);
-        $this->initVar('tpl_version', XOBJ_DTYPE_TXTBOX);
-        $this->initVar('tpl_author', XOBJ_DTYPE_TXTBOX);
-        $this->initVar('tpl_date_create', XOBJ_DTYPE_INT);
+        $this->initVar('tpl_id', \XOBJ_DTYPE_INT);
+        $this->initVar('tpl_name', \XOBJ_DTYPE_TXTBOX);
+        $this->initVar('tpl_desc', \XOBJ_DTYPE_TXTAREA);
+        $this->initVar('tpl_file', \XOBJ_DTYPE_TXTBOX);
+        $this->initVar('tpl_options', \XOBJ_DTYPE_TXTAREA);
+        $this->initVar('tpl_weight', \XOBJ_DTYPE_TXTBOX);
+        $this->initVar('tpl_version', \XOBJ_DTYPE_TXTBOX);
+        $this->initVar('tpl_author', \XOBJ_DTYPE_TXTBOX);
+        $this->initVar('tpl_date_create', \XOBJ_DTYPE_INT);
     }
 
     /**
@@ -69,8 +71,7 @@ class Templates extends \XoopsObject
      */
     public function getNewInsertedIdTemplates()
     {
-        $newInsertedId = $GLOBALS['xoopsDB']->getInsertId();
-        return $newInsertedId;
+        return $GLOBALS['xoopsDB']->getInsertId();
     }
 
     /**
@@ -86,100 +87,100 @@ class Templates extends \XoopsObject
             $action = $_SERVER['REQUEST_URI'];
         }
         // Title
-        $title = $this->isNew() ? sprintf(_AM_WGTIMELINES_TEMPLATE_ADD) : sprintf(_AM_WGTIMELINES_TEMPLATE_EDIT);
+        $title = $this->isNew() ? \sprintf(\_AM_WGTIMELINES_TEMPLATE_ADD) : \sprintf(\_AM_WGTIMELINES_TEMPLATE_EDIT);
         // Get Theme Form
-        xoops_load('XoopsFormLoader');
+        \xoops_load('XoopsFormLoader');
         $form = new \XoopsThemeForm($title, 'form', $action, 'post', true);
         $form->setExtra('enctype="multipart/form-data"');
         // Form Text TplName
-        $form->addElement(new \XoopsFormText(_AM_WGTIMELINES_TEMPLATE_NAME, 'tpl_name', 50, 255, $this->getVar('tpl_name')), true);
+        $form->addElement(new \XoopsFormText(\_AM_WGTIMELINES_TEMPLATE_NAME, 'tpl_name', 50, 255, $this->getVar('tpl_name')), true);
         // Form Text Area TplDesc
-        $form->addElement(new \XoopsFormLabel(_AM_WGTIMELINES_TEMPLATE_DESC, $this->convertTplDesc($this->getVar('tpl_desc', 'n'))));
+        $form->addElement(new \XoopsFormLabel(\_AM_WGTIMELINES_TEMPLATE_DESC, $this->convertTplDesc($this->getVar('tpl_desc', 'n'))));
         // Form Text TplFile
-        $form->addElement(new \XoopsFormText(_AM_WGTIMELINES_TEMPLATE_FILE, 'tpl_file', 50, 255, $this->getVar('tpl_file')), true);
+        $form->addElement(new \XoopsFormText(\_AM_WGTIMELINES_TEMPLATE_FILE, 'tpl_file', 50, 255, $this->getVar('tpl_file')), true);
         // Form Text Area TplOptions
         $tpl_options = $this->getVar('tpl_options', 'N');
         $options = unserialize($tpl_options);
-        $eletray = array();
+        $eletray = [];
 
         foreach ($options as $option) {
             switch ($option['name']) {
                 case 'panel_pos':
                     if ($option['valid'] > 0) {
-                        $tplIpSel = new \XoopsFormSelect(_AM_WGTIMELINES_TEMPLATE_IMGPOS, 'panel_pos', $option['value']);
-                        $tplIpSel->addOption('none', _AM_WGTIMELINES_TEMPLATE_NONE);
-                        $tplIpSel->addOption('left', _AM_WGTIMELINES_TEMPLATE_LEFT);
-                        $tplIpSel->addOption('right', _AM_WGTIMELINES_TEMPLATE_RIGHT);
-                        $tplIpSel->addOption('alternate', _AM_WGTIMELINES_TEMPLATE_ALTERNATE);
+                        $tplIpSel = new \XoopsFormSelect(\_AM_WGTIMELINES_TEMPLATE_IMGPOS, 'panel_pos', $option['value']);
+                        $tplIpSel->addOption('none', \_AM_WGTIMELINES_TEMPLATE_NONE);
+                        $tplIpSel->addOption('left', \_AM_WGTIMELINES_TEMPLATE_LEFT);
+                        $tplIpSel->addOption('right', \_AM_WGTIMELINES_TEMPLATE_RIGHT);
+                        $tplIpSel->addOption('alternate', \_AM_WGTIMELINES_TEMPLATE_ALTERNATE);
                         $form->addElement($tplIpSel);
                     }
                     break;
                 case 'tabletype':
                     if ($option['valid'] > 0) {
-                        $tplTtSel = new \XoopsFormSelect(_AM_WGTIMELINES_TEMPLATE_TABLETYPE, 'tabletype', $option['value']);
-                        $tplTtSel->addOption('none', _AM_WGTIMELINES_TEMPLATE_NONE);
-                        $tplTtSel->addOption('bordered', _AM_WGTIMELINES_TEMPLATE_TABLEBORDERED);
-                        $tplTtSel->addOption('striped', _AM_WGTIMELINES_TEMPLATE_TABLESTRIPED);
-                        $tplTtSel->addOption('hover', _AM_WGTIMELINES_TEMPLATE_TABLEHOVER);
-                        $tplTtSel->addOption('condensed', _AM_WGTIMELINES_TEMPLATE_TABLECONDENSED);
+                        $tplTtSel = new \XoopsFormSelect(\_AM_WGTIMELINES_TEMPLATE_TABLETYPE, 'tabletype', $option['value']);
+                        $tplTtSel->addOption('none', \_AM_WGTIMELINES_TEMPLATE_NONE);
+                        $tplTtSel->addOption('bordered', \_AM_WGTIMELINES_TEMPLATE_TABLEBORDERED);
+                        $tplTtSel->addOption('striped', \_AM_WGTIMELINES_TEMPLATE_TABLESTRIPED);
+                        $tplTtSel->addOption('hover', \_AM_WGTIMELINES_TEMPLATE_TABLEHOVER);
+                        $tplTtSel->addOption('condensed', \_AM_WGTIMELINES_TEMPLATE_TABLECONDENSED);
                         $form->addElement($tplTtSel);
                     }
                     break;
                 case 'imgstyle':
                     if ($option['valid'] > 0) {
-                        $tplIsSel = new \XoopsFormSelect(_AM_WGTIMELINES_TEMPLATE_IMGSTYLE, 'imgstyle', $option['value']);
-                        $tplIsSel->addOption('none', _AM_WGTIMELINES_TEMPLATE_NONE);
-                        $tplIsSel->addOption('img-rounded', _AM_WGTIMELINES_TEMPLATE_IMGSTYLE_ROUNDED);
-                        $tplIsSel->addOption('img-circle', _AM_WGTIMELINES_TEMPLATE_IMGSTYLE_CIRCLE);
-                        $tplIsSel->addOption('img-thumbnail', _AM_WGTIMELINES_TEMPLATE_IMGSTYLE_THUMB);
+                        $tplIsSel = new \XoopsFormSelect(\_AM_WGTIMELINES_TEMPLATE_IMGSTYLE, 'imgstyle', $option['value']);
+                        $tplIsSel->addOption('none', \_AM_WGTIMELINES_TEMPLATE_NONE);
+                        $tplIsSel->addOption('img-rounded', \_AM_WGTIMELINES_TEMPLATE_IMGSTYLE_ROUNDED);
+                        $tplIsSel->addOption('img-circle', \_AM_WGTIMELINES_TEMPLATE_IMGSTYLE_CIRCLE);
+                        $tplIsSel->addOption('img-thumbnail', \_AM_WGTIMELINES_TEMPLATE_IMGSTYLE_THUMB);
                         $form->addElement($tplIsSel);
                     }
                     break;
                 case 'bgcolor':
                     if ($option['valid'] > 0) {
-                        $form->addElement(new \XoopsFormColorPicker(_AM_WGTIMELINES_TEMPLATE_BGCOLOR, 'bgcolor', $option['value']));
+                        $form->addElement(new \XoopsFormColorPicker(\_AM_WGTIMELINES_TEMPLATE_BGCOLOR, 'bgcolor', $option['value']));
                     }
                     break;
                 case 'panel_imgpos':
                     if ($option['valid'] > 0) {
-                        $tplIpSel2 = new \XoopsFormSelect(_AM_WGTIMELINES_TEMPLATE_IMGPOS, 'panel_imgpos', $option['value']);
-                        $tplIpSel2->addOption('none', _AM_WGTIMELINES_TEMPLATE_NONE);
-                        $tplIpSel2->addOption('top', _AM_WGTIMELINES_TEMPLATE_TOP);
-                        $tplIpSel2->addOption('bottom', _AM_WGTIMELINES_TEMPLATE_BOTTOM);
+                        $tplIpSel2 = new \XoopsFormSelect(\_AM_WGTIMELINES_TEMPLATE_IMGPOS, 'panel_imgpos', $option['value']);
+                        $tplIpSel2->addOption('none', \_AM_WGTIMELINES_TEMPLATE_NONE);
+                        $tplIpSel2->addOption('top', \_AM_WGTIMELINES_TEMPLATE_TOP);
+                        $tplIpSel2->addOption('bottom', \_AM_WGTIMELINES_TEMPLATE_BOTTOM);
                         $form->addElement($tplIpSel2);
                     }
                     break;
                 case 'fontcolor':
                     if ($option['valid'] > 0) {
-                        $form->addElement(new \XoopsFormColorPicker(_AM_WGTIMELINES_TEMPLATE_FONTCOLOR, 'fontcolor', $option['value']));
+                        $form->addElement(new \XoopsFormColorPicker(\_AM_WGTIMELINES_TEMPLATE_FONTCOLOR, 'fontcolor', $option['value']));
                     }
                     break;
                 case 'badgestyle':
                     if ($option['valid'] > 0) {
-                        $badgestyle = new \XoopsFormSelect(_AM_WGTIMELINES_TEMPLATE_BADGESTYLE, 'badgestyle', $option['value'], true);
-                        $badgestyle->addOption('full', _AM_WGTIMELINES_TEMPLATE_BADGESTYLE_FULL);
-                        $badgestyle->addOption('circle', _AM_WGTIMELINES_TEMPLATE_BADGESTYLE_CIRCLE);
+                        $badgestyle = new \XoopsFormSelect(\_AM_WGTIMELINES_TEMPLATE_BADGESTYLE, 'badgestyle', $option['value'], true);
+                        $badgestyle->addOption('full', \_AM_WGTIMELINES_TEMPLATE_BADGESTYLE_FULL);
+                        $badgestyle->addOption('circle', \_AM_WGTIMELINES_TEMPLATE_BADGESTYLE_CIRCLE);
                         $form->addElement($badgestyle);
                     }
                     break;
                 case 'badgecolor':
                     if ($option['valid'] > 0) {
-                        $form->addElement(new \XoopsFormColorPicker(_AM_WGTIMELINES_TEMPLATE_BADGECOLOR, 'badgecolor', $option['value']), false);
+                        $form->addElement(new \XoopsFormColorPicker(\_AM_WGTIMELINES_TEMPLATE_BADGECOLOR, 'badgecolor', $option['value']), false);
                     }
                     break;
                 case 'badgefontcolor':
                     if ($option['valid'] > 0) {
-                        $form->addElement(new \XoopsFormColorPicker(_AM_WGTIMELINES_TEMPLATE_BADGEFONTCOLOR, 'badgefontcolor', $option['value']));
+                        $form->addElement(new \XoopsFormColorPicker(\_AM_WGTIMELINES_TEMPLATE_BADGEFONTCOLOR, 'badgefontcolor', $option['value']));
                     }
                     break;
                 case 'linecolor':
                     if ($option['valid'] > 0) {
-                        $form->addElement(new \XoopsFormColorPicker(_AM_WGTIMELINES_TEMPLATE_LINECOLOR, 'linecolor', $option['value']));
+                        $form->addElement(new \XoopsFormColorPicker(\_AM_WGTIMELINES_TEMPLATE_LINECOLOR, 'linecolor', $option['value']));
                     }
                     break;
                 case 'borderwidth':
                     if ($option['valid'] > 0) {
-                        $borderwidth = new \XoopsFormSelect(_AM_WGTIMELINES_TEMPLATE_BORDERWIDTH, 'borderwidth', $option['value']);
+                        $borderwidth = new \XoopsFormSelect(\_AM_WGTIMELINES_TEMPLATE_BORDERWIDTH, 'borderwidth', $option['value']);
                         $i = 0;
                         for ($i; $i < 11; $i++) {
                             $borderwidth->addOption($i . 'px', $i . 'px  ');
@@ -189,7 +190,7 @@ class Templates extends \XoopsObject
                     break;
                 case 'borderstyle':
                     if ($option['valid'] > 0) {
-                        $bordertype = new \XoopsFormSelect(_AM_WGTIMELINES_TEMPLATE_BORDERSTYLE, 'borderstyle', $option['value']);
+                        $bordertype = new \XoopsFormSelect(\_AM_WGTIMELINES_TEMPLATE_BORDERSTYLE, 'borderstyle', $option['value']);
                         $bordertype->addOption('solid', 'solid');
                         $bordertype->addOption('dotted', 'dotted');
                         $bordertype->addOption('double', 'double');
@@ -199,12 +200,12 @@ class Templates extends \XoopsObject
                     break;
                 case 'bordercolor':
                     if ($option['valid'] > 0) {
-                        $form->addElement(new \XoopsFormColorPicker(_AM_WGTIMELINES_TEMPLATE_BORDERCOLOR, 'bordercolor', $option['value']));
+                        $form->addElement(new \XoopsFormColorPicker(\_AM_WGTIMELINES_TEMPLATE_BORDERCOLOR, 'bordercolor', $option['value']));
                     }
                     break;
                 case 'borderradius':
                     if ($option['valid'] > 0) {
-                        $borderradius = new \XoopsFormSelect(_AM_WGTIMELINES_TEMPLATE_BORDERRADIUS, 'borderradius', $option['value']);
+                        $borderradius = new \XoopsFormSelect(\_AM_WGTIMELINES_TEMPLATE_BORDERRADIUS, 'borderradius', $option['value']);
                         $i = 0;
                         for ($i; $i < 31; $i++) {
                             $borderradius->addOption($i . 'px', $i . 'px  ');
@@ -214,47 +215,47 @@ class Templates extends \XoopsObject
                     break;
                 case 'boxshadow':
                     if ($option['valid'] > 0) {
-                        $option_shadow = explode(' ', $option['value']);
-                        $shadowTray = new \XoopsFormElementTray(_AM_WGTIMELINES_TEMPLATE_BOXSHADOW, '&nbsp;&nbsp;&nbsp;');
-                        $shadow_h = new \XoopsFormSelect(_AM_WGTIMELINES_TEMPLATE_BOXSHADOW_H, 'boxshadow_h', $option_shadow[0]);
+                        $option_shadow = \explode(' ', $option['value']);
+                        $shadowTray = new \XoopsFormElementTray(\_AM_WGTIMELINES_TEMPLATE_BOXSHADOW, '&nbsp;&nbsp;&nbsp;');
+                        $shadow_h = new \XoopsFormSelect(\_AM_WGTIMELINES_TEMPLATE_BOXSHADOW_H, 'boxshadow_h', $option_shadow[0]);
                         $i = -10;
                         for ($i; $i < 11; $i++) {
                             $shadow_h->addOption($i . 'px', $i . 'px  ');
                         }
                         $shadowTray->addElement($shadow_h);
-                        $shadow_v = new \XoopsFormSelect(_AM_WGTIMELINES_TEMPLATE_BOXSHADOW_V, 'boxshadow_v', $option_shadow[1]);
+                        $shadow_v = new \XoopsFormSelect(\_AM_WGTIMELINES_TEMPLATE_BOXSHADOW_V, 'boxshadow_v', $option_shadow[1]);
                         $i = -10;
                         for ($i; $i < 11; $i++) {
                             $shadow_v->addOption($i . 'px', $i . 'px  ');
                         }
                         $shadowTray->addElement($shadow_v);
-                        $shadow_blur = new \XoopsFormSelect(_AM_WGTIMELINES_TEMPLATE_BOXSHADOW_BLUR, 'boxshadow_blur', $option_shadow[2]);
+                        $shadow_blur = new \XoopsFormSelect(\_AM_WGTIMELINES_TEMPLATE_BOXSHADOW_BLUR, 'boxshadow_blur', $option_shadow[2]);
                         $i = -10;
                         for ($i; $i < 11; $i++) {
                             $shadow_blur->addOption($i . 'px', $i . 'px  ');
                         }
                         $shadowTray->addElement($shadow_blur);
-                        $shadow_spread = new \XoopsFormSelect(_AM_WGTIMELINES_TEMPLATE_BOXSHADOW_SPREAD, 'boxshadow_spread', $option_shadow[3]);
+                        $shadow_spread = new \XoopsFormSelect(\_AM_WGTIMELINES_TEMPLATE_BOXSHADOW_SPREAD, 'boxshadow_spread', $option_shadow[3]);
                         $i = -10;
                         for ($i; $i < 11; $i++) {
                             $shadow_spread->addOption($i . 'px', $i . 'px  ');
                         }
                         $shadowTray->addElement($shadow_spread);
-                        $shadowTray->addElement(new \XoopsFormColorPicker(_AM_WGTIMELINES_TEMPLATE_BOXSHADOW_COLOR, 'boxshadow_color', $option_shadow[4]));
+                        $shadowTray->addElement(new \XoopsFormColorPicker(\_AM_WGTIMELINES_TEMPLATE_BOXSHADOW_COLOR, 'boxshadow_color', $option_shadow[4]));
                         $form->addElement($shadowTray);
                     }
                     break;
                 case 'orientation':
                     if ($option['valid'] > 0) {
-                        $tplOr = new \XoopsFormSelect(_AM_WGTIMELINES_TEMPLATE_ORIENTATION, 'orientation', $option['value']);
-                        $tplOr->addOption('vertical', _AM_WGTIMELINES_TEMPLATE_ORIENTATION_V);
-                        $tplOr->addOption('horizontal', _AM_WGTIMELINES_TEMPLATE_ORIENTATION_H);
+                        $tplOr = new \XoopsFormSelect(\_AM_WGTIMELINES_TEMPLATE_ORIENTATION, 'orientation', $option['value']);
+                        $tplOr->addOption('vertical', \_AM_WGTIMELINES_TEMPLATE_ORIENTATION_V);
+                        $tplOr->addOption('horizontal', \_AM_WGTIMELINES_TEMPLATE_ORIENTATION_H);
                         $form->addElement($tplOr);
                     }
                     break;
                 case 'datesspeed':
                     if ($option['valid'] > 0) {
-                        $dspeed = new \XoopsFormSelect(_AM_WGTIMELINES_TEMPLATE_DATESSPEED, 'datesspeed', $option['value']);
+                        $dspeed = new \XoopsFormSelect(\_AM_WGTIMELINES_TEMPLATE_DATESSPEED, 'datesspeed', $option['value']);
                         $dspeed->addOption('100', '100');
                         $dspeed->addOption('200', '200');
                         $dspeed->addOption('300', '300');
@@ -270,7 +271,7 @@ class Templates extends \XoopsObject
                     break;
                 case 'issuesspeed':
                     if ($option['valid'] > 0) {
-                        $ispeed = new \XoopsFormSelect(_AM_WGTIMELINES_TEMPLATE_ISSUESSPEED, 'issuesspeed', $option['value']);
+                        $ispeed = new \XoopsFormSelect(\_AM_WGTIMELINES_TEMPLATE_ISSUESSPEED, 'issuesspeed', $option['value']);
                         $ispeed->addOption('100', '100');
                         $ispeed->addOption('200', '200');
                         $ispeed->addOption('300', '300');
@@ -286,7 +287,7 @@ class Templates extends \XoopsObject
                     break;
                 case 'issuestransparency':
                     if ($option['valid'] > 0) {
-                        $itrans = new \XoopsFormSelect(_AM_WGTIMELINES_TEMPLATE_ISSUESTRANSPARENCY, 'issuestransparency', $option['value']);
+                        $itrans = new \XoopsFormSelect(\_AM_WGTIMELINES_TEMPLATE_ISSUESTRANSPARENCY, 'issuestransparency', $option['value']);
                         $itrans->addOption('0.1', '0.1');
                         $itrans->addOption('0.2', '0.2');
                         $itrans->addOption('0.3', '0.3');
@@ -302,7 +303,7 @@ class Templates extends \XoopsObject
                     break;
                 case 'issuestransparencyspeed':
                     if ($option['valid'] > 0) {
-                        $itspeed = new \XoopsFormSelect(_AM_WGTIMELINES_TEMPLATE_ISSUESTRANSPARENCYSPEED, 'issuestransparencyspeed', $option['value']);
+                        $itspeed = new \XoopsFormSelect(\_AM_WGTIMELINES_TEMPLATE_ISSUESTRANSPARENCYSPEED, 'issuestransparencyspeed', $option['value']);
                         $itspeed->addOption('100', '100');
                         $itspeed->addOption('200', '200');
                         $itspeed->addOption('300', '300');
@@ -319,20 +320,20 @@ class Templates extends \XoopsObject
                 case 'autoplay':
                     if ($option['valid'] > 0) {
                         $autoplay = $option['value'] === 'true' ? 1 : 0;
-                        $form->addElement(new \XoopsFormRadioYN(_AM_WGTIMELINES_TEMPLATE_AUTOPLAY, 'autoplay', $autoplay, _YES, _NO), false);
+                        $form->addElement(new \XoopsFormRadioYN(\_AM_WGTIMELINES_TEMPLATE_AUTOPLAY, 'autoplay', $autoplay, _YES, _NO), false);
                     }
                     break;
                 case 'autoplaydirection':
                     if ($option['valid'] > 0) {
-                        $autoplaydirection = new \XoopsFormSelect(_AM_WGTIMELINES_TEMPLATE_AUTOPLAY_DIRECTION, 'autoplaydirection', $option['value']);
-                        $autoplaydirection->addOption('forward', _AM_WGTIMELINES_TEMPLATE_AUTOPLAY_DIRECTION_FW);
-                        $autoplaydirection->addOption('backward', _AM_WGTIMELINES_TEMPLATE_AUTOPLAY_DIRECTION_BW);
+                        $autoplaydirection = new \XoopsFormSelect(\_AM_WGTIMELINES_TEMPLATE_AUTOPLAY_DIRECTION, 'autoplaydirection', $option['value']);
+                        $autoplaydirection->addOption('forward', \_AM_WGTIMELINES_TEMPLATE_AUTOPLAY_DIRECTION_FW);
+                        $autoplaydirection->addOption('backward', \_AM_WGTIMELINES_TEMPLATE_AUTOPLAY_DIRECTION_BW);
                         $form->addElement($autoplaydirection);
                     }
                     break;
                 case 'autoplaypause':
                     if ($option['valid'] > 0) {
-                        $atp = new \XoopsFormSelect(_AM_WGTIMELINES_TEMPLATE_AUTOPLAY_PAUSE, 'autoplaypause', $option['value']);
+                        $atp = new \XoopsFormSelect(\_AM_WGTIMELINES_TEMPLATE_AUTOPLAY_PAUSE, 'autoplaypause', $option['value']);
                         $atp->addOption('1000', '1000');
                         $atp->addOption('2000', '2000');
                         $atp->addOption('3000', '3000');
@@ -349,75 +350,75 @@ class Templates extends \XoopsObject
                 case 'arrowkeys':
                     if ($option['valid'] > 0) {
                         $arrowkeys = $option['value'] === 'true' ? 1 : 0;
-                        $form->addElement(new \XoopsFormRadioYN(_AM_WGTIMELINES_TEMPLATE_ARROWKEYS, 'arrowkeys', $arrowkeys, _YES, _NO), false);
+                        $form->addElement(new \XoopsFormRadioYN(\_AM_WGTIMELINES_TEMPLATE_ARROWKEYS, 'arrowkeys', $arrowkeys, _YES, _NO), false);
                     }
                     break;
                 case 'startat':
                     if ($option['valid'] > 0) {
-                        $form->addElement(new \XoopsFormText(_AM_WGTIMELINES_TEMPLATE_STARTAT, 'startat', 20, 255, $option['value']));
+                        $form->addElement(new \XoopsFormText(\_AM_WGTIMELINES_TEMPLATE_STARTAT, 'startat', 20, 255, $option['value']));
                     }
                     break;
                 case 'fontcolor2':
                     if ($option['valid'] > 0) {
-                        $form->addElement(new \XoopsFormColorPicker(_AM_WGTIMELINES_TEMPLATE_FONTCOLOR2, 'fontcolor2', $option['value']));
+                        $form->addElement(new \XoopsFormColorPicker(\_AM_WGTIMELINES_TEMPLATE_FONTCOLOR2, 'fontcolor2', $option['value']));
                     }
                     break;
                 case 'fontcolor3':
                     if ($option['valid'] > 0) {
-                        $form->addElement(new \XoopsFormColorPicker(_AM_WGTIMELINES_TEMPLATE_FONTCOLOR3, 'fontcolor3', $option['value']));
+                        $form->addElement(new \XoopsFormColorPicker(\_AM_WGTIMELINES_TEMPLATE_FONTCOLOR3, 'fontcolor3', $option['value']));
                     }
                     break;
                 case 'fontcolor4':
                     if ($option['valid'] > 0) {
-                        $form->addElement(new \XoopsFormColorPicker(_AM_WGTIMELINES_TEMPLATE_FONTCOLOR4, 'fontcolor4', $option['value']));
+                        $form->addElement(new \XoopsFormColorPicker(\_AM_WGTIMELINES_TEMPLATE_FONTCOLOR4, 'fontcolor4', $option['value']));
                     }
                     break;
                 case 'bgcolor2':
                     if ($option['valid'] > 0) {
-                        $form->addElement(new \XoopsFormColorPicker(_AM_WGTIMELINES_TEMPLATE_BGCOLOR2, 'bgcolor2', $option['value']));
+                        $form->addElement(new \XoopsFormColorPicker(\_AM_WGTIMELINES_TEMPLATE_BGCOLOR2, 'bgcolor2', $option['value']));
                     }
                     break;
                 case 'bgcolor3':
                     if ($option['valid'] > 0) {
-                        $form->addElement(new \XoopsFormColorPicker(_AM_WGTIMELINES_TEMPLATE_BGCOLOR3, 'bgcolor3', $option['value']));
+                        $form->addElement(new \XoopsFormColorPicker(\_AM_WGTIMELINES_TEMPLATE_BGCOLOR3, 'bgcolor3', $option['value']));
                     }
                     break;
                 case 'bgcolor4':
                     if ($option['valid'] > 0) {
-                        $form->addElement(new \XoopsFormColorPicker(_AM_WGTIMELINES_TEMPLATE_BGCOLOR4, 'bgcolor4', $option['value']));
+                        $form->addElement(new \XoopsFormColorPicker(\_AM_WGTIMELINES_TEMPLATE_BGCOLOR4, 'bgcolor4', $option['value']));
                     }
                     break;
                 case 'fadein':
                     if ($option['valid'] > 0) {
-                        $fadein = new \XoopsFormSelect(_AM_WGTIMELINES_TEMPLATE_FADEIN, 'fadein', $option['value']);
-                        $fadein->addOption('fly', _AM_WGTIMELINES_TEMPLATE_FADEIN_FLY);
-                        $fadein->addOption('appear', _AM_WGTIMELINES_TEMPLATE_FADEIN_APPEAR);
+                        $fadein = new \XoopsFormSelect(\_AM_WGTIMELINES_TEMPLATE_FADEIN, 'fadein', $option['value']);
+                        $fadein->addOption('fly', \_AM_WGTIMELINES_TEMPLATE_FADEIN_FLY);
+                        $fadein->addOption('appear', \_AM_WGTIMELINES_TEMPLATE_FADEIN_APPEAR);
                         $form->addElement($fadein);
                     }
                     break;
                 case 'panel_pos_single':
                     if ($option['valid'] > 0) {
-                        $tplPpSel = new \XoopsFormSelect(_AM_WGTIMELINES_TEMPLATE_PANELPOS, 'panel_pos_single', $option['value']);
-                        $tplPpSel->addOption('left', _AM_WGTIMELINES_TEMPLATE_LEFT);
-                        $tplPpSel->addOption('right', _AM_WGTIMELINES_TEMPLATE_RIGHT);
+                        $tplPpSel = new \XoopsFormSelect(\_AM_WGTIMELINES_TEMPLATE_PANELPOS, 'panel_pos_single', $option['value']);
+                        $tplPpSel->addOption('left', \_AM_WGTIMELINES_TEMPLATE_LEFT);
+                        $tplPpSel->addOption('right', \_AM_WGTIMELINES_TEMPLATE_RIGHT);
                         $form->addElement($tplPpSel);
                     }
                     break;
                 case 'showyear':
                     if ($option['valid'] > 0) {
-                        $tplShowyear = new \XoopsFormSelect(_AM_WGTIMELINES_TEMPLATE_SHOWYEAR, 'showyear', $option['value']);
-                        $tplShowyear->addOption('none', _AM_WGTIMELINES_TEMPLATE_NONE);
-                        $tplShowyear->addOption('changed', _AM_WGTIMELINES_TEMPLATE_SHOWYEAR_CHANGED);
-                        $tplShowyear->addOption('all', _AM_WGTIMELINES_TEMPLATE_SHOWYEAR_ALL);
+                        $tplShowyear = new \XoopsFormSelect(\_AM_WGTIMELINES_TEMPLATE_SHOWYEAR, 'showyear', $option['value']);
+                        $tplShowyear->addOption('none', \_AM_WGTIMELINES_TEMPLATE_NONE);
+                        $tplShowyear->addOption('changed', \_AM_WGTIMELINES_TEMPLATE_SHOWYEAR_CHANGED);
+                        $tplShowyear->addOption('all', \_AM_WGTIMELINES_TEMPLATE_SHOWYEAR_ALL);
                         $form->addElement($tplShowyear);
                     }
                     break;
                 case 'badgecontent':
                     if ($option['valid'] > 0) {
-                        $tplBContent = new \XoopsFormSelect(_AM_WGTIMELINES_TEMPLATE_BADGECONTENT, 'badgecontent', $option['value']);
-                        $tplBContent->addOption('none', _AM_WGTIMELINES_TEMPLATE_NONE);
-                        $tplBContent->addOption('year', _AM_WGTIMELINES_TEMPLATE_BADGECONTENT_YEAR);
-                        $tplBContent->addOption('glyphicon', _AM_WGTIMELINES_TEMPLATE_BADGECONTENT_GLYPH);
+                        $tplBContent = new \XoopsFormSelect(\_AM_WGTIMELINES_TEMPLATE_BADGECONTENT, 'badgecontent', $option['value']);
+                        $tplBContent->addOption('none', \_AM_WGTIMELINES_TEMPLATE_NONE);
+                        $tplBContent->addOption('year', \_AM_WGTIMELINES_TEMPLATE_BADGECONTENT_YEAR);
+                        $tplBContent->addOption('glyphicon', \_AM_WGTIMELINES_TEMPLATE_BADGECONTENT_GLYPH);
                         $form->addElement($tplBContent);
                     }
                     break;
@@ -428,13 +429,13 @@ class Templates extends \XoopsObject
             }
         }
         // Form label tpl_version
-        $form->addElement(new \XoopsFormLabel(_AM_WGTIMELINES_TEMPLATE_VERSION, $this->getVar('tpl_version')));
+        $form->addElement(new \XoopsFormLabel(\_AM_WGTIMELINES_TEMPLATE_VERSION, $this->getVar('tpl_version')));
         $form->addElement(new \XoopsFormHidden('tpl_version', $this->getVar('tpl_version')));
         // Form label tpl_author
-        $form->addElement(new \XoopsFormLabel(_AM_WGTIMELINES_TEMPLATE_AUTHOR, $this->getVar('tpl_author')));
+        $form->addElement(new \XoopsFormLabel(\_AM_WGTIMELINES_TEMPLATE_AUTHOR, $this->getVar('tpl_author')));
         $form->addElement(new \XoopsFormHidden('tpl_author', $this->getVar('tpl_author')));
         // Form label tpl_author
-        $form->addElement(new \XoopsFormLabel(_AM_WGTIMELINES_DATE_CREATE, formatTimestamp($this->getVar('tpl_date_create'))));
+        $form->addElement(new \XoopsFormLabel(\_AM_WGTIMELINES_DATE_CREATE, \formatTimestamp($this->getVar('tpl_date_create'))));
         $form->addElement(new \XoopsFormHidden('tpl_date_create', $this->getVar('tpl_date_create')));
         // To Save
         $form->addElement(new \XoopsFormHidden('op', 'save'));
@@ -456,15 +457,15 @@ class Templates extends \XoopsObject
             $action = $_SERVER['REQUEST_URI'];
         }
         // Title
-        $title = $this->isNew() ? sprintf(_AM_WGTIMELINES_TEMPLATE_ADD) : sprintf(_AM_WGTIMELINES_TEMPLATE_EDIT);
+        $title = $this->isNew() ? \sprintf(\_AM_WGTIMELINES_TEMPLATE_ADD) : \sprintf(\_AM_WGTIMELINES_TEMPLATE_EDIT);
         // Get Theme Form
-        xoops_load('XoopsFormLoader');
+        \xoops_load('XoopsFormLoader');
         $form = new \XoopsThemeForm($title, 'form', $action, 'post', true);
         $form->setExtra('enctype="multipart/form-data"');
         // Form Text TplName
-        $form->addElement(new \XoopsFormText(_AM_WGTIMELINES_TEMPLATE_NAME, 'tpl_name', 50, 255, $this->getVar('tpl_name')), true);
+        $form->addElement(new \XoopsFormText(\_AM_WGTIMELINES_TEMPLATE_NAME, 'tpl_name', 50, 255, $this->getVar('tpl_name')), true);
         // Form Text Area TplDesc
-        $editorConfigs = array();
+        $editorConfigs = [];
         $editorConfigs['name'] = 'tpl_desc';
         $editorConfigs['value'] = $this->getVar('tpl_desc', 'e');
         $editorConfigs['rows'] = 5;
@@ -472,21 +473,21 @@ class Templates extends \XoopsObject
         $editorConfigs['width'] = '100%';
         $editorConfigs['height'] = '100px';
         $editorConfigs['editor'] = $helper->getConfig('wgtimelines_editor');
-        $form->addElement(new \XoopsFormEditor(_AM_WGTIMELINES_TEMPLATE_DESC, 'tpl_desc', $editorConfigs), true);
-        $form->addElement(new \XoopsFormLabel(_AM_WGTIMELINES_TEMPLATE_DESC, $this->convertTplDesc($this->getVar('tpl_desc', 'n'))));
+        $form->addElement(new \XoopsFormEditor(\_AM_WGTIMELINES_TEMPLATE_DESC, 'tpl_desc', $editorConfigs), true);
+        $form->addElement(new \XoopsFormLabel(\_AM_WGTIMELINES_TEMPLATE_DESC, $this->convertTplDesc($this->getVar('tpl_desc', 'n'))));
         // Form Text TplFile
-        $form->addElement(new \XoopsFormText(_AM_WGTIMELINES_TEMPLATE_FILE, 'tpl_file', 50, 255, $this->getVar('tpl_file')), true);
+        $form->addElement(new \XoopsFormText(\_AM_WGTIMELINES_TEMPLATE_FILE, 'tpl_file', 50, 255, $this->getVar('tpl_file')), true);
         // load options
         $tpl_options = $this->getVar('tpl_options', 'N');
         $options = unserialize($tpl_options);
-        $eletray = array();
+        $eletray = [];
         $i = 0;
-        $form->addElement(new \XoopsFormLabel(_AM_WGTIMELINES_TEMPLATE_OPTIONS, $this->getVar('tpl_options', 'N')));
+        $form->addElement(new \XoopsFormLabel(\_AM_WGTIMELINES_TEMPLATE_OPTIONS, $this->getVar('tpl_options', 'N')));
         foreach ($options as $option) {
             $i++;
             $eletray[$i] = new \XoopsFormElementTray('', '&nbsp;');
             $eletray[$i]->addElement(new \XoopsFormText('', 'name_'.$i, 20, 255, $option['name']), true);
-            $eletray[$i]->addElement(new \XoopsFormRadioYN(_AM_WGTIMELINES_TEMPLATE_VALID, 'valid_'.$i, $option['valid'], _YES, _NO), false);
+            $eletray[$i]->addElement(new \XoopsFormRadioYN(\_AM_WGTIMELINES_TEMPLATE_VALID, 'valid_'.$i, $option['valid'], _YES, _NO), false);
             $eletray[$i]->addElement(new \XoopsFormText('', 'value_'.$i, 20, 255, $option['value']), false);
             $eletray[$i]->addElement(new \XoopsFormHidden('type_'.$i, $option['type']));
             $form->addElement($eletray[$i], false);
@@ -496,20 +497,20 @@ class Templates extends \XoopsObject
         for (; $i < $stop; $i++) {
             $eletray[$i] = new \XoopsFormElementTray('', '&nbsp;');
             $eletray[$i]->addElement(new \XoopsFormText('', 'name_'.$i, 20, 255, ''), false);
-            $eletray[$i]->addElement(new \XoopsFormRadioYN(_AM_WGTIMELINES_TEMPLATE_VALID, 'valid_'.$i, 0, _YES, _NO), false);
+            $eletray[$i]->addElement(new \XoopsFormRadioYN(\_AM_WGTIMELINES_TEMPLATE_VALID, 'valid_'.$i, 0, _YES, _NO), false);
             $eletray[$i]->addElement(new \XoopsFormText('', 'value_'.$i, 20, 255, ''), false);
             $form->addElement($eletray[$i], false);
         }
 
         // Form label tpl_version
-        $form->addElement(new \XoopsFormText(_AM_WGTIMELINES_TEMPLATE_VERSION, 'tpl_version', 20, 255, $this->getVar('tpl_version')), true);
+        $form->addElement(new \XoopsFormText(\_AM_WGTIMELINES_TEMPLATE_VERSION, 'tpl_version', 20, 255, $this->getVar('tpl_version')), true);
         // Form label tpl_author
-        $form->addElement(new \XoopsFormText(_AM_WGTIMELINES_TEMPLATE_AUTHOR, 'tpl_author', 20, 255, $this->getVar('tpl_author')), true);
+        $form->addElement(new \XoopsFormText(\_AM_WGTIMELINES_TEMPLATE_AUTHOR, 'tpl_author', 20, 255, $this->getVar('tpl_author')), true);
         // Form label tpl_date_create
-        $tplDate_create = $this->isNew() ? time() : $this->getVar('tpl_date_create');
-        $form->addElement(new \XoopsFormTextDateSelect(_AM_WGTIMELINES_DATE_CREATE, 'tpl_date_create', '', $tplDate_create));
+        $tplDate_create = $this->isNew() ? \time() : $this->getVar('tpl_date_create');
+        $form->addElement(new \XoopsFormTextDateSelect(\_AM_WGTIMELINES_DATE_CREATE, 'tpl_date_create', '', $tplDate_create));
 
-        $form->addElement(new \XoopsFormRadioYN(_AM_WGTIMELINES_TEMPLATE_ADDOPT, 'addopt', 0, _YES, _NO), false);
+        $form->addElement(new \XoopsFormRadioYN(\_AM_WGTIMELINES_TEMPLATE_ADDOPT, 'addopt', 0, _YES, _NO), false);
         // To Save
         $form->addElement(new \XoopsFormHidden('counter', $i));
         $form->addElement(new \XoopsFormHidden('tpl_id', $this->getVar('tpl_id')));
@@ -548,12 +549,12 @@ class Templates extends \XoopsObject
      */
     private function convertTplDesc($tpl_desc) 
     {
-        $desc_arr = explode(' ', $tpl_desc);
-        if (defined($desc_arr[0])) {
+        $desc_arr = \explode(' ', $tpl_desc);
+        if (\defined($desc_arr[0])) {
             // creating list hardcoded is necessary for displaying in forms
             $desc_show = '<ul>';
             foreach ($desc_arr as $desc_item) {
-                $desc_show .= '<li>' . constant($desc_item) . '</li>';
+                $desc_show .= '<li>' . \constant($desc_item) . '</li>';
             }
             $desc_show .= '</ul>';
         } else {
@@ -578,114 +579,114 @@ class Templates extends \XoopsObject
         $ret['desc'] = $desc_show;
         $ret['file'] = $this->getVar('tpl_file');
         $options = unserialize($this->getVar('tpl_options', 'N'));
-        $ret_options = array();
+        $ret_options = [];
 
         foreach ($options as $option) {
             // get proper option name
             switch ($option['name']) {
                 case 'panel_pos':
-                    $title = _AM_WGTIMELINES_TEMPLATE_IMGPOS;
+                    $title = \_AM_WGTIMELINES_TEMPLATE_IMGPOS;
                 break;
                 case 'tabletype':
-                    $title = _AM_WGTIMELINES_TEMPLATE_TABLETYPE;
+                    $title = \_AM_WGTIMELINES_TEMPLATE_TABLETYPE;
                 break;
                 case 'imgstyle':
-                    $title = _AM_WGTIMELINES_TEMPLATE_IMGSTYLE;
+                    $title = \_AM_WGTIMELINES_TEMPLATE_IMGSTYLE;
                 break;
                 case 'bgcolor':
-                    $title = _AM_WGTIMELINES_TEMPLATE_BGCOLOR;
+                    $title = \_AM_WGTIMELINES_TEMPLATE_BGCOLOR;
                 break;
                 case 'bgcolor2':
-                    $title = _AM_WGTIMELINES_TEMPLATE_BGCOLOR2;
+                    $title = \_AM_WGTIMELINES_TEMPLATE_BGCOLOR2;
                 break;
                 case 'bgcolor3':
-                    $title = _AM_WGTIMELINES_TEMPLATE_BGCOLOR3;
+                    $title = \_AM_WGTIMELINES_TEMPLATE_BGCOLOR3;
                 break;
                 case 'bgcolor4':
-                    $title = _AM_WGTIMELINES_TEMPLATE_BGCOLOR4;
+                    $title = \_AM_WGTIMELINES_TEMPLATE_BGCOLOR4;
                 break;
                 case 'fontcolor':
-                    $title = _AM_WGTIMELINES_TEMPLATE_FONTCOLOR;
+                    $title = \_AM_WGTIMELINES_TEMPLATE_FONTCOLOR;
                 break;
                 case 'fontcolor2':
-                    $title = _AM_WGTIMELINES_TEMPLATE_FONTCOLOR2;
+                    $title = \_AM_WGTIMELINES_TEMPLATE_FONTCOLOR2;
                 break;
                 case 'fontcolor3':
-                    $title = _AM_WGTIMELINES_TEMPLATE_FONTCOLOR3;
+                    $title = \_AM_WGTIMELINES_TEMPLATE_FONTCOLOR3;
                 break;
                 case 'fontcolor4':
-                    $title = _AM_WGTIMELINES_TEMPLATE_FONTCOLOR4;
+                    $title = \_AM_WGTIMELINES_TEMPLATE_FONTCOLOR4;
                 break;
                 case 'panel_imgpos':
-                    $title = _AM_WGTIMELINES_TEMPLATE_IMGPOS;
+                    $title = \_AM_WGTIMELINES_TEMPLATE_IMGPOS;
                 break;
                 case 'badgecolor':
-                    $title = _AM_WGTIMELINES_TEMPLATE_BADGECOLOR;
+                    $title = \_AM_WGTIMELINES_TEMPLATE_BADGECOLOR;
                 break;
                 case 'badgefontcolor':
-                    $title = _AM_WGTIMELINES_TEMPLATE_BADGEFONTCOLOR;
+                    $title = \_AM_WGTIMELINES_TEMPLATE_BADGEFONTCOLOR;
                 break;
                 case 'badgestyle':
-                    $title = _AM_WGTIMELINES_TEMPLATE_BADGESTYLE;
+                    $title = \_AM_WGTIMELINES_TEMPLATE_BADGESTYLE;
                 break;
                 case 'linecolor':
-                    $title = _AM_WGTIMELINES_TEMPLATE_LINECOLOR;
+                    $title = \_AM_WGTIMELINES_TEMPLATE_LINECOLOR;
                 break;
                 case 'borderwidth':
-                    $title = _AM_WGTIMELINES_TEMPLATE_BORDERWIDTH;
+                    $title = \_AM_WGTIMELINES_TEMPLATE_BORDERWIDTH;
                 break;
                 case 'borderstyle':
-                    $title = _AM_WGTIMELINES_TEMPLATE_BORDERSTYLE;
+                    $title = \_AM_WGTIMELINES_TEMPLATE_BORDERSTYLE;
                 break;
                 case 'bordercolor':
-                    $title = _AM_WGTIMELINES_TEMPLATE_BORDERCOLOR;
+                    $title = \_AM_WGTIMELINES_TEMPLATE_BORDERCOLOR;
                 break;
                 case 'borderradius':
-                    $title = _AM_WGTIMELINES_TEMPLATE_BORDERRADIUS;
+                    $title = \_AM_WGTIMELINES_TEMPLATE_BORDERRADIUS;
                 break;
                 case 'boxshadow':
-                    $title = _AM_WGTIMELINES_TEMPLATE_BOXSHADOW;
+                    $title = \_AM_WGTIMELINES_TEMPLATE_BOXSHADOW;
                 break;
                 case 'orientation':
-                    $title = _AM_WGTIMELINES_TEMPLATE_ORIENTATION;
+                    $title = \_AM_WGTIMELINES_TEMPLATE_ORIENTATION;
                 break;
                 case 'datesspeed':
-                    $title = _AM_WGTIMELINES_TEMPLATE_DATESSPEED;
+                    $title = \_AM_WGTIMELINES_TEMPLATE_DATESSPEED;
                 break;
                 case 'issuesspeed':
-                    $title = _AM_WGTIMELINES_TEMPLATE_ISSUESSPEED;
+                    $title = \_AM_WGTIMELINES_TEMPLATE_ISSUESSPEED;
                 break;
                 case 'issuestransparency':
-                    $title = _AM_WGTIMELINES_TEMPLATE_ISSUESTRANSPARENCY;
+                    $title = \_AM_WGTIMELINES_TEMPLATE_ISSUESTRANSPARENCY;
                 break;case 'issuestransparencyspeed':
-                    $title = _AM_WGTIMELINES_TEMPLATE_ISSUESTRANSPARENCYSPEED;
+                    $title = \_AM_WGTIMELINES_TEMPLATE_ISSUESTRANSPARENCYSPEED;
                 break;
                 case 'autoplay':
-                    $title = _AM_WGTIMELINES_TEMPLATE_AUTOPLAY;
+                    $title = \_AM_WGTIMELINES_TEMPLATE_AUTOPLAY;
                 break;
                 case 'autoplaydirection':
-                    $title = _AM_WGTIMELINES_TEMPLATE_AUTOPLAY_DIRECTION;
+                    $title = \_AM_WGTIMELINES_TEMPLATE_AUTOPLAY_DIRECTION;
                 break;
                 case 'autoplaypause':
-                    $title = _AM_WGTIMELINES_TEMPLATE_AUTOPLAY_PAUSE;
+                    $title = \_AM_WGTIMELINES_TEMPLATE_AUTOPLAY_PAUSE;
                 break;
                 case 'arrowkeys':
-                    $title = _AM_WGTIMELINES_TEMPLATE_ARROWKEYS;
+                    $title = \_AM_WGTIMELINES_TEMPLATE_ARROWKEYS;
                 break;
                 case 'startat':
-                    $title = _AM_WGTIMELINES_TEMPLATE_STARTAT;
+                    $title = \_AM_WGTIMELINES_TEMPLATE_STARTAT;
                 break;
                 case 'fadein':
-                    $title = _AM_WGTIMELINES_TEMPLATE_FADEIN;
+                    $title = \_AM_WGTIMELINES_TEMPLATE_FADEIN;
                 break;
                 case 'panel_pos_single':
-                    $title = _AM_WGTIMELINES_TEMPLATE_PANELPOS;
+                    $title = \_AM_WGTIMELINES_TEMPLATE_PANELPOS;
                 break;
                 case 'showyear':
-                    $title = _AM_WGTIMELINES_TEMPLATE_SHOWYEAR;
+                    $title = \_AM_WGTIMELINES_TEMPLATE_SHOWYEAR;
                 break;
                 case 'badgecontent':
-                    $title = _AM_WGTIMELINES_TEMPLATE_BADGECONTENT;
+                    $title = \_AM_WGTIMELINES_TEMPLATE_BADGECONTENT;
                 break;
 
                 case 'else':
@@ -696,92 +697,92 @@ class Templates extends \XoopsObject
             // get proper option value
             $optval = $option['value'];
             if ($optval === 'none') {
-                $optval = _AM_WGTIMELINES_TEMPLATE_NONE;
+                $optval = \_AM_WGTIMELINES_TEMPLATE_NONE;
             }
             if ($optval === 'left') {
-                $optval = _AM_WGTIMELINES_TEMPLATE_LEFT;
+                $optval = \_AM_WGTIMELINES_TEMPLATE_LEFT;
             }
             if ($optval === 'right') {
-                $optval = _AM_WGTIMELINES_TEMPLATE_RIGHT;
+                $optval = \_AM_WGTIMELINES_TEMPLATE_RIGHT;
             }
             if ($optval === 'alternate') {
-                $optval = _AM_WGTIMELINES_TEMPLATE_ALTERNATE;
+                $optval = \_AM_WGTIMELINES_TEMPLATE_ALTERNATE;
             }
             if ($optval === 'bordered') {
-                $optval = _AM_WGTIMELINES_TEMPLATE_TABLEBORDERED;
+                $optval = \_AM_WGTIMELINES_TEMPLATE_TABLEBORDERED;
             }
             if ($optval === 'striped') {
-                $optval = _AM_WGTIMELINES_TEMPLATE_TABLESTRIPED;
+                $optval = \_AM_WGTIMELINES_TEMPLATE_TABLESTRIPED;
             }
             if ($optval === 'hover') {
-                $optval = _AM_WGTIMELINES_TEMPLATE_TABLEHOVER;
+                $optval = \_AM_WGTIMELINES_TEMPLATE_TABLEHOVER;
             }
             if ($optval === 'condensed') {
-                $optval = _AM_WGTIMELINES_TEMPLATE_TABLECONDENSED;
+                $optval = \_AM_WGTIMELINES_TEMPLATE_TABLECONDENSED;
             }
             if ($optval === 'img-rounded') {
-                $optval = _AM_WGTIMELINES_TEMPLATE_IMGSTYLE_ROUNDED;
+                $optval = \_AM_WGTIMELINES_TEMPLATE_IMGSTYLE_ROUNDED;
             }
             if ($optval === 'img-circle') {
-                $optval = _AM_WGTIMELINES_TEMPLATE_IMGSTYLE_CIRCLE;
+                $optval = \_AM_WGTIMELINES_TEMPLATE_IMGSTYLE_CIRCLE;
             }
             if ($optval === 'img-thumbnail') {
-                $optval = _AM_WGTIMELINES_TEMPLATE_IMGSTYLE_THUMB;
+                $optval = \_AM_WGTIMELINES_TEMPLATE_IMGSTYLE_THUMB;
             }
             if ($optval === 'top') {
-                $optval = _AM_WGTIMELINES_TEMPLATE_TOP;
+                $optval = \_AM_WGTIMELINES_TEMPLATE_TOP;
             }
             if ($optval === 'bottom') {
-                $optval = _AM_WGTIMELINES_TEMPLATE_BOTTOM;
+                $optval = \_AM_WGTIMELINES_TEMPLATE_BOTTOM;
             }
             if ($optval === 'full') {
-                $optval = _AM_WGTIMELINES_TEMPLATE_BADGESTYLE_FULL;
+                $optval = \_AM_WGTIMELINES_TEMPLATE_BADGESTYLE_FULL;
             }
             if ($optval === 'circle') {
-                $optval = _AM_WGTIMELINES_TEMPLATE_BADGESTYLE_CIRCLE;
+                $optval = \_AM_WGTIMELINES_TEMPLATE_BADGESTYLE_CIRCLE;
             }
             if ($optval === 'vertical') {
-                $optval = _AM_WGTIMELINES_TEMPLATE_ORIENTATION_V;
+                $optval = \_AM_WGTIMELINES_TEMPLATE_ORIENTATION_V;
             }
             if ($optval === 'horizontal') {
-                $optval = _AM_WGTIMELINES_TEMPLATE_ORIENTATION_H;
+                $optval = \_AM_WGTIMELINES_TEMPLATE_ORIENTATION_H;
             }
             if ($optval === 'forward') {
-                $optval = _AM_WGTIMELINES_TEMPLATE_AUTOPLAY_DIRECTION_FW;
+                $optval = \_AM_WGTIMELINES_TEMPLATE_AUTOPLAY_DIRECTION_FW;
             }
             if ($optval === 'backward') {
-                $optval = _AM_WGTIMELINES_TEMPLATE_AUTOPLAY_DIRECTION_BW;
+                $optval = \_AM_WGTIMELINES_TEMPLATE_AUTOPLAY_DIRECTION_BW;
             }
             if ($optval === 'fly') {
-                $optval = _AM_WGTIMELINES_TEMPLATE_FADEIN_FLY;
+                $optval = \_AM_WGTIMELINES_TEMPLATE_FADEIN_FLY;
             }
             if ($optval === 'appear') {
-                $optval = _AM_WGTIMELINES_TEMPLATE_FADEIN_APPEAR;
+                $optval = \_AM_WGTIMELINES_TEMPLATE_FADEIN_APPEAR;
             }
             if ($optval === 'changed') {
-                $optval = _AM_WGTIMELINES_TEMPLATE_SHOWYEAR_CHANGED;
+                $optval = \_AM_WGTIMELINES_TEMPLATE_SHOWYEAR_CHANGED;
             }
             if ($optval === 'all') {
-                $optval = _AM_WGTIMELINES_TEMPLATE_SHOWYEAR_ALL;
+                $optval = \_AM_WGTIMELINES_TEMPLATE_SHOWYEAR_ALL;
             }
             if ($optval === 'year') {
-                $optval = _AM_WGTIMELINES_TEMPLATE_BADGECONTENT_YEAR;
+                $optval = \_AM_WGTIMELINES_TEMPLATE_BADGECONTENT_YEAR;
             }
             if ($optval === 'glyphicon') {
-                $optval = _AM_WGTIMELINES_TEMPLATE_BADGECONTENT_GLYPH;
+                $optval = \_AM_WGTIMELINES_TEMPLATE_BADGECONTENT_GLYPH;
             }
 
-            $ret_options[] = array('name' => $option['name'],
+            $ret_options[] = ['name' => $option['name'],
                                     'valid' => $option['valid'],
                                     'value' => $optval,
                                     'title' => $title,
-                                    'type' => $option['type']);
+                                    'type' => $option['type']];
         }
         $ret['options'] = $ret_options;
         $ret['version'] = $this->getVar('tpl_version');
         $ret['author'] = $this->getVar('tpl_author');
         $ret['date_create'] = $this->getVar('tpl_date_create');
-        $ret['date_create_formatted'] = formatTimestamp($this->getVar('tpl_date_create'));
+        $ret['date_create_formatted'] = \formatTimestamp($this->getVar('tpl_date_create'));
         return $ret;
     }
 
@@ -792,9 +793,9 @@ class Templates extends \XoopsObject
      */
     public function toArrayTemplates()
     {
-        $ret = array();
+        $ret = [];
         $vars =& $this->getVars();
-        foreach (array_keys($vars) as $var) {
+        foreach (\array_keys($vars) as $var) {
             $ret[$var] = $this->getVar('"{$var}"');
         }
         return $ret;

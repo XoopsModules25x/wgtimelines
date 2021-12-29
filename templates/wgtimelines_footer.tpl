@@ -1,19 +1,19 @@
-<{if $bookmarks != 0}>
+<{if $bookmarks|default:false != 0}>
 <{include file="db:system_bookmarks.tpl"}>
 <{/if}>
 
-<{if $fbcomments != 0}>
+<{if $fbcomments|default:false != 0}>
 <{include file="db:system_fbcomments.tpl"}>
 <{/if}>
 
-<{if $copyright}>
+<{if $copyright|default}>
 <div class="pull-left"><{$copyright}></div>
 <{/if}>
 
-<{if $pagenav != ''}>
+<{if $pagenav|default:false != ''}>
     <div class="pull-right"><{$pagenav}></div>
 <{/if}>
 <br>
-<{if $xoops_isadmin}>
+<{if $xoops_isadmin|default:false}>
    <div class="text-center bold"><a href="<{$admin}>"><{$smarty.const._CO_WGTIMELINES_ADMIN}></a></div><br>
 <{/if}>

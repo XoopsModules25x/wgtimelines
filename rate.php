@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /*
  You may not change or alter any portion of this comment or credits
  of supporting developers from this source code or any supporting source code
@@ -31,19 +34,19 @@ switch ($op) {
     case 'save-item':
         // Security Check
         if ($GLOBALS['xoopsSecurity']->check()) {
-            redirect_header('index.php', 3, implode(',', $GLOBALS['xoopsSecurity']->getErrors()));
+            \redirect_header('index.php', 3, \implode(',', $GLOBALS['xoopsSecurity']->getErrors()));
         }
 
         $itemid = Request::getInt('item_id');
         $rating = Request::getInt('rating');
-        $tl_id  = Request::getInt('tl_id', 0);
+        $tl_id  = Request::getInt('tl_id');
 
         // Checking permissions
         $rate_allowed = false;
         if ($helper->getConfig('ratingbars')) {
-            $groups = (isset($GLOBALS['xoopsUser']) && is_object($GLOBALS['xoopsUser'])) ? $GLOBALS['xoopsUser']->getGroups() : XOOPS_GROUP_ANONYMOUS;
+            $groups = (isset($GLOBALS['xoopsUser']) && \is_object($GLOBALS['xoopsUser'])) ? $GLOBALS['xoopsUser']->getGroups() : \XOOPS_GROUP_ANONYMOUS;
             foreach ($groups as $group) {
-                if (XOOPS_GROUP_ADMIN == $group || in_array($group, $helper->getConfig('ratingbar_groups'))) {
+                if (\XOOPS_GROUP_ADMIN == $group || \in_array($group, $helper->getConfig('ratingbar_groups'))) {
                     $rate_allowed = true;
                     break;
                 }
@@ -51,7 +54,7 @@ switch ($op) {
         }
 
         if (!$rate_allowed) {
-            redirect_header(WGTIMELINES_URL . '/index.php?tl_id=' . $tl_id . '#item' . $itemid, 2, _MA_WGTIMELINES_RATING_NOPERM);
+            \redirect_header(\WGTIMELINES_URL . '/index.php?tl_id=' . $tl_id . '#item' . $itemid, 2, \_MA_WGTIMELINES_RATING_NOPERM);
         }
 
         $redir = $_SERVER['HTTP_REFERER'];
@@ -60,14 +63,14 @@ switch ($op) {
         }
 
         if ($rating > 5 || $rating < 1) {
-            redirect_header($redir, 2, _MA_WGTIMELINES_RATING_VOTE_BAD);
+            \redirect_header($redir, 2, \_MA_WGTIMELINES_RATING_VOTE_BAD);
             exit();
         }
 
         $itemrating = $ratingsHandler->getItemRating($itemid);
 
         if ($itemrating['voted']) {
-            redirect_header($redir, 2, _MA_WGTIMELINES_RATING_VOTE_ALREADY);
+            \redirect_header($redir, 2, \_MA_WGTIMELINES_RATING_VOTE_ALREADY);
         }
 
         $ratingsObj = $ratingsHandler->create();
@@ -75,10 +78,10 @@ switch ($op) {
         $ratingsObj->setVar('rate_value', $rating);
         $ratingsObj->setVar('rate_uid', $itemrating['uid']);
         $ratingsObj->setVar('rate_ip', $itemrating['ip']);
-        $ratingsObj->setVar('rate_date', time());
+        $ratingsObj->setVar('rate_date', \time());
         // Insert Data
         if ($ratingsHandler->insert($ratingsObj)) {
-            redirect_header($redir, 2, _MA_WGTIMELINES_RATING_VOTE_THANKS);
+            \redirect_header($redir, 2, \_MA_WGTIMELINES_RATING_VOTE_THANKS);
         }
         echo '<br>error:' . $ratingsObj->getHtmlErrors();
 
@@ -86,6 +89,6 @@ switch ($op) {
 
     case 'default':
     default:
-        echo _MA_WGTIMELINES_RATING_VOTE_BAD . ' (invalid parameter)';
+        echo \_MA_WGTIMELINES_RATING_VOTE_BAD . ' (invalid parameter)';
         break;
 }

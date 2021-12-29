@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /*
  You may not change or alter any portion of this comment or credits
  of supporting developers from this source code or any supporting source code
@@ -28,26 +31,25 @@ use XoopsModules\Wgtimelines\Constants;
 include __DIR__ . '/header.php';
 $GLOBALS['xoopsOption']['template_main'] = 'wgtimelines_admin_image_editor.tpl';
 
-require_once XOOPS_ROOT_PATH . '/header.php';
+require_once \XOOPS_ROOT_PATH . '/header.php';
 
-/** @var \XoopsModules\Wgtimelines\Utility $utility */
 $utility = new \XoopsModules\Wgtimelines\Utility();
 
 $op         = Request::getString('op', 'list');
-$itemId     = Request::getInt('item_id', 0);
+$itemId     = Request::getInt('item_id');
 $origin     = Request::getString('imageOrigin');
-$timelineId = Request::getInt('tl_id', 0);
-$start      = Request::getInt('start', 0);
+$timelineId = Request::getInt('tl_id');
+$start      = Request::getInt('start');
 $limit      = Request::getInt('limit', $helper->getConfig('adminpager'));
 
 // get all objects/classes/vars needed for image editor
 $imageClass = 0;
 $imgCurrent = [];
 if ('item_id' === $origin) {
-    $itemId = Request::getInt('imageIdCrop', 0);
+    $itemId = Request::getInt('imageIdCrop');
 }
 if ('tl_id' === $origin) {
-    $timelineId = Request::getInt('imageIdCrop', 0);
+    $timelineId = Request::getInt('imageIdCrop');
 }
 if ( 0 < $itemId ) {
 	$imageId      = $itemId;
@@ -64,17 +66,17 @@ if ( 0 < $itemId ) {
 		$imageClass   = Constants::IMAGECLASS_TIMELINE;
         $imageOrigin  = 'tl_id';
 	} else {
-		redirect_header('index.php', 3, _AM_WGTIMELINES_FORM_ERROR_INVALID_ID);
+		\redirect_header('index.php', 3, \_AM_WGTIMELINES_FORM_ERROR_INVALID_ID);
 	}
 }
 
 if ($imageClass === Constants::IMAGECLASS_ITEM) {
     $imgName  = 'item' . $imageId . '.jpg';
     $imageDir = '/uploads/wgtimelines/images/items/';
-    $imgPath  = XOOPS_ROOT_PATH . $imageDir;
-    $imgUrl   = XOOPS_URL . $imageDir;
+    $imgPath  = \XOOPS_ROOT_PATH . $imageDir;
+    $imgUrl   = \XOOPS_URL . $imageDir;
     $imgFinal = $imgPath . $imgName;
-    $imgTemp  = WGTIMELINES_UPLOAD_PATH . '/temp/' . $imgName;
+    $imgTemp  = \WGTIMELINES_UPLOAD_PATH . '/temp/' . $imgName;
     $redir    = "items.php?op=list&amp;item_id=$imageId&amp;tl_id=$imageTlId&amp;start=$start&amp;limit=$limit";
     $nameObj  = 'item_title';
     $fieldObj = 'item_image';
@@ -82,10 +84,10 @@ if ($imageClass === Constants::IMAGECLASS_ITEM) {
 } else {
     $imgName  = 'timeline' . $imageId . '.jpg';
     $imageDir = '/uploads/wgtimelines/images/timelines/';
-    $imgPath  = XOOPS_ROOT_PATH . $imageDir;
-    $imgUrl   = XOOPS_URL . $imageDir;
+    $imgPath  = \XOOPS_ROOT_PATH . $imageDir;
+    $imgUrl   = \XOOPS_URL . $imageDir;
     $imgFinal = $imgPath . $imgName;
-    $imgTemp  = WGTIMELINES_UPLOAD_PATH . '/temp/' . $imgName;
+    $imgTemp  = \WGTIMELINES_UPLOAD_PATH . '/temp/' . $imgName;
     $redir    = 'timelines.php?op=list&amp;start=' . $start . '&amp;limit=' . $limit;
     $nameObj  = 'tl_name';
     $fieldObj = 'tl_image';
@@ -123,18 +125,18 @@ unset($images);
 $uid = $xoopsUser instanceof \XoopsUser ? $xoopsUser->id() : 0;
 
 // Define Stylesheet
-$GLOBALS['xoTheme']->addStylesheet(WGTIMELINES_URL . '/assets/css/style.css');
-$GLOBALS['xoTheme']->addStylesheet(WGTIMELINES_URL . '/assets/css/imageeditor.css');
+$GLOBALS['xoTheme']->addStylesheet(\WGTIMELINES_URL . '/assets/css/style.css');
+$GLOBALS['xoTheme']->addStylesheet(\WGTIMELINES_URL . '/assets/css/imageeditor.css');
 
 // add scripts
-$GLOBALS['xoTheme']->addScript(XOOPS_URL . '/modules/wgtimelines/assets/js/admin.js');
+$GLOBALS['xoTheme']->addScript(\XOOPS_URL . '/modules/wgtimelines/assets/js/admin.js');
 
 // assign vars
-$GLOBALS['xoopsTpl']->assign('wgtimelines_url', WGTIMELINES_URL);
-$GLOBALS['xoopsTpl']->assign('wgtimelines_icon_url_16', WGTIMELINES_ICONS_URL . '/16');
-$GLOBALS['xoopsTpl']->assign('wgtimelines_icon_url_32', WGTIMELINES_ICONS_URL . '/32');
-$GLOBALS['xoopsTpl']->assign('wgtimelines_upload_url', WGTIMELINES_UPLOAD_URL);
-$GLOBALS['xoopsTpl']->assign('wgtimelines_upload_path', WGTIMELINES_UPLOAD_PATH);
+$GLOBALS['xoopsTpl']->assign('wgtimelines_url', \WGTIMELINES_URL);
+$GLOBALS['xoopsTpl']->assign('wgtimelines_icon_url_16', \WGTIMELINES_ICONS_URL . '/16');
+$GLOBALS['xoopsTpl']->assign('wgtimelines_icon_url_32', \WGTIMELINES_ICONS_URL . '/32');
+$GLOBALS['xoopsTpl']->assign('wgtimelines_upload_url', \WGTIMELINES_UPLOAD_URL);
+$GLOBALS['xoopsTpl']->assign('wgtimelines_upload_path', \WGTIMELINES_UPLOAD_PATH);
 $GLOBALS['xoopsTpl']->assign('wgtimelines_upload_image_url', $imgUrl);
 $GLOBALS['xoopsTpl']->assign('gridtarget', $imgName);
 $GLOBALS['xoopsTpl']->assign('imgCurrent', $imgCurrent);
@@ -145,7 +147,7 @@ $GLOBALS['xoopsTpl']->assign('limit', $limit);
 
 // Breadcrumbs
 $GLOBALS['xoopsTpl']->assign('show_breadcrumbs', $helper->getConfig('show_breadcrumbs'));
-$xoBreadcrumbs[] = ['title' => _AM_WGTIMELINES_IMG_EDITOR];
+$xoBreadcrumbs[] = ['title' => \_AM_WGTIMELINES_IMG_EDITOR];
 
 // get config for images
 $maxwidth  = $helper->getConfig('maxwidth_imgeditor');
@@ -158,50 +160,50 @@ switch ($op) {
     case 'creategrid':
         // create an image grid based on given sources
         $type   = Request::getInt('type', 4);
-        $src[1] = Request::getString('src1', '');
-        $src[2] = Request::getString('src2', '');
-        $src[3] = Request::getString('src3', '');
-        $src[4] = Request::getString('src4', '');
-        $src[5] = Request::getString('src5', '');
-        $src[6] = Request::getString('src6', '');
-        $target = Request::getString('target', '');
+        $src[1] = Request::getString('src1');
+        $src[2] = Request::getString('src2');
+        $src[3] = Request::getString('src3');
+        $src[4] = Request::getString('src4');
+        $src[5] = Request::getString('src5');
+        $src[6] = Request::getString('src6');
+        $target = Request::getString('target');
         // replace thumbs dir by dir for medium images, only for wggallery
-        // $src[1] = str_replace('/thumbs/', '/medium/', $src[1]);
-        // $src[2] = str_replace('/thumbs/', '/medium/', $src[2]);
-        // $src[3] = str_replace('/thumbs/', '/medium/', $src[3]);
-        // $src[4] = str_replace('/thumbs/', '/medium/', $src[4]);
-        // $src[5] = str_replace('/thumbs/', '/medium/', $src[5]);
-        // $src[6] = str_replace('/thumbs/', '/medium/', $src[6]);
+        // $src[1] = \str_replace('/thumbs/', '/medium/', $src[1]);
+        // $src[2] = \str_replace('/thumbs/', '/medium/', $src[2]);
+        // $src[3] = \str_replace('/thumbs/', '/medium/', $src[3]);
+        // $src[4] = \str_replace('/thumbs/', '/medium/', $src[4]);
+        // $src[5] = \str_replace('/thumbs/', '/medium/', $src[5]);
+        // $src[6] = \str_replace('/thumbs/', '/medium/', $src[6]);
         
         $images = [];
         for ($i = 1; $i <= 6; $i++) {
             if ('' !== $src[$i]) {
-                $file       = str_replace(XOOPS_URL, XOOPS_ROOT_PATH, $src[$i]);
-                $images[$i] = ['file' => $file, 'mimetype' => mime_content_type($file)];
+                $file       = \str_replace(\XOOPS_URL, \XOOPS_ROOT_PATH, $src[$i]);
+                $images[$i] = ['file' => $file, 'mimetype' => \mime_content_type($file)];
             }
         }
 
         // create basic image
-        $tmp   = imagecreatetruecolor($maxwidth, $maxheight);
+        $tmp   = \imagecreatetruecolor($maxwidth, $maxheight);
         $imgBg = imagecolorallocate($tmp, 0, 0, 0);
         imagefilledrectangle($tmp, 0, 0, $maxwidth, $maxheight, $imgBg);
 
         $final = XOOPS_UPLOAD_PATH . '/wgtimelines/temp/' . $target;
-        unlink($final);
-        imagejpeg($tmp, $final);
-        imagedestroy($tmp);
+        \unlink($final);
+        \imagejpeg($tmp, $final);
+        \imagedestroy($tmp);
 
         $imgTemp = XOOPS_UPLOAD_PATH . '/wgtimelines/temp/' . $uid . 'imgTemp';
 
         $imgHandler = new Wgtimelines\Resizer();
         if (4 === $type) {
             for ($i = 1; $i <= 4; $i++) {
-                unlink($imgTemp . $i . '.jpg');
+                \unlink($imgTemp . $i . '.jpg');
                 $imgHandler->sourceFile    = $images[$i]['file'];
                 $imgHandler->endFile       = $imgTemp . $i . '.jpg';
                 $imgHandler->imageMimetype = $images[$i]['mimetype'];
-                $imgHandler->maxWidth      = (int)round($maxwidth / 2 - 1);
-                $imgHandler->maxHeight     = (int)round($maxheight / 2 - 1);
+                $imgHandler->maxWidth      = (int)\round($maxwidth / 2 - 1);
+                $imgHandler->maxHeight     = (int)\round($maxheight / 2 - 1);
                 $imgHandler->jpgQuality    = 90;
                 $imgHandler->resizeAndCrop();
             }
@@ -213,7 +215,7 @@ switch ($op) {
                 $imgHandler->sourceFile = $imgTemp . $i . '.jpg';
                 $imgHandler->mergePos   = $i;
                 $imgHandler->mergeImage();
-                unlink($imgTemp . $i . '.jpg');
+                \unlink($imgTemp . $i . '.jpg');
             }
         }
         if (6 === $type) {
@@ -221,8 +223,8 @@ switch ($op) {
                 $imgHandler->sourceFile    = $images[$i]['file'];
                 $imgHandler->endFile       = $imgTemp . $i . '.jpg';
                 $imgHandler->imageMimetype = $images[$i]['mimetype'];
-                $imgHandler->maxWidth      = (int)round($maxwidth / 3 - 1);
-                $imgHandler->maxHeight     = (int)round($maxheight / 2 - 1);
+                $imgHandler->maxWidth      = (int)\round($maxwidth / 3 - 1);
+                $imgHandler->maxHeight     = (int)\round($maxheight / 2 - 1);
                 $imgHandler->resizeAndCrop();
             }
             $imgHandler->mergeType = 6;
@@ -233,7 +235,7 @@ switch ($op) {
                 $imgHandler->sourceFile = $imgTemp . $i . '.jpg';
                 $imgHandler->mergePos   = $i;
                 $imgHandler->mergeImage();
-                unlink($imgTemp . $i . '.jpg');
+                \unlink($imgTemp . $i . '.jpg');
             }
         }
 
@@ -241,10 +243,10 @@ switch ($op) {
 
     case 'cropimage':
         // save base64_image and resize to maxwidth/maxheight
-        $base64_image_content = Request::getString('croppedImage', '');
-        if (preg_match('/^(data:\s*image\/(\w+);base64,)/', $base64_image_content, $result)) {
+        $base64_image_content = Request::getString('croppedImage');
+        if (\preg_match('/^(data:\s*image\/(\w+);base64,)/', $base64_image_content, $result)) {
             $type = $result[2];
-            file_put_contents($imgTemp, base64_decode(str_replace($result[1], '', $base64_image_content), true));
+            \file_put_contents($imgTemp, base64_decode(\str_replace($result[1], '', $base64_image_content), true));
         }
 
         $imgHandler                = new Wgtimelines\Resizer();
@@ -255,19 +257,19 @@ switch ($op) {
         $imgHandler->maxHeight     = $maxheight;
         $ret                       = $imgHandler->resizeImage();
 
-        unlink($imgFinal);
+        \unlink($imgFinal);
         break;
     case 'saveImageSelected':
         // save image selected from list of available images in upload folder
         // Set Vars
         $image_id = Request::getString('image_id');
         // remove '_image' from id
-        $image_id = substr($image_id, 0, -6);
+        $image_id = \substr($image_id, 0, -6);
         $imageObj->setVar($fieldObj, $image_id);
 		$imageObj->setVar($submObj, $uid);
         // Insert Data
         if ($imageHandler->insert($imageObj)) {  
-			redirect_header($redir, 2, _AM_WGTIMELINES_FORM_OK);
+			\redirect_header($redir, 2, \_AM_WGTIMELINES_FORM_OK);
         }
         $GLOBALS['xoopsTpl']->assign('error', $imageObj->getHtmlErrors());
         break;
@@ -275,39 +277,39 @@ switch ($op) {
     case 'saveGrid':
         // save before created grid image
         $imgTempGrid = Request::getString('gridImgFinal');
-        $ret = rename($imgTempGrid, $imgFinal);
+        $ret = \rename($imgTempGrid, $imgFinal);
         // Set Vars
         $imageObj->setVar($fieldObj, $imgName);
 		$imageObj->setVar($submObj, $uid);
         // Insert Data
         if ($imageHandler->insert($imageObj)) {
-			redirect_header($redir, 2, _AM_WGTIMELINES_FORM_OK);
+			\redirect_header($redir, 2, \_AM_WGTIMELINES_FORM_OK);
         }
         $GLOBALS['xoopsTpl']->assign('error', $imageObj->getHtmlErrors());
 
         break;
     case 'saveCrop':
         // save before created grid image
-        $ret = rename($imgTemp, $imgFinal);
+        $ret = \rename($imgTemp, $imgFinal);
         // Set Vars
         $imageObj->setVar($fieldObj, $imgName);
         $imageObj->setVar($submObj, $uid);
         // Insert Data
         if ($imageHandler->insert($imageObj, true)) {
-            redirect_header($redir, 2, _AM_WGTIMELINES_FORM_OK);
+            \redirect_header($redir, 2, \_AM_WGTIMELINES_FORM_OK);
         }
         $GLOBALS['xoopsTpl']->assign('error', $imageObj->getHtmlErrors());
 
         break;
     case 'uploadImage':
         // Set Vars
-        require_once XOOPS_ROOT_PATH . '/class/uploader.php';
+        require_once \XOOPS_ROOT_PATH . '/class/uploader.php';
         $fileName       = $_FILES['attachedfile']['name'];
         $imageMimetype  = $_FILES['attachedfile']['type'];
         $uploaderErrors = '';
         $uploader       = new \XoopsMediaUploader($imgPath, $mimetypes, $maxsize, null, null);
         if ($uploader->fetchMedia($_POST['xoops_upload_file'][0])) {
-            $extension = preg_replace('/^.+\.([^.]+)$/sU', '', $fileName);
+            $extension = \preg_replace('/^.+\.([^.]+)$/sU', '', $fileName);
             $imgName   = 'image_' . $itemId . '.' . $extension;
             $uploader->setPrefix($imgName);
             $uploader->fetchMedia($_POST['xoops_upload_file'][0]);
@@ -336,11 +338,11 @@ switch ($op) {
             }
         }
         if ('' !== $uploaderErrors) {
-            redirect_header($redir, $uploaderErrors);
+            \redirect_header($redir, $uploaderErrors);
         }
         // Insert Data
         if ($imageHandler->insert($imageObj)) {
-            redirect_header($redir, 2, _AM_WGTIMELINES_FORM_OK);
+            \redirect_header($redir, 2, \_AM_WGTIMELINES_FORM_OK);
         }
         // Get Form
         $GLOBALS['xoopsTpl']->assign('error', $imageObj->getHtmlErrors());
@@ -350,9 +352,9 @@ switch ($op) {
         
     case 'imghandler':
     default:
-        $GLOBALS['xoTheme']->addStylesheet(WGTIMELINES_URL . '/assets/css/cropper.min.css');
-        $GLOBALS['xoTheme']->addScript(WGTIMELINES_URL . '/assets/js/cropper.min.js');
-        $GLOBALS['xoTheme']->addScript(WGTIMELINES_URL . '/assets/js/cropper-main.js');
+        $GLOBALS['xoTheme']->addStylesheet(\WGTIMELINES_URL . '/assets/css/cropper.min.css');
+        $GLOBALS['xoTheme']->addScript(\WGTIMELINES_URL . '/assets/js/cropper.min.js');
+        $GLOBALS['xoTheme']->addScript(\WGTIMELINES_URL . '/assets/js/cropper-main.js');
 
         $GLOBALS['xoopsTpl']->assign('nbModals', [1, 2, 3, 4, 5, 6]);
 		
@@ -363,7 +365,7 @@ switch ($op) {
         }
         $image_path = $imgPath . $currImage;
         // get size of current album image
-        list($width, $height, $type, $attr) = getimagesize($image_path);
+        list($width, $height, $type, $attr) = \getimagesize($image_path);
         $GLOBALS['xoopsTpl']->assign('image_path', $image_path);
         $GLOBALS['xoopsTpl']->assign('albimage_width', $width);
         $GLOBALS['xoopsTpl']->assign('albimage_height', $height);
@@ -379,7 +381,7 @@ switch ($op) {
 $GLOBALS['xoopsTpl']->assign('panel_type', $helper->getConfig('panel_type'));
 
 // Description
-// $utility::getMetaDescription(_AM_WGTIMELINES_ALBUMS);
+// $utility::getMetaDescription(\_AM_WGTIMELINES_ALBUMS);
 
 include __DIR__ . '/footer.php';
 
@@ -394,11 +396,11 @@ function getFormUploadImage($imageOrigin, $imageId)
 {
     $helper = \XoopsModules\Wgtimelines\Helper::getInstance();
     // Get Theme Form
-    xoops_load('XoopsFormLoader');
+    \xoops_load('XoopsFormLoader');
     $form = new \XoopsThemeForm('', 'formuploadimmage', 'image_editor.php', 'post', true);
     $form->setExtra('enctype="multipart/form-data"');
     // upload new image
-    $imageTray3      = new \XoopsFormElementTray(_AM_WGTIMELINES_FORM_UPLOAD_IMG, '<br>');
+    $imageTray3      = new \XoopsFormElementTray(\_AM_WGTIMELINES_FORM_UPLOAD_IMG, '<br>');
     $imageFileSelect = new \XoopsFormFile('', 'attachedfile', $helper->getConfig('maxsize'));
     $imageTray3->addElement($imageFileSelect);
     $form->addElement($imageTray3);

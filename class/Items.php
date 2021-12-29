@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace XoopsModules\Wgtimelines;
 
 /*
@@ -26,7 +28,7 @@ namespace XoopsModules\Wgtimelines;
  
 use XoopsModules\Wgtimelines;
  
-defined('XOOPS_ROOT_PATH') || die('Restricted access');
+\defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
 /**
  * Class Object WgtimelinesItems
@@ -40,21 +42,21 @@ class Items extends \XoopsObject
      */
     public function __construct()
     {
-        $this->initVar('item_id', XOBJ_DTYPE_INT);
-        $this->initVar('item_tl_id', XOBJ_DTYPE_INT);
-        $this->initVar('item_title', XOBJ_DTYPE_TXTBOX);
-        $this->initVar('item_content', XOBJ_DTYPE_TXTAREA);
-        $this->initVar('item_image', XOBJ_DTYPE_TXTBOX);
-        $this->initVar('item_date', XOBJ_DTYPE_INT);
-        $this->initVar('item_item', XOBJ_DTYPE_INT);
-        $this->initVar('item_year', XOBJ_DTYPE_TXTBOX);
-        $this->initVar('item_icon', XOBJ_DTYPE_TXTBOX);
-        $this->initVar('item_weight', XOBJ_DTYPE_INT);
-        $this->initVar('item_online', XOBJ_DTYPE_INT);
-        $this->initVar('item_reads', XOBJ_DTYPE_INT);
-        $this->initVar('item_submitter', XOBJ_DTYPE_INT);
-        $this->initVar('item_date_create', XOBJ_DTYPE_INT);
-        $this->initVar('dohtml', XOBJ_DTYPE_INT, 1, false);
+        $this->initVar('item_id', \XOBJ_DTYPE_INT);
+        $this->initVar('item_tl_id', \XOBJ_DTYPE_INT);
+        $this->initVar('item_title', \XOBJ_DTYPE_TXTBOX);
+        $this->initVar('item_content', \XOBJ_DTYPE_TXTAREA);
+        $this->initVar('item_image', \XOBJ_DTYPE_TXTBOX);
+        $this->initVar('item_date', \XOBJ_DTYPE_INT);
+        $this->initVar('item_item', \XOBJ_DTYPE_INT);
+        $this->initVar('item_year', \XOBJ_DTYPE_TXTBOX);
+        $this->initVar('item_icon', \XOBJ_DTYPE_TXTBOX);
+        $this->initVar('item_weight', \XOBJ_DTYPE_INT);
+        $this->initVar('item_online', \XOBJ_DTYPE_INT);
+        $this->initVar('item_reads', \XOBJ_DTYPE_INT);
+        $this->initVar('item_submitter', \XOBJ_DTYPE_INT);
+        $this->initVar('item_date_create', \XOBJ_DTYPE_INT);
+        $this->initVar('dohtml', \XOBJ_DTYPE_INT, 1, false);
     }
 
 
@@ -76,8 +78,7 @@ class Items extends \XoopsObject
      */
     public function getNewInsertedIdItems()
     {
-        $newInsertedId = $GLOBALS['xoopsDB']->getInsertId();
-        return $newInsertedId;
+        return $GLOBALS['xoopsDB']->getInsertId();
     }
 
     /**
@@ -94,21 +95,21 @@ class Items extends \XoopsObject
             $action = $_SERVER['REQUEST_URI'];
         }
         // Title
-        $title = $this->isNew() ? sprintf(_AM_WGTIMELINES_ITEM_ADD) : sprintf(_AM_WGTIMELINES_ITEM_EDIT);
+        $title = $this->isNew() ? \sprintf(\_AM_WGTIMELINES_ITEM_ADD) : \sprintf(\_AM_WGTIMELINES_ITEM_EDIT);
         // Get Theme Form
-        xoops_load('XoopsFormLoader');
+        \xoops_load('XoopsFormLoader');
         $form = new \XoopsThemeForm($title, 'form', $action, 'post', true);
         $form->setExtra('enctype="multipart/form-data"');
         // Form Table Items
         $timelinesHandler = $helper->getHandler('Timelines');
-        $itemTl_idSelect = new \XoopsFormSelect(_AM_WGTIMELINES_ITEM_TL_ID, 'item_tl_id', $this->getVar('item_tl_id'));
-        $itemTl_idSelect->addOption(0, _AM_WGTIMELINES_ITEM_NONE);
+        $itemTl_idSelect = new \XoopsFormSelect(\_AM_WGTIMELINES_ITEM_TL_ID, 'item_tl_id', $this->getVar('item_tl_id'));
+        $itemTl_idSelect->addOption(0, \_AM_WGTIMELINES_ITEM_NONE);
         $itemTl_idSelect->addOptionArray($timelinesHandler->getList());
         $form->addElement($itemTl_idSelect, true);
         // Form Text ItemTitle
-        $form->addElement(new \XoopsFormText(_AM_WGTIMELINES_ITEM_TITLE, 'item_title', 50, 255, $this->getVar('item_title')));
+        $form->addElement(new \XoopsFormText(\_AM_WGTIMELINES_ITEM_TITLE, 'item_title', 50, 255, $this->getVar('item_title')));
         // Form editor ItemContent
-        $editorConfigs = array();
+        $editorConfigs = [];
         $editorConfigs['name'] = 'item_content';
         $editorConfigs['value'] = $this->getVar('item_content', 'e');
         $editorConfigs['rows'] = 5;
@@ -116,53 +117,53 @@ class Items extends \XoopsObject
         $editorConfigs['width'] = '100%';
         $editorConfigs['height'] = '400px';
         $editorConfigs['editor'] = $helper->getConfig('wgtimelines_editor');
-        $form->addElement(new \XoopsFormEditor(_AM_WGTIMELINES_ITEM_CONTENT, 'item_content', $editorConfigs), true);
+        $form->addElement(new \XoopsFormEditor(\_AM_WGTIMELINES_ITEM_CONTENT, 'item_content', $editorConfigs), true);
         
         // Form Image
         $imageDirectory = '/uploads/wgtimelines/images/items';
         if ($this->isNew()) {
             $itemImage = 'blank.gif';
-            $imageTray = new \XoopsFormElementTray(_AM_WGTIMELINES_ITEM_IMAGE, '<br>');
-            $imageSelect = new \XoopsFormSelect(sprintf(_AM_WGTIMELINES_FORM_IMAGE_PATH, ".{$imageDirectory}/"), 'item_image', $itemImage, 5);
-            $imageArray = \XoopsLists::getImgListAsArray(XOOPS_ROOT_PATH . $imageDirectory);
+            $imageTray = new \XoopsFormElementTray(\_AM_WGTIMELINES_ITEM_IMAGE, '<br>');
+            $imageSelect = new \XoopsFormSelect(\sprintf(\_AM_WGTIMELINES_FORM_IMAGE_PATH, ".{$imageDirectory}/"), 'item_image', $itemImage, 5);
+            $imageArray = \XoopsLists::getImgListAsArray(\XOOPS_ROOT_PATH . $imageDirectory);
             foreach ($imageArray as $image1) {
                 $imageSelect->addOption("{$image1}", $image1);
             }
-            $imageSelect->setExtra("onchange='showImgSelected(\"image1\", \"item_image\", \"".$imageDirectory . '", "", "' . XOOPS_URL . "\")'");
+            $imageSelect->setExtra("onchange='showImgSelected(\"image1\", \"item_image\", \"".$imageDirectory . '", "", "' . \XOOPS_URL . "\")'");
             $imageTray->addElement($imageSelect, false);
-            $imageTray->addElement(new \XoopsFormLabel('', "<br><img src='".XOOPS_URL . "$imageDirectory/$itemImage' name='image1' id='image1' alt='$itemImage' style='max-width:100px;' />"));
+            $imageTray->addElement(new \XoopsFormLabel('', "<br><img src='".\XOOPS_URL . "$imageDirectory/$itemImage' name='image1' id='image1' alt='$itemImage' style='max-width:100px;' />"));
             // Form File
             $fileSelectTray = new \XoopsFormElementTray('', '<br>');
-            $fileSelectTray->addElement(new \XoopsFormFile(_AM_WGTIMELINES_FORM_UPLOAD_IMAGE, 'attachedfile', $helper->getConfig('maxsize')));
+            $fileSelectTray->addElement(new \XoopsFormFile(\_AM_WGTIMELINES_FORM_UPLOAD_IMAGE, 'attachedfile', $helper->getConfig('maxsize')));
             $fileSelectTray->addElement(new \XoopsFormLabel(''));
             $imageTray->addElement($fileSelectTray);
             $form->addElement($imageTray);
         } else {
             $itemID = $this->getVar('item_id');
-            $imgButton = "<input type='button' value='...' onclick='window.location.href=\"" . XOOPS_URL . "/modules/wgtimelines/admin/image_editor.php?op=edit_item&item_id=$itemID\"'>";
+            $imgButton = "<input type='button' value='...' onclick='window.location.href=\"" . \XOOPS_URL . "/modules/wgtimelines/admin/image_editor.php?op=edit_item&item_id=$itemID\"'>";
             $itemImage = $this->getVar('item_image');
             
-            $form->addElement(new \XoopsFormLabel(_AM_WGTIMELINES_ITEM_IMAGE,"<img src='".XOOPS_URL . "$imageDirectory/$itemImage' name='image1' id='image1' alt='$itemImage' style='max-width:100px;' />$imgButton"));
+            $form->addElement(new \XoopsFormLabel(\_AM_WGTIMELINES_ITEM_IMAGE,"<img src='".\XOOPS_URL . "$imageDirectory/$itemImage' name='image1' id='image1' alt='$itemImage' style='max-width:100px;' />$imgButton"));
         }
 
         // Form Text Date Select
-        $itemDate = $this->isNew() ? mktime(0, 0, 0, date("m"), date("d"), date("Y")) : $this->getVar('item_date');
-        $form->addElement(new \XoopsFormDateTime(_AM_WGTIMELINES_ITEM_DATE, 'item_date', 15, $itemDate));
+        $itemDate = $this->isNew() ? \mktime(0, 0, 0, (int)date("m"), (int)date("d"), (int)date("Y")) : $this->getVar('item_date');
+        $form->addElement(new \XoopsFormDateTime(\_AM_WGTIMELINES_ITEM_DATE, 'item_date', 15, $itemDate));
         // Form Text ItemYear
         if ($this->isNew()) {
-            $itemYear = formatTimestamp(time(), 'Y');
+            $itemYear = \formatTimestamp(\time(), 'Y');
         } else {
             $itemYear = $this->getVar('item_year');
         }
-        $form->addElement(new \XoopsFormText(_AM_WGTIMELINES_ITEM_YEAR . "<br><span class='font-size:70%'> " . _AM_WGTIMELINES_ITEM_YEAR_ICON_DESC . '</span>', 'item_year', 20, 255, $itemYear));
+        $form->addElement(new \XoopsFormText(\_AM_WGTIMELINES_ITEM_YEAR . "<br><span class='font-size:70%'> " . \_AM_WGTIMELINES_ITEM_YEAR_ICON_DESC . '</span>', 'item_year', 20, 255, $itemYear));
         
         // Form Select Badge Icon
         $item_icon = $this->isNew() ? 'none' : $this->getVar('item_icon');
-        $iconsTray = new \XoopsFormElementTray(_AM_WGTIMELINES_ITEM_ICON . "<br><span class='font-size:70%'> " . _AM_WGTIMELINES_ITEM_YEAR_ICON_DESC . '</span>', '');
+        $iconsTray = new \XoopsFormElementTray(\_AM_WGTIMELINES_ITEM_ICON . "<br><span class='font-size:70%'> " . \_AM_WGTIMELINES_ITEM_YEAR_ICON_DESC . '</span>', '');
         $toggleIcon = '<div class="toggle-buttons">';
         $toggleIcon .= "<div style='display:inline-block'><input type='radio' name='item_icon' id='item_icon-none' title='' value='none'";
         if ('none' == $item_icon) {$toggleIcon .= " checked=''";}
-        $toggleIcon .= "><label name='xolb_item_icon' for='item_icon-$icon'><i class='glyphicon glyphicon-$icon'> " . _AM_WGTIMELINES_ITEM_NONE . "</i></label></div>";
+        $toggleIcon .= "><label name='xolb_item_icon' for='item_icon-'><i class='glyphicon glyphicon-'> " . \_AM_WGTIMELINES_ITEM_NONE . "</i></label></div>";
         $arrIcons = $this->arrGlyphicons();
         foreach ($arrIcons as $icon) {
             $toggleIcon .= "<div style='display:inline-block'><input type='radio' name='item_icon' id='item_icon-$icon' title='' value='$icon'";
@@ -179,15 +180,15 @@ class Items extends \XoopsObject
         $form->addElement(new \XoopsFormHidden('item_weight', $itemWeight));
         // Form Text ItemReads
         $itemReads = $this->isNew() ? 0 : $this->getVar('item_reads');
-        $form->addElement(new \XoopsFormText(_AM_WGTIMELINES_ITEM_READS, 'item_reads', 20, 255, $itemReads));
+        $form->addElement(new \XoopsFormText(\_AM_WGTIMELINES_ITEM_READS, 'item_reads', 20, 255, $itemReads));
         // Form Radio Yes/No
         $itemOnline = $this->isNew() ? 0 : $this->getVar('item_online');
-        $form->addElement(new \XoopsFormRadioYN(_AM_WGTIMELINES_ONLINE, 'item_online', $itemOnline));
+        $form->addElement(new \XoopsFormRadioYN(\_AM_WGTIMELINES_ONLINE, 'item_online', $itemOnline));
         // Form Select User
-        $form->addElement(new \XoopsFormSelectUser(_AM_WGTIMELINES_SUBMITTER, 'item_submitter', false, $this->getVar('item_submitter')));
+        $form->addElement(new \XoopsFormSelectUser(\_AM_WGTIMELINES_SUBMITTER, 'item_submitter', false, $this->getVar('item_submitter')));
         // Form Text Date Select
         $itemDate_create = $this->isNew() ? 0 : $this->getVar('item_date_create');
-        $form->addElement(new \XoopsFormTextDateSelect(_AM_WGTIMELINES_DATE_CREATE, 'item_date_create', '', $itemDate_create));
+        $form->addElement(new \XoopsFormTextDateSelect(\_AM_WGTIMELINES_DATE_CREATE, 'item_date_create', '', $itemDate_create));
         // To Save
         $form->addElement(new \XoopsFormHidden('op', 'save'));
         $form->addElement(new \XoopsFormHidden('ui', $ui));
@@ -217,7 +218,7 @@ class Items extends \XoopsObject
         $ret['tl_limit'] = $tl_limit;
         $ret['content_admin'] = $helper->truncateHtml($content);
         $ret['content_summary'] = '';
-        if ($tl_limit > 0 && strlen(strip_tags($content)) > $tl_limit) {
+        if ($tl_limit > 0 && \strlen(\strip_tags($content)) > $tl_limit) {
             $ret['content_summary'] = $helper->truncateHtml($content, $timeline_obj->getVar('tl_limit'));
             $ret['content_admin'] = $helper->truncateHtml($content, $timeline_obj->getVar('tl_limit'));
         }
@@ -226,20 +227,20 @@ class Items extends \XoopsObject
             $tl_datetime = $timeline_obj->getVar('tl_datetime');
             switch ($tl_datetime) {
                 case 1:
-                    $ret['date'] = formatTimestamp($this->getVar('item_date'), 's');
+                    $ret['date'] = \formatTimestamp($this->getVar('item_date'), 's');
                 break;
                 case 2:
-                    $ret['date'] = formatTimestamp($this->getVar('item_date'), 'H:i');
+                    $ret['date'] = \formatTimestamp($this->getVar('item_date'), 'H:i');
                 break;
                 case 3:
-                    $ret['date'] = formatTimestamp($this->getVar('item_date'), 'm');
+                    $ret['date'] = \formatTimestamp($this->getVar('item_date'), 'm');
                 break;
                 case '0':
                 default:
                     $ret['date'] = "";
                 break;
             }
-            $ret['date_admin'] = formatTimestamp($this->getVar('item_date'), 'm');
+            $ret['date_admin'] = \formatTimestamp($this->getVar('item_date'), 'm');
         }
         $ret['year'] = $this->getVar('item_year');
         $ret['icon'] = $this->getVar('item_icon');
@@ -247,7 +248,7 @@ class Items extends \XoopsObject
         $ret['reads'] = $this->getVar('item_reads');
         $ret['online'] = $this->getVar('item_online');
         $ret['submitter'] = \XoopsUser::getUnameFromId($this->getVar('item_submitter'));
-        $ret['date_create'] = formatTimestamp($this->getVar('item_date_create'), 's');
+        $ret['date_create'] = \formatTimestamp($this->getVar('item_date_create'), 's');
         return $ret;
       }
 
@@ -258,18 +259,17 @@ class Items extends \XoopsObject
      */
     public function toArrayItems()
     {
-        $ret = array();
+        $ret = [];
         $vars =& $this->getVars();
-        foreach (array_keys($vars) as $var) {
+        foreach (\array_keys($vars) as $var) {
             $ret[$var] = $this->getVar('"{$var}"');
         }
         return $ret;
     }
-    
+
     /**
      * Returns an array with all glyphicons
      *
-     * @param $item_icon
      * @return array
      */
     public function arrGlyphicons()

@@ -21,15 +21,15 @@
  * @version        $Id: 1.0 blocks.php 13070 Sat 2016-10-01 05:42:17Z XOOPS Development Team $
  */
 // Admin Edit
-define('_MB_WGTIMELINES_TITLE_LENGTH', 'Titellänge (0 = kein Limit)');
-define('_MB_WGTIMELINES_ALL_TIMELINES', 'Alle Zeitreihen');
+\define('_MB_WGTIMELINES_TITLE_LENGTH', 'Titellänge (0 = kein Limit)');
+\define('_MB_WGTIMELINES_ALL_TIMELINES', 'Alle Zeitreihen');
 // Blocks
-define('_MB_WGTIMELINES_TL_NAME', 'Liste der Zeitreihen');
-define('_MB_WGTIMELINES_TIMELINES_TO_DISPLAY', 'Anzuzeigende Zeitreihen');
-define('_MB_WGTIMELINES_ITEMS_TO_DISPLAY', 'Anzuzeigende Einträge');
-define('_MB_WGTIMELINES_ITEMS_DISPLAY_CAT', 'Kategorie');
-define('_MB_WGTIMELINES_ITEMS_LAST', 'Letzte Einträge');
-define('_MB_WGTIMELINES_ITEMS_NEW', 'Neueste Einträge');
-define('_MB_WGTIMELINES_ITEMS_RANDOM', 'Zufällige Einträge');
-define('_MB_WGTIMELINES_ITEMS_TIMELINES_APPLY', 'Anwenden für folgende Zeitreihen');
+\define('_MB_WGTIMELINES_TL_NAME', 'Liste der Zeitreihen');
+\define('_MB_WGTIMELINES_TIMELINES_TO_DISPLAY', 'Anzuzeigende Zeitreihen');
+\define('_MB_WGTIMELINES_ITEMS_TO_DISPLAY', 'Anzuzeigende Einträge');
+\define('_MB_WGTIMELINES_ITEMS_DISPLAY_CAT', 'Kategorie');
+\define('_MB_WGTIMELINES_ITEMS_LAST', 'Letzte Einträge');
+\define('_MB_WGTIMELINES_ITEMS_NEW', 'Neueste Einträge');
+\define('_MB_WGTIMELINES_ITEMS_RANDOM', 'Zufällige Einträge');
+\define('_MB_WGTIMELINES_ITEMS_TIMELINES_APPLY', 'Anwenden für folgende Zeitreihen');
 // ---------------- End ----------------

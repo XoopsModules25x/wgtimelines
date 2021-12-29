@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace XoopsModules\Wgtimelines;
 
 /*
@@ -27,7 +29,7 @@ namespace XoopsModules\Wgtimelines;
 use XoopsModules\Wgtimelines;
 // use XoopsModules\Wggallery\Constants;
 
-defined('XOOPS_ROOT_PATH') || die('Restricted access');
+\defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
 /**
  * Class Object Handler WgtimelinesRatings
@@ -37,7 +39,7 @@ class RatingsHandler extends \XoopsPersistableObjectHandler
     /**
      * Constructor
      *
-     * @param null|\XoopsDatabase $db
+     * @param \XoopsDatabase $db
      */
     public function __construct(\XoopsDatabase $db)
     {
@@ -84,7 +86,7 @@ class RatingsHandler extends \XoopsPersistableObjectHandler
      */
     public function getItemRating($rate_itemid = 0)
     {
-        $ItemRating = array();
+        $ItemRating = [];
         $ItemRating['nb_ratings'] = 0;
         $ItemRating['avg_rate_value'] = 0;
         $ItemRating['size'] = 0;
@@ -96,8 +98,8 @@ class RatingsHandler extends \XoopsPersistableObjectHandler
         $helper = \XoopsModules\Wgtimelines\Helper::getInstance();
         $ratingObjs = $helper->getHandler('ratings')->getObjects($criteria);
 
-        $uid            = is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->getVar('uid') : 0;
-        $count          = count($ratingObjs);
+        $uid            = \is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->getVar('uid') : 0;
+        $count          = \count($ratingObjs);
         $current_rating = 0;
         $voted          = false;
         $ip             = getenv('REMOTE_ADDR');
@@ -116,9 +118,9 @@ class RatingsHandler extends \XoopsPersistableObjectHandler
         if ($count > 0) {
             $ItemRating['avg_rate_value'] = number_format($current_rating / $count, 2);
         }
-        $text = str_replace('%c', $ItemRating['avg_rate_value'], _MA_WGTIMELINES_RATING_CURRENT);
-        $text = str_replace('%m', $max_units, $text);
-        $text = str_replace('%t', $ItemRating['nb_ratings'], $text);
+        $text = \str_replace('%c', (string)$ItemRating['avg_rate_value'], \_MA_WGTIMELINES_RATING_CURRENT);
+        $text = \str_replace('%m', (string)$max_units, $text);
+        $text = \str_replace('%t', (string)$ItemRating['nb_ratings'], $text);
         $ItemRating['text']    = $text;
         $ItemRating['size']    = ($ItemRating['avg_rate_value'] * $rating_unitwidth) . 'px';
         $ItemRating['maxsize'] = ($max_units * $rating_unitwidth) . 'px';

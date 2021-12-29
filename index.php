@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /*
  You may not change or alter any portion of this comment or credits
  of supporting developers from this source code or any supporting source code
@@ -27,8 +30,8 @@ use Xmf\Request;
 
 include __DIR__ . '/header.php';
 // get timeline id
-$tl_id = Request::getInt('tl_id', 0);
-$start = Request::getInt('start', 0);
+$tl_id = Request::getInt('tl_id');
+$start = Request::getInt('start');
 $limit = Request::getInt('limit', $helper->getConfig('userpager'));
 
 $startpage = $helper->getConfig('startpage', 0);
@@ -52,7 +55,7 @@ $timelinesAll = $timelinesHandler->getAll($criteria);
 
 if ($tl_id == 0 && $startpage == 3 && $timelinesCount > 0) {
     // Get first timeline
-    foreach (array_keys($timelinesAll) as $t) {
+    foreach (\array_keys($timelinesAll) as $t) {
         $tl_id  = $timelinesAll[$t]->getvar('tl_id');
     }
 }
@@ -61,7 +64,7 @@ unset($criteria);
 if ($timelinesCount > 0) {
     if ($tl_id > 0) {
         // display one timeline
-        foreach (array_keys($timelinesAll) as $t) {
+        foreach (\array_keys($timelinesAll) as $t) {
             $tl_template  = $timelinesAll[$t]->getVar('tl_template');
             $tl_name      = $timelinesAll[$t]->getVar('tl_name');
             $tl_desc      = $timelinesAll[$t]->getVar('tl_desc', 'show');
@@ -90,22 +93,22 @@ if ($timelinesCount > 0) {
             }
 
             $GLOBALS['xoopsOption']['template_main'] = $template['file'];
-            include_once XOOPS_ROOT_PATH .'/header.php';
+            include_once \XOOPS_ROOT_PATH .'/header.php';
 
             // Define Stylesheet
             $GLOBALS['xoTheme']->addStylesheet($style, null);
             // assets for magnific popup
             if ($tl_magnific == 1) {
-                $GLOBALS['xoTheme']->addStylesheet(WGTIMELINES_URL . '/assets/css/magnific-popup.css');
-                $GLOBALS['xoTheme']->addStylesheet(WGTIMELINES_URL . '/assets/css/wgtimelines.magnific.css');
-                $GLOBALS['xoTheme']->addScript(WGTIMELINES_URL . '/assets/js/jquery.magnific-popup.min.js', array('type' => 'text/javascript'));
-                $GLOBALS['xoTheme']->addScript(WGTIMELINES_URL . '/assets/js/wgtimelines.magnific.js', array('type' => 'text/javascript'));
+                $GLOBALS['xoTheme']->addStylesheet(\WGTIMELINES_URL . '/assets/css/magnific-popup.css');
+                $GLOBALS['xoTheme']->addStylesheet(\WGTIMELINES_URL . '/assets/css/wgtimelines.magnific.css');
+                $GLOBALS['xoTheme']->addScript(\WGTIMELINES_URL . '/assets/js/jquery.magnific-popup.min.js', ['type' => 'text/javascript']);
+                $GLOBALS['xoTheme']->addScript(\WGTIMELINES_URL . '/assets/js/wgtimelines.magnific.js', ['type' => 'text/javascript']);
                 $GLOBALS['xoopsTpl']->assign('use_magnific', true);
             }
             //
-            $GLOBALS['xoopsTpl']->assign('xoops_icons32_url', XOOPS_ICONS32_URL);
-            $GLOBALS['xoopsTpl']->assign('wgtimelines_url', WGTIMELINES_URL);
-            if (isset($GLOBALS['xoopsUser']) && is_object($GLOBALS['xoopsUser']) && $GLOBALS['xoopsUser']->isAdmin()) {
+            $GLOBALS['xoopsTpl']->assign('xoops_icons32_url', \XOOPS_ICONS32_URL);
+            $GLOBALS['xoopsTpl']->assign('wgtimelines_url', \WGTIMELINES_URL);
+            if (isset($GLOBALS['xoopsUser']) && \is_object($GLOBALS['xoopsUser']) && $GLOBALS['xoopsUser']->isAdmin()) {
                 $GLOBALS['xoopsTpl']->assign('isAdmin', 1);
             }
             if ($helper->getConfig('ratingbars')) {
@@ -116,8 +119,8 @@ if ($timelinesCount > 0) {
             $criteria = new \CriteriaCompo();
             $criteria->add(new \Criteria('item_tl_id', $tl_id));
             $criteria->add(new \Criteria('item_online', 1));
-			if ( Constants::WGTIMELINES_TIMELINE_EXPIRED_HIDE == $tl_expired ) { //=== does not work
-				$criteria->add(new \Criteria('item_date', time(), '>'));
+			if ( Constants::TIMELINE_EXPIRED_HIDE == $tl_expired ) { //=== does not work
+				$criteria->add(new \Criteria('item_date', \time(), '>'));
 			}
             if ($limit > 0) {
                 $criteria->setStart($start);
@@ -135,9 +138,9 @@ if ($timelinesCount > 0) {
             }
             $itemsCount = $itemsHandler->getCount($criteria);
             $itemsAll = $itemsHandler->getAll($criteria);
-            $keywords = array();
+            $keywords = [];
             if ($itemsCount > 0) {
-                $items = array();
+                $items = [];
 
                 // Get All Items
                 $year = '';
@@ -145,7 +148,7 @@ if ($timelinesCount > 0) {
                 $j = 0;
                 $inverted = 0;
                 $crazycolors = 0;
-                foreach (array_keys($itemsAll) as $i) {
+                foreach (\array_keys($itemsAll) as $i) {
                     $j++;
                     $items[$j] = $itemsAll[$i]->getValuesItems($timelinesAll[$t]);
                     // option panel pos
@@ -209,12 +212,12 @@ if ($timelinesCount > 0) {
 
                 // Display Navigation
                 if ($itemsCount > $limit) {
-                    include_once XOOPS_ROOT_PATH .'/class/pagenav.php';
-                    $pagenav = new XoopsPageNav($itemsCount, $limit, $start, 'start', 'op=list&limit=' . $limit . '&tl_id=' . $tl_id);
-                    $GLOBALS['xoopsTpl']->assign('pagenav', $pagenav->renderNav(4));
+                    include_once \XOOPS_ROOT_PATH .'/class/pagenav.php';
+                    $pagenav = new \XoopsPageNav($itemsCount, $limit, $start, 'start', 'op=list&limit=' . $limit . '&tl_id=' . $tl_id);
+                    $GLOBALS['xoopsTpl']->assign('pagenav', $pagenav->renderNav());
                 }
             } else {
-                $GLOBALS['xoopsTpl']->assign('error', _MA_WGTIMELINES_THEREARENT_ITEMS);
+                $GLOBALS['xoopsTpl']->assign('error', \_MA_WGTIMELINES_THEREARENT_ITEMS);
             }
             if ($helper->getConfig('tl_name') == 1) {
                 $GLOBALS['xoopsTpl']->assign('timeline_name', $tl_name);
@@ -224,20 +227,20 @@ if ($timelinesCount > 0) {
             }
             // Breadcrumbs
             if ($helper->getConfig('breadcrumbs')) {
-                $xoBreadcrumbs[] = array('title' => $tl_name);
+                $xoBreadcrumbs[] = ['title' => $tl_name];
                 $GLOBALS['xoopsTpl']->assign('breadcrumbs', 1);
             }
         }
     } else {
         // show list
         $GLOBALS['xoopsOption']['template_main'] = 'wgtimelines_index.tpl';
-        include_once XOOPS_ROOT_PATH .'/header.php';
+        include_once \XOOPS_ROOT_PATH .'/header.php';
         
         $templatesAll = $templatesHandler->getAll();
         
         // Define Stylesheet
         $GLOBALS['xoTheme']->addStylesheet($style, null);
-        foreach (array_keys($timelinesAll) as $i) {
+        foreach (\array_keys($timelinesAll) as $i) {
             $timelines[$i] = $timelinesAll[$i]->getValuesTimelines();
             if ($helper->getConfig('tl_description') > 1) {
                 $timelines[$i]['timeline_desc'] = $timelines[$i]['desc'];
@@ -248,14 +251,14 @@ if ($timelinesCount > 0) {
         $GLOBALS['xoopsTpl']->assign('timelines', $timelines);
 
         //
-        $GLOBALS['xoopsTpl']->assign('xoops_icons32_url', XOOPS_ICONS32_URL);
-        $GLOBALS['xoopsTpl']->assign('wgtimelines_url', WGTIMELINES_URL);
+        $GLOBALS['xoopsTpl']->assign('xoops_icons32_url', \XOOPS_ICONS32_URL);
+        $GLOBALS['xoopsTpl']->assign('wgtimelines_url', \WGTIMELINES_URL);
 
         // Display Navigation
         if ($timelinesCount > $limit) {
-            include_once XOOPS_ROOT_PATH .'/class/pagenav.php';
-            $pagenav = new XoopsPageNav($timelinesCount, $limit, $start, 'start', 'op=list&limit=' . $limit);
-            $GLOBALS['xoopsTpl']->assign('pagenav', $pagenav->renderNav(4));
+            include_once \XOOPS_ROOT_PATH .'/class/pagenav.php';
+            $pagenav = new \XoopsPageNav($timelinesCount, $limit, $start, 'start', 'op=list&limit=' . $limit);
+            $GLOBALS['xoopsTpl']->assign('pagenav', $pagenav->renderNav());
         }
     }
 
@@ -263,16 +266,16 @@ if ($timelinesCount > 0) {
 
 
     // Keywords
-    wgtimelinesMetaKeywords($helper->getConfig('keywords').', '. implode(',', $keywords));
+    wgtimelinesMetaKeywords($helper->getConfig('keywords').', '. \implode(',', $keywords));
     unset($keywords);
 } else {
     $GLOBALS['xoopsOption']['template_main'] = 'wgtimelines_index.tpl';
-    include_once XOOPS_ROOT_PATH .'/header.php';
-    $GLOBALS['xoopsTpl']->assign('error', _MA_WGTIMELINES_THEREARENT_TIMELINES);
+    include_once \XOOPS_ROOT_PATH .'/header.php';
+    $GLOBALS['xoopsTpl']->assign('error', \_MA_WGTIMELINES_THEREARENT_TIMELINES);
 }
 
 // Description
-wgtimelinesMetaDescription(_MA_WGTIMELINES_DESC);
-$GLOBALS['xoopsTpl']->assign('xoops_mpageurl', WGTIMELINES_URL.'/timelines.php');
-$GLOBALS['xoopsTpl']->assign('wgtimelines_upload_url', WGTIMELINES_UPLOAD_URL);
+wgtimelinesMetaDescription(\_MA_WGTIMELINES_DESC);
+$GLOBALS['xoopsTpl']->assign('xoops_mpageurl', \WGTIMELINES_URL.'/timelines.php');
+$GLOBALS['xoopsTpl']->assign('wgtimelines_upload_url', \WGTIMELINES_UPLOAD_URL);
 include __DIR__ . '/footer.php';

@@ -1,4 +1,4 @@
-<table class='table table-<{$table_type}>'>
+<table class='table table-<{$table_type|default:''}>'>
 <{if $block > 0}>
 	<tbody><{foreach item=item from=$block}>
 		<tr class="<{cycle values="odd, even"}>">

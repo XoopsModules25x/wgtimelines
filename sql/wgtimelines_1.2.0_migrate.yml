@@ -1,0 +1,188 @@
+wgtimelines_timelines:
+    options: 'ENGINE=InnoDB'
+    columns: 
+        -
+            name: tl_id
+            attributes: ' INT(8) UNSIGNED NOT NULL AUTO_INCREMENT '
+        -
+            name: tl_name
+            attributes: ' VARCHAR(200) NOT NULL DEFAULT '''''''' '
+        -
+            name: tl_desc
+            attributes: ' TEXT NOT NULL '
+        -
+            name: tl_image
+            attributes: ' VARCHAR(200) NOT NULL DEFAULT '''''''' '
+        -
+            name: tl_weight
+            attributes: ' INT(8) NOT NULL DEFAULT ''0'' '
+        -
+            name: tl_template
+            attributes: ' INT(8) NOT NULL DEFAULT ''0'' '
+        -
+            name: tl_sortby
+            attributes: ' INT(1) NOT NULL DEFAULT ''0'' '
+        -
+            name: tl_limit
+            attributes: ' INT(8) NOT NULL DEFAULT ''0'' '
+        -
+            name: tl_datetime
+            attributes: ' INT(1) NOT NULL DEFAULT ''0'' '
+        -
+            name: tl_magnific
+            attributes: ' INT(1) NOT NULL DEFAULT ''0'' '
+        -
+            name: tl_expired
+            attributes: ' int(1) NOT NULL DEFAULT ''0'' '
+        -
+            name: tl_online
+            attributes: ' INT(1) NOT NULL DEFAULT ''0'' '
+        -
+            name: tl_submitter
+            attributes: ' INT(8) NOT NULL DEFAULT ''0'' '
+        -
+            name: tl_date_create
+            attributes: ' INT(8) NOT NULL DEFAULT ''0'' '
+    keys:
+        PRIMARY:
+            columns: tl_id
+            unique: true
+wgtimelines_items:
+    options: 'ENGINE=InnoDB'
+    columns: 
+        -
+            name: item_id
+            attributes: ' INT(8) UNSIGNED NOT NULL AUTO_INCREMENT '
+        -
+            name: item_tl_id
+            attributes: ' INT(8) NOT NULL DEFAULT ''0'' '
+        -
+            name: item_title
+            attributes: ' VARCHAR(200) NOT NULL DEFAULT '''''''' '
+        -
+            name: item_content
+            attributes: ' TEXT NOT NULL '
+        -
+            name: item_image
+            attributes: ' VARCHAR(200) NOT NULL DEFAULT '''''''' '
+        -
+            name: item_date
+            attributes: ' INT(8) DEFAULT NULL '
+        -
+            name: item_year
+            attributes: ' VARCHAR(50) NOT NULL DEFAULT '''''''' '
+        -
+            name: item_icon
+            attributes: ' VARCHAR(200) NOT NULL DEFAULT '''''''' '
+        -
+            name: item_reads
+            attributes: ' INT(8) NOT NULL DEFAULT ''0'' '
+        -
+            name: item_weight
+            attributes: ' INT(8) NOT NULL DEFAULT ''0'' '
+        -
+            name: item_online
+            attributes: ' INT(1) NOT NULL DEFAULT ''0'' '
+        -
+            name: item_submitter
+            attributes: ' INT(8) NOT NULL DEFAULT ''0'' '
+        -
+            name: item_date_create
+            attributes: ' INT(8) NOT NULL DEFAULT ''0'' '
+    keys:
+        PRIMARY:
+            columns: item_id
+            unique: true
+wgtimelines_templates:
+    options: 'ENGINE=InnoDB'
+    columns: 
+        -
+            name: tpl_id
+            attributes: ' INT(8) UNSIGNED NOT NULL AUTO_INCREMENT '
+        -
+            name: tpl_name
+            attributes: ' VARCHAR(100) NOT NULL DEFAULT '''''''' '
+        -
+            name: tpl_desc
+            attributes: ' TEXT NOT NULL '
+        -
+            name: tpl_file
+            attributes: ' VARCHAR(100) NOT NULL DEFAULT '''''''' '
+        -
+            name: tpl_options
+            attributes: ' TEXT NOT NULL '
+        -
+            name: tpl_weight
+            attributes: ' INT(8) NOT NULL DEFAULT ''0'' '
+        -
+            name: tpl_version
+            attributes: ' VARCHAR(10) NOT NULL DEFAULT ''1'' '
+        -
+            name: tpl_author
+            attributes: ' VARCHAR(200) NOT NULL DEFAULT '''''''' '
+        -
+            name: tpl_date_create
+            attributes: ' INT(8) NOT NULL DEFAULT ''0'' '
+    keys:
+        PRIMARY:
+            columns: tpl_id
+            unique: true
+wgtimelines_tplsetsdefault:
+    options: 'ENGINE=InnoDB'
+    columns: 
+        -
+            name: tpl_id
+            attributes: ' INT(8) UNSIGNED NOT NULL AUTO_INCREMENT '
+        -
+            name: tpl_name
+            attributes: ' VARCHAR(100) NOT NULL DEFAULT '''''''' '
+        -
+            name: tpl_desc
+            attributes: ' TEXT NOT NULL '
+        -
+            name: tpl_file
+            attributes: ' VARCHAR(100) NOT NULL DEFAULT '''''''' '
+        -
+            name: tpl_options
+            attributes: ' TEXT NOT NULL '
+        -
+            name: tpl_weight
+            attributes: ' INT(8) NOT NULL DEFAULT ''0'' '
+        -
+            name: tpl_version
+            attributes: ' VARCHAR(10) NOT NULL DEFAULT ''1'' '
+        -
+            name: tpl_author
+            attributes: ' VARCHAR(200) NOT NULL DEFAULT '''''''' '
+        -
+            name: tpl_date_create
+            attributes: ' INT(8) NOT NULL DEFAULT ''0'' '
+    keys:
+        PRIMARY:
+            columns: tpl_id
+            unique: true
+wgtimelines_ratings:
+    options: 'ENGINE=InnoDB'
+    columns: 
+        -
+            name: rate_id
+            attributes: ' INT(8) UNSIGNED NOT NULL AUTO_INCREMENT '
+        -
+            name: rate_itemid
+            attributes: ' INT(8) NOT NULL DEFAULT ''0'' '
+        -
+            name: rate_value
+            attributes: ' INT(1) NOT NULL DEFAULT ''0'' '
+        -
+            name: rate_uid
+            attributes: ' INT(8) NOT NULL DEFAULT ''0'' '
+        -
+            name: rate_ip
+            attributes: ' VARCHAR(60) NOT NULL DEFAULT '''''''' '
+        -
+            name: rate_date
+            attributes: ' INT(8) NOT NULL DEFAULT ''0'' '
+    keys:
+        PRIMARY:
+            columns: rate_id
+            unique: true

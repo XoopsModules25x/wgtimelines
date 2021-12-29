@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace XoopsModules\Wgtimelines;
 
 /*
@@ -20,7 +22,7 @@ namespace XoopsModules\Wgtimelines;
  * @author       XOOPS Development Team
  */
 
-//defined('XOOPS_ROOT_PATH') || die('Restricted access';
+//\defined('XOOPS_ROOT_PATH') || die('Restricted access';
 
 /**
  * class Constants
@@ -33,8 +35,8 @@ class Constants
 
     // common constants
     // constants for expiration
-    const WGTIMELINES_TIMELINE_EXPIRED_SHOW = 0;
-    const WGTIMELINES_TIMELINE_EXPIRED_HIDE = 1;
+    const TIMELINE_EXPIRED_SHOW = 0;
+    const TIMELINE_EXPIRED_HIDE = 1;
     
     // common constants
     // constants for image class

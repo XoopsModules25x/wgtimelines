@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace XoopsModules\Wgtimelines;
 
 /*
@@ -39,15 +41,15 @@ class Tplsetsdefault extends \XoopsObject
      */
     public function __construct()
     {
-        $this->initVar('tpl_id', XOBJ_DTYPE_INT);
-        $this->initVar('tpl_name', XOBJ_DTYPE_TXTBOX);
-        $this->initVar('tpl_desc', XOBJ_DTYPE_TXTAREA);
-        $this->initVar('tpl_file', XOBJ_DTYPE_TXTBOX);
-        $this->initVar('tpl_options', XOBJ_DTYPE_TXTAREA);
-        $this->initVar('tpl_weight', XOBJ_DTYPE_TXTBOX);
-        $this->initVar('tpl_version', XOBJ_DTYPE_TXTBOX);
-        $this->initVar('tpl_author', XOBJ_DTYPE_TXTBOX);
-        $this->initVar('tpl_date_create', XOBJ_DTYPE_TXTBOX);
+        $this->initVar('tpl_id', \XOBJ_DTYPE_INT);
+        $this->initVar('tpl_name', \XOBJ_DTYPE_TXTBOX);
+        $this->initVar('tpl_desc', \XOBJ_DTYPE_TXTAREA);
+        $this->initVar('tpl_file', \XOBJ_DTYPE_TXTBOX);
+        $this->initVar('tpl_options', \XOBJ_DTYPE_TXTAREA);
+        $this->initVar('tpl_weight', \XOBJ_DTYPE_TXTBOX);
+        $this->initVar('tpl_version', \XOBJ_DTYPE_TXTBOX);
+        $this->initVar('tpl_author', \XOBJ_DTYPE_TXTBOX);
+        $this->initVar('tpl_date_create', \XOBJ_DTYPE_TXTBOX);
     }
 
     /**

@@ -21,12 +21,12 @@
 <style>
 </style>
         
-<{if count($items) > 0}>
+<{if count($items|default:null) > 0}>
 	<div id="timeline">
 		<ul id="dates">
             <{foreach name=dates item=item from=$items}>
 			<li>
-            <{if $item.date}>
+            <{if $item.date|default:false}>
                 <a href="#<{$item.date}>" class="<{if $smarty.foreach.dates.first}>selected<{/if}>"><{$item.date}></a>
             <{else}>
                 <a href="#<{$item.year}>" class="<{if $smarty.foreach.dates.first}>selected<{/if}>"><{$item.year}></a>
@@ -37,50 +37,50 @@
         
 		<ul id="issues">
 			<{foreach name=items item=item from=$items}>
-            <li id="<{$item.badgecontent}>" class="selected">
-                <{if $orientation == 'horizontal'}>
-                    <{if $item.image}>
+            <li id="<{$item.badgecontent|default:''}>" class="selected">
+                <{if $orientation|default:'' == 'horizontal'}>
+                    <{if $item.image|default:false}>
                         <div class="slider-img-horizontal">
-                            <{if $use_magnific}><a class="image-popup-no-margins" href="<{$wgtimelines_upload_url}>/images/items/<{$item.image}>"><{/if}>
-                            <img class="img-timeline img-timeline-<{$panel_imgpos}> img-responsive <{$imgstyle}> " src="<{$wgtimelines_upload_url}>/images/items/<{$item.image}>"  alt="<{$item.title}>" />
-                            <{if $use_magnific}></a><{/if}>
+                            <{if $use_magnific|default:false}><a class="image-popup-no-margins" href="<{$wgtimelines_upload_url}>/images/items/<{$item.image}>"><{/if}>
+                            <img class="img-timeline img-timeline-<{$panel_imgpos|default:''}> img-responsive <{$imgstyle|default:''}> " src="<{$wgtimelines_upload_url}>/images/items/<{$item.image}>"  alt="<{$item.title}>" />
+                            <{if $use_magnific|default:false}></a><{/if}>
                         </div>
                         <div class="">
                     <{else}>
                         <div id="item<{$item.id}>" class="slider-content">
                     <{/if}>
                             <h2><{$item.title}></h2>
-                            <p><{$item.content}></p>
-							<{if $item.readmore}>
+                            <p><{$item.content|default:false}></p>
+							<{if $item.readmore|default:false}>
 								<p class="timeline-item-readmore right">
 									<a href="items.php?op=read&amp;item_id=<{$item.id}>" title="<{$smarty.const._MA_WGTIMELINES_READMORE}>"><{$smarty.const._MA_WGTIMELINES_READMORE}>...</a>
 								</p>
 							<{/if}>
                         </div>
                 <{else}>
-                    <{if $item.image}>
+                    <{if $item.image|default:false}>
                     <div class="col-xs-12 col-sm-12">
-                        <{if $use_magnific}><a class="image-popup-no-margins" href="<{$wgtimelines_upload_url}>/images/items/<{$item.image}>"><{/if}>
-                        <img class="img-timeline img-timeline-<{$panel_imgpos}> img-responsive <{$imgstyle}> " src="<{$wgtimelines_upload_url}>/images/items/<{$item.image}>"  alt="<{$item.title}>" />
-                        <{if $use_magnific}></a><{/if}>
+                        <{if $use_magnific|default:false}><a class="image-popup-no-margins" href="<{$wgtimelines_upload_url}>/images/items/<{$item.image}>"><{/if}>
+                        <img class="img-timeline img-timeline-<{$panel_imgpos|default:''}> img-responsive <{$imgstyle|default:''}> " src="<{$wgtimelines_upload_url}>/images/items/<{$item.image}>"  alt="<{$item.title}>" />
+                        <{if $use_magnific|default:false}></a><{/if}>
                     </div>
                     <{/if}>
                     <div id="item<{$item.id}>" class="col-xs-12 col-sm-12">
                         <h2><{$item.title}></h2>
-                        <p><{$item.content}></p>
-						<{if $item.readmore}>
+                        <p><{$item.content|default:false}></p>
+						<{if $item.readmore|default:false}>
 							<p class="timeline-item-readmore right">
 								<a href="items.php?op=read&amp;item_id=<{$item.id}>" title="<{$smarty.const._MA_WGTIMELINES_READMORE}>"><{$smarty.const._MA_WGTIMELINES_READMORE}>...</a>
 							</p>
 						<{/if}>
                     </div>
                 <{/if}>
-				<{if $showreads}>
+				<{if $showreads|default:false}>
 					<div class="col-xs-12 col-sm-6 timeline-item-reads pull-left">
 						<i class="glyphicon glyphicon-eye-open"> <{$smarty.const._MA_WGTIMELINES_ITEM_READS}>: <{$item.reads}></i>
 					</div><br>
 				<{/if}>	
-				<{if $isAdmin}>
+				<{if $isAdmin|default:false}>
 					<div class="col-xs-12 col-sm-6 admin-area pull-right">
 						<a href="admin/items.php?op=edit&amp;ui=user&amp;item_id=<{$item.id}>" title="<{$smarty.const._EDIT}>">
 							<img src="<{xoModuleIcons16 edit.png}>" alt="items" />
@@ -90,7 +90,7 @@
 						</a>
 					</div><br>
 				<{/if}>
-				<{if $rating}>
+				<{if $rating|default:false}>
 					<div class="col-xs-12 col-sm-12 timeline-item-rating pull-left"><{include file='db:wgtimelines_ratingbar.tpl'}></div>
 				<{/if}>	
 			</li>
@@ -103,7 +103,7 @@
 	</div>
     <div class="clear"></div>
 <{/if}>
-<{if $error}>
+<{if $error|default:false}>
 	<div class="errorMsg"><strong><{$error}></strong></div>
 <{/if}>
 <{include file='db:wgtimelines_footer.tpl'}>

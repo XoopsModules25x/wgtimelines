@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /*
  You may not change or alter any portion of this comment or credits
  of supporting developers from this source code or any supporting source code
@@ -30,8 +33,7 @@ use XoopsModules\Wgtimelines\Common;
  */
 function xoops_module_pre_install_wgtimelines(\XoopsModule $module)
 {
-    require dirname(__DIR__) . '/preloads/autoloader.php';
-    /** @var Wgtimelines\Utility $utility */
+    require \dirname(__DIR__) . '/preloads/autoloader.php';
     $utility = new Wgtimelines\Utility();
 
     //check for minimum XOOPS version
@@ -57,9 +59,9 @@ function xoops_module_pre_install_wgtimelines(\XoopsModule $module)
  */
 function xoops_module_install_wgtimelines(\XoopsModule $module)
 {
-    require dirname(__DIR__) . '/preloads/autoloader.php';
+    require \dirname(__DIR__) . '/preloads/autoloader.php';
     
-    $moduleDirName = basename(dirname(__DIR__));
+    $moduleDirName = \basename(\dirname(__DIR__));
 
     /** @var Wgtimelines\Helper $helper */
     /** @var Wgtimelines\Utility $utility */
@@ -74,49 +76,38 @@ function xoops_module_install_wgtimelines(\XoopsModule $module)
     $helper->loadLanguage('common');
 
     //  ---  CREATE FOLDERS ---------------
-    if ($configurator->uploadFolders && is_array($configurator->uploadFolders)) {
-        //    foreach (array_keys($GLOBALS['uploadFolders']) as $i) {
-        foreach (array_keys($configurator->uploadFolders) as $i) {
+    if ($configurator->uploadFolders && \is_array($configurator->uploadFolders)) {
+        //    foreach (\array_keys($GLOBALS['uploadFolders']) as $i) {
+        foreach (\array_keys($configurator->uploadFolders) as $i) {
             $utility::createFolder($configurator->uploadFolders[$i]);
         }
     }
 
     //  ---  COPY blank.gif FILES ---------------
-    if ($configurator->copyBlankFiles && is_array($configurator->copyBlankFiles)) {
-        $file = dirname(__DIR__) . '/assets/images/blank.gif';
-        foreach (array_keys($configurator->copyBlankFiles) as $i) {
+    if ($configurator->copyBlankFiles && \is_array($configurator->copyBlankFiles)) {
+        $file = \dirname(__DIR__) . '/assets/images/blank.gif';
+        foreach (\array_keys($configurator->copyBlankFiles) as $i) {
             $dest = $configurator->copyBlankFiles[$i] . '/blank.gif';
             $utility::copyFile($file, $dest);
         }
     }
-
-/* 
-    //  ---  COPY test folder files ---------------
-    if ($configurator->copyTestFolders && is_array($configurator->copyTestFolders)) {
-        //        $file =  dirname(__DIR__) . '/testdata/images/';
-        foreach (array_keys($configurator->copyTestFolders) as $i) {
-            $src  = $configurator->copyTestFolders[$i][0];
-            $dest = $configurator->copyTestFolders[$i][1];
-            $utility::rcopy($src, $dest);
-        }
-    } */
     
     //  ---  DELETE OLD FILES ---------------
-    if (count($configurator->oldFiles) > 0) {
-        //    foreach (array_keys($GLOBALS['uploadFolders']) as $i) {
-        foreach (array_keys($configurator->oldFiles) as $i) {
+    if (\count($configurator->oldFiles) > 0) {
+        //    foreach (\array_keys($GLOBALS['uploadFolders']) as $i) {
+        foreach (\array_keys($configurator->oldFiles) as $i) {
             $tempFile = $GLOBALS['xoops']->path('modules/' . $moduleDirName . $configurator->oldFiles[$i]);
-            if (is_file($tempFile)) {
-                unlink($tempFile);
+            if (\is_file($tempFile)) {
+                \unlink($tempFile);
             }
         }
     }
 
     //  ---  DELETE OLD FOLDERS ---------------
-    xoops_load('XoopsFile');
-    if (count($configurator->oldFolders) > 0) {
-        //    foreach (array_keys($GLOBALS['uploadFolders']) as $i) {
-        foreach (array_keys($configurator->oldFolders) as $i) {
+    \xoops_load('XoopsFile');
+    if (\count($configurator->oldFolders) > 0) {
+        //    foreach (\array_keys($GLOBALS['uploadFolders']) as $i) {
+        foreach (\array_keys($configurator->oldFolders) as $i) {
             $tempFolder = $GLOBALS['xoops']->path('modules/' . $moduleDirName . $configurator->oldFolders[$i]);
             /* @var $folderHandler XoopsObjectHandler */
             $folderHandler = XoopsFile::getHandler('folder', $tempFolder);

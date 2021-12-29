@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /*
  You may not change or alter any portion of this comment or credits
  of supporting developers from this source code or any supporting source code
@@ -25,12 +28,12 @@ use XoopsModules\Wgtimelines;
 // use XoopsModules\Wgtimelines\Constants;
 use XoopsModules\Wgtimelines\Helper;
 
-include dirname(dirname(__DIR__)) .'/mainfile.php';
+include \dirname(__DIR__, 2) .'/mainfile.php';
 include __DIR__ .'/include/common.php';
-$dirname = basename(__DIR__);
+$dirname = \basename(__DIR__);
 // Breadcrumbs
-$xoBreadcrumbs = array();
-$xoBreadcrumbs[] = array('title' => _MA_WGTIMELINES_TITLE, 'link' => WGTIMELINES_URL . '/');
+$xoBreadcrumbs = [];
+$xoBreadcrumbs[] = ['title' => \_MA_WGTIMELINES_TITLE, 'link' => \WGTIMELINES_URL . '/'];
 // Get instance of module
 $helper           = \XoopsModules\Wgtimelines\Helper::getInstance();
 $timelinesHandler = $helper->getHandler('Timelines');
@@ -38,17 +41,17 @@ $itemsHandler     = $helper->getHandler('Items');
 $templatesHandler = $helper->getHandler('Templates');
 $ratingsHandler   = $helper->getHandler('ratings');
 // Permission
-include_once XOOPS_ROOT_PATH .'/class/xoopsform/grouppermform.php';
-$gpermHandler = xoops_getHandler('groupperm');
-$groups  = XOOPS_GROUP_ANONYMOUS;
-if (is_object($xoopsUser)) {
+include_once \XOOPS_ROOT_PATH .'/class/xoopsform/grouppermform.php';
+$gpermHandler = \xoops_getHandler('groupperm');
+$groups  = \XOOPS_GROUP_ANONYMOUS;
+if (\is_object($xoopsUser)) {
     $groups  = $xoopsUser->getGroups();
 }
 //
 $myts = MyTextSanitizer::getInstance();
 // Default Css Style
-$style = WGTIMELINES_URL . '/assets/css/style.css';
-if (!file_exists($style)) {
+$style = \WGTIMELINES_URL . '/assets/css/style.css';
+if (!\file_exists($style)) {
     return false;
 }
 // Smarty Default
@@ -58,5 +61,5 @@ $pathModuleAdmin = $GLOBALS['xoopsModule']->getInfo('dirmoduleadmin');
 $modPathIcon16 = $GLOBALS['xoopsModule']->getInfo('modicons16');
 $modPathIcon32 = $GLOBALS['xoopsModule']->getInfo('modicons16');
 // Load Languages
-xoops_loadLanguage('main');
-xoops_loadLanguage('modinfo');
+\xoops_loadLanguage('main');
+\xoops_loadLanguage('modinfo');
