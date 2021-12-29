@@ -148,7 +148,7 @@ class Items extends \XoopsObject
         }
 
         // Form Text Date Select
-        $itemDate = $this->isNew() ? mktime(0, 0, 0, date("m"), date("d"), date("Y")) : $this->getVar('item_date');
+        $itemDate = $this->isNew() ? mktime(0, 0, 0, (int)date("m"), (int)date("d"), (int)date("Y")) : $this->getVar('item_date');
         $form->addElement(new \XoopsFormDateTime(_AM_WGTIMELINES_ITEM_DATE, 'item_date', 15, $itemDate));
         // Form Text ItemYear
         if ($this->isNew()) {
@@ -164,7 +164,7 @@ class Items extends \XoopsObject
         $toggleIcon = '<div class="toggle-buttons">';
         $toggleIcon .= "<div style='display:inline-block'><input type='radio' name='item_icon' id='item_icon-none' title='' value='none'";
         if ('none' == $item_icon) {$toggleIcon .= " checked=''";}
-        $toggleIcon .= "><label name='xolb_item_icon' for='item_icon-$icon'><i class='glyphicon glyphicon-$icon'> " . _AM_WGTIMELINES_ITEM_NONE . "</i></label></div>";
+        $toggleIcon .= "><label name='xolb_item_icon' for='item_icon-'><i class='glyphicon glyphicon-'> " . _AM_WGTIMELINES_ITEM_NONE . "</i></label></div>";
         $arrIcons = $this->arrGlyphicons();
         foreach ($arrIcons as $icon) {
             $toggleIcon .= "<div style='display:inline-block'><input type='radio' name='item_icon' id='item_icon-$icon' title='' value='$icon'";

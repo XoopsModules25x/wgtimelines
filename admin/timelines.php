@@ -71,7 +71,7 @@ switch($op) {
                 } else {
                     $timeline['datetime_text'] = _AM_WGTIMELINES_TIMELINE_DATETIME_NO;
                 }
-            $timeline['template'] = $templatesAll[$timeline['tl_template']]->getVar('tpl_name');
+                $timeline['template'] = $templatesAll[$timeline['tl_template']]->getVar('tpl_name');
                 $GLOBALS['xoopsTpl']->append('timelines_list', $timeline);
                 unset($timeline);
             }
@@ -95,6 +95,7 @@ switch($op) {
         $timelinesObj = $timelinesHandler->create();
         $form = $timelinesObj->getFormTimelines();
         $GLOBALS['xoopsTpl']->assign('form', $form->render());
+        $GLOBALS['xoopsTpl']->assign('timelines_list', false);
 
     break;
     case 'save':
@@ -196,6 +197,7 @@ switch($op) {
         $timelinesObj = $timelinesHandler->get($tlId);
         $form = $timelinesObj->getFormTimelines();
         $GLOBALS['xoopsTpl']->assign('form', $form->render());
+        $GLOBALS['xoopsTpl']->assign('timelines_list', false);
 
     break;
     case 'delete':

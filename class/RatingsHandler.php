@@ -118,9 +118,9 @@ class RatingsHandler extends \XoopsPersistableObjectHandler
         if ($count > 0) {
             $ItemRating['avg_rate_value'] = number_format($current_rating / $count, 2);
         }
-        $text = str_replace('%c', $ItemRating['avg_rate_value'], _MA_WGTIMELINES_RATING_CURRENT);
-        $text = str_replace('%m', $max_units, $text);
-        $text = str_replace('%t', $ItemRating['nb_ratings'], $text);
+        $text = str_replace('%c', (string)$ItemRating['avg_rate_value'], _MA_WGTIMELINES_RATING_CURRENT);
+        $text = str_replace('%m', (string)$max_units, $text);
+        $text = str_replace('%t', (string)$ItemRating['nb_ratings'], $text);
         $ItemRating['text']    = $text;
         $ItemRating['size']    = ($ItemRating['avg_rate_value'] * $rating_unitwidth) . 'px';
         $ItemRating['maxsize'] = ($max_units * $rating_unitwidth) . 'px';

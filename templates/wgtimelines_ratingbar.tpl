@@ -1,5 +1,5 @@
 <small>
-	<{if $item.rating.voted == 0}>
+	<{if $item.rating.voted|default:false == 0}>
 		<div class="timelines_ratingblock">
 			<div id="unit_long<{$item.id}>">
 				<div id="unit_ul<{$item.id}>" class="timelines_unit-rating">

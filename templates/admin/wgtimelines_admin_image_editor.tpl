@@ -12,7 +12,7 @@
 		<div class='tab-content '>
 			<!-- *************** Basic Tab ***************-->
             <div class='tab-pane active center' id='1'>
-				<{if $no_blank}>
+				<{if $no_blank|default:false}>
                     <img id='currentImg' class='img-responsive imageeditor-img center' src='<{$imgCurrent.src}>' alt='<{$imgCurrent.img_name}>'>
                     <p><{$smarty.const._AM_WGTIMELINES_IMG_EDITOR_CURRENT2}>: <{$image_path}><br>
                     <{$smarty.const._AM_WGTIMELINES_IMG_EDITOR_RESXY}>: <{$albimage_width}> / <{$albimage_height}></p>
@@ -26,9 +26,9 @@
 			<div class='tab-pane' id='2'>
                 <div class='col-xs-12 col-sm-6'>
                     <{foreach item=image from=$images name=fe_image}>
-                        <{if $image.group}><h4 class='modal-title'><{$image.group}></h4><{/if}>
+                        <{if $image.group|default:false}><h4 class='modal-title'><{$image.group}></h4><{/if}>
                         <div class='imageeditor-selimages col-xs-12 col-sm-4'>
-                        <input id='<{$image.name}>_image' class='imgSelect1 img-responsive imageeditor-img <{if $image.selected}>imageeditor-modal-selected<{/if}>' type='image' src='<{$image.src}>' alt='<{$image.title}>' style='padding:3px;' value='<{$image.name}>'>
+                        <input id='<{$image.name}>_image' class='imgSelect1 img-responsive imageeditor-img <{if $image.selected|default:false}>imageeditor-modal-selected<{/if}>' type='image' src='<{$image.src}>' alt='<{$image.title}>' style='padding:3px;' value='<{$image.name}>'>
                         </div>
                         <{if $smarty.foreach.fe_image.iteration % 3 == 0}>
                             <div class='clear'></div>
@@ -251,7 +251,7 @@
                 </div>
                 <div class='modal-body'>
                     <{foreach item=image from=$images}>
-                        <{if $image.group}><h4 class='modal-title'><{$image.group}></h4><{/if}>
+                        <{if $image.group|default:false}><h4 class='modal-title'><{$image.group}></h4><{/if}>
                         <input class='imgGrid<{$m}>' type='image' src='<{$image.src}>' alt='<{$image.name}>'
                                style='padding:3px;max-height:150px;max-width:200px' value='<{$image.name}>' onclick='selectGridImage(this, <{$m}>)'>
                     <{/foreach}>
