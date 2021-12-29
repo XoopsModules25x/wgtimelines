@@ -6,7 +6,7 @@
     }
     .timeline > li > .timeline-panel {
         border: <{$borderwidth}> <{$borderstyle}> <{$bordercolor|default:'#fff'}>;
-        border-radius: <{$borderradius}>;
+        border-radius: <{$borderradius|default:0}>;
         background-color: <{$bgcolor}>;
         -webkit-box-shadow: <{$boxshadow}>;
         box-shadow: <{$boxshadow}>;
@@ -23,7 +23,7 @@
         color: <{$fontcolor}>;
     }
     .timeline > li > .timeline-badge {
-        color: <{$badgefontcolor}>;
+        color: <{$badgefontcolor|default:'#fff'}>;
         background-color:<{$badgecolor}>;
     }
     .timeline-heading {
@@ -81,7 +81,7 @@
 					<{/if}>	
                 </div>
 				<div class="timeline-back col-sm-12 right">
-					<a href="index.php?op=list&amp;tl_id=<{$item.tl_id}>#item<{$item.id}>" title="<{$smarty.const._MA_WGTIMELINES_GOBACK}>"><img src="<{$wgtimelines_icons_url}>/32/back.png" alt="<{$smarty.const._MA_WGTIMELINES_GOBACK}>" /></a>
+					<a href="index.php?op=list&amp;tl_id=<{$item.tl_id}>#item<{$item.id}>" title="<{$smarty.const._BACK}>"><img src="<{$wgtimelines_icons_url}>/32/back.png" alt="<{$smarty.const._BACK}>" /></a>
 				</div>
             </li>
         <{/foreach}>
