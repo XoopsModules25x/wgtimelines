@@ -92,17 +92,6 @@ function xoops_module_install_wgtimelines(\XoopsModule $module)
             $utility::copyFile($file, $dest);
         }
     }
-
-/* 
-    //  ---  COPY test folder files ---------------
-    if ($configurator->copyTestFolders && is_array($configurator->copyTestFolders)) {
-        //        $file =  dirname(__DIR__) . '/testdata/images/';
-        foreach (array_keys($configurator->copyTestFolders) as $i) {
-            $src  = $configurator->copyTestFolders[$i][0];
-            $dest = $configurator->copyTestFolders[$i][1];
-            $utility::rcopy($src, $dest);
-        }
-    } */
     
     //  ---  DELETE OLD FILES ---------------
     if (count($configurator->oldFiles) > 0) {

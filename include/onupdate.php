@@ -23,6 +23,30 @@ declare(strict_types=1);
  * @author         goffy (wedega.com) - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
  * @version        $Id: 1.0 update.php 13070 Sat 2016-10-01 05:42:17Z XOOPS Development Team $
  */
+
+use XoopsModules\Wgtimelines;
+use XoopsModules\Wgtimelines\Common\ {
+    Configurator,
+    Migrate,
+    MigrateHelper
+};
+
+/**
+ * Prepares system prior to attempting to install module
+ * @param \XoopsModule $module {@link XoopsModule}
+ *
+ * @return bool true if ready to install, false if not
+ */
+function xoops_module_pre_update_wgtimelines(\XoopsModule $module)
+{
+    $utility = new Wgtimelines\Utility();
+
+    $xoopsSuccess = $utility::checkVerXoops($module);
+    $phpSuccess   = $utility::checkVerPhp($module);
+
+    return $xoopsSuccess && $phpSuccess;
+}
+
 /**
  * @param      $module
  * @param null $prev_version
@@ -32,13 +56,12 @@ declare(strict_types=1);
 function xoops_module_update_wgtimelines(&$module, $prev_version = null)
 {
     require dirname(__DIR__) . '/preloads/autoloader.php';
+
+    $moduleDirName = $module->dirname();
     
     $ret = null;
-    if ($prev_version < 10) {
-        $ret = update_wgtimelines_v10($module);
-    }
-    
-    $ret = wgtimelines_check_db($module);
+
+    //$ret = wgtimelines_check_db($module);
     
     include_once __DIR__ . '/oninstall.php';
     $ret = xoops_module_install_wgtimelines($module);
@@ -50,6 +73,32 @@ function xoops_module_update_wgtimelines(&$module, $prev_version = null)
     if ($prev_version < 108) {
         $ret = update_wgtimelines_v108($module);
     }
+
+    // update DB corresponding to sql/mysql.sql
+    $configurator = new Configurator();
+    $migrate = new Migrate($configurator);
+
+    $fileSql = \XOOPS_ROOT_PATH . '/modules/' . $moduleDirName . '/sql/mysql.sql';
+    // ToDo: add function setDefinitionFile to .\class\libraries\vendor\xoops\xmf\src\Database\Migrate.php
+    // Todo: once we are using setDefinitionFile this part has to be adapted
+    //$fileYaml = \XOOPS_ROOT_PATH . '/modules/' . $moduleDirName . '/sql/update_' . $moduleDirName . '_migrate.yml';
+    //try {
+    //$migrate->setDefinitionFile('update_' . $moduleDirName);
+    //} catch (\Exception $e) {
+    // as long as this is not done default file has to be created
+    $moduleVersion = $module->getInfo('version');
+    $fileYaml = \XOOPS_ROOT_PATH . '/modules/' . $moduleDirName . "/sql/{$moduleDirName}_{$moduleVersion}_migrate.yml";
+    //}
+
+    // create a schema file based on sql/mysql.sql
+    $migratehelper = new MigrateHelper($fileSql, $fileYaml);
+    if (!$migratehelper->createSchemaFromSqlfile()) {
+        \xoops_error('Error: creation schema file failed!');
+        return false;
+    };
+
+    // run standard procedure for db migration
+    $migrate->synchronizeSchema();
 
     // create table 'wgtimelines_tplsetsdefault' in any case
     $ret = update_tplsetsdefault($module);
@@ -109,230 +158,14 @@ function update_tplsetsdefault(&$module)
  *
  * @return bool
  */
+/*
 function wgtimelines_check_db(&$module)
 {
     $ret = true;
-    
-    // add field table 'wgtimelines_items'
-    $table   = $GLOBALS['xoopsDB']->prefix('wgtimelines_items');
-    $field   = 'item_icon';
-    $check   = $GLOBALS['xoopsDB']->queryF('SHOW COLUMNS FROM `' . $table . "` LIKE '" . $field . "'");
-    $numRows = $GLOBALS['xoopsDB']->getRowsNum($check);
-    if (!$numRows) {
-        $sql = "ALTER TABLE `$table` ADD `$field` VARCHAR(200) NOT NULL DEFAULT '' AFTER `item_year`;";
-        if (!$result = $GLOBALS['xoopsDB']->queryF($sql)) {
-            xoops_error($GLOBALS['xoopsDB']->error() . '<br>' . $sql);
-            $module->setErrors("Error when adding '$field' to table '$table'.");
-            $ret = false;
-        }
-    }
-
-    // add field table 'wgtimelines_templates'
-    $table   = $GLOBALS['xoopsDB']->prefix('wgtimelines_templates');
-    $field   = 'tpl_version';
-    $check   = $GLOBALS['xoopsDB']->queryF('SHOW COLUMNS FROM `' . $table . "` LIKE '" . $field . "'");
-    $numRows = $GLOBALS['xoopsDB']->getRowsNum($check);
-    if (!$numRows) {
-        $sql = "ALTER TABLE `$table` ADD `$field` VARCHAR(10) NOT NULL DEFAULT '' AFTER `tpl_weight`;";
-        if (!$result = $GLOBALS['xoopsDB']->queryF($sql)) {
-            xoops_error($GLOBALS['xoopsDB']->error() . '<br>' . $sql);
-            $module->setErrors("Error when adding '$field' to table '$table'.");
-            $ret = false;
-        }
-    }
-    
-    // add field table 'wgtimelines_templates'
-    $table   = $GLOBALS['xoopsDB']->prefix('wgtimelines_templates');
-    $field   = 'tpl_author';
-    $check   = $GLOBALS['xoopsDB']->queryF('SHOW COLUMNS FROM `' . $table . "` LIKE '" . $field . "'");
-    $numRows = $GLOBALS['xoopsDB']->getRowsNum($check);
-    if (!$numRows) {
-        $sql = "ALTER TABLE `$table` ADD `$field` VARCHAR(200) NOT NULL DEFAULT '' AFTER `tpl_version`;";
-        if (!$result = $GLOBALS['xoopsDB']->queryF($sql)) {
-            xoops_error($GLOBALS['xoopsDB']->error() . '<br>' . $sql);
-            $module->setErrors("Error when adding '$field' to table '$table'.");
-            $ret = false;
-        }
-    }
-    
-    // add field table 'wgtimelines_templates'
-    $table   = $GLOBALS['xoopsDB']->prefix('wgtimelines_templates');
-    $field   = 'tpl_date_create';
-    $check   = $GLOBALS['xoopsDB']->queryF('SHOW COLUMNS FROM `' . $table . "` LIKE '" . $field . "'");
-    $numRows = $GLOBALS['xoopsDB']->getRowsNum($check);
-    if (!$numRows) {
-        $sql = "ALTER TABLE `$table` ADD `$field` INT(8) NOT NULL DEFAULT '0' AFTER `tpl_author`;";
-        if (!$result = $GLOBALS['xoopsDB']->queryF($sql)) {
-            xoops_error($GLOBALS['xoopsDB']->error() . '<br>' . $sql);
-            $module->setErrors("Error when adding '$field' to table '$table'.");
-            $ret = false;
-        }
-    }
-     
-    // add field table 'wgtimelines_items'
-    $table   = $GLOBALS['xoopsDB']->prefix('wgtimelines_items');
-    $field   = 'item_online';
-    $check   = $GLOBALS['xoopsDB']->queryF('SHOW COLUMNS FROM `' . $table . "` LIKE '" . $field . "'");
-    $numRows = $GLOBALS['xoopsDB']->getRowsNum($check);
-    if (!$numRows) {
-        $sql = "ALTER TABLE `$table` ADD `$field` INT(1) NOT NULL DEFAULT '1' AFTER `item_weight`;";
-        if (!$result = $GLOBALS['xoopsDB']->queryF($sql)) {
-            xoops_error($GLOBALS['xoopsDB']->error() . '<br>' . $sql);
-            $module->setErrors("Error when adding '$field' to table '$table'.");
-            $ret = false;
-        }
-    }
-    
-    // add field table 'wgtimelines_items'
-    $table   = $GLOBALS['xoopsDB']->prefix('wgtimelines_items');
-    $field   = 'item_reads';
-    $check   = $GLOBALS['xoopsDB']->queryF('SHOW COLUMNS FROM `' . $table . "` LIKE '" . $field . "'");
-    $numRows = $GLOBALS['xoopsDB']->getRowsNum($check);
-    if (!$numRows) {
-        $sql = "ALTER TABLE `$table` ADD `$field` int(8) NOT NULL DEFAULT '0' AFTER `item_icon`;";
-        if (!$result = $GLOBALS['xoopsDB']->queryF($sql)) {
-            xoops_error($GLOBALS['xoopsDB']->error() . '<br>' . $sql);
-            $module->setErrors("Error when adding '$field' to table '$table'.");
-            $ret = false;
-        }
-    }
-
-        
-    // add field table 'wgtimelines_timelines'
-    $table   = $GLOBALS['xoopsDB']->prefix('wgtimelines_timelines');
-    $field   = 'tl_desc';
-    $check   = $GLOBALS['xoopsDB']->queryF('SHOW COLUMNS FROM `' . $table . "` LIKE '" . $field . "'");
-    $numRows = $GLOBALS['xoopsDB']->getRowsNum($check);
-    if (!$numRows) {
-        $sql = "ALTER TABLE `$table` ADD `$field` TEXT NOT NULL AFTER `tl_name`;";
-        if (!$result = $GLOBALS['xoopsDB']->queryF($sql)) {
-            xoops_error($GLOBALS['xoopsDB']->error() . '<br>' . $sql);
-            $module->setErrors("Error when adding '$field' to table '$table'.");
-            $ret = false;
-        }
-    }
-    
-    // add field table 'wgtimelines_timelines'
-    $table   = $GLOBALS['xoopsDB']->prefix('wgtimelines_timelines');
-    $field   = 'tl_image';
-    $check   = $GLOBALS['xoopsDB']->queryF('SHOW COLUMNS FROM `' . $table . "` LIKE '" . $field . "'");
-    $numRows = $GLOBALS['xoopsDB']->getRowsNum($check);
-    if (!$numRows) {
-        $sql = "ALTER TABLE `$table` ADD `$field` VARCHAR(200) NOT NULL DEFAULT 'blank.gif' AFTER `tl_desc`;";
-        if (!$result = $GLOBALS['xoopsDB']->queryF($sql)) {
-            xoops_error($GLOBALS['xoopsDB']->error() . '<br>' . $sql);
-            $module->setErrors("Error when adding '$field' to table '$table'.");
-            $ret = false;
-        }
-    }
-
-    // add field table 'wgtimelines_timelines'
-    $table   = $GLOBALS['xoopsDB']->prefix('wgtimelines_timelines');
-    $field   = 'tl_limit';
-    $check   = $GLOBALS['xoopsDB']->queryF('SHOW COLUMNS FROM `' . $table . "` LIKE '" . $field . "'");
-    $numRows = $GLOBALS['xoopsDB']->getRowsNum($check);
-    if (!$numRows) {
-        $sql = "ALTER TABLE `$table` ADD `$field` int(8) NOT NULL DEFAULT '0' AFTER `tl_sortby`;";
-        if (!$result = $GLOBALS['xoopsDB']->queryF($sql)) {
-            xoops_error($GLOBALS['xoopsDB']->error() . '<br>' . $sql);
-            $module->setErrors("Error when adding '$field' to table '$table'.");
-            $ret = false;
-        }
-    }
-
-    $table   = $GLOBALS['xoopsDB']->prefix('wgtimelines_ratings');
-    $check   = $GLOBALS['xoopsDB']->queryF("SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA=DATABASE() AND TABLE_NAME='$table'");
-    $numRows = $GLOBALS['xoopsDB']->getRowsNum($check);
-    if (!$numRows) {
-        // create new table 'wggallery_categories'
-        $sql = "CREATE TABLE `$table` (
-                  `rate_id`     INT(8) UNSIGNED NOT NULL AUTO_INCREMENT,
-                  `rate_itemid` INT(8) NOT NULL DEFAULT '0',
-                  `rate_value`  INT(1) NOT NULL DEFAULT '0',
-                  `rate_uid`    INT(8) NOT NULL DEFAULT '0',
-                  `rate_ip`     VARCHAR(60) NOT NULL DEFAULT '',
-                  `rate_date`   INT(8) NOT NULL DEFAULT '0',
-                  PRIMARY KEY (`rate_id`)
-                ) ENGINE=InnoDB;";
-        if (!$result = $GLOBALS['xoopsDB']->queryF($sql)) {
-            xoops_error($GLOBALS['xoopsDB']->error() . '<br>' . $sql);
-            $module->setErrors("Error when creating table '$table'.");
-            $ret = false;
-        }
-    }
-    
-    // update table 'wgtimelines_items'
-    $table   = $GLOBALS['xoopsDB']->prefix('wgtimelines_items');
-    $field   = 'item_time';
-    $check   = $GLOBALS['xoopsDB']->queryF('SHOW COLUMNS FROM `' . $table . "` LIKE '" . $field . "'");
-    $numRows = $GLOBALS['xoopsDB']->getRowsNum($check);
-    if ($numRows) {
-         $sql = "ALTER TABLE `$table` CHANGE `item_year` `item_year` VARCHAR(50) NULL DEFAULT NULL;";
-        if (!$result = $GLOBALS['xoopsDB']->queryF($sql)) {
-            xoops_error($GLOBALS['xoopsDB']->error() . '<br>' . $sql);
-            $module->setErrors("Error when when changing fieldtype of '$field' to varchar in table '$table'.");
-            $ret = false;
-        }
-    }
-    
-    // add field table 'wgtimelines_timelines'
-    $table   = $GLOBALS['xoopsDB']->prefix('wgtimelines_timelines');
-    $field   = 'tl_datetime';
-    $check   = $GLOBALS['xoopsDB']->queryF('SHOW COLUMNS FROM `' . $table . "` LIKE '" . $field . "'");
-    $numRows = $GLOBALS['xoopsDB']->getRowsNum($check);
-    if (!$numRows) {
-        $sql = "ALTER TABLE `$table` ADD `$field` int(1) NOT NULL DEFAULT '1' AFTER `tl_limit`;";
-        if (!$result = $GLOBALS['xoopsDB']->queryF($sql)) {
-            xoops_error($GLOBALS['xoopsDB']->error() . '<br>' . $sql);
-            $module->setErrors("Error when adding '$field' to table '$table'.");
-            $ret = false;
-        }
-    }
-
-    // add field table 'wgtimelines_timelines'
-    $table   = $GLOBALS['xoopsDB']->prefix('wgtimelines_timelines');
-    $field   = 'tl_magnific';
-    $check   = $GLOBALS['xoopsDB']->queryF('SHOW COLUMNS FROM `' . $table . "` LIKE '" . $field . "'");
-    $numRows = $GLOBALS['xoopsDB']->getRowsNum($check);
-    if (!$numRows) {
-        $sql = "ALTER TABLE `$table` ADD `$field` int(1) NOT NULL DEFAULT '0' AFTER `tl_datetime`;";
-        if (!$result = $GLOBALS['xoopsDB']->queryF($sql)) {
-            xoops_error($GLOBALS['xoopsDB']->error() . '<br>' . $sql);
-            $module->setErrors("Error when adding '$field' to table '$table'.");
-            $ret = false;
-        }
-    }
-    
-    // add field table 'wgtimelines_timelines'
-    $table   = $GLOBALS['xoopsDB']->prefix('wgtimelines_timelines');
-    $field   = 'tl_expired';
-    $check   = $GLOBALS['xoopsDB']->queryF('SHOW COLUMNS FROM `' . $table . "` LIKE '" . $field . "'");
-    $numRows = $GLOBALS['xoopsDB']->getRowsNum($check);
-    if (!$numRows) {
-        $sql = "ALTER TABLE `$table` ADD `$field` int(1) NOT NULL DEFAULT '0' AFTER `tl_magnific`;";
-        if (!$result = $GLOBALS['xoopsDB']->queryF($sql)) {
-            xoops_error($GLOBALS['xoopsDB']->error() . '<br>' . $sql);
-            $module->setErrors("Error when adding '$field' to table '$table'.");
-            $ret = false;
-        }
-    }
-     
-    // drop field table 'wgtimelines_items'
-    $table   = $GLOBALS['xoopsDB']->prefix('wgtimelines_items');
-    $field   = 'item_time';
-    $check   = $GLOBALS['xoopsDB']->queryF('SHOW COLUMNS FROM `' . $table . "` LIKE '" . $field . "'");
-    $numRows = $GLOBALS['xoopsDB']->getRowsNum($check);
-    if ($numRows) {
-        $sql = "ALTER TABLE `$table` DROP `$field`;";
-        if (!$result = $GLOBALS['xoopsDB']->queryF($sql)) {
-            xoops_error($GLOBALS['xoopsDB']->error() . '<br>' . $sql);
-            $module->setErrors("Error when dropping field '$field' from table '$table'.");
-            $ret = false;
-        }
-    }
 
     return $ret;
 }
+*/
 
 /**
  * @param $module
@@ -372,58 +205,3 @@ function update_wgtimelines_v107(&$module)
     }    
     return true;
 }
-
-// irmtfan bug fix: solve templates duplicate issue
-/**
- * @param $module
- *
- * @return bool
- */
-function update_wgtimelines_v10(&$module)
-{
-    global $xoopsDB;
-    $result = $xoopsDB->query(
-        'SELECT t1.tpl_id FROM ' . $xoopsDB->prefix('tplfile') . ' t1, ' . $xoopsDB->prefix('tplfile')
-        . ' t2 WHERE t1.tpl_refid = t2.tpl_refid AND t1.tpl_module = t2.tpl_module AND t1.tpl_tplset=t2.tpl_tplset AND t1.tpl_file = t2.tpl_file AND t1.tpl_type = t2.tpl_type AND t1.tpl_id > t2.tpl_id'
-    );
-    $tplids = array();
-    while (list($tplid) = $xoopsDB->fetchRow($result)) {
-        $tplids[] = $tplid;
-    }
-    if (count($tplids) > 0) {
-        $tplfile_handler = xoops_getHandler('tplfile');
-        $duplicate_files = $tplfile_handler->getObjects(
-            new \Criteria('tpl_id', '(' . implode(',', $tplids) . ')', 'IN')
-        );
-
-        if (count($duplicate_files) > 0) {
-            foreach (array_keys($duplicate_files) as $i) {
-                $tplfile_handler->delete($duplicate_files[$i]);
-            }
-        }
-    }
-    $sql = 'SHOW INDEX FROM ' . $xoopsDB->prefix('tplfile') . " WHERE KEY_NAME = 'tpl_refid_module_set_file_type'";
-    if (!$result = $xoopsDB->queryF($sql)) {
-        xoops_error($this->db->error() . '<br>' . $sql);
-        return false;
-    }
-    $ret = array();
-    while ($myrow = $xoopsDB->fetchArray($result)) {
-        $ret[] = $myrow;
-    }
-    if (!empty($ret)) {
-        $module->setErrors('\'tpl_refid_module_set_file_type\' unique index is exist. Note: check \'tplfile\' table to be sure this index is UNIQUE because XOOPS CORE need it.'
-        );
-        return true;
-    }
-    $sql = 'ALTER TABLE ' . $xoopsDB->prefix('tplfile')
-           . ' ADD UNIQUE tpl_refid_module_set_file_type ( tpl_refid, tpl_module, tpl_tplset, tpl_file, tpl_type )';
-    if (!$result = $xoopsDB->queryF($sql)) {
-        xoops_error($xoopsDB->error() . '<br>' . $sql);
-        $module->setErrors('\'tpl_refid_module_set_file_type\' unique index is not added to \'tplfile\' table. Warning: do not use XOOPS until you add this unique index.'
-        );
-        return false;
-    }
-    return true;
-}
-// irmtfan bug fix: solve templates duplicate issue
