@@ -174,7 +174,7 @@ switch($op) {
                                             $helper->getConfig('maxsize'), null, null);
         if ($uploader->fetchMedia($_POST['xoops_upload_file'][0])) {
             $extension = \preg_replace('/^.+\.([^.]+)$/sU', '', $fileName);
-			$imgName   = mb_substr(\str_replace(' ', '', $_POST['item_title']), 0, 20) . '_' . $extension;
+            $imgName   = mb_substr(\str_replace(' ', '', $_POST['item_title']), 0, 20) . '_' . $extension;
             $uploader->setPrefix($imgName);
             $uploader->fetchMedia($_POST['xoops_upload_file'][0]);
             if (!$uploader->upload()) {

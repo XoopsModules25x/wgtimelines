@@ -71,7 +71,7 @@ if ($timelinesCount > 0) {
             $tl_sortby    = $timelinesAll[$t]->getVar('tl_sortby');
             $tl_limit     = $timelinesAll[$t]->getVar('tl_limit');
             $tl_magnific  = $timelinesAll[$t]->getVar('tl_magnific');
-			$tl_expired   = $timelinesAll[$t]->getVar('tl_expired');
+            $tl_expired   = $timelinesAll[$t]->getVar('tl_expired');
             // get template and template options
             $template_obj = $templatesHandler->get($tl_template);
             $template     = $template_obj->getValuesTemplates();
@@ -119,9 +119,9 @@ if ($timelinesCount > 0) {
             $criteria = new \CriteriaCompo();
             $criteria->add(new \Criteria('item_tl_id', $tl_id));
             $criteria->add(new \Criteria('item_online', 1));
-			if ( Constants::TIMELINE_EXPIRED_HIDE == $tl_expired ) { //=== does not work
-				$criteria->add(new \Criteria('item_date', \time(), '>'));
-			}
+            if ( Constants::TIMELINE_EXPIRED_HIDE == $tl_expired ) { //=== does not work
+                $criteria->add(new \Criteria('item_date', \time(), '>'));
+            }
             if ($limit > 0) {
                 $criteria->setStart($start);
                 $criteria->setLimit($limit);

@@ -40,21 +40,21 @@
                 <div class="timeline-panel">
                     <div class="timeline-heading"> 
                         <h4 class="timeline-title">
-							<{$item.title}>						
-							<{if $isAdmin|default:false}>
-								<span class='admin-area pull-right'>
-									<a href="admin/items.php?op=edit&amp;ui=user&amp;item_id=<{$item.id}>" title="<{$smarty.const._EDIT}>">
-										<img src="<{xoModuleIcons16 edit.png}>" alt="items" /></a>
-									<a href="admin/items.php?op=delete&amp;ui=user&amp;item_id=<{$item.id}>" title="<{$smarty.const._DELETE}>">
-										<img src="<{xoModuleIcons16 delete.png}>" alt="items" /></a>
-								</span>
-							<{/if}>
-							<{if $showreads|default:false}>
-								<span class='timeline-item-reads pull-right'>
-									<i class='glyphicon glyphicon-eye-open'> <{$smarty.const._MA_WGTIMELINES_ITEM_READS}>: <{$item.reads}></i>
-								</span>
-							<{/if}>	
-						</h4>
+                            <{$item.title}>                        
+                            <{if $isAdmin|default:false}>
+                                <span class='admin-area pull-right'>
+                                    <a href="admin/items.php?op=edit&amp;ui=user&amp;item_id=<{$item.id}>" title="<{$smarty.const._EDIT}>">
+                                        <img src="<{xoModuleIcons16 edit.png}>" alt="items" /></a>
+                                    <a href="admin/items.php?op=delete&amp;ui=user&amp;item_id=<{$item.id}>" title="<{$smarty.const._DELETE}>">
+                                        <img src="<{xoModuleIcons16 delete.png}>" alt="items" /></a>
+                                </span>
+                            <{/if}>
+                            <{if $showreads|default:false}>
+                                <span class='timeline-item-reads pull-right'>
+                                    <i class='glyphicon glyphicon-eye-open'> <{$smarty.const._MA_WGTIMELINES_ITEM_READS}>: <{$item.reads}></i>
+                                </span>
+                            <{/if}>    
+                        </h4>
                     </div>
                     <div class="timeline-body col-sm-12">
                         <{if $item.image|default:false}>
@@ -69,20 +69,20 @@
                         <{/if}>
                         <p><{$item.content|default:false}></p>
                         </div>
-						
+                        
                     </div>
                     <{if $item.date|default:false}>
                         <div class="cols-xs-12 col-sm-12 timeline-footer">
                             <p><{$item.date}></p>
                         </div>
                     <{/if}>
-					<{if $rating|default:false}>
-						<div class='timeline-item-rating pull-left'><{include file='db:wgtimelines_ratingbar.tpl'}></div>
-					<{/if}>	
+                    <{if $rating|default:false}>
+                        <div class='timeline-item-rating pull-left'><{include file='db:wgtimelines_ratingbar.tpl'}></div>
+                    <{/if}>    
                 </div>
-				<div class="timeline-back col-sm-12 right">
-					<a href="index.php?op=list&amp;tl_id=<{$item.tl_id}>#item<{$item.id}>" title="<{$smarty.const._BACK}>"><img src="<{$wgtimelines_icons_url}>/32/back.png" alt="<{$smarty.const._BACK}>" /></a>
-				</div>
+                <div class="timeline-back col-sm-12 right">
+                    <a href="index.php?op=list&amp;tl_id=<{$item.tl_id}>#item<{$item.id}>" title="<{$smarty.const._BACK}>"><img src="<{$wgtimelines_icons_url}>/32/back.png" alt="<{$smarty.const._BACK}>" /></a>
+                </div>
             </li>
         <{/foreach}>
         </ul>
@@ -90,6 +90,6 @@
     <div class="clear"></div>
 <{/if}>
 <{if $error|default:false}>
-	<div class="errorMsg"><strong><{$error}></strong></div>
+    <div class="errorMsg"><strong><{$error}></strong></div>
 <{/if}>
 <{include file='db:wgtimelines_footer.tpl'}>

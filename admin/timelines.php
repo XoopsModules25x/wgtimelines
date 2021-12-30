@@ -118,7 +118,7 @@ switch($op) {
                                             $helper->getConfig('maxsize'), null, null);
         if ($uploader->fetchMedia($_POST['xoops_upload_file'][0])) {
             $extension = \preg_replace('/^.+\.([^.]+)$/sU', '', $fileName);
-			$imgName   = mb_substr(\str_replace(' ', '', $_POST['tl_name']), 0, 20) . '_' . $extension;
+            $imgName   = mb_substr(\str_replace(' ', '', $_POST['tl_name']), 0, 20) . '_' . $extension;
             $uploader->setPrefix($imgName);
             $uploader->fetchMedia($_POST['xoops_upload_file'][0]);
             if (!$uploader->upload()) {
@@ -151,7 +151,7 @@ switch($op) {
         $timelinesObj->setVar('tl_limit',     Request::getInt('tl_limit'));
         $timelinesObj->setVar('tl_datetime',  Request::getInt('tl_datetime'));
         $timelinesObj->setVar('tl_magnific',  Request::getInt('tl_magnific'));
-		$timelinesObj->setVar('tl_expired',   Request::getInt('tl_expired', Constants::TIMELINE_EXPIRED_SHOW));
+        $timelinesObj->setVar('tl_expired',   Request::getInt('tl_expired', Constants::TIMELINE_EXPIRED_SHOW));
         $timelinesObj->setVar('tl_online',    Request::getInt('tl_online'));
         $timelinesObj->setVar('tl_submitter', Request::getInt('tl_submitter'));
         $timelineDate_create = date_create_from_format(_SHORTDATESTRING, $_POST['tl_date_create']);

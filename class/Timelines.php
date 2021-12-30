@@ -53,7 +53,7 @@ class Timelines extends \XoopsObject
         $this->initVar('tl_limit', \XOBJ_DTYPE_INT);
         $this->initVar('tl_datetime', \XOBJ_DTYPE_INT);
         $this->initVar('tl_magnific', \XOBJ_DTYPE_INT);
-		$this->initVar('tl_expired', \XOBJ_DTYPE_INT);
+        $this->initVar('tl_expired', \XOBJ_DTYPE_INT);
         $this->initVar('tl_online', \XOBJ_DTYPE_INT);
         $this->initVar('tl_submitter', \XOBJ_DTYPE_INT);
         $this->initVar('tl_date_create', \XOBJ_DTYPE_INT);
@@ -168,7 +168,7 @@ class Timelines extends \XoopsObject
         $tlExpiredSelect->addOption(Constants::TIMELINE_EXPIRED_SHOW, _CO_TIMELINE_EXPIRED_SHOW);
         $tlExpiredSelect->addOption(Constants::TIMELINE_EXPIRED_HIDE, _CO_TIMELINE_EXPIRED_HIDE);
         $form->addElement($tlExpiredSelect, true);
-		// Form Text TlWeight
+        // Form Text TlWeight
         $timelinesHandler = $helper->getHandler('Timelines');
         $tlWeight = $this->isNew() ? ($timelinesHandler->getCountTimelines() + 1) : $this->getVar('tl_weight');
         $form->addElement(new \XoopsFormHidden('tl_weight', $tlWeight));
@@ -207,16 +207,16 @@ class Timelines extends \XoopsObject
         $ret['limit'] = $this->getVar('tl_limit');
         $ret['datetime'] = $this->getVar('tl_datetime');
         $ret['magnific'] = $this->getVar('tl_magnific');
-		$ret['expired'] = $this->getVar('tl_expired');
-		switch ( $this->getVar('tl_expired') ) {
-			case Constants::TIMELINE_EXPIRED_HIDE:
-				$ret['expired_text'] = _CO_TIMELINE_EXPIRED_HIDE;
-			break;
-			case Constants::TIMELINE_EXPIRED_SHOW:
-			default:
-				$ret['expired_text'] = _CO_TIMELINE_EXPIRED_SHOW;
-			break;
-		}
+        $ret['expired'] = $this->getVar('tl_expired');
+        switch ( $this->getVar('tl_expired') ) {
+            case Constants::TIMELINE_EXPIRED_HIDE:
+                $ret['expired_text'] = _CO_TIMELINE_EXPIRED_HIDE;
+            break;
+            case Constants::TIMELINE_EXPIRED_SHOW:
+            default:
+                $ret['expired_text'] = _CO_TIMELINE_EXPIRED_SHOW;
+            break;
+        }
         $ret['online'] = $this->getVar('tl_online');
         $ret['submitter'] = \XoopsUser::getUnameFromId($this->getVar('tl_submitter'));
         $ret['date_create'] = \formatTimestamp($this->getVar('tl_date_create'), 's');

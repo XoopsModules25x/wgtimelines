@@ -52,22 +52,22 @@ if ('tl_id' === $origin) {
     $timelineId = Request::getInt('imageIdCrop');
 }
 if ( 0 < $itemId ) {
-	$imageId      = $itemId;
-	$imageHandler = $itemsHandler;
-	$imageObj     = $itemsHandler->get($imageId);
+    $imageId      = $itemId;
+    $imageHandler = $itemsHandler;
+    $imageObj     = $itemsHandler->get($imageId);
     $imageTlId    = $itemsHandler->get($imageId)->getVar('item_tl_id');
-	$imageClass   = Constants::IMAGECLASS_ITEM;
+    $imageClass   = Constants::IMAGECLASS_ITEM;
     $imageOrigin  = 'item_id';
 } else {
-	if ($timelineId > 0) {
-		$imageId      = $timelineId;
-		$imageObj     = $timelinesHandler->get($imageId);
-		$imageHandler = $timelinesHandler;
-		$imageClass   = Constants::IMAGECLASS_TIMELINE;
+    if ($timelineId > 0) {
+        $imageId      = $timelineId;
+        $imageObj     = $timelinesHandler->get($imageId);
+        $imageHandler = $timelinesHandler;
+        $imageClass   = Constants::IMAGECLASS_TIMELINE;
         $imageOrigin  = 'tl_id';
-	} else {
-		\redirect_header('index.php', 3, \_AM_WGTIMELINES_FORM_ERROR_INVALID_ID);
-	}
+    } else {
+        \redirect_header('index.php', 3, \_AM_WGTIMELINES_FORM_ERROR_INVALID_ID);
+    }
 }
 
 if ($imageClass === Constants::IMAGECLASS_ITEM) {
@@ -266,10 +266,10 @@ switch ($op) {
         // remove '_image' from id
         $image_id = \substr($image_id, 0, -6);
         $imageObj->setVar($fieldObj, $image_id);
-		$imageObj->setVar($submObj, $uid);
+        $imageObj->setVar($submObj, $uid);
         // Insert Data
         if ($imageHandler->insert($imageObj)) {  
-			\redirect_header($redir, 2, \_AM_WGTIMELINES_FORM_OK);
+            \redirect_header($redir, 2, \_AM_WGTIMELINES_FORM_OK);
         }
         $GLOBALS['xoopsTpl']->assign('error', $imageObj->getHtmlErrors());
         break;
@@ -280,10 +280,10 @@ switch ($op) {
         $ret = \rename($imgTempGrid, $imgFinal);
         // Set Vars
         $imageObj->setVar($fieldObj, $imgName);
-		$imageObj->setVar($submObj, $uid);
+        $imageObj->setVar($submObj, $uid);
         // Insert Data
         if ($imageHandler->insert($imageObj)) {
-			\redirect_header($redir, 2, \_AM_WGTIMELINES_FORM_OK);
+            \redirect_header($redir, 2, \_AM_WGTIMELINES_FORM_OK);
         }
         $GLOBALS['xoopsTpl']->assign('error', $imageObj->getHtmlErrors());
 
@@ -357,7 +357,7 @@ switch ($op) {
         $GLOBALS['xoTheme']->addScript(\WGTIMELINES_URL . '/assets/js/cropper-main.js');
 
         $GLOBALS['xoopsTpl']->assign('nbModals', [1, 2, 3, 4, 5, 6]);
-		
+        
         // get form for upload album image
         $currImage   = $imageObj->getVar($fieldObj);
         if ('' == $currImage) {

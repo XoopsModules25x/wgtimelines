@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="<{$wgtimelines_url}>/templates/css/timelines_cleanhtml.css">
 <style>
 .timeline:before {
-	background-color: <{$bgcolor}>;
+    background-color: <{$bgcolor}>;
 }
 .timeline-header, .timeline li {
     background-color: <{$bgcolor}>;
@@ -44,29 +44,29 @@
                         <{if $use_magnific|default:false}></a><{/if}>
                     </span>
                 <{/if}>
-				<{if $item.readmore|default:false}>
-					<div class="col-sm-12 timeline-item-readmore right">
-						<a href="items.php?op=read&amp;item_id=<{$item.id}>&amp;tpltype=table" title="<{$smarty.const._MA_WGTIMELINES_READMORE}>"><{$smarty.const._MA_WGTIMELINES_READMORE}>...</a>
-					</div>
-				<{/if}>
-				<{if $isAdmin|default:false}>
-					<div class="pull-right">
-						<a href="admin/items.php?op=edit&amp;ui=user&amp;item_id=<{$item.id}>" title="<{$smarty.const._EDIT}>">
-							<img src="<{xoModuleIcons16 edit.png}>" alt="items" />
-						</a>
-						<a href="admin/items.php?op=delete&amp;ui=user&amp;item_id=<{$item.id}>" title="<{$smarty.const._DELETE}>">
-							<img src="<{xoModuleIcons16 delete.png}>" alt="items" />
-						</a>
-					</div>
-				<{/if}>
-				<{if $showreads|default:false}>
-					<div class="timeline-item-reads pull-left">
-						<i class="glyphicon glyphicon-eye-open"> <{$smarty.const._MA_WGTIMELINES_ITEM_READS}>: <{$item.reads}></i>
-					</div>
-				<{/if}>
-				<{if $rating|default:false}>
-					<div class="timeline-item-rating pull-left"><{include file='db:wgtimelines_ratingbar.tpl'}></div>
-				<{/if}>				
+                <{if $item.readmore|default:false}>
+                    <div class="col-sm-12 timeline-item-readmore right">
+                        <a href="items.php?op=read&amp;item_id=<{$item.id}>&amp;tpltype=table" title="<{$smarty.const._MA_WGTIMELINES_READMORE}>"><{$smarty.const._MA_WGTIMELINES_READMORE}>...</a>
+                    </div>
+                <{/if}>
+                <{if $isAdmin|default:false}>
+                    <div class="pull-right">
+                        <a href="admin/items.php?op=edit&amp;ui=user&amp;item_id=<{$item.id}>" title="<{$smarty.const._EDIT}>">
+                            <img src="<{xoModuleIcons16 edit.png}>" alt="items" />
+                        </a>
+                        <a href="admin/items.php?op=delete&amp;ui=user&amp;item_id=<{$item.id}>" title="<{$smarty.const._DELETE}>">
+                            <img src="<{xoModuleIcons16 delete.png}>" alt="items" />
+                        </a>
+                    </div>
+                <{/if}>
+                <{if $showreads|default:false}>
+                    <div class="timeline-item-reads pull-left">
+                        <i class="glyphicon glyphicon-eye-open"> <{$smarty.const._MA_WGTIMELINES_ITEM_READS}>: <{$item.reads}></i>
+                    </div>
+                <{/if}>
+                <{if $rating|default:false}>
+                    <div class="timeline-item-rating pull-left"><{include file='db:wgtimelines_ratingbar.tpl'}></div>
+                <{/if}>                
             </li>
         <{/foreach}>
         </ul>
@@ -74,6 +74,6 @@
     <div class="clear"></div>
 <{/if}>
 <{if $error|default:false}>
-	<div class="errorMsg"><strong><{$error}></strong></div>
+    <div class="errorMsg"><strong><{$error}></strong></div>
 <{/if}>
 <{include file='db:wgtimelines_footer.tpl'}>

@@ -8,7 +8,7 @@
     background:<{$linecolor}>;
 }
 li.event:nth-child(even)::before{
-	background:<{$linecolor}>;
+    background:<{$linecolor}>;
 }
 .timeline li.year{
     background-color: <{$badgecolor}>;
@@ -19,8 +19,8 @@ li.event:nth-child(even)::before{
     background-color: <{$bgcolor}>;
     color: <{$fontcolor}>;
     border-radius: <{$borderradius}>;
-	-moz-border-radius: <{$borderradius}>;
-	-webkit-border-radius: <{$borderradius}>;
+    -moz-border-radius: <{$borderradius}>;
+    -webkit-border-radius: <{$borderradius}>;
     border: <{$borderwidth}> <{$borderstyle}> <{$bordercolor|default:'#fff'}>;
     -webkit-box-shadow: <{$boxshadow}>;
     box-shadow: <{$boxshadow}>;
@@ -52,11 +52,11 @@ li.event:nth-child(even)::before{
                     <span class="event-month"><{$item.date}></span>
                 <{/if}>
                 <p class="event-body"><{$item.content|default:false}></p>
-				<{if $item.readmore|default:false}>
-					<p class="timeline-item-readmore right">
-						<a href="items.php?op=read&amp;item_id=<{$item.id}>" title="<{$smarty.const._MA_WGTIMELINES_READMORE}>"><{$smarty.const._MA_WGTIMELINES_READMORE}>...</a>
-					</p>
-				<{/if}>
+                <{if $item.readmore|default:false}>
+                    <p class="timeline-item-readmore right">
+                        <a href="items.php?op=read&amp;item_id=<{$item.id}>" title="<{$smarty.const._MA_WGTIMELINES_READMORE}>"><{$smarty.const._MA_WGTIMELINES_READMORE}>...</a>
+                    </p>
+                <{/if}>
                 <{if $panel_imgpos|default:'' == 'bottom' && $item.image|default:false}>
                     <span class="col-sm-12">
                         <{if $use_magnific|default:false}><a class="image-popup-no-margins" href="<{$wgtimelines_upload_url}>/images/items/<{$item.image}>"><{/if}>
@@ -64,24 +64,24 @@ li.event:nth-child(even)::before{
                         <{if $use_magnific|default:false}></a><{/if}>
                     </span>
                 <{/if}>
-				<{if $showreads|default:false}>
-					<span class="col-xs-12 col-sm-6 timeline-item-reads pull-left">
-						<i class="glyphicon glyphicon-eye-open"> <{$smarty.const._MA_WGTIMELINES_ITEM_READS}>: <{$item.reads}></i>
-					</span>
-				<{/if}>	
-				<{if $rating|default:false}>
-					<div class="timeline-item-rating pull-left"><{include file='db:wgtimelines_ratingbar.tpl'}></div>
-				<{/if}>
-				<{if $isAdmin|default:false}>
-					<span class="col-xs-12 col-sm-6 admin-area pull-right">
-						<a href="admin/items.php?op=edit&amp;ui=user&amp;item_id=<{$item.id}>" title="<{$smarty.const._EDIT}>">
-							<img src="<{xoModuleIcons16 edit.png}>" alt="items" />
-						</a>
-						<a href="admin/items.php?op=delete&amp;ui=user&amp;item_id=<{$item.id}>" title="<{$smarty.const._DELETE}>">
-							<img src="<{xoModuleIcons16 delete.png}>" alt="items" />
-						</a>
-					</span>
-				<{/if}>
+                <{if $showreads|default:false}>
+                    <span class="col-xs-12 col-sm-6 timeline-item-reads pull-left">
+                        <i class="glyphicon glyphicon-eye-open"> <{$smarty.const._MA_WGTIMELINES_ITEM_READS}>: <{$item.reads}></i>
+                    </span>
+                <{/if}>    
+                <{if $rating|default:false}>
+                    <div class="timeline-item-rating pull-left"><{include file='db:wgtimelines_ratingbar.tpl'}></div>
+                <{/if}>
+                <{if $isAdmin|default:false}>
+                    <span class="col-xs-12 col-sm-6 admin-area pull-right">
+                        <a href="admin/items.php?op=edit&amp;ui=user&amp;item_id=<{$item.id}>" title="<{$smarty.const._EDIT}>">
+                            <img src="<{xoModuleIcons16 edit.png}>" alt="items" />
+                        </a>
+                        <a href="admin/items.php?op=delete&amp;ui=user&amp;item_id=<{$item.id}>" title="<{$smarty.const._DELETE}>">
+                            <img src="<{xoModuleIcons16 delete.png}>" alt="items" />
+                        </a>
+                    </span>
+                <{/if}>
             </li>
 
         <{/foreach}>
@@ -90,6 +90,6 @@ li.event:nth-child(even)::before{
     <div class="clear"></div>
 <{/if}>
 <{if $error|default:false}>
-	<div class="errorMsg"><strong><{$error}></strong></div>
+    <div class="errorMsg"><strong><{$error}></strong></div>
 <{/if}>
 <{include file='db:wgtimelines_footer.tpl'}>
