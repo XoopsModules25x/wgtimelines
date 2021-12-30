@@ -25,14 +25,14 @@
     }
 </style>
 <{if $form_select|default:false}>
-	<div class="form_select"><{$form_select}></div>
+    <div class="form_select"><{$form_select}></div>
 <{/if}>
 <br>
 <!-- Header -->
 <{include file='db:wgtimelines_admin_header.tpl'}>
 <{if $items_list|default:false}>
-	<table class='table table-bordered' id='sortable-items'>
-	<thead>
+    <table class='table table-bordered' id='sortable-items'>
+    <thead>
         <tr class="head">
             <th class="center">&nbsp;</th>
             <th class="center"><{$smarty.const._AM_WGTIMELINES_ITEM_TITLE}></th>
@@ -40,9 +40,9 @@
             <th class="center"><{$smarty.const._AM_WGTIMELINES_ITEM_IMAGE}></th>
             <th class="center"><{$smarty.const._AM_WGTIMELINES_ITEM_DATE}></th>
             <th class="center"><{$smarty.const._AM_WGTIMELINES_ITEM_YEAR}></th>
-			<th class="center"><{$smarty.const._AM_WGTIMELINES_ITEM_ICON}></th>
-			<th class="center"><{$smarty.const._AM_WGTIMELINES_ITEM_READS}></th>
-			<th class="center"><{$smarty.const._AM_WGTIMELINES_ONLINE}></th>
+            <th class="center"><{$smarty.const._AM_WGTIMELINES_ITEM_ICON}></th>
+            <th class="center"><{$smarty.const._AM_WGTIMELINES_ITEM_READS}></th>
+            <th class="center"><{$smarty.const._AM_WGTIMELINES_ONLINE}></th>
             <th class="center"><{$smarty.const._AM_WGTIMELINES_SUBMITTER}></th>
             <th class="center"><{$smarty.const._AM_WGTIMELINES_DATE_CREATE}></th>
             <th class="center width5"><{$smarty.const._AM_WGTIMELINES_FORM_ACTION}></th>
@@ -69,9 +69,9 @@
             <td class="center"><img src="<{$wgtimelines_upload_url}>/images/items/<{$item.image}>" alt="<{$item.title}>" style="max-width:100px;" /></td>
             <td class="center"><{$item.date_admin}></td>
             <td class="center"><{$item.year}></td>
-			<td class="center"><i class='glyphicon glyphicon-<{$item.icon}>'></i></td>
-			<td class="center"><{$item.reads}></td>
-			<td class="center">
+            <td class="center"><i class='glyphicon glyphicon-<{$item.icon}>'></i></td>
+            <td class="center"><{$item.reads}></td>
+            <td class="center">
                 <a href="items.php?op=set_onoff&amp;item_id=<{$item.id}>" title="<{$item.online}>">
                     <{if $item.online == 1}>
                         <img src="<{xoModuleIcons16 on.png}>" alt="<{$smarty.const._YES}>" /></a>
@@ -99,16 +99,16 @@
 </table>
 <div class="clear">&nbsp;</div>
 <{if $pagenav|default:false}>
-	<div class="xo-pagenav floatright"><{$pagenav}></div>
+    <div class="xo-pagenav floatright"><{$pagenav}></div>
     <div class="clear spacer"></div>
 <{/if}>
 
 <{/if}>
 <{if $form|default:false}>
-	<{$form}>
+    <{$form}>
 <{/if}>
 <{if $error|default:false}>
-	<div class="errorMsg"><strong><{$error}></strong></div>
+    <div class="errorMsg"><strong><{$error}></strong></div>
 <{/if}>
 <br /><br />
 <!-- Footer --><{include file='db:wgtimelines_admin_footer.tpl'}>

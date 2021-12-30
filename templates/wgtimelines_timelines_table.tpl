@@ -44,7 +44,7 @@
                                 <span class="timeline-item-reads col-sm-12 pull-left">
                                     <i class="glyphicon glyphicon-eye-open"> <{$smarty.const._MA_WGTIMELINES_ITEM_READS}>: <{$item.reads}></i>
                                 </span>
-                            <{/if}>	
+                            <{/if}>    
                             <{if $rating|default:false}>
                                 <div class="timeline-item-rating pull-left"><{include file='db:wgtimelines_ratingbar.tpl'}></div>
                             <{/if}>
@@ -93,7 +93,7 @@
                                 <span class="timeline-item-reads pull-left">
                                     <i class="glyphicon glyphicon-eye-open"> <{$smarty.const._MA_WGTIMELINES_ITEM_READS}>: <{$item.reads}></i>
                                 </span>
-                            <{/if}>	
+                            <{/if}>    
                             
                             <{if $rating|default:false}>&nbsp;<br>
                                 <div class="timeline-item-rating pull-left"><{include file='db:wgtimelines_ratingbar.tpl'}></div>
@@ -107,6 +107,6 @@
     </div>
 <{/if}>
 <{if $error|default:false}>
-	<div class="errorMsg"><strong><{$error}></strong></div>
+    <div class="errorMsg"><strong><{$error}></strong></div>
 <{/if}>
 <{include file='db:wgtimelines_footer.tpl'}>

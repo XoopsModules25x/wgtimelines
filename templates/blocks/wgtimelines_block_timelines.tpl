@@ -1,11 +1,11 @@
 <table class='table table-<{$table_type|default:''}>'>
-	<thead>
+    <thead>
         <tr class='head'>
             <th class='center'><{$smarty.const._MB_WGTIMELINES_TL_NAME}></th>
         </tr>
-	</thead>
+    </thead>
     <{if $block > 0}>
-	<tbody>
+    <tbody>
         <{foreach item=timeline from=$block}>
         <tr class="<{cycle values="odd, even"}>">
             <td class="center">
