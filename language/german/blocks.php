@@ -29,6 +29,8 @@
 \define('_MB_WGTIMELINES_ITEMS_TO_DISPLAY', 'Anzuzeigende Einträge');
 \define('_MB_WGTIMELINES_ITEMS_DISPLAY_CAT', 'Kategorie');
 \define('_MB_WGTIMELINES_ITEMS_LAST', 'Letzte Einträge');
+\define('_MB_WGTIMELINES_ITEMS_WEIGHT_ASC', 'Einträge nach Reihung aufsteigend');
+\define('_MB_WGTIMELINES_ITEMS_WEIGHT_DESC', 'Einträge nach Reihung absteigend');
 \define('_MB_WGTIMELINES_ITEMS_NEW', 'Neueste Einträge');
 \define('_MB_WGTIMELINES_ITEMS_RANDOM', 'Zufällige Einträge');
 \define('_MB_WGTIMELINES_ITEMS_TIMELINES_APPLY', 'Anwenden für folgende Zeitreihen');

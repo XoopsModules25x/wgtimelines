@@ -26,6 +26,7 @@ declare(strict_types=1);
 
 use XoopsModules\Wgtimelines;
 
+require_once \dirname(__DIR__) . '/preloads/autoloader.php';
 include __DIR__ . '/header.php';
 // Count elements
 $countTimelines = $timelinesHandler->getCount();

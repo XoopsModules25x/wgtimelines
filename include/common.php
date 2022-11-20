@@ -44,6 +44,7 @@ if (!\defined('WGTIMELINES_PATH')) {
     \define('WGTIMELINES_UPLOAD_IMAGE_URL', \WGTIMELINES_UPLOAD_URL.'/images');
     \define('WGTIMELINES_ADMIN', \WGTIMELINES_URL . '/admin/index.php');
 }
+
 $localLogo = \WGTIMELINES_IMAGE_URL . '/wedega.png';
 // Module Information
 $copyright = "<a href='https://xoops.wedega.com' title='XOOPS on Wedega' target='_blank'><img src='".$localLogo . '\' alt=\'XOOPS on Wedega\' /></a>';

@@ -27,6 +27,7 @@ declare(strict_types=1);
 //
 $moduleDirName      = \basename(__DIR__);
 $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
+//require_once \dirname(__DIR__) . '/preloads/autoloader.php';
 
 // ------------------- Informations ------------------- //
 $modversion['name']                = \_MI_WGTIMELINES_NAME;
@@ -169,7 +170,6 @@ $modversion['blocks'][$b]['show_func']   = 'b_wgtimelines_items_show';
 $modversion['blocks'][$b]['edit_func']   = 'b_wgtimelines_items_edit';
 $modversion['blocks'][$b]['template']    = 'wgtimelines_block_items.tpl';
 $modversion['blocks'][$b]['options']     = 'item|5|25|last|0';
-++$b;
 unset($b);
 // ------------------- Config ------------------- //
 // Keywords

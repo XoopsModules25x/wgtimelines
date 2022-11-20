@@ -162,7 +162,7 @@ switch($op) {
         $itemsObj->setVar('item_tl_id', $item_tl_id);
         $itemsObj->setVar('item_title', Request::getString('item_title'));
         //fix for avoid hiding empty paragraphs in some browsers (instead of: $itemsObj->setVar('item_content', $_POST['item_content']);
-        $itemsObj->setVar('item_content', \preg_replace('/<p><\/p>/', '<p>&nbsp;</p>', Request::getString('item_content')));
+        $itemsObj->setVar('item_content', Request::getText('item_content'));
        
         // Set Var item_image
         include_once \XOOPS_ROOT_PATH .'/class/uploader.php';
@@ -200,16 +200,19 @@ switch($op) {
             }
             $itemsObj->setVar('item_image', Request::getString('item_image'));
         }
-
-        $itemsObj->setVar('item_date',      \strtotime($_POST['item_date']['date']) + \intval($_POST['item_date']['time']));
+        $itemDateArr = Request::getArray('item_date');
+        $itemDateObj = \DateTime::createFromFormat(\_SHORTDATESTRING, $itemDateArr['date']);
+        $itemDateObj->setTime(0, 0);
+        $itemDate = $itemDateObj->getTimestamp() + (int)$itemDateArr['time'];
+        $itemsObj->setVar('item_date',      $itemDate);
         $itemsObj->setVar('item_year',      Request::getString('item_year'));
         $itemsObj->setVar('item_icon',      Request::getString('item_icon', 'none'));
         $itemsObj->setVar('item_weight',    Request::getInt('item_weight'));
         $itemsObj->setVar('item_reads',     Request::getInt('item_reads'));
         $itemsObj->setVar('item_online',    Request::getInt('item_online'));
         $itemsObj->setVar('item_submitter', Request::getInt('item_submitter'));
-        $itemDate_create = date_create_from_format(_SHORTDATESTRING, $_POST['item_date_create']);
-        $itemsObj->setVar('item_date_create', $itemDate_create->getTimestamp());
+        $itemDatecreatedObj = \DateTime::createFromFormat(\_SHORTDATESTRING, Request::getString('item_date_create'));
+        $itemsObj->setVar('item_date_create', $itemDatecreatedObj->getTimestamp());
         // Insert Data
         if($itemsHandler->insert($itemsObj)) {
             if ($ui === 'user') {
@@ -273,7 +276,7 @@ switch($op) {
         break;
 
     case 'order':
-        $iorder = Request::getInt('iorder');
+        $iorder = Request::getArray('iorder');
         for ($i = 0, $iMax = \count($iorder); $i < $iMax; $i++){
             $itemsObj = $itemsHandler->get($iorder[$i]);
             $itemsObj->setVar('item_weight',$i+1);

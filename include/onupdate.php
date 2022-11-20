@@ -25,6 +25,7 @@ declare(strict_types=1);
  */
 
 use XoopsModules\Wgtimelines;
+use XoopsModules\Wgtimelines\Helper;
 use XoopsModules\Wgtimelines\Common\ {
     Configurator,
     Migrate,
@@ -66,11 +67,11 @@ function xoops_module_update_wgtimelines(&$module, $prev_version = null)
     include_once __DIR__ . '/oninstall.php';
     $ret = xoops_module_install_wgtimelines($module);
 
-    if ($prev_version < 107) {
+    if (compareVersion((string)$prev_version,  '1.0.7')) {
         $ret = update_wgtimelines_v107($module);
     }
-    
-    if ($prev_version < 108) {
+
+    if (compareVersion((string)$prev_version,  '1.0.8')) {
         $ret = update_wgtimelines_v108($module);
     }
 
@@ -115,6 +116,79 @@ function xoops_module_update_wgtimelines(&$module, $prev_version = null)
     }
 
     return $ret;
+}
+
+/** function to compare two versions
+ * handling old versioning and semantic versioning
+ * @param $version1
+ * @param $version2
+ * @param string $type
+ * @return bool
+ */
+function compareVersion ($version1, $version2, $type = '<') {
+
+    $arrVersion1 = getVersionArray($version1);
+    $arrVersion2 = getVersionArray($version2);
+
+    if ('=' === $type) {
+        return ($arrVersion1[0] === $arrVersion2[0] &&
+                $arrVersion1[1] === $arrVersion2[1] &&
+                $arrVersion1[2] === $arrVersion2[2]);
+    }
+    if ('<' === $type) {#
+        if ($arrVersion1[0] > $arrVersion2[0]) {
+            return false;
+        }
+        if ($arrVersion1[0] < $arrVersion2[0]) {
+            return true;
+        } else {
+            if ($arrVersion1[1] > $arrVersion2[1]) {
+                return false;
+            }
+            if ($arrVersion1[1] < $arrVersion2[1]) {
+                return true;
+            } else {
+                if ($arrVersion1[2] > $arrVersion2[2]) {
+                    return false;
+                }
+                if ($arrVersion1[2] < $arrVersion2[2]) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    return false;
+}
+/** function to check whether semantic versioning is used
+ * semver: must have 2 times a dot
+ * @param $version
+ * @return array
+ */
+function getVersionArray ($version) {
+    $arrVersion = [];
+    if (substr_count($version, '.') > 1) {
+        // is semantic
+        $arrTemp = \explode('.', $version);
+        $arrVersion[0] = (int)$arrTemp[0];
+        $arrVersion[1] = (int)$arrTemp[1];
+        $arrVersion[2] = (int)$arrTemp[2];
+    } else {
+        // turn 1.01 into [1][0][1]
+        // turn 1.1  into [1][1][0]
+        $arrTemp = \explode('.', $version);
+        $arrVersion[0] = (int)$arrTemp[0];
+        if (\str_starts_with((string)$arrTemp[1], '0')) {
+            $arrVersion[1] = 0;
+            $arrVersion[2] = (int)(\substr($arrTemp[1], 1));
+        } else {
+            $arrVersion[1] = (int)$arrTemp[1];
+            $arrVersion[2] = 0;
+        }
+    }
+
+    return $arrVersion;
 }
 
 /**
@@ -179,14 +253,17 @@ function wgtimelines_check_db(&$module)
  */
 function update_wgtimelines_v108(&$module)
 {
+    //require \dirname(__DIR__) . '/preloads/autoloader.php';
+    $helper                = \XoopsModules\Wgtimelines\Helper::getInstance();
+    $itemsHandler          = $helper->getHandler('Items');
     // update existing data
-    $itemsHandler          = xoops_getModuleHandler('items', 'wgtimelines');
+    //$itemsHandler          = xoops_getModuleHandler('Items', 'wgtimelines');
     $itemsAll = $itemsHandler->getAll();
     foreach(\array_keys($itemsAll) as $i) {
         $item_date = $itemsAll[$i]->getVar('item_date');
         if($item_date > 0) {
             $itemsObj = $itemsHandler->get($itemsAll[$i]->getVar("item_id"));
-            $itemsObj->setVar("item_date", \mktime(0, 0, 0, date("m", $item_date), date("d", $item_date), date("Y", $item_date)));
+            $itemsObj->setVar("item_date", \mktime(0, 0, 0, (int)date("m", $item_date), (int)date("d", $item_date), (int)date("Y", $item_date)));
             $itemsHandler->insert($itemsObj);
             unset($itemsObj);
         }

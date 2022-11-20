@@ -140,10 +140,10 @@ class Items extends \XoopsObject
             $form->addElement($imageTray);
         } else {
             $itemID = $this->getVar('item_id');
-            $imgButton = "<input type='button' value='...' onclick='window.location.href=\"" . \XOOPS_URL . "/modules/wgtimelines/admin/image_editor.php?op=edit_item&item_id=$itemID\"'>";
+            //$imgButton = "<input type='button' value='...' onclick='window.location.href=\"" . \XOOPS_URL . "/modules/wgtimelines/admin/image_editor.php?op=edit_item&item_id=$itemID\"'>";
             $itemImage = $this->getVar('item_image');
-            
-            $form->addElement(new \XoopsFormLabel(\_AM_WGTIMELINES_ITEM_IMAGE,"<img src='".\XOOPS_URL . "$imageDirectory/$itemImage' name='image1' id='image1' alt='$itemImage' style='max-width:100px;' />$imgButton"));
+            $form->addElement(new \XoopsFormHidden('item_image', $itemImage));
+            $form->addElement(new \XoopsFormLabel(\_AM_WGTIMELINES_ITEM_IMAGE,"<img src='".\XOOPS_URL . "$imageDirectory/$itemImage' name='image1' id='image1' alt='$itemImage' style='max-width:100px;' />"));
         }
 
         // Form Text Date Select

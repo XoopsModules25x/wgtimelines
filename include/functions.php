@@ -24,6 +24,8 @@ declare(strict_types=1);
  * @version        $Id: 1.0 functions.php 13070 Sat 2016-10-01 05:42:17Z XOOPS Development Team $
  */
 
+require_once \WGTIMELINES_PATH . '/preloads/autoloader.php';
+
 /***************Blocks**************
  * @param $cats
  * @return string

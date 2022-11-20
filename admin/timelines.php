@@ -243,7 +243,7 @@ switch($op) {
         break;
 
     case 'order':
-        $torder = Request::getInt('torder');
+        $torder = Request::getArray('torder');
         echo "torder:$echo";
         for ($i = 0, $iMax = \count($torder); $i < $iMax; $i++){
             $timelinesObj = $timelinesHandler->get($torder[$i]);
