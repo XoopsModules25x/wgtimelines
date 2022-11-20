@@ -42,7 +42,7 @@ switch($op) {
         $templateMain = 'wgtimelines_admin_items.tpl';
         // create form for selection of available timelines
         $timelinesCount = $timelinesHandler->getCountTimelines();
-        include_once(\XOOPS_ROOT_PATH."/class/xoopsformloader.php");    
+        include_once(\XOOPS_ROOT_PATH."/class/xoopsformloader.php");
 
         $action = "";
         $action = $_SERVER["REQUEST_URI"];
@@ -163,42 +163,45 @@ switch($op) {
         $itemsObj->setVar('item_title', Request::getString('item_title'));
         //fix for avoid hiding empty paragraphs in some browsers (instead of: $itemsObj->setVar('item_content', $_POST['item_content']);
         $itemsObj->setVar('item_content', Request::getText('item_content'));
-       
         // Set Var item_image
-        include_once \XOOPS_ROOT_PATH .'/class/uploader.php';
-        $fileName       = $_FILES['attachedfile']['name'];
-        $imageMimetype  = $_FILES['attachedfile']['type'];
-        $uploaderErrors = '';
-        $uploader = new \XoopsMediaUploader(\WGTIMELINES_UPLOAD_IMAGE_PATH.'/items/',
-                                            $helper->getConfig('mimetypes'),
-                                            $helper->getConfig('maxsize'), null, null);
-        if ($uploader->fetchMedia($_POST['xoops_upload_file'][0])) {
-            $extension = \preg_replace('/^.+\.([^.]+)$/sU', '', $fileName);
-            $imgName   = mb_substr(\str_replace(' ', '', $_POST['item_title']), 0, 20) . '_' . $extension;
-            $uploader->setPrefix($imgName);
-            $uploader->fetchMedia($_POST['xoops_upload_file'][0]);
-            if (!$uploader->upload()) {
-                $uploaderErrors = $uploader->getErrors();
-            } else {
-                $savedFilename = $uploader->getSavedFileName();
-                $itemsObj->setVar('item_image', $savedFilename);
-                // resize image
-                $maxwidth  = (int)$helper->getConfig('maxwidth_imgeditor');
-                $maxheight = (int)$helper->getConfig('maxheight_imgeditor');
-                $imgHandler                = new Wgtimelines\Resizer();
-                $imgHandler->sourceFile    = \WGTIMELINES_UPLOAD_PATH . '/images/items/' . $savedFilename;
-                $imgHandler->endFile       = \WGTIMELINES_UPLOAD_PATH . '/images/items/' . $savedFilename;
-                $imgHandler->imageMimetype = $imageMimetype;
-                $imgHandler->maxWidth      = $maxwidth;
-                $imgHandler->maxHeight     = $maxheight;
-                $result                    = $imgHandler->resizeImage();
-                $itemsObj->setVar('item_image', $savedFilename);
-            }
+        if (Request::getInt('item_remove') > 0) {
+            $itemsObj->setVar('item_image', 'blank.gif');
         } else {
-            if ($fileName > '') {
-                $uploaderErrors = $uploader->getErrors();
+            include_once \XOOPS_ROOT_PATH . '/class/uploader.php';
+            $fileName = $_FILES['attachedfile']['name'];
+            $imageMimetype = $_FILES['attachedfile']['type'];
+            $uploaderErrors = '';
+            $uploader = new \XoopsMediaUploader(\WGTIMELINES_UPLOAD_IMAGE_PATH . '/items/',
+                $helper->getConfig('mimetypes'),
+                $helper->getConfig('maxsize'), null, null);
+            if ($uploader->fetchMedia($_POST['xoops_upload_file'][0])) {
+                $extension = \preg_replace('/^.+\.([^.]+)$/sU', '', $fileName);
+                $imgName = mb_substr(\str_replace(' ', '', $_POST['item_title']), 0, 20) . '_' . $extension;
+                $uploader->setPrefix($imgName);
+                $uploader->fetchMedia($_POST['xoops_upload_file'][0]);
+                if (!$uploader->upload()) {
+                    $uploaderErrors = $uploader->getErrors();
+                } else {
+                    $savedFilename = $uploader->getSavedFileName();
+                    $itemsObj->setVar('item_image', $savedFilename);
+                    // resize image
+                    $maxwidth = (int)$helper->getConfig('maxwidth_imgeditor');
+                    $maxheight = (int)$helper->getConfig('maxheight_imgeditor');
+                    $imgHandler = new Wgtimelines\Resizer();
+                    $imgHandler->sourceFile = \WGTIMELINES_UPLOAD_PATH . '/images/items/' . $savedFilename;
+                    $imgHandler->endFile = \WGTIMELINES_UPLOAD_PATH . '/images/items/' . $savedFilename;
+                    $imgHandler->imageMimetype = $imageMimetype;
+                    $imgHandler->maxWidth = $maxwidth;
+                    $imgHandler->maxHeight = $maxheight;
+                    $result = $imgHandler->resizeImage();
+                    $itemsObj->setVar('item_image', $savedFilename);
+                }
+            } else {
+                if ($fileName > '') {
+                    $uploaderErrors = $uploader->getErrors();
+                }
+                $itemsObj->setVar('item_image', Request::getString('item_image'));
             }
-            $itemsObj->setVar('item_image', Request::getString('item_image'));
         }
         $itemDateArr = Request::getArray('item_date');
         $itemDateObj = \DateTime::createFromFormat(\_SHORTDATESTRING, $itemDateArr['date']);
@@ -208,7 +211,6 @@ switch($op) {
         $itemsObj->setVar('item_year',      Request::getString('item_year'));
         $itemsObj->setVar('item_icon',      Request::getString('item_icon', 'none'));
         $itemsObj->setVar('item_weight',    Request::getInt('item_weight'));
-        $itemsObj->setVar('item_reads',     Request::getInt('item_reads'));
         $itemsObj->setVar('item_online',    Request::getInt('item_online'));
         $itemsObj->setVar('item_submitter', Request::getInt('item_submitter'));
         $itemDatecreatedObj = \DateTime::createFromFormat(\_SHORTDATESTRING, Request::getString('item_date_create'));

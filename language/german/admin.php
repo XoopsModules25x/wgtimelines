@@ -73,6 +73,7 @@ require_once __DIR__ . '/common.php';
 \define('_AM_WGTIMELINES_TIMELINE_MAGNIFIC', 'Magnific Popup verwenden');
 \define('_AM_WGTIMELINES_TIMELINE_MAGNIFIC_DESC', 'Definieren Sie bitte, ob die Bilder bei den Einträgen mittels jquery magnific-popup gezoomt werden können sollen');
 \define('_AM_WGTIMELINES_TIMELINE_SELECT', 'Bitte Zeitreihe auswählen');
+\define('_AM_WGTIMELINES_TIMELINE_SHOWREADS', 'Zähler gelesen anzeigen');
 // Template add/edit
 \define('_AM_WGTIMELINES_TEMPLATE_ADD', 'Vorlage hinzufügen');
 \define('_AM_WGTIMELINES_TEMPLATE_EDIT', 'Vorlage bearbeiten');
@@ -186,6 +187,7 @@ require_once __DIR__ . '/common.php';
 \define('_AM_WGTIMELINES_ITEM_TITLE', 'Titel');
 \define('_AM_WGTIMELINES_ITEM_CONTENT', 'Inhalt');
 \define('_AM_WGTIMELINES_ITEM_IMAGE', 'Bild');
+\define('_AM_WGTIMELINES_ITEM_IMAGE_REMOVE', 'Bild entfernen');
 \define('_AM_WGTIMELINES_ITEM_DATE', 'Datum/Zeit');
 \define('_AM_WGTIMELINES_ITEM_YEAR', 'Jahr');
 \define('_AM_WGTIMELINES_ITEM_ICON', 'Icon');

@@ -35,6 +35,9 @@ wgtimelines_timelines:
             name: tl_expired
             attributes: ' int(1) NOT NULL DEFAULT ''0'' '
         -
+            name: tl_showreads
+            attributes: ' int(1) NOT NULL DEFAULT ''0'' '
+        -
             name: tl_online
             attributes: ' INT(1) NOT NULL DEFAULT ''0'' '
         -

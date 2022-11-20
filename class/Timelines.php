@@ -54,6 +54,7 @@ class Timelines extends \XoopsObject
         $this->initVar('tl_datetime', \XOBJ_DTYPE_INT);
         $this->initVar('tl_magnific', \XOBJ_DTYPE_INT);
         $this->initVar('tl_expired', \XOBJ_DTYPE_INT);
+        $this->initVar('tl_showreads', \XOBJ_DTYPE_INT);
         $this->initVar('tl_online', \XOBJ_DTYPE_INT);
         $this->initVar('tl_submitter', \XOBJ_DTYPE_INT);
         $this->initVar('tl_date_create', \XOBJ_DTYPE_INT);
@@ -168,6 +169,9 @@ class Timelines extends \XoopsObject
         $tlExpiredSelect->addOption(Constants::TIMELINE_EXPIRED_SHOW, _CO_TIMELINE_EXPIRED_SHOW);
         $tlExpiredSelect->addOption(Constants::TIMELINE_EXPIRED_HIDE, _CO_TIMELINE_EXPIRED_HIDE);
         $form->addElement($tlExpiredSelect, true);
+        // Form Radio Yes/No tl_reads
+        $tlShowReads = $this->isNew() ? 0 : $this->getVar('tl_showreads');
+        $form->addElement(new \XoopsFormRadioYN(\_AM_WGTIMELINES_TIMELINE_SHOWREADS, 'tl_showreads', $tlShowReads));
         // Form Text TlWeight
         $timelinesHandler = $helper->getHandler('Timelines');
         $tlWeight = $this->isNew() ? ($timelinesHandler->getCountTimelines() + 1) : $this->getVar('tl_weight');
@@ -208,6 +212,7 @@ class Timelines extends \XoopsObject
         $ret['datetime'] = $this->getVar('tl_datetime');
         $ret['magnific'] = $this->getVar('tl_magnific');
         $ret['expired'] = $this->getVar('tl_expired');
+        $ret['showreads'] = $this->getVar('tl_showreads');
         switch ( $this->getVar('tl_expired') ) {
             case Constants::TIMELINE_EXPIRED_HIDE:
                 $ret['expired_text'] = _CO_TIMELINE_EXPIRED_HIDE;

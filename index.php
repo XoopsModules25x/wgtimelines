@@ -72,6 +72,7 @@ if ($timelinesCount > 0) {
             $tl_limit     = $timelinesAll[$t]->getVar('tl_limit');
             $tl_magnific  = $timelinesAll[$t]->getVar('tl_magnific');
             $tl_expired   = $timelinesAll[$t]->getVar('tl_expired');
+            $tl_showreads = $timelinesAll[$t]->getVar('tl_showreads');
             // get template and template options
             $template_obj = $templatesHandler->get($tl_template);
             $template     = $template_obj->getValuesTemplates();
@@ -94,6 +95,12 @@ if ($timelinesCount > 0) {
 
             $GLOBALS['xoopsOption']['template_main'] = $template['file'];
             include_once \XOOPS_ROOT_PATH .'/header.php';
+            $jsexpander = (bool)$helper->getConfig('jsexpander');
+            if ($jsexpander) {
+                $GLOBALS['xoTheme']->addScript(\WGTIMELINES_URL . '/assets/js/expander/jquery.expander.js');
+                $GLOBALS['xoopsTpl']->assign('jsexpander', true);
+                $GLOBALS['xoopsTpl']->assign('user_maxchar', $tl_limit);
+            }
 
             // Define Stylesheet
             $GLOBALS['xoTheme']->addStylesheet($style, null);
@@ -190,17 +197,22 @@ if ($timelinesCount > 0) {
                     if ($items[$j]['image'] === 'blank.gif') {
                         $items[$j]['image'] = '';
                     }
-                    if ($items[$j]['content_summary'] != '') {
-                        $items[$j]['content'] = $items[$j]['content_summary'];
-                        $items[$j]['readmore'] = 1;
+                    if ($jsexpander) {
+                        $items[$j]['readmore'] = 0;
+                    } else {
+                        if ($items[$j]['content_summary'] != '') {
+                            $items[$j]['content'] = $items[$j]['content_summary'];
+                            $items[$j]['readmore'] = 1;
+                        }
                     }
+
                     if ($helper->getConfig('ratingbars')) {
                         $items[$j]['rating'] = $ratingsHandler->getItemRating($items[$j]['id']);
                     }
                     $keywords[] = $itemsAll[$i]->getVar('item_title');
                 }
                 $GLOBALS['xoopsTpl']->assign('items', $items);
-                $GLOBALS['xoopsTpl']->assign('showreads', $tl_limit > 0);
+                $GLOBALS['xoopsTpl']->assign('showreads', $tl_showreads);
                 unset($items);
 
                 // set template options
@@ -235,6 +247,8 @@ if ($timelinesCount > 0) {
         // show list
         $GLOBALS['xoopsOption']['template_main'] = 'wgtimelines_index.tpl';
         include_once \XOOPS_ROOT_PATH .'/header.php';
+
+
         
         $templatesAll = $templatesHandler->getAll();
         

@@ -25,6 +25,7 @@
 \define('_MA_WGTIMELINES_TITLE', 'wgTimelines');
 \define('_MA_WGTIMELINES_DESC', 'Dieses Modul ermöglicht das Erstellen von Chroniken/Zeitreihen und die Anzeige in verschiedenen Varianten.');
 \define('_MA_WGTIMELINES_READMORE', 'Mehr lesen');
+\define('_MA_WGTIMELINES_READLESS', 'Weniger lesen');
 \define('_MA_WGTIMELINES_ITEM_READS', 'Gelesen');
 \define('_MA_WGTIMELINES_THEREARENT_TIMELINES', 'Derzeit sind keine Zeitreihen verfügbar');
 \define('_MA_WGTIMELINES_THEREARENT_ITEMS', 'Derzeit sind keine Einträge für diese Zeitreihe verfügbar');

@@ -23,6 +23,7 @@ CREATE TABLE `wgtimelines_timelines` (
   `tl_datetime` INT(1) NOT NULL DEFAULT '0',
   `tl_magnific` INT(1) NOT NULL DEFAULT '0',
   `tl_expired` int(1) NOT NULL DEFAULT '0',
+  `tl_showreads` int(1) NOT NULL DEFAULT '0',
   `tl_online` INT(1) NOT NULL DEFAULT '0',
   `tl_submitter` INT(8) NOT NULL DEFAULT '0',
   `tl_date_create` INT(8) NOT NULL DEFAULT '0',

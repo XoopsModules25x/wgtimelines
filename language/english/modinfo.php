@@ -82,6 +82,8 @@ require_once __DIR__ . '/common.php';
 \define('_MI_WGTIMELINES_RATINGBARS_DESC', 'Define, whether a rating of the items should be possible and shown');
 \define('_MI_WGTIMELINES_RATINGBAR_GROUPS', 'Groups with permission to rate');
 \define('_MI_WGTIMELINES_RATINGBAR_GROUPS_DESC', 'Please define the groups, which have the permission to rate a timeline item');
+\define('_MI_WGTIMELINES_JSEXPANDER', 'Use JS expander');
+\define('_MI_WGTIMELINES_JSEXPANDER_DESC', 'Define, whether you want to use JS expander feature for "Read more". If no, "Read more" shown details of item on new tab');
 // ---------------- End ----------------
 //Help
 \define('_MI_WGTIMELINES_DIRNAME', \basename(\dirname(__DIR__, 2)));

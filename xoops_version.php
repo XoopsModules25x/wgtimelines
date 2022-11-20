@@ -27,7 +27,6 @@ declare(strict_types=1);
 //
 $moduleDirName      = \basename(__DIR__);
 $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
-//require_once \dirname(__DIR__) . '/preloads/autoloader.php';
 
 // ------------------- Informations ------------------- //
 $modversion['name']                = \_MI_WGTIMELINES_NAME;
@@ -397,6 +396,16 @@ $modversion['config'][] = [
     'valuetype'   => 'int',
     'default'     => 1,
     'options'     => [\_MI_WGTIMELINES_STARTPAGE_LIST => 1, \_MI_WGTIMELINES_STARTPAGE_FIRST => 3]
+];
+
+// use js expander
+$modversion['config'][] = [
+    'name'        => 'jsexpander',
+    'title'       => '\_MI_WGTIMELINES_JSEXPANDER',
+    'description' => '\_MI_WGTIMELINES_JSEXPANDER_DESC',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 1
 ];
 
 /**
