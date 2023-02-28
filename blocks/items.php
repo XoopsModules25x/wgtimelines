@@ -47,6 +47,9 @@ function b_wgtimelines_items_show($options)
     \array_shift($options);
     \array_shift($options);
     \array_shift($options);
+    if ($timelines > 0) {
+        $criteria->add(new \Criteria('item_tl_id', $timelines));
+    }
     switch ($typeBlock) {
         // For the block: items last
         case 'last':
@@ -54,6 +57,16 @@ function b_wgtimelines_items_show($options)
             $criteria->setSort('item_date_create');
             $criteria->setOrder('DESC');
         break;
+        case 'weight_asc':
+            $criteria->add(new \Criteria('item_online', 1));
+            $criteria->setSort('item_weight');
+            $criteria->setOrder('ASC');
+            break;
+        case 'weight_desc':
+            $criteria->add(new \Criteria('item_online', 1));
+            $criteria->setSort('item_weight');
+            $criteria->setOrder('DESC');
+            break;
         // For the block: items new
         case 'new':
             $criteria->add(new \Criteria('item_display', 1));
@@ -81,6 +94,7 @@ function b_wgtimelines_items_show($options)
         $block[$i]['tl_name'] = limitLength($timelineObj->getVar('tl_name'), $lenghtTitle);
         $block[$i]['title'] = limitLength($itemsAll[$i]->getVar('item_title'), $lenghtTitle);
         $block[$i]['image'] = $itemsAll[$i]->getVar('item_image');
+        $block[$i]['content'] = $itemsAll[$i]->getVar('item_content');
         $block[$i]['date'] = \formatTimestamp($itemsAll[$i]->getVar('item_date'));
         $block[$i]['url'] = \WGTIMELINES_URL;
     }
@@ -111,9 +125,11 @@ function b_wgtimelines_items_edit($options)
     $form .= \_MB_WGTIMELINES_TITLE_LENGTH.": <input type='text' name='options[2]' size='5' maxlength='255' value='".$options[2] . '\' /><br>';
 
     $form .= \_MB_WGTIMELINES_ITEMS_DISPLAY_CAT.":<br><select name='options[3]' size='4'>";
-    $form .= "<option value='last' " . ('last' === $options[3] ? "selected='selected'" : '') . '>' . \_MB_WGTIMELINES_ITEMS_LAST . '</option>';
-    $form .= "<option value='new' " . ('new' === $options[3] ? "selected='selected'" : '') . '>' . \_MB_WGTIMELINES_ITEMS_NEW . '</option>';
-    $form .= "<option value='random' " . ('random' === $options[3] ? "selected='selected'" : '') . '>' . \_MB_WGTIMELINES_ITEMS_RANDOM . '</option>';
+    $form .= "<option value='last' " . ('last' === (string)$options[3] ? "selected='selected'" : '') . '>' . \_MB_WGTIMELINES_ITEMS_LAST . '</option>';
+    $form .= "<option value='weight_asc' " . ('weight_asc' === (string)$options[3] ? "selected='selected'" : '') . '>' . \_MB_WGTIMELINES_ITEMS_WEIGHT_ASC . '</option>';
+    $form .= "<option value='weight_desc' " . ('weight_desc' === (string)$options[3] ? "selected='selected'" : '') . '>' . \_MB_WGTIMELINES_ITEMS_WEIGHT_DESC . '</option>';
+    $form .= "<option value='new' " . ('new' === (string)$options[3] ? "selected='selected'" : '') . '>' . \_MB_WGTIMELINES_ITEMS_NEW . '</option>';
+    $form .= "<option value='random' " . ('random' === (string)$options[3] ? "selected='selected'" : '') . '>' . \_MB_WGTIMELINES_ITEMS_RANDOM . '</option>';
     $form .= '</select><br><br>';
 
     $criteria = new \CriteriaCompo();
@@ -125,8 +141,8 @@ function b_wgtimelines_items_edit($options)
     $form .= \_MB_WGTIMELINES_ITEMS_TIMELINES_APPLY.":<br><select name='options[4]' size='5'>";
     $form .= "<option value='0' " . ('0' === $options[4] ? "selected='selected'" : '') . '>' . \_MB_WGTIMELINES_ALL_TIMELINES . '</option>';
     foreach (\array_keys($timelinesAll) as $i) {
-        $tl_id = $timelinesAll[$i]->getVar('tl_id');
-        $form .= "<option value='" . $tl_id . '\' ' . ($tl_id === $options[4] ? "selected='selected'" : '') . '>'
+        $tl_id = (int)$timelinesAll[$i]->getVar('tl_id');
+        $form .= "<option value='" . $tl_id . '\' ' . ($tl_id === (int)$options[4] ? "selected='selected'" : '') . '>'
                  . $timelinesAll[$i]->getVar('tl_name') . '</option>';
     }
     $form .= '</select>';

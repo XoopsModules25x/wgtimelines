@@ -29,6 +29,8 @@
 \define('_MB_WGTIMELINES_ITEMS_TO_DISPLAY', 'Items to display');
 \define('_MB_WGTIMELINES_ITEMS_DISPLAY_CAT', 'Category');
 \define('_MB_WGTIMELINES_ITEMS_LAST', 'Last items');
+\define('_MB_WGTIMELINES_ITEMS_WEIGHT_ASC', 'Items by weight ascending');
+\define('_MB_WGTIMELINES_ITEMS_WEIGHT_DESC', 'Items by weight descending');
 \define('_MB_WGTIMELINES_ITEMS_NEW', 'New items');
 \define('_MB_WGTIMELINES_ITEMS_RANDOM', 'Random items');
 \define('_MB_WGTIMELINES_ITEMS_TIMELINES_APPLY', 'Apply for following timelines');

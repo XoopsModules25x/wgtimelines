@@ -25,6 +25,7 @@
 \define('_MA_WGTIMELINES_TITLE', 'wgTimelines');
 \define('_MA_WGTIMELINES_DESC', 'This module creates a chronicle/timeline and display it in various ways.');
 \define('_MA_WGTIMELINES_READMORE', 'Read more');
+\define('_MA_WGTIMELINES_READLESS', 'Read less');
 \define('_MA_WGTIMELINES_ITEM_READS', 'Reads');
 \define('_MA_WGTIMELINES_THEREARENT_TIMELINES', 'At the moment there are no timelines available');
 \define('_MA_WGTIMELINES_THEREARENT_ITEMS', 'At the moment there are no items for this timelines available');

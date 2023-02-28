@@ -140,10 +140,17 @@ class Items extends \XoopsObject
             $form->addElement($imageTray);
         } else {
             $itemID = $this->getVar('item_id');
-            $imgButton = "<input type='button' value='...' onclick='window.location.href=\"" . \XOOPS_URL . "/modules/wgtimelines/admin/image_editor.php?op=edit_item&item_id=$itemID\"'>";
-            $itemImage = $this->getVar('item_image');
-            
-            $form->addElement(new \XoopsFormLabel(\_AM_WGTIMELINES_ITEM_IMAGE,"<img src='".\XOOPS_URL . "$imageDirectory/$itemImage' name='image1' id='image1' alt='$itemImage' style='max-width:100px;' />$imgButton"));
+            //$imgButton = "<input type='button' value='...' onclick='window.location.href=\"" . \XOOPS_URL . "/modules/wgtimelines/admin/image_editor.php?op=edit_item&item_id=$itemID\"'>";
+            $itemImage = (string)$this->getVar('item_image');
+            $form->addElement(new \XoopsFormHidden('item_image', $itemImage));
+            if ('blank.gif' !== $itemImage) {
+                $imageTray = new \XoopsFormElementTray(\_AM_WGTIMELINES_ITEM_IMAGE, '&nbsp;');
+                $imageTray->addElement(new \XoopsFormLabel('', "<img src='" . \XOOPS_URL . "$imageDirectory/$itemImage' name='image1' id='image1' alt='$itemImage' style='max-width:100px;' />"));
+                $imageRemove = new \XoopsFormCheckBox('', 'item_remove', 0);
+                $imageRemove->addOption(1, \_AM_WGTIMELINES_ITEM_IMAGE_REMOVE);
+                $imageTray->addElement($imageRemove, false);
+                $form->addElement($imageTray, false);
+            }
         }
 
         // Form Text Date Select

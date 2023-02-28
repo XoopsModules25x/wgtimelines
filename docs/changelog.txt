@@ -1,3 +1,6 @@
+<h5>1.2.0 stable</h5>  [2023/02/28]
+ - moved to last stable with smarty 2 (goffy)
+
 <h5>1.2.0 beta1</h5>  [2021/12/29]
 <hr>
  - semantic versioning (goffy)
@@ -15,6 +18,11 @@
  - uninstall with bak-file creation (mamba/goffy)
  - adapted update due to new semantic versioning (goffy)
  - fixed bug in MigrateHelper (goffy)
+ - fixed bug in saving items (goffy)
+ - fixed bug in sortable feature (goffy)
+ - new kind of block (goffy)
+ - added option to show/hide counter reads (goffy)
+ - added image remove (goffy)
 
 <h5>1.12 final</h5>  [2021/04/01]
 <hr>

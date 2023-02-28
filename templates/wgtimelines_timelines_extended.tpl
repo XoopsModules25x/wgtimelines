@@ -44,7 +44,7 @@
         <div style="display:inline-block;width:100%;overflow-y:auto;">
             <ul class="timeline timeline-<{$orientation}>"> 
             <{foreach item=item from=$items}>
-                <li id="item<{$item.id}>" class="timeline-item">
+                <li id="item<{$item.id}>" class="expander timeline-item">
                     <div class="timeline-badge"><{$item.badgecontent|default:''}></div>
                     <div class="timeline-panel">
                         <{if $panel_imgpos|default:'' == 'top' && $item.image|default:false}>

@@ -82,6 +82,8 @@ require_once __DIR__ . '/common.php';
 \define('_MI_WGTIMELINES_RATINGBARS_DESC', 'Definieren Sie bitte, ob eine Bewertung der Einträge möglich sein und angezeigt werden soll');
 \define('_MI_WGTIMELINES_RATINGBAR_GROUPS', 'Gruppen mit der Berechtigung zum Bewerten');
 \define('_MI_WGTIMELINES_RATINGBAR_GROUPS_DESC', 'Bestimmen Sie bitte die Gruppen, die Zeitreiheneinträge bewerten dürfen');
+\define('_MI_WGTIMELINES_JSEXPANDER', 'Verwende JS expander');
+\define('_MI_WGTIMELINES_JSEXPANDER_DESC', 'Bestimmen Sie bitte, ob Sie das JS expander Feature für "Mehr lesen" verwenden. Wenn nein, dann zeigt "Mehr lesen" die Details auf einen neuen Tab');
 // ---------------- End ----------------
 //Help
 \define('_MI_WGTIMELINES_DIRNAME', \basename(\dirname(__DIR__, 2)));
