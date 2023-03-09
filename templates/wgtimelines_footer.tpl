@@ -6,7 +6,7 @@
 <{include file="db:system_fbcomments.tpl"}>
 <{/if}>
 
-<{if $copyright|default}>
+<{if $copyright|default:false}>
 <div class="pull-left"><{$copyright}></div>
 <{/if}>
 
@@ -15,7 +15,7 @@
 <{/if}>
 <br>
 <{if $xoops_isadmin|default:false}>
-   <div class="text-center bold"><a href="<{$admin}>"><{$smarty.const._CO_WGTIMELINES_ADMIN}></a></div><br>
+   <div class="text-center bold"><a href="<{$admin|default:''}>"><{$smarty.const._CO_WGTIMELINES_ADMIN}></a></div><br>
 <{/if}>
 
 <{if $jsexpander|default:false}>
