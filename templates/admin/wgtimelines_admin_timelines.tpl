@@ -34,36 +34,36 @@
             <td class="center"><{$timeline.datetime_text}></td>
             <td class="center">
                 <{if $timeline.magnific|default:0 == 1}>
-                    <img src="<{xoModuleIcons16 on.png}>" alt="<{$smarty.const._YES}>" />
+                    <img src="<{xoModuleIcons16 'on.png'}>" alt="<{$smarty.const._YES}>" />
                 <{else}>
-                    <img src="<{xoModuleIcons16 off.png}>" alt="<{$smarty.const._NO}>" />
+                    <img src="<{xoModuleIcons16 'off.png'}>" alt="<{$smarty.const._NO}>" />
                 <{/if}>
             </td>
             <td class="center"><{$timeline.expired_text}></td>
             <td class="center">
                 <{if $timeline.showreads|default:0 == 1}>
-            <img src="<{xoModuleIcons16 on.png}>" alt="<{$smarty.const._YES}>" />
+            <img src="<{xoModuleIcons16 'on.png'}>" alt="<{$smarty.const._YES}>" />
                 <{else}>
-            <img src="<{xoModuleIcons16 off.png}>" alt="<{$smarty.const._NO}>" />
+            <img src="<{xoModuleIcons16 'off.png'}>" alt="<{$smarty.const._NO}>" />
                 <{/if}>
             </td>
             <td class="center">
                 <a href="timelines.php?op=set_onoff&amp;tl_id=<{$timeline.id}>" title="<{$timeline.online}>">
                     <{if $timeline.online|default:0 == 1}>
-                        <img src="<{xoModuleIcons16 on.png}>" alt="<{$smarty.const._YES}>" /></a>
+                        <img src="<{xoModuleIcons16 'on.png'}>" alt="<{$smarty.const._YES}>" /></a>
                     <{else}>
-                        <img src="<{xoModuleIcons16 off.png}>" alt="<{$smarty.const._NO}>" /></a>
+                        <img src="<{xoModuleIcons16 'off.png'}>" alt="<{$smarty.const._NO}>" /></a>
                     <{/if}>
             </td>
             <td class="center"><{$timeline.submitter}></td>
             <td class="center"><{$timeline.date_create}></td>
             <td class="center width5">
                 <a href="timelines.php?op=edit&amp;tl_id=<{$timeline.id}>" title="<{$smarty.const._EDIT}>">
-                    <img src="<{xoModuleIcons16 edit.png}>" alt="<{$smarty.const._EDIT}>" /></a>
+                    <img src="<{xoModuleIcons16 'edit.png'}>" alt="<{$smarty.const._EDIT}>" /></a>
                 <a href="image_editor.php?op=edit_timeline&amp;tl_id=<{$timeline.id}>" title="<{$smarty.const._AM_WGTIMELINES_IMG_EDITOR}>">
                     <img src="<{$wgtimelines_icons_url}>/16/image_editor.png" alt="<{$smarty.const._AM_WGTIMELINES_IMG_EDITOR}>" /></a>
                 <a href="timelines.php?op=delete&amp;tl_id=<{$timeline.id}>" title="<{$smarty.const._DELETE}>">
-                    <img src="<{xoModuleIcons16 delete.png}>" alt="<{$smarty.const._DELETE}>" /></a>
+                    <img src="<{xoModuleIcons16 'delete.png'}>" alt="<{$smarty.const._DELETE}>" /></a>
             </td>
         </tr>
     <{/foreach}>

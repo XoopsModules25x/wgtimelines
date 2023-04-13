@@ -45,7 +45,7 @@
             <td class="center"><{$template.date_create_formatted}></td>
             <td class="center  width10">
                 <a href="templates.php?op=edit&amp;tpl_id=<{$template.id}>" title="<{$smarty.const._EDIT}>">
-                    <img src="<{xoModuleIcons16 edit.png}>" alt="templates" /></a>
+                    <img src="<{xoModuleIcons16 'edit.png'}>" alt="templates" /></a>
                 <a href="templates.php?op=reset&amp;tpl_id=<{$template.id}>" title="<{$smarty.const._AM_WGTIMELINES_TEMPLATE_RESETVERSION}>">
                     <img src="<{$wgtimelines_icons_url}>/16/reset.png" alt="<{$smarty.const._AM_WGTIMELINES_TEMPLATE_RESETVERSION}>" /></a>
                 <{if $template.newversion|default:false}><a href="templates.php?op=update&amp;tpl_id=<{$template.id}>" title="<{$smarty.const._AM_WGTIMELINES_TEMPLATE_NEWVERSION}>"><img src="<{$wgtimelines_icons_url}>/16/newversion.png" alt="<{$smarty.const._AM_WGTIMELINES_TEMPLATE_NEWVERSION}>" /></a><{/if}>

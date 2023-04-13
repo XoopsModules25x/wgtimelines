@@ -72,10 +72,10 @@
                     <{if $isAdmin|default:false}>
                         <div class="col-xs-12 col-sm-12 admin-area pull-right">
                             <a href="admin/items.php?op=edit&amp;ui=user&amp;item_id=<{$item.id}>" title="<{$smarty.const._EDIT}>">
-                                <img src="<{xoModuleIcons16 edit.png}>" alt="items" />
+                                <img src="<{xoModuleIcons16 'edit.png'}>" alt="items" />
                             </a>
                             <a href="admin/items.php?op=delete&amp;ui=user&amp;item_id=<{$item.id}>" title="<{$smarty.const._DELETE}>">
-                                <img src="<{xoModuleIcons16 delete.png}>" alt="items" />
+                                <img src="<{xoModuleIcons16 'delete.png'}>" alt="items" />
                             </a>
                         </div>
                     <{/if}>

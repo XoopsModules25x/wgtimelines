@@ -1,5 +1,5 @@
 <div class="center">
-    <a href="http://www.xoops.org/" title="Visit XOOPS" target="_blank"><img src="<{xoModuleIcons32 xoopsmicrobutton.gif}>" alt="XOOPS"></img></a>
+    <a href="http://www.xoops.org/" title="Visit XOOPS" target="_blank"><img src="<{xoModuleIcons32 'xoopsmicrobutton.gif'}>" alt="XOOPS"></img></a>
 </div>
 
 <div class="center smallsmall italic pad5">

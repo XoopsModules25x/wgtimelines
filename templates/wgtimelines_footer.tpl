@@ -14,7 +14,7 @@
     <div class="pull-right"><{$pagenav}></div>
 <{/if}>
 <br>
-<{if $xoops_isadmin|default:false}>
+<{if !empty($xoops_isadmin)}>
    <div class="text-center bold"><a href="<{$admin|default:''}>"><{$smarty.const._CO_WGTIMELINES_ADMIN}></a></div><br>
 <{/if}>
 

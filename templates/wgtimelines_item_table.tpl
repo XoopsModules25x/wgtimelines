@@ -26,9 +26,9 @@
                                     <{if $isAdmin|default:false}>
                                         <span class='pull-right'>
                                             <a href="admin/items.php?op=edit&amp;ui=user&amp;item_id=<{$item.id}>" title="<{$smarty.const._EDIT}>">
-                                                <img src="<{xoModuleIcons16 edit.png}>" alt="items" /></a>
+                                                <img src="<{xoModuleIcons16 'edit.png'}>" alt="items" /></a>
                                             <a href="admin/items.php?op=delete&amp;ui=user&amp;item_id=<{$item.id}>" title="<{$smarty.const._DELETE}>">
-                                                <img src="<{xoModuleIcons16 delete.png}>" alt="items" /></a>
+                                                <img src="<{xoModuleIcons16 'delete.png'}>" alt="items" /></a>
                                         </span>
                                     <{/if}>
                                 </div>
@@ -69,9 +69,9 @@
                                     <{if $isAdmin|default:false}>
                                         <span class='pull-right'>
                                             <a href="admin/items.php?op=edit&amp;ui=user&amp;item_id=<{$item.id}>" title="<{$smarty.const._EDIT}>">
-                                                <img src="<{xoModuleIcons16 edit.png}>" alt="items" /></a>
+                                                <img src="<{xoModuleIcons16 'edit.png'}>" alt="items" /></a>
                                             <a href="admin/items.php?op=delete&amp;ui=user&amp;item_id=<{$item.id}>" title="<{$smarty.const._DELETE}>">
-                                                <img src="<{xoModuleIcons16 delete.png}>" alt="items" /></a>
+                                                <img src="<{xoModuleIcons16 'delete.png'}>" alt="items" /></a>
                                         </span>
                                     <{/if}>
                                 </div>
