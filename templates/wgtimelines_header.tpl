@@ -1,5 +1,5 @@
 <{if $breadcrumbs|default:false}>
-    <{includeq file='db:wgtimelines_breadcrumbs.tpl'}>
+    <{include file='db:wgtimelines_breadcrumbs.tpl'}>
 <{/if}>
 <{if $welcome|default:false}><h2 class="tl_welcome"><{$welcome}></h2><{/if}>
 <{if $timeline_name|default:false}><h3 class="tl_name"><{$timeline_name}></h3><{/if}>
