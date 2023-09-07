@@ -35,7 +35,7 @@
 <{if count($items|default:null) > 0}>
     <div class="container-timeline">
         <ul class="timeline">
-        <{foreach item=item from=$items}>
+        <{foreach item=item from=$items|default:null}>
             <li id="item<{$item.id}>" class="<{if $item.inverted > 0}>timeline-inverted<{/if}>">
                 <div class="timeline-badge"><{$item.badgecontent|default:''}></div>
                 <div class="timeline-panel">

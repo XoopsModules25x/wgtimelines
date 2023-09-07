@@ -1,6 +1,6 @@
 <{include file='db:wgtimelines_header.tpl'}>
 
-<{foreach item=timeline from=$timelines|default:false}>
+<{foreach item=timeline from=$timelines|default:null}>
     <div class="col-xs-12 cols-sm-12 timeline-list">
         <{if $timeline.image|default:false}>
             <div class='col-sm-4'><img src="<{$wgtimelines_upload_url}>/images/timelines/<{$timeline.image}>" class="img-responsive" alt="<{$timeline.name}>" /></div>
