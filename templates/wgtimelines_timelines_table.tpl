@@ -5,7 +5,7 @@
     <div class="table-responsive timeline-table">    
         <table class="table table-<{$tabletype|default:''}> ">
             <tbody>  
-                <{foreach item=item from=$items|default:null}>
+                <{foreach item=item from=$items}>
                     <{if $item.showyear|default:false}>
                         <tr class="tl-table-item-year">
                             <th colspan="2"><{$item.showyear}></th>
