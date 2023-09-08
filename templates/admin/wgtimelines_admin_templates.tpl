@@ -15,7 +15,7 @@
         </tr>
     </thead>
 <{if $templates_count|default:false}>
-    <tbody><{foreach item=template from=$templates_list}>
+    <tbody><{foreach item=template from=$templates_list|default:null}>
         <tr class="<{cycle values='odd, even'}>">
             <td class="center">
                 <{if $template.notsupported|default:false}><img src="<{$wgtimelines_icons_url}>/32/notsupported.png" alt="<{$smarty.const._AM_WGTIMELINES_TEMPLATE_NOTSUPPORTED}>" title="<{$smarty.const._AM_WGTIMELINES_TEMPLATE_NOTSUPPORTED}>"/>&nbsp;<{/if}>
@@ -29,7 +29,7 @@
             <td class="center"><{$template.desc}></td>
             <td class="center"><{$template.file}></td>
             <td class="left">
-                <{foreach item=option from=$template.options}>
+                <{foreach item=option from=$template.options|default:null}>
                     <{if $option.valid|default:0 > 0}>
                         <p style="padding:3px;">
                         <{$option.title}>: <{$option.value}>

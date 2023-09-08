@@ -22,7 +22,7 @@
         </tr>
     </thead>
     <{if $timelines_count|default:false}>
-    <tbody id="timelines-list"><{foreach item=timeline from=$timelines_list}>
+    <tbody id="timelines-list"><{foreach item=timeline from=$timelines_list|default:null}>
         <tr class="even" id="torder_<{$timeline.id}>" >
             <td class="center"><img src="<{$wgtimelines_icons_url}>/16/up_down.png" alt="drag&drop" class="icon-sortable"/></td>
             <td class="center"><{$timeline.name}></td>
