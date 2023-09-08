@@ -19,7 +19,7 @@
 
 <{if count($items|default:null) > 0}>
     <section id="cd-timeline" class="cd-container">
-        <{foreach item=item from=$items}>
+        <{foreach item=item from=$items|default:null}>
             <div class="cd-timeline-block">
                 <div class="cd-timeline-badge">
                     <{if $item.badgecontent|default:false}>

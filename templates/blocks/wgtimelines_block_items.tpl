@@ -1,6 +1,6 @@
 <table class='table table-<{$table_type|default:''}>'>
 <{if $block > 0}>
-    <tbody><{foreach item=item from=$block}>
+    <tbody><{foreach item=item from=$block|default:null}>
         <tr class="<{cycle values="odd, even"}>">
             <td class="center">
                 <a href="<{$item.url}>/index.php?op=list&amp;tl_id=<{$item.tl_id}>" title="<{$item.tl_name}>"><{$item.tl_name}></a>

@@ -49,7 +49,7 @@
         </tr>
     </thead>
 <{if $items_count}>
-    <{foreach item=item from=$items_list}>
+    <{foreach item=item from=$items_list|default:null}>
     <{if $item.new_timeline > 0}> 
     <tbody>
         <tr class="odd">

@@ -31,7 +31,7 @@ li.event:nth-child(even)::before{
     <div class="container">
 
         <ul class="timeline">
-        <{foreach item=item from=$items}>
+        <{foreach item=item from=$items|default:null}>
             <{if $item.badgecontent|default:false}>
                 <li class="year"><{$item.year}></li>
             <{/if}>
