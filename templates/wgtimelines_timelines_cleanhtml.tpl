@@ -21,7 +21,7 @@
 <{if count($items|default:null) > 0}>
     <div class="timeline">
         <ul>
-        <{foreach item=item from=$items|default:null}>
+        <{foreach item=item from=$items}>
             <li id="item<{$item.id}>">
                 <{if $panel_imgpos|default:'' == 'top' && $item.image|default:false}>
                     <span class="col-sm-12 cont-img-timeline">

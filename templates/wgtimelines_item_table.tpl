@@ -5,7 +5,7 @@
 <div class="table-responsive">
     <table class="table table-<{$table_type|default:''}>">
         <tbody>
-            <{foreach item=item from=$items|default:null}>
+            <{foreach item=item from=$items}>
                 <{if $item.showyear|default:false}>
                     <tr class="tl-table-item-year">
                         <th colspan="2"><{$item.showyear}></th>

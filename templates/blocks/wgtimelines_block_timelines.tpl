@@ -6,7 +6,7 @@
     </thead>
     <{if $block > 0}>
     <tbody>
-        <{foreach item=timeline from=$block|default:null}>
+        <{foreach item=timeline from=$block}>
         <tr class="<{cycle values="odd, even"}>">
             <td class="center">
                 <a href="<{$timeline.url}>/index.php?op=list&amp;tl_id=<{$timeline.id}>" title="<{$timeline.name}>"><{$timeline.name}></a>
