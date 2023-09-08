@@ -43,7 +43,7 @@
     <div class="container-timeline">
         <div style="display:inline-block;width:100%;overflow-y:auto;">
             <ul class="timeline timeline-<{$orientation}>"> 
-            <{foreach item=item from=$items}>
+            <{foreach item=item from=$items|default:null}>
                 <li id="item<{$item.id}>" class="expander timeline-item">
                     <div class="timeline-badge"><{$item.badgecontent|default:''}></div>
                     <div class="timeline-panel">

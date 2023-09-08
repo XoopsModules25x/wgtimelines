@@ -24,8 +24,8 @@ trait FilesManagement
      *
      * @param string $folder The full path of the directory to check
      *
-     * @return void
      * @throws \RuntimeException
+     * @return void
      */
     public static function createFolder($folder)
     {
@@ -43,20 +43,20 @@ trait FilesManagement
     }
 
     /**
-     * @param $file
-     * @param $folder
+     * @param string $file
+     * @param string $folder
      * @return bool
      */
-    public static function copyFile($file, $folder)
+    public static function copyFile(string $file, string $folder): bool
     {
         return \copy($file, $folder);
     }
 
     /**
-     * @param $src
-     * @param $dst
+     * @param string $src
+     * @param string $dst
      */
-    public static function recurseCopy($src, $dst)
+    public static function recurseCopy(string $src, string $dst): void
     {
         $dir = \opendir($src);
         //        @\mkdir($dst);
@@ -97,11 +97,9 @@ trait FilesManagement
         }
 
         // Make destination directory
-        if (!\is_dir($dest)) {
-            if (!\mkdir($dest) && !\is_dir($dest)) {
+        if (!\is_dir($dest) && !\mkdir($dest) && !\is_dir($dest)) {
                 throw new \RuntimeException(\sprintf('Directory "%s" was not created', $dest));
             }
-        }
 
         // Loop through the folder
         $dir = \dir($source);
@@ -131,7 +129,7 @@ trait FilesManagement
      *
      * @uses \Xmf\Module\Helper::getHelper()
      */
-    public static function deleteDirectory($src)
+    public static function deleteDirectory($src): bool
     {
         // Only continue if user is a 'global' Admin
         if (!($GLOBALS['xoopsUser'] instanceof \XoopsUser) || !$GLOBALS['xoopsUser']->isAdmin()) {
@@ -151,13 +149,11 @@ trait FilesManagement
                     if (!$success = self::deleteDirectory($fileInfo->getRealPath())) {
                         break;
                     }
-                } else {
                     // delete the file
-                    if (!($success = \unlink($fileInfo->getRealPath()))) {
+                } elseif (!($success = \unlink($fileInfo->getRealPath()))) {
                         break;
                     }
                 }
-            }
             // now delete this (sub)directory if all the files are gone
             if ($success) {
                 $success = \rmdir($dirInfo->getRealPath());
@@ -179,7 +175,7 @@ trait FilesManagement
      *
      * @return bool true on success
      */
-    public static function rrmdir($src)
+    public static function rrmdir($src): bool
     {
         // Only continue if user is a 'global' Admin
         if (!($GLOBALS['xoopsUser'] instanceof \XoopsUser) || !$GLOBALS['xoopsUser']->isAdmin()) {
@@ -219,7 +215,7 @@ trait FilesManagement
      *
      * @return bool true on success
      */
-    public static function rmove($src, $dest)
+    public static function rmove($src, $dest): bool
     {
         // Only continue if user is a 'global' Admin
         if (!($GLOBALS['xoopsUser'] instanceof \XoopsUser) || !$GLOBALS['xoopsUser']->isAdmin()) {
@@ -262,7 +258,7 @@ trait FilesManagement
      *
      * @uses \Xmf\Module\Helper::getHelper()
      */
-    public static function rcopy($src, $dest)
+    public static function rcopy(string $src, string $dest): bool
     {
         // Only continue if user is a 'global' Admin
         if (!($GLOBALS['xoopsUser'] instanceof \XoopsUser) || !$GLOBALS['xoopsUser']->isAdmin()) {
