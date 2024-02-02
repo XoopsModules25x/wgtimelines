@@ -1,5 +1,6 @@
 <h5>1.2.1 RC2</h5>  [NOT RELEASED]
  - add |default:null to <{foreach (mamba)
+ - updates for XOOPS 2.5.11 Stable (goffy)
  
 <h5>1.2.1 RC1</h5>  [2023/03/14]
  - updates smarty 3 (goffy)
