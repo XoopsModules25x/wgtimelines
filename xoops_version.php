@@ -47,7 +47,7 @@ $modversion['release_date']        = '2023/03/14'; // format: yyyy/mm/dd
 $modversion['manual']              = 'link to manual file';
 $modversion['manual_file']         = \XOOPS_URL . '/modules/wgtimelines/docs/install.txt';
 $modversion['min_php']             = '7.4';
-$modversion['min_xoops']           = '2.5.11 RC1';
+$modversion['min_xoops']           = '2.5.11 Stable';
 $modversion['min_admin']           = '1.1';
 $modversion['min_db']              = ['mysql' => '5.1', 'mysqli' => '5.1'];
 $modversion['image']               = 'assets/images/wgtimelines_logo.png';
