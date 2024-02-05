@@ -179,7 +179,8 @@ function getVersionArray ($version) {
         // turn 1.1  into [1][1][0]
         $arrTemp = \explode('.', $version);
         $arrVersion[0] = (int)$arrTemp[0];
-        if (\str_starts_with((string)$arrTemp[1], '0')) {
+        if ('0' === (string)$arrTemp[1]) {
+        //if (\str_starts_with((string)$arrTemp[1], '0')) {
             $arrVersion[1] = 0;
             $arrVersion[2] = (int)(\substr($arrTemp[1], 1));
         } else {
