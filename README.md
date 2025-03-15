@@ -20,7 +20,9 @@ Most of the templates on user side are fully responsive, but for proper displayi
 - PHP 7.4 or higher;
 - MySQL 5.5; -> Minimum Recommended Using InnoDB Version 5.1 or Later
 
-wgTimelines is ready for PHP 8.0
+# Info
+
+**wgTimelines is ready for PHP 8.4**
 
 #### Demos: 
 * https://xoops.wedega.com/modules/wgtimelines/
