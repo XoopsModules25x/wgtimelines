@@ -4,11 +4,13 @@
 
 ## wgTimelines module for  [XOOPS CMS 2.5.11+](https://xoops.org)
 
+![module image](./assets/images/wgtimelines.jpg)
+
+**wgTimelines** module for [XOOPS CMS](https://xoops.org) enables you to create beautiful timelines for your XOOPS website. You can select between different templates, which have also various settings.
+
 [![Software License](https://img.shields.io/badge/license-GPL-brightgreen.svg?style=flat)](LICENSE)
 [![Latest Pre-Release](https://img.shields.io/github/tag/ggoffy/wgtimelines.svg?style=flat)](https://github.com/ggoffy/wgtimelines/tags/)
 [![Latest Version](https://img.shields.io/github/release/ggoffy/wgtimelines.svg?style=flat)](https://github.com/ggoffy/wgtimelines/releases/)
-
-wgTimelines module for [XOOPS CMS](https://xoops.org) enables you to create beautiful timelines for your XOOPS website. You can select between different templates, which have also various settings.
 
 You can add descriptions and/or logos to your individual timelines, and for each item you can also add an image, as well as a rating system.
                                                                                                                        
