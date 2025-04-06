@@ -128,25 +128,11 @@ $modversion['search']['func'] = 'wgtimelines_search';
 // ------------------- Submenu ------------------- //
 $currdirname = isset($GLOBALS['xoopsModule']) && \is_object($GLOBALS['xoopsModule']) ? $GLOBALS['xoopsModule']->getVar('moduleDirName') : 'system';
 if ($moduleDirName == $currdirname) {
-    $subcount = 1;
-    $pathname = \XOOPS_ROOT_PATH . '/modules/' . $moduleDirName;
-    include_once $pathname . '/include/common.php';
-    // Get instance of module
-    $helper = \XoopsModules\Wgtimelines\Helper::getInstance();
-    // versions
-    $timelinesHandler = $helper->getHandler('Timelines');
-    $timelines_crit   = new \CriteriaCompo();
-    $timelines_crit->setSort('tl_weight ASC, tl_name');
-    $timelines_crit->setOrder('ASC');
-    $timelines_crit->add(new \Criteria('tl_online', '1'));
-    $timelines_rows = $timelinesHandler->getCount($timelines_crit);
-    $timelines_arr  = $timelinesHandler->getAll($timelines_crit);
-
-    if ($timelines_rows > 1) {
-        foreach (\array_keys($timelines_arr) as $i) {
-            $modversion['sub'][$subcount]['name']  = $timelines_arr[$i]->getVar('tl_name');
-            $modversion['sub'][$subcount++]['url'] = 'index.php?tl_id=' . $timelines_arr[$i]->getVar('tl_id');
-        }
+    $submenu = new \XoopsModules\Wgtimelines\Modulemenu;
+    $menuItems = $submenu->getMenuitemsDefault();
+    foreach ($menuItems as $key => $menuItem) {
+        $modversion['sub'][$key]['name'] = $menuItem['name'];
+        $modversion['sub'][$key]['url'] = $menuItem['url'];
     }
 }
 
