@@ -126,7 +126,7 @@ $modversion['hasSearch']      = 1;
 $modversion['search']['file'] = 'include/search.inc.php';
 $modversion['search']['func'] = 'wgtimelines_search';
 // ------------------- Submenu ------------------- //
-$currdirname = isset($GLOBALS['xoopsModule']) && \is_object($GLOBALS['xoopsModule']) ? $GLOBALS['xoopsModule']->getVar('moduleDirName') : 'system';
+$currdirname = isset($GLOBALS['xoopsModule']) && \is_object($GLOBALS['xoopsModule']) ? $GLOBALS['xoopsModule']->getVar('dirname') : 'system';
 if ($moduleDirName == $currdirname) {
     $submenu = new \XoopsModules\Wgtimelines\Modulemenu;
     $menuItems = $submenu->getMenuitemsDefault();
