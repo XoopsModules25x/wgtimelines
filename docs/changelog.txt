@@ -1,3 +1,6 @@
+<h5>1.2.1 stable</h5>  [2025/06/07]
+ - moved to last stable for PHP 7 (goffy)
+ 
 <h5>1.2.1 RC2</h5>  [NOT RELEASED]
  - add |default:null to <{foreach (mamba)
  - updates for XOOPS 2.5.11 Stable (goffy)
