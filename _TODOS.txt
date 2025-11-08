@@ -1,1 +1,3 @@
 update: alle Dateien in Class mit Großbuchstaben versehen
+
+Sortierung der Einträge im Adminbereich gemäß der Einstellung bei Zeitleiste
