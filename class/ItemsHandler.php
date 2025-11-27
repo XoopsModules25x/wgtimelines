@@ -46,11 +46,11 @@ class ItemsHandler extends \XoopsPersistableObjectHandler
     }
 
     /**
-     * @param bool $isNew
+     * @param $isNew
      *
      * @return object
      */
-    public function create($isNew = true)
+    public function create($isNew = true): object
     {
         return parent::create($isNew);
     }
@@ -58,12 +58,12 @@ class ItemsHandler extends \XoopsPersistableObjectHandler
     /**
      * retrieve a field
      *
-     * @param int  $i field id
-     * @param null $fields
+     * @param $i field id
+     * @param $fields
      * @return mixed reference to the <a href='psi_element://Get'>Get</a> object
      *                object
      */
-    public function get($i = null, $fields = null)
+    public function get($i = null, $fields = null): mixed
     {
         return parent::get($i, $fields);
     }
@@ -71,23 +71,22 @@ class ItemsHandler extends \XoopsPersistableObjectHandler
     /**
      * get inserted id
      *
-     * @param null
      * @return integer reference to the {@link Get} object
      */
-    public function getInsertId()
+    public function getInsertId(): int
     {
         return $this->db->getInsertId();
     }
 
     /**
      * Get Count Items in the database
-     * @param int    $start
-     * @param int    $limit
+     * @param int $start
+     * @param int $limit
      * @param string $sort
      * @param string $order
      * @return int
      */
-    public function getCountItems($start = 0, $limit = 0, $sort = 'item_id', $order = 'ASC')
+    public function getCountItems(int $start = 0, int $limit = 0, string $sort = 'item_id', string $order = 'ASC'): int
     {
         $crCountItems = new \CriteriaCompo();
         $crCountItems = $this->getItemsCriteria($crCountItems, $start, $limit, $sort, $order);
@@ -99,7 +98,7 @@ class ItemsHandler extends \XoopsPersistableObjectHandler
      * @param int $tl_id
      * @return int
      */
-    public function getCountItemsTl($tl_id = 0)
+    public function getCountItemsTl(int $tl_id = 0): int
     {
         $crCountItems = new \CriteriaCompo();
         $crCountItems->add(new \Criteria('item_tl_id', $tl_id));
@@ -108,13 +107,13 @@ class ItemsHandler extends \XoopsPersistableObjectHandler
 
     /**
      * Get All Items in the database
-     * @param int    $start
-     * @param int    $limit
+     * @param int $start
+     * @param int $limit
      * @param string $sort
      * @param string $order
      * @return array
      */
-    public function getAllItems($start = 0, $limit = 0, $sort = 'item_tl_id ASC, item_weight ASC, item_id', $order = 'ASC')
+    public function getAllItems(int $start = 0, int $limit = 0, string $sort = 'item_tl_id ASC, item_weight ASC, item_id', string $order = 'ASC'): array
     {
         $crAllItems = new \CriteriaCompo();
         $crAllItems = $this->getItemsCriteria($crAllItems, $start, $limit, $sort, $order);
@@ -130,7 +129,7 @@ class ItemsHandler extends \XoopsPersistableObjectHandler
      * @param $order
      * @return mixed
      */
-    private function getItemsCriteria($crItems, $start, $limit, $sort, $order)
+    private function getItemsCriteria($crItems, $start, $limit, $sort, $order): mixed
     {
         $crItems->setStart($start);
         $crItems->setLimit($limit);

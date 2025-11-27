@@ -15,6 +15,11 @@ declare(strict_types=1);
 /**
  * wgTimelines module for xoops
  *
+ * @param $queryarray
+ * @param $andor
+ * @param $limit
+ * @param $offset
+ * @param $userid
  * @copyright      module for xoops
  * @license        GPL 3.0 or later
  * @package        wgtimelines
@@ -22,15 +27,10 @@ declare(strict_types=1);
  * @min_xoops      2.5.7
  * @author         goffy (wedega.com) - Email:<webmaster@wedega.com> - Website:<https://xoops.wedega.com>
  * @version        $Id: 1.0 search.inc.php 13070 Sat 2016-10-01 05:42:17Z XOOPS Development Team $
- * @param $queryarray
- * @param $andor
- * @param $limit
- * @param $offset
- * @param $userid
  */
 
 // search callback functions
-function wgtimelines_search($queryarray, $andor, $limit, $offset, $userid)
+function wgtimelines_search($queryarray, $andor, $limit, $offset, $userid): void
 {
     global $xoopsDB;
     $sql = "SELECT 'tpl_id', 'tpl_name' FROM ".$xoopsDB->prefix('wgtimelines_templates') . ' WHERE tpl_id != 0';
@@ -56,4 +56,6 @@ function wgtimelines_search($queryarray, $andor, $limit, $offset, $userid)
         ++$i;
     }
     unset($i);
+
+    return $ret;
 }

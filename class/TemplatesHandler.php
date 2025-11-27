@@ -45,11 +45,11 @@ class TemplatesHandler extends \XoopsPersistableObjectHandler
     }
 
     /**
-     * @param bool $isNew
+     * @param $isNew
      *
-     * @return XoopsObject
+     * @return Object
      */
-    public function create($isNew = true)
+    public function create($isNew = true): Object
     {
         return parent::create($isNew);
     }
@@ -57,12 +57,12 @@ class TemplatesHandler extends \XoopsPersistableObjectHandler
     /**
      * retrieve a field
      *
-     * @param int  $i field id
-     * @param null $fields
+     * @param $i field id
+     * @param $fields
      * @return mixed reference to the <a href='psi_element://Get'>Get</a> object
      *                object
      */
-    public function get($i = null, $fields = null)
+    public function get($i = null, $fields = null): mixed
     {
         return parent::get($i, $fields);
     }
@@ -70,23 +70,22 @@ class TemplatesHandler extends \XoopsPersistableObjectHandler
     /**
      * get inserted id
      *
-     * @param null
      * @return integer reference to the {@link Get} object
      */
-    public function getInsertId()
+    public function getInsertId(): int
     {
         return $this->db->getInsertId();
     }
 
     /**
      * Get Count Templates in the database
-     * @param int    $start
-     * @param int    $limit
+     * @param int $start
+     * @param int $limit
      * @param string $sort
      * @param string $order
      * @return int
      */
-    public function getCountTemplates($start = 0, $limit = 0, $sort = 'tpl_id', $order = 'ASC')
+    public function getCountTemplates(int $start = 0, int $limit = 0, string $sort = 'tpl_id', string $order = 'ASC'): int
     {
         $crCountTemplates = new \CriteriaCompo();
         $crCountTemplates = $this->getTemplatesCriteria($crCountTemplates, $start, $limit, $sort, $order);
@@ -95,13 +94,13 @@ class TemplatesHandler extends \XoopsPersistableObjectHandler
 
     /**
      * Get All Templates in the database
-     * @param int    $start
-     * @param int    $limit
+     * @param int $start
+     * @param int $limit
      * @param string $sort
      * @param string $order
      * @return array
      */
-    public function getAllTemplates($start = 0, $limit = 0, $sort = 'tpl_weight ASC, tpl_name', $order = 'ASC')
+    public function getAllTemplates(int $start = 0, int $limit = 0, string $sort = 'tpl_weight ASC, tpl_name', string $order = 'ASC'): array
     {
         $crAllTemplates = new \CriteriaCompo();
         $crAllTemplates = $this->getTemplatesCriteria($crAllTemplates, $start, $limit, $sort, $order);
@@ -117,7 +116,7 @@ class TemplatesHandler extends \XoopsPersistableObjectHandler
      * @param $order
      * @return mixed
      */
-    private function getTemplatesCriteria($crTemplates, $start, $limit, $sort, $order)
+    private function getTemplatesCriteria($crTemplates, $start, $limit, $sort, $order): mixed
     {
         $crTemplates->setStart($start);
         $crTemplates->setLimit($limit);

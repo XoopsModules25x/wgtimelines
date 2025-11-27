@@ -31,35 +31,20 @@ namespace XoopsModules\Wgtimelines;
  */
 class Helper extends \Xmf\Module\Helper
 {
+
     /**
      * @var string
      */
-    protected $dirname = null;
-    /**
-     * @var string
-     */
-    protected $module = null;
-    /**
-     * @var string
-     */
-    protected $handler = null;
-    /**
-     * @var string
-     */
-    protected $config = null;
-    /**
-     * @var string
-     */
-    public $debug = null;
+    public $debug;
     /**
      * @var array
      */
-    protected $debugArray = [];
+    protected array $debugArray = [];
     /**
     *  @protected function constructor class
     *  @param mixed $debug
     */
-    public function __construct($debug)
+    public function __construct(mixed $debug)
     {
         $this->debug   = $debug;
         $moduleDirName = \basename(\dirname(__DIR__));
@@ -71,7 +56,7 @@ class Helper extends \Xmf\Module\Helper
      * @param mixed $debug
      * @return Helper
      */
-    public static function getInstance($debug = false)
+    public static function getInstance(mixed $debug = false): Helper
     {
         static $instance;
         if (null === $instance) {
@@ -83,10 +68,9 @@ class Helper extends \Xmf\Module\Helper
 
     /**
      * @static function getModule
-     * @param null
-     * @return string
+     * @return string|null
      */
-    public function &getModule()
+    public function &getModule(): ?string
     {
         if ($this->module == null) {
             $this->initModule();
@@ -113,13 +97,12 @@ class Helper extends \Xmf\Module\Helper
         $db     = \XoopsDatabaseFactory::getDatabaseConnection();
         $helper = self::getInstance();
         $ret    = new $class($db, $helper);
-        $this->addLog("Getting handler '{$name}'");
+        $this->addLog("Getting handler '$name'");
         return $ret;
     }
 
     /**
     *  @static function initModule
-    *  @param null
     */
 /*     public function initModule()
     {
@@ -134,7 +117,6 @@ class Helper extends \Xmf\Module\Helper
     } */
     /**
     *  @static function initConfig
-    *  @param null
     */
 /*     public function initConfig()
     {
@@ -169,15 +151,15 @@ class Helper extends \Xmf\Module\Helper
      * www.gsdesign.ro/blog/cut-html-string-without-breaking-the-tags
      * www.cakephp.org
      *
-     * @param string  $text         String to truncate.
+     * @param string $text         String to truncate.
      * @param integer $length       Length of returned string, including ellipsis.
-     * @param string  $ending       Ending to be appended to the trimmed string.
+     * @param string $ending       Ending to be appended to the trimmed string.
      * @param boolean $exact        If false, $text will not be cut mid-word
      * @param boolean $considerHtml If true, HTML tags would be handled correctly
      *
      * @return string Trimmed string.
      */
-    public function truncateHtml($text, $length = 200, $ending = '...', $exact = false, $considerHtml = true)
+    public function truncateHtml(string $text, int $length = 200, string $ending = '...', bool $exact = false, bool $considerHtml = true): string
     {
         if ($considerHtml) {
             // if the plain text is shorter than the maximum length, return the whole text

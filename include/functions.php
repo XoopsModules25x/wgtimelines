@@ -30,7 +30,7 @@ require_once \WGTIMELINES_PATH . '/preloads/autoloader.php';
  * @param $cats
  * @return string
  */
-function wgtimelines_block_addCatSelect($cats)
+function wgtimelines_block_addCatSelect($cats): string
 {
     if (\is_array($cats)) {
         $cat_sql = '('.current($cats);
@@ -51,7 +51,7 @@ function wgtimelines_block_addCatSelect($cats)
  * @param $cid
  * @return int
  */
-function wgtimelinesNumbersOfEntries($mytree, $templates, $entries, $cid)
+function wgtimelinesNumbersOfEntries($mytree, $templates, $entries, $cid): int
 {
     $count = 0;
     if (\in_array($cid, $templates)) {
@@ -70,7 +70,7 @@ function wgtimelinesNumbersOfEntries($mytree, $templates, $entries, $cid)
     return $count;
 }
 
-function wgtimelinesMetaKeywords($content)
+function wgtimelinesMetaKeywords($content): void
 {
     global $xoopsTpl, $xoTheme;
     $myts = MyTextSanitizer::getInstance();
@@ -82,7 +82,7 @@ function wgtimelinesMetaKeywords($content)
     }
 }
 
-function wgtimelinesMetaDescription($content)
+function wgtimelinesMetaDescription($content): void
 {
     global $xoopsTpl, $xoTheme;
     $myts = MyTextSanitizer::getInstance();
@@ -104,7 +104,7 @@ function wgtimelinesMetaDescription($content)
  * @param string $type
  * @return string $type    string replacement for any blank case
  */
-function wgtimelines_RewriteUrl($module, $array, $type = 'content')
+function wgtimelines_RewriteUrl($module, $array, string $type = 'content'): string
 {
     $comment = '';
     $helper = \XoopsModules\Wgtimelines\Helper::getInstance();
@@ -112,13 +112,11 @@ function wgtimelines_RewriteUrl($module, $array, $type = 'content')
     $lenght_id = $helper->getConfig('lenght_id');
     $rewrite_url = $helper->getConfig('rewrite_url');
 
+    $id = $array['content_id'];
     if ($lenght_id != 0) {
-        $id = $array['content_id'];
         while (\strlen($id) < $lenght_id) {
             $id = '0' . $id;
         }
-    } else {
-        $id = $array['content_id'];
     }
 
     if (isset($array['topic_alias']) && $array['topic_alias']) {
@@ -191,12 +189,12 @@ function wgtimelines_RewriteUrl($module, $array, $type = 'content')
  *
  * @String  $url    string to transform
  * @String  $type   string replacement for any blank case
- * @param        $url
+ * @param string $url
  * @param string $type
  * @param string $module
- * @return mixed|string $url
+ * @return string $url
  */
-function wgtimelines_Filter($url, $type = '', $module = 'wgtimelines')
+function wgtimelines_Filter(string $url, string $type = '', string $module = 'wgtimelines'): string
 {
 
     // Get regular expression from module setting. default setting is : `[^a-z0-9]`i
@@ -212,6 +210,5 @@ function wgtimelines_Filter($url, $type = '', $module = 'wgtimelines')
     $url = \preg_replace([$regular_expression,
                               '`[-]+`'
                         ], '-', $url);
-    $url = ($url == '') ? $type : strtolower(\trim($url, '-'));
-    return $url;
+    return ($url == '') ? $type : strtolower(\trim($url, '-'));
 }

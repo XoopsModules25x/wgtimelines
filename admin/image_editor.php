@@ -392,7 +392,7 @@ include __DIR__ . '/footer.php';
  * @param $imageId
  * @return \XoopsThemeForm
  */
-function getFormUploadImage($imageOrigin, $imageId)
+function getFormUploadImage($imageOrigin, $imageId): XoopsThemeForm
 {
     $helper = \XoopsModules\Wgtimelines\Helper::getInstance();
     // Get Theme Form

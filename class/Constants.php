@@ -35,13 +35,13 @@ class Constants
 
     // common constants
     // constants for expiration
-    const TIMELINE_EXPIRED_SHOW = 0;
-    const TIMELINE_EXPIRED_HIDE = 1;
+    const int TIMELINE_EXPIRED_SHOW = 0;
+    const int TIMELINE_EXPIRED_HIDE = 1;
     
     // common constants
     // constants for image class
-    const IMAGECLASS_ITEM = 1;
-    const IMAGECLASS_TIMELINE = 2;
+    const int IMAGECLASS_ITEM = 1;
+    const int IMAGECLASS_TIMELINE = 2;
 
 
 }

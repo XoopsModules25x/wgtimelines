@@ -37,8 +37,6 @@ class Items extends \XoopsObject
 {
     /**
      * Constructor
-     *
-     * @param null
      */
     public function __construct()
     {
@@ -62,10 +60,8 @@ class Items extends \XoopsObject
 
     /**
      * @static function &getInstance
-     *
-     * @param null
      */
-    public static function getInstance()
+    public static function getInstance(): void
     {
         static $instance = false;
         if (!$instance) {
@@ -88,14 +84,14 @@ class Items extends \XoopsObject
      * @param string $ui
      * @return \XoopsThemeForm
      */
-    public function getFormItems($action = false, $ui = 'admin')
+    public function getFormItems(mixed $action = false, string $ui = 'admin'): \XoopsThemeForm
     {
         $helper = \XoopsModules\Wgtimelines\Helper::getInstance();
         if ($action === false) {
             $action = $_SERVER['REQUEST_URI'];
         }
         // Title
-        $title = $this->isNew() ? \sprintf(\_AM_WGTIMELINES_ITEM_ADD) : \sprintf(\_AM_WGTIMELINES_ITEM_EDIT);
+        $title = $this->isNew() ? \_AM_WGTIMELINES_ITEM_ADD : \_AM_WGTIMELINES_ITEM_EDIT;
         // Get Theme Form
         \xoops_load('XoopsFormLoader');
         $form = new \XoopsThemeForm($title, 'form', $action, 'post', true);
@@ -124,10 +120,10 @@ class Items extends \XoopsObject
         if ($this->isNew()) {
             $itemImage = 'blank.gif';
             $imageTray = new \XoopsFormElementTray(\_AM_WGTIMELINES_ITEM_IMAGE, '<br>');
-            $imageSelect = new \XoopsFormSelect(\sprintf(\_AM_WGTIMELINES_FORM_IMAGE_PATH, ".{$imageDirectory}/"), 'item_image', $itemImage, 5);
+            $imageSelect = new \XoopsFormSelect(\sprintf(\_AM_WGTIMELINES_FORM_IMAGE_PATH, ".$imageDirectory/"), 'item_image', $itemImage, 5);
             $imageArray = \XoopsLists::getImgListAsArray(\XOOPS_ROOT_PATH . $imageDirectory);
             foreach ($imageArray as $image1) {
-                $imageSelect->addOption("{$image1}", $image1);
+                $imageSelect->addOption("$image1", $image1);
             }
             $imageSelect->setExtra("onchange='showImgSelected(\"image1\", \"item_image\", \"".$imageDirectory . '", "", "' . \XOOPS_URL . "\")'");
             $imageTray->addElement($imageSelect, false);
@@ -211,7 +207,7 @@ class Items extends \XoopsObject
      * @param null $maxDepth
      * @return array
      */
-    public function getValuesItems($timeline_obj, $keys = null, $format = null, $maxDepth = null)
+    public function getValuesItems($timeline_obj, $keys = null, $format = null, $maxDepth = null): array
     {
         $helper = \XoopsModules\Wgtimelines\Helper::getInstance();
         $ret = $this->getValues($keys, $format, $maxDepth);
@@ -232,21 +228,12 @@ class Items extends \XoopsObject
         $ret['image'] = $this->getVar('item_image');
         if ($this->getVar('item_date') > 0) {
             $tl_datetime = $timeline_obj->getVar('tl_datetime');
-            switch ($tl_datetime) {
-                case 1:
-                    $ret['date'] = \formatTimestamp($this->getVar('item_date'), 's');
-                break;
-                case 2:
-                    $ret['date'] = \formatTimestamp($this->getVar('item_date'), 'H:i');
-                break;
-                case 3:
-                    $ret['date'] = \formatTimestamp($this->getVar('item_date'), 'm');
-                break;
-                case '0':
-                default:
-                    $ret['date'] = "";
-                break;
-            }
+            $ret['date'] = match ($tl_datetime) {
+                1 => \formatTimestamp($this->getVar('item_date'), 's'),
+                2 => \formatTimestamp($this->getVar('item_date'), 'H:i'),
+                3 => \formatTimestamp($this->getVar('item_date'), 'm'),
+                default => "",
+            };
             $ret['date_admin'] = \formatTimestamp($this->getVar('item_date'), 'm');
         }
         $ret['year'] = $this->getVar('item_year');
@@ -264,7 +251,7 @@ class Items extends \XoopsObject
      *
      * @return array
      */
-    public function toArrayItems()
+    public function toArrayItems(): array
     {
         $ret = [];
         $vars =& $this->getVars();
@@ -279,7 +266,7 @@ class Items extends \XoopsObject
      *
      * @return array
      */
-    public function arrGlyphicons()
+    public function arrGlyphicons(): array
     {
         $arrIcons[] = 'asterisk';
         $arrIcons[] = 'plus';

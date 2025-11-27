@@ -46,25 +46,25 @@ class TplsetsdefaultHandler extends \XoopsPersistableObjectHandler
     /**
      * retrieve a field
      *
-     * @param int  $i field id
-     * @param null $fields
+     * @param $i field id
+     * @param $fields
      * @return mixed reference to the <a href='psi_element://Get'>Get</a> object
      *                object
      */
-    public function get($i = null, $fields = null)
+    public function get($i = null, $fields = null): mixed
     {
         return parent::get($i, $fields);
     }
 
     /**
      * Get Count Tplsetsdefault in the database
-     * @param int    $start
-     * @param int    $limit
+     * @param int $start
+     * @param int $limit
      * @param string $sort
      * @param string $order
      * @return int
      */
-    public function getCountTplsetsdefault($start = 0, $limit = 0, $sort = 'tpl_id ASC, tpl_name', $order = 'ASC')
+    public function getCountTplsetsdefault(int $start = 0, int $limit = 0, string $sort = 'tpl_id ASC, tpl_name', string $order = 'ASC'): int
     {
         $crCountTplsetsdefault = new \CriteriaCompo();
         $crCountTplsetsdefault = $this->getTplsetsdefaultCriteria($crCountTplsetsdefault, $start, $limit, $sort, $order);
@@ -73,13 +73,13 @@ class TplsetsdefaultHandler extends \XoopsPersistableObjectHandler
 
     /**
      * Get All Tplsetsdefault in the database
-     * @param int    $start
-     * @param int    $limit
+     * @param int $start
+     * @param int $limit
      * @param string $sort
      * @param string $order
      * @return array
      */
-    public function getAllTplsetsdefault($start = 0, $limit = 0, $sort = 'tpl_id ASC, tpl_name', $order = 'ASC')
+    public function getAllTplsetsdefault(int $start = 0, int $limit = 0, string $sort = 'tpl_id ASC, tpl_name', string $order = 'ASC'): array
     {
         $crAllTplsetsdefault = new \CriteriaCompo();
         $crAllTplsetsdefault = $this->getTplsetsdefaultCriteria($crAllTplsetsdefault, $start, $limit, $sort, $order);
@@ -95,7 +95,7 @@ class TplsetsdefaultHandler extends \XoopsPersistableObjectHandler
      * @param $order
      * @return mixed
      */
-    private function getTplsetsdefaultCriteria($crTplsetsdefault, $start, $limit, $sort, $order)
+    private function getTplsetsdefaultCriteria($crTplsetsdefault, $start, $limit, $sort, $order): mixed
     {
         $crTplsetsdefault->setStart($start);
         $crTplsetsdefault->setLimit($limit);
@@ -107,11 +107,10 @@ class TplsetsdefaultHandler extends \XoopsPersistableObjectHandler
     /**
      * check Tplsetsdefault, whether there are new templates in
      *
-     * @param null
      * @return bool
      */
 
-    public function checkTplsetsdefault()
+    public function checkTplsetsdefault(): bool
     {
         $tplsetsdefaultCount = $this->getCountTplsetsdefault();
         if ($tplsetsdefaultCount == 0) {

@@ -37,12 +37,12 @@ $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
 class FileChecker
 {
     /**
-     * @param string      $file_path
+     * @param string $file_path
      * @param string|null $original_file_path
-     * @param string      $redirectFile
+     * @param string $redirectFile
      * @return bool|string
      */
-    public static function getFileStatus($file_path, $original_file_path = null, $redirectFile)
+    public static function getFileStatus(string $file_path, string $redirectFile, string $original_file_path = null): bool|string
     {
         $pathIcon16 = \Xmf\Module\Admin::iconUrl('', '16');
 
@@ -88,7 +88,7 @@ class FileChecker
      *
      * @return bool
      */
-    public static function copyFile($source_path, $destination_path)
+    public static function copyFile($source_path, $destination_path): bool
     {
         $source_path      = \str_replace('..', '', $source_path);
         $destination_path = \str_replace('..', '', $destination_path);
@@ -102,7 +102,7 @@ class FileChecker
      *
      * @return bool
      */
-    public static function compareFiles($file1_path, $file2_path)
+    public static function compareFiles($file1_path, $file2_path): bool
     {
         if (!self::fileExists($file1_path) || !self::fileExists($file2_path)) {
             return false;
@@ -124,7 +124,7 @@ class FileChecker
      *
      * @return bool
      */
-    public static function fileExists($file_path)
+    public static function fileExists($file_path): bool
     {
         return \is_file($file_path);
     }
@@ -135,27 +135,25 @@ class FileChecker
      *
      * @return bool
      */
-    public static function setFilePermissions($target, $mode = 0777)
+    public static function setFilePermissions($target, int $mode = 0777): bool
     {
         $target = \str_replace('..', '', $target);
 
-        return @\chmod($target, (int)$mode);
+        return @\chmod($target, $mode);
     }
 }
 
 $op = Request::getString('op', '', 'POST');
-switch ($op) {
-    case 'copyfile':
-        if (\Xmf\Request::hasVar('original_file_path', 'POST')) {
-            $original_file_path = $_POST['original_file_path'];
-        }
-        if (\Xmf\Request::hasVar('file_path', 'POST')) {
-            $file_path = $_POST['file_path'];
-        }
-        if (\Xmf\Request::hasVar('redirect', 'POST')) {
-            $redirect = $_POST['redirect'];
-        }
-        $msg = FileChecker::copyFile($original_file_path, $file_path) ? \constant('CO_' . $moduleDirNameUpper . '_' . 'FC_FILECOPIED') : \constant('CO_' . $moduleDirNameUpper . '_' . 'FC_FILENOTCOPIED');
-        \redirect_header($redirect, 2, $msg . ': ' . $file_path);
-        break;
+if ($op == 'copyfile') {
+    if (\Xmf\Request::hasVar('original_file_path', 'POST')) {
+        $original_file_path = $_POST['original_file_path'];
+    }
+    if (\Xmf\Request::hasVar('file_path', 'POST')) {
+        $file_path = $_POST['file_path'];
+    }
+    if (\Xmf\Request::hasVar('redirect', 'POST')) {
+        $redirect = $_POST['redirect'];
+    }
+    $msg = FileChecker::copyFile($original_file_path, $file_path) ? \constant('CO_' . $moduleDirNameUpper . '_' . 'FC_FILECOPIED') : \constant('CO_' . $moduleDirNameUpper . '_' . 'FC_FILENOTCOPIED');
+    \redirect_header($redirect, 2, $msg . ': ' . $file_path);
 }

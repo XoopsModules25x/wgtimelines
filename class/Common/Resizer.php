@@ -25,22 +25,22 @@ namespace XoopsModules\Wgtimelines\Common;
  */
 class Resizer
 {
-    public $sourceFile    = '';
-    public $endFile       = '';
-    public $maxWidth      = 0;
-    public $maxHeight     = 0;
-    public $imageMimetype = '';
-    public $jpgQuality    = 90;
-    public $mergeType     = 0;
-    public $mergePos      = 0;
-    public $degrees       = 0;
-    public $error         = '';
+    public string $sourceFile    = '';
+    public string $endFile       = '';
+    public int $maxWidth      = 0;
+    public int $maxHeight     = 0;
+    public string $imageMimetype = '';
+    public int $jpgQuality    = 90;
+    public int $mergeType     = 0;
+    public int $mergePos      = 0;
+    public int $degrees       = 0;
+    public string $error         = '';
 
     /**
      * resize image if size exceed given width/height
      * @return string|bool
      */
-    public function resizeImage()
+    public function resizeImage(): bool|string
     {
         // check file extension
         switch ($this->imageMimetype) {
@@ -118,7 +118,7 @@ class Resizer
     /**
      * @return bool|string
      */
-    public function resizeAndCrop()
+    public function resizeAndCrop(): bool|string
     {
         // check file extension
         switch ($this->imageMimetype) {
@@ -184,7 +184,7 @@ class Resizer
         return true;
     }
 
-    public function mergeImage()
+    public function mergeImage(): void
     {
         $dest = \imagecreatefromjpeg($this->endFile);
         $src  = \imagecreatefromjpeg($this->sourceFile);
@@ -245,7 +245,7 @@ class Resizer
     /**
      * @return bool|string
      */
-    public function rotateImage()
+    public function rotateImage(): bool|string
     {
         // check file extension
         switch ($this->imageMimetype) {

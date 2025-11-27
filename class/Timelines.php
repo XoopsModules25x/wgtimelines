@@ -38,8 +38,6 @@ class Timelines extends \XoopsObject
 {
     /**
      * Constructor
-     *
-     * @param null
      */
     public function __construct()
     {
@@ -63,10 +61,8 @@ class Timelines extends \XoopsObject
 
     /**
      * @static function &getInstance
-     *
-     * @param null
      */
-    public static function getInstance()
+    public static function getInstance(): void
     {
         static $instance = false;
         if (!$instance) {
@@ -88,14 +84,14 @@ class Timelines extends \XoopsObject
      * @param mixed $action
      * @return \XoopsThemeForm
      */
-    public function getFormTimelines($action = false)
+    public function getFormTimelines(mixed $action = false): \XoopsThemeForm
     {
         $helper = \XoopsModules\Wgtimelines\Helper::getInstance();
         if ($action === false) {
             $action = $_SERVER['REQUEST_URI'];
         }
         // Title
-        $title = $this->isNew() ? \sprintf(\_AM_WGTIMELINES_TIMELINE_ADD) : \sprintf(\_AM_WGTIMELINES_TIMELINE_EDIT);
+        $title = $this->isNew() ? \_AM_WGTIMELINES_TIMELINE_ADD : \_AM_WGTIMELINES_TIMELINE_EDIT;
         // Get Theme Form
         \xoops_load('XoopsFormLoader');
         $form = new \XoopsThemeForm($title, 'form', $action, 'post', true);
@@ -117,10 +113,10 @@ class Timelines extends \XoopsObject
         if ($this->isNew()) {
             $tlImage = 'blank.gif';
             $imageTray = new \XoopsFormElementTray(\_AM_WGTIMELINES_TIMELINE_IMAGE, '<br>');
-            $imageSelect = new \XoopsFormSelect(\sprintf(\_AM_WGTIMELINES_FORM_IMAGE_PATH, ".{$imageDirectory}/"), 'tl_image', $tlImage, 5);
+            $imageSelect = new \XoopsFormSelect(\sprintf(\_AM_WGTIMELINES_FORM_IMAGE_PATH, ".$imageDirectory/"), 'tl_image', $tlImage, 5);
             $imageArray = \XoopsLists::getImgListAsArray(\XOOPS_ROOT_PATH . $imageDirectory);
             foreach ($imageArray as $image1) {
-                $imageSelect->addOption("{$image1}", $image1);
+                $imageSelect->addOption("$image1", $image1);
             }
             $imageSelect->setExtra("onchange='showImgSelected(\"image1\", \"tl_image\", \"".$imageDirectory . '", "", "' . \XOOPS_URL . "\")'");
             $imageTray->addElement($imageSelect, false);
@@ -197,7 +193,7 @@ class Timelines extends \XoopsObject
      * @param null $maxDepth
      * @return array
      */
-    public function getValuesTimelines($keys = null, $format = null, $maxDepth = null)
+    public function getValuesTimelines($keys = null, $format = null, $maxDepth = null): array
     {
         $helper = \XoopsModules\Wgtimelines\Helper::getInstance();
         $ret = $this->getValues($keys, $format, $maxDepth);
@@ -213,15 +209,10 @@ class Timelines extends \XoopsObject
         $ret['magnific'] = $this->getVar('tl_magnific');
         $ret['expired'] = $this->getVar('tl_expired');
         $ret['showreads'] = $this->getVar('tl_showreads');
-        switch ( $this->getVar('tl_expired') ) {
-            case Constants::TIMELINE_EXPIRED_HIDE:
-                $ret['expired_text'] = _CO_TIMELINE_EXPIRED_HIDE;
-            break;
-            case Constants::TIMELINE_EXPIRED_SHOW:
-            default:
-                $ret['expired_text'] = _CO_TIMELINE_EXPIRED_SHOW;
-            break;
-        }
+        $ret['expired_text'] = match ($this->getVar('tl_expired')) {
+            Constants::TIMELINE_EXPIRED_HIDE => _CO_TIMELINE_EXPIRED_HIDE,
+            default => _CO_TIMELINE_EXPIRED_SHOW,
+        };
         $ret['online'] = $this->getVar('tl_online');
         $ret['submitter'] = \XoopsUser::getUnameFromId($this->getVar('tl_submitter'));
         $ret['date_create'] = \formatTimestamp($this->getVar('tl_date_create'), 's');
@@ -233,7 +224,7 @@ class Timelines extends \XoopsObject
      *
      * @return array
      */
-    public function toArrayTimelines()
+    public function toArrayTimelines(): array
     {
         $ret = [];
         $vars =& $this->getVars();
