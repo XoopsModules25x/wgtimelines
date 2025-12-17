@@ -1,6 +1,6 @@
 <?php
 
-function getPaths()
+function getPaths(): object
 {
     $moduleDirName      = \basename(\dirname(__DIR__));
     $moduleDirNameUpper = \mb_strtoupper($moduleDirName);

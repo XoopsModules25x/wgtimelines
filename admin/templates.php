@@ -110,119 +110,119 @@ switch ($op) {
         $options = [];
         $options[] = ['name' => 'tabletype',
                             'valid' => isset($_POST['tabletype']) ? 1 : 0,
-                            'value' => isset($_POST['tabletype']) ? $_POST['tabletype'] : '',
+                            'value' => $_POST['tabletype'] ?? '',
                             'type' => 'text'];
         $options[] = ['name' => 'panel_pos',
                             'valid' => isset($_POST['panel_pos']) ? 1 : 0,
-                            'value' => isset($_POST['panel_pos']) ? $_POST['panel_pos'] : '',
+                            'value' => $_POST['panel_pos'] ?? '',
                             'type' => 'text'];
         $options[] = ['name' => 'panel_pos_single',
                             'valid' => isset($_POST['panel_pos_single']) ? 1 : 0,
-                            'value' => isset($_POST['panel_pos_single']) ? $_POST['panel_pos_single'] : 'left',
+                            'value' => $_POST['panel_pos_single'] ?? 'left',
                             'type' => 'text'];
         $options[] = ['name' => 'panel_imgpos',
                             'valid' => isset($_POST['panel_imgpos']) ? 1 : 0,
-                            'value' => isset($_POST['panel_imgpos']) ? $_POST['panel_imgpos'] : '',
+                            'value' => $_POST['panel_imgpos'] ?? '',
                             'type' => 'text'];
         $options[] = ['name' => 'imgstyle',
                             'valid' => isset($_POST['imgstyle']) ? 1 : 0,
-                            'value' => isset($_POST['imgstyle']) ? $_POST['imgstyle'] : '',
+                            'value' => $_POST['imgstyle'] ?? '',
                             'type' => 'text'];
         $options[] = ['name' => 'bgcolor',
                             'valid' => isset($_POST['bgcolor']) ? 1 : 0,
-                            'value' => isset($_POST['bgcolor']) ? $_POST['bgcolor'] : '',
+                            'value' => $_POST['bgcolor'] ?? '',
                             'type' => 'color'];
         $options[] = ['name' => 'fontcolor',
                             'valid' => isset($_POST['fontcolor']) ? 1 : 0,
-                            'value' => isset($_POST['fontcolor']) ? $_POST['fontcolor'] : '',
+                            'value' => $_POST['fontcolor'] ?? '',
                             'type' => 'color'];
         $options[] = ['name' => 'bgcolor2',
                             'valid' => isset($_POST['bgcolor2']) ? 1 : 0,
-                            'value' => isset($_POST['bgcolor2']) ? $_POST['bgcolor2'] : '',
+                            'value' => $_POST['bgcolor2'] ?? '',
                             'type' => 'color'];
         $options[] = ['name' => 'fontcolor2',
                             'valid' => isset($_POST['fontcolor2']) ? 1 : 0,
-                            'value' => isset($_POST['fontcolor2']) ? $_POST['fontcolor2'] : '',
+                            'value' => $_POST['fontcolor2'] ?? '',
                             'type' => 'color'];
         $options[] = ['name' => 'bgcolor3',
                             'valid' => isset($_POST['bgcolor3']) ? 1 : 0,
-                            'value' => isset($_POST['bgcolor3']) ? $_POST['bgcolor3'] : '',
+                            'value' => $_POST['bgcolor3'] ?? '',
                             'type' => 'color'];
         $options[] = ['name' => 'fontcolor3',
                             'valid' => isset($_POST['fontcolor3']) ? 1 : 0,
-                            'value' => isset($_POST['fontcolor3']) ? $_POST['fontcolor3'] : '',
+                            'value' => $_POST['fontcolor3'] ?? '',
                             'type' => 'color'];
         $options[] = ['name' => 'bgcolor4',
                             'valid' => isset($_POST['bgcolor4']) ? 1 : 0,
-                            'value' => isset($_POST['bgcolor4']) ? $_POST['bgcolor4'] : '',
+                            'value' => $_POST['bgcolor4'] ?? '',
                             'type' => 'color'];
         $options[] = ['name' => 'fontcolor4',
                             'valid' => isset($_POST['fontcolor4']) ? 1 : 0,
-                            'value' => isset($_POST['fontcolor4']) ? $_POST['fontcolor4'] : '',
+                            'value' => $_POST['fontcolor4'] ?? '',
                             'type' => 'color'];
         $options[] = ['name' => 'badgestyle',
                             'valid' => isset($_POST['badgestyle']) ? 1 : 0,
-                            'value' => isset($_POST['badgestyle']) ? $_POST['badgestyle'] : '',
+                            'value' => $_POST['badgestyle'] ?? '',
                             'type' => 'text'];
         $options[] = ['name' => 'badgecontent',
                             'valid' => isset($_POST['badgecontent']) ? 1 : 0,
-                            'value' => isset($_POST['badgecontent']) ? $_POST['badgecontent'] : 'none',
+                            'value' => $_POST['badgecontent'] ?? 'none',
                             'type' => 'text'];
         $options[] = ['name' => 'badgecolor',
                             'valid' => isset($_POST['badgecolor']) ? 1 : 0,
-                            'value' => isset($_POST['badgecolor']) ? $_POST['badgecolor'] : '',
+                            'value' => $_POST['badgecolor'] ?? '',
                             'type' => 'color'];
         $options[] = ['name' => 'badgefontcolor',
                             'valid' => isset($_POST['badgefontcolor']) ? 1 : 0,
-                            'value' => isset($_POST['badgefontcolor']) ? $_POST['badgefontcolor'] : '#eeeeee',
+                            'value' => $_POST['badgefontcolor'] ?? '#eeeeee',
                             'type' => 'color'];
         $options[] = ['name' => 'showyear',
                             'valid' => isset($_POST['showyear']) ? 1 : 0,
-                            'value' => isset($_POST['showyear']) ? $_POST['showyear'] : 'none',
+                            'value' => $_POST['showyear'] ?? 'none',
                             'type' => 'text'];
         $options[] = ['name' => 'linecolor',
                             'valid' => isset($_POST['linecolor']) ? 1 : 0,
-                            'value' => isset($_POST['linecolor']) ? $_POST['linecolor'] : '',
+                            'value' => $_POST['linecolor'] ?? '',
                             'type' => 'color'];
         $options[] = ['name' => 'borderwidth',
                             'valid' => isset($_POST['borderwidth']) ? 1 : 0,
-                            'value' => isset($_POST['borderwidth']) ? $_POST['borderwidth'] : '1px',
+                            'value' => $_POST['borderwidth'] ?? '1px',
                             'type' => 'text'];
         $options[] = ['name' => 'borderstyle',
                             'valid' => isset($_POST['borderstyle']) ? 1 : 0,
-                            'value' => isset($_POST['borderstyle']) ? $_POST['borderstyle'] : 'solid',
+                            'value' => $_POST['borderstyle'] ?? 'solid',
                             'type' => 'text'];
         $options[] = ['name' => 'bordercolor',
                             'valid' => isset($_POST['bordercolor']) ? 1 : 0,
-                            'value' => isset($_POST['bordercolor']) ? $_POST['bordercolor'] : '#eeeeee',
+                            'value' => $_POST['bordercolor'] ?? '#eeeeee',
                             'type' => 'color'];
         $options[] = ['name' => 'borderradius',
                             'valid' => isset($_POST['borderradius']) ? 1 : 0,
-                            'value' => isset($_POST['borderradius']) ? $_POST['borderradius'] : '5px',
+                            'value' => $_POST['borderradius'] ?? '5px',
                             'type' => 'text'];
         $options[] = ['name' => 'boxshadow',
                             'valid' => isset($_POST['boxshadow_h']) ? 1 : 0,
-                            'value' => (isset($_POST['boxshadow_h']) ? $_POST['boxshadow_h'] : '5px') . ' ' . (isset($_POST['boxshadow_v']) ? $_POST['boxshadow_v'] : '5px') . ' ' . (isset($_POST['boxshadow_blur']) ? $_POST['boxshadow_blur'] : '5px') . ' ' . (isset($_POST['boxshadow_spread']) ? $_POST['boxshadow_spread'] : '5px') . ' ' . (isset($_POST['boxshadow_color']) ? $_POST['boxshadow_color'] : '#eeeeee'),
+                            'value' => ($_POST['boxshadow_h'] ?? '5px') . ' ' . ($_POST['boxshadow_v'] ?? '5px') . ' ' . ($_POST['boxshadow_blur'] ?? '5px') . ' ' . ($_POST['boxshadow_spread'] ?? '5px') . ' ' . ($_POST['boxshadow_color'] ?? '#eeeeee'),
                             'type' => 'text'];
         $options[] = ['name' => 'orientation',
                             'valid' => isset($_POST['orientation']) ? 1 : 0,
-                            'value' => isset($_POST['orientation']) ? $_POST['orientation'] : '',
+                            'value' => $_POST['orientation'] ?? '',
                             'type' => 'text'];
         $options[] = ['name' => 'datesspeed',
                             'valid' => isset($_POST['datesspeed']) ? 1 : 0,
-                            'value' => isset($_POST['datesspeed']) ? $_POST['datesspeed'] : '',
+                            'value' => $_POST['datesspeed'] ?? '',
                             'type' => 'text'];
         $options[] = ['name' => 'issuesspeed',
                             'valid' => isset($_POST['issuesspeed']) ? 1 : 0,
-                            'value' => isset($_POST['issuesspeed']) ? $_POST['issuesspeed'] : '',
+                            'value' => $_POST['issuesspeed'] ?? '',
                             'type' => 'text'];
         $options[] = ['name' => 'issuestransparency',
                             'valid' => isset($_POST['issuestransparency']) ? 1 : 0,
-                            'value' => isset($_POST['issuestransparency']) ? $_POST['issuestransparency'] : '',
+                            'value' => $_POST['issuestransparency'] ?? '',
                             'type' => 'text'];
         $options[] = ['name' => 'issuestransparencyspeed',
                             'valid' => isset($_POST['issuestransparencyspeed']) ? 1 : 0,
-                            'value' => isset($_POST['issuestransparencyspeed']) ? $_POST['issuestransparencyspeed'] : '',
+                            'value' => $_POST['issuestransparencyspeed'] ?? '',
                             'type' => 'text'];
         $options[] = ['name' => 'autoplay',
                             'valid' => isset($_POST['autoplay']) ? 1 : 0,
@@ -230,11 +230,11 @@ switch ($op) {
                             'type' => 'bool'];
         $options[] = ['name' => 'autoplaydirection',
                             'valid' => isset($_POST['autoplaydirection']) ? 1 : 0,
-                            'value' => isset($_POST['autoplaydirection']) ? $_POST['autoplaydirection'] : '',
+                            'value' => $_POST['autoplaydirection'] ?? '',
                             'type' => 'text'];
         $options[] = ['name' => 'autoplaypause',
                             'valid' => isset($_POST['autoplaypause']) ? 1 : 0,
-                            'value' => isset($_POST['autoplaypause']) ? $_POST['autoplaypause'] : '',
+                            'value' => $_POST['autoplaypause'] ?? '',
                             'type' => 'text'];
         $options[] = ['name' => 'arrowkeys',
                             'valid' => isset($_POST['arrowkeys']) ? 1 : 0,
@@ -246,7 +246,7 @@ switch ($op) {
                             'type' => 'text'];
         $options[] = ['name' => 'fadein',
                             'valid' => isset($_POST['fadein']) ? 1 : 0,
-                            'value' => isset($_POST['fadein']) ? $_POST['fadein'] : 'appear',
+                            'value' => $_POST['fadein'] ?? 'appear',
                             'type' => 'text'];
 
         $templatesObj->setVar('tpl_options', serialize($options));

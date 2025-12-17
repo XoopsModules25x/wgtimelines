@@ -47,11 +47,11 @@ class RatingsHandler extends \XoopsPersistableObjectHandler
     }
 
     /**
-     * @param bool $isNew
+     * @param $isNew
      *
-     * @return XoopsObject
+     * @return Object
      */
-    public function create($isNew = true)
+    public function create($isNew = true): Object
     {
         return parent::create($isNew);
     }
@@ -59,11 +59,11 @@ class RatingsHandler extends \XoopsPersistableObjectHandler
     /**
      * retrieve a field
      *
-     * @param int $i field id
-     * @param null $fields
+     * @param $i field id
+     * @param $fields
      * @return mixed reference to the {@link Get} object
      */
-    public function get($i = null, $fields = null)
+    public function get($i = null, $fields = null): mixed
     {
         return parent::get($i, $fields);
     }
@@ -71,10 +71,9 @@ class RatingsHandler extends \XoopsPersistableObjectHandler
     /**
      * get inserted id
      *
-     * @param null
      * @return integer reference to the {@link Get} object
      */
-    public function getInsertId()
+    public function getInsertId(): int
     {
         return $this->db->getInsertId();
     }
@@ -84,12 +83,9 @@ class RatingsHandler extends \XoopsPersistableObjectHandler
      * @param int $rate_itemid
      * @return array
      */
-    public function getItemRating($rate_itemid = 0)
+    public function getItemRating(int $rate_itemid = 0): array
     {
         $ItemRating = [];
-        $ItemRating['nb_ratings'] = 0;
-        $ItemRating['avg_rate_value'] = 0;
-        $ItemRating['size'] = 0;
 
         $rating_unitwidth = 25;
         $max_units = 5;
@@ -139,7 +135,7 @@ class RatingsHandler extends \XoopsPersistableObjectHandler
      * @param $order
      * @return mixed
      */
-    private function getRatingsCriteria($crRatings, $start, $limit, $sort, $order)
+    private function getRatingsCriteria($crRatings, $start, $limit, $sort, $order): mixed
     {
         $crRatings->setStart($start);
         $crRatings->setLimit($limit);

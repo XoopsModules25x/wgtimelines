@@ -26,9 +26,9 @@ use XoopsModules\Wgtimelines\Common;
 
 class Migrate extends \Xmf\Database\Migrate
 {
-    private $renameTables;
+    private mixed $renameTables;
 
-    private $renameColumns;
+    private mixed $renameColumns;
 
     /**
      * @param \XoopsModules\Wgtimelines\Common\Configurator|null $configurator
@@ -47,7 +47,7 @@ class Migrate extends \Xmf\Database\Migrate
     /**
      * change table prefix if needed
      */
-    private function changePrefix()
+    private function changePrefix(): void
     {
         foreach ($this->renameTables as $oldName => $newName) {
             if ($this->tableHandler->useTable($oldName) && !$this->tableHandler->useTable($newName)) {
@@ -59,7 +59,7 @@ class Migrate extends \Xmf\Database\Migrate
     /**
      * change column name of given table if needed
      */
-    private function changeColumnNames()
+    private function changeColumnNames(): void
     {
         foreach ($this->renameColumns as $table => $columns) {
             if ($this->tableHandler->useTable($table)) {
@@ -80,7 +80,7 @@ class Migrate extends \Xmf\Database\Migrate
      * @param string $tableName  table to convert
      * @param string $columnName column with IP address
      */
-    private function convertIPAddresses($tableName, $columnName)
+    private function convertIPAddresses(string $tableName, string $columnName): void
     {
         if ($this->tableHandler->useTable($tableName)) {
             $attributes = $this->tableHandler->getColumnAttributes($tableName, $columnName);
@@ -98,7 +98,7 @@ class Migrate extends \Xmf\Database\Migrate
     /**
      * Move do* columns from newbb_posts to newbb_posts_text table
      */
-    private function moveDoColumns()
+    private function moveDoColumns(): void
     {
         $tableName    = 'newbb_posts_text';
         $srcTableName = 'newbb_posts';
@@ -122,7 +122,7 @@ class Migrate extends \Xmf\Database\Migrate
      *   table and column renames
      *   data conversions
      */
-    protected function preSyncActions()
+    protected function preSyncActions(): void
     {
         if (\count($this->renameTables) > 0) {
             // change 'bb' table prefix to 'newbb'

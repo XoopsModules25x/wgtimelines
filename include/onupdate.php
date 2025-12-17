@@ -38,7 +38,7 @@ use XoopsModules\Wgtimelines\Common\ {
  *
  * @return bool true if ready to install, false if not
  */
-function xoops_module_pre_update_wgtimelines(\XoopsModule $module)
+function xoops_module_pre_update_wgtimelines(\XoopsModule $module): bool
 {
     $utility = new Wgtimelines\Utility();
 
@@ -54,7 +54,7 @@ function xoops_module_pre_update_wgtimelines(\XoopsModule $module)
  *
  * @return bool|null
  */
-function xoops_module_update_wgtimelines(&$module, $prev_version = null)
+function xoops_module_update_wgtimelines(&$module, $prev_version = null): ?bool
 {
     require \dirname(__DIR__) . '/preloads/autoloader.php';
 
@@ -125,7 +125,8 @@ function xoops_module_update_wgtimelines(&$module, $prev_version = null)
  * @param string $type
  * @return bool
  */
-function compareVersion ($version1, $version2, $type = '<') {
+function compareVersion ($version1, $version2, string $type = '<'): bool
+{
 
     $arrVersion1 = getVersionArray($version1);
     $arrVersion2 = getVersionArray($version2);
@@ -166,20 +167,19 @@ function compareVersion ($version1, $version2, $type = '<') {
  * @param $version
  * @return array
  */
-function getVersionArray ($version) {
+function getVersionArray ($version): array
+{
     $arrVersion = [];
+    $arrTemp = \explode('.', $version);
+    $arrVersion[0] = (int)$arrTemp[0];
     if (substr_count($version, '.') > 1) {
         // is semantic
-        $arrTemp = \explode('.', $version);
-        $arrVersion[0] = (int)$arrTemp[0];
         $arrVersion[1] = (int)$arrTemp[1];
         $arrVersion[2] = (int)$arrTemp[2];
     } else {
         // turn 1.01 into [1][0][1]
         // turn 1.1  into [1][1][0]
-        $arrTemp = \explode('.', $version);
-        $arrVersion[0] = (int)$arrTemp[0];
-        if ('0' === (string)$arrTemp[1]) {
+        if ('0' === $arrTemp[1]) {
         //if (\str_starts_with((string)$arrTemp[1], '0')) {
             $arrVersion[1] = 0;
             $arrVersion[2] = (int)(\substr($arrTemp[1], 1));
@@ -197,7 +197,7 @@ function getVersionArray ($version) {
  *
  * @return bool
  */
-function update_tplsetsdefault($module)
+function update_tplsetsdefault($module): bool
 {
     include_once __DIR__ . '/common.php';
     $db = $GLOBALS['xoopsDB'];
@@ -252,7 +252,7 @@ function wgtimelines_check_db(&$module)
  *
  * @return bool
  */
-function update_wgtimelines_v108(&$module)
+function update_wgtimelines_v108(&$module): bool
 {
     //require \dirname(__DIR__) . '/preloads/autoloader.php';
     $helper                = \XoopsModules\Wgtimelines\Helper::getInstance();
@@ -278,7 +278,7 @@ function update_wgtimelines_v108(&$module)
  *
  * @return bool
  */
-function update_wgtimelines_v107($module)
+function update_wgtimelines_v107($module): bool
 {
     $sql = "UPDATE `" . $GLOBALS['xoopsDB']->prefix('wgtimelines_items') . "` SET `item_year` = '' WHERE `" . $GLOBALS['xoopsDB']->prefix('wgtimelines_items') . "`.`item_year` = 0;";
     if (!$result = $GLOBALS['xoopsDB']->queryF($sql)) {

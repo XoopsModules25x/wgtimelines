@@ -28,12 +28,12 @@ class MigrateHelper
     /**
      * @var string
      */
-    private $fileYaml;
+    private string $fileYaml;
 
     /**
      * @var string
      */
-    private $fileSql;
+    private string $fileSql;
 
 
     /**
@@ -49,7 +49,6 @@ class MigrateHelper
     /**
      * Create a yaml file based on a sql file
      *
-     * @param null
      * @return bool
      */
     public function createSchemaFromSqlfile(): bool
@@ -74,7 +73,7 @@ class MigrateHelper
                 unset($lines[$key]);
             }
             // remove comment lines
-            if ('#' === \substr($line, 0, 1)) {
+            if (str_starts_with($line, '#')) {
                 unset($lines[$key]);
             }
         }
@@ -100,7 +99,7 @@ class MigrateHelper
                 $tables[$tableName]['columns'] = [];
                 $tables[$tableName]['keys'] = [];
             } else {
-                if (false == $skip) {
+                if (!$skip) {
                     if (')' === \mb_strtoupper(\substr($line, 0, 1))) {
                         // end of table definition
                         // get options
@@ -137,7 +136,7 @@ class MigrateHelper
         $level3 = \str_repeat(' ', 12);
 
         foreach ($tables as $tkey => $table) {
-            $schema[] = "{$tkey}:\n";
+            $schema[] = "$tkey:\n";
             foreach ($table as $lkey => $line) {
                 if ('keys' == $lkey) {
                     $schema[] = $level1 . "keys:\n";
@@ -164,7 +163,7 @@ class MigrateHelper
 
         // create new file and write schema array into this file
         $myfile = \fopen($this->fileYaml, "w");
-        if (false == $myfile || \is_null($myfile)) {
+        if (!$myfile || \is_null($myfile)) {
             \xoops_error('Error: Unable to open sql file!');
             return false;
         }
@@ -183,7 +182,7 @@ class MigrateHelper
      * @param  string $line
      * @return string|bool
      */
-    private function getTableName (string $line)
+    private function getTableName (string $line): bool|string
     {
 
         $arrLine = \explode( '`', $line);
@@ -201,7 +200,7 @@ class MigrateHelper
      * @param string $line
      * @return array|bool
      */
-    private function getColumns (string $line)
+    private function getColumns (string $line): bool|array
     {
 
         $columns = [];
@@ -214,7 +213,7 @@ class MigrateHelper
         }
 
         $attributes = \trim(\str_replace([$name, '`'], '', $line));
-        if (',' == \substr($attributes, - 1)) {
+        if (str_ends_with($attributes, ',')) {
             $attributes = substr($attributes, 0, strlen($attributes) - 1);
         }
         $columns['name'] = $name;
@@ -256,7 +255,7 @@ class MigrateHelper
      * @param string $line
      * @return array
      */
-    private function getKey (string $line)
+    private function getKey (string $line): array
     {
 
         $key = [];

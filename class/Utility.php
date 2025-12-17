@@ -44,14 +44,14 @@ class Utility
      * www.cakephp.org
      *
      * @param string $text         String to truncate.
-     * @param int    $length       Length of returned string, including ellipsis.
+     * @param int $length       Length of returned string, including ellipsis.
      * @param string $ending       Ending to be appended to the trimmed string.
-     * @param bool   $exact        If false, $text will not be cut mid-word
-     * @param bool   $considerHtml If true, HTML tags would be handled correctly
+     * @param bool $exact        If false, $text will not be cut mid-word
+     * @param bool $considerHtml If true, HTML tags would be handled correctly
      *
      * @return string Trimmed string.
      */
-    public static function truncateHtml($text, $length = 100, $ending = '...', $exact = false, $considerHtml = true)
+    public static function truncateHtml(string $text, int $length = 100, string $ending = '...', bool $exact = false, bool $considerHtml = true): string
     {
         if ($considerHtml) {
             // if the plain text is shorter than the maximum length, return the whole text
@@ -149,7 +149,7 @@ class Utility
      * @param $cats
      * @return string
      */
-    public static function addBlockCatSelect($cats)
+    public static function addBlockCatSelect($cats): string
     {
         if (\is_array($cats)) {
             $cat_sql = '(' . current($cats);
@@ -169,7 +169,7 @@ class Utility
      * @param $dirname
      * @return mixed $images
      */
-    public static function getMyItemIds($permtype, $dirname)
+    public static function getMyItemIds($permtype, $dirname): mixed
     {
         global $xoopsUser;
         static $permissions = [];
@@ -180,9 +180,7 @@ class Utility
         $wggalleryModule = $moduleHandler->getByDirname($dirname);
         $groups          = \is_object($xoopsUser) ? $xoopsUser->getGroups() : \XOOPS_GROUP_ANONYMOUS;
         $gpermHandler    = \xoops_getHandler('groupperm');
-        $images          = $gpermHandler->getItemIds($permtype, $groups, $wggalleryModule->getVar('mid'));
-
-        return $images;
+        return $gpermHandler->getItemIds($permtype, $groups, $wggalleryModule->getVar('mid'));
     }
 
     /**
@@ -193,7 +191,7 @@ class Utility
      * @param $cid
      * @return int
      */
-    public static function getNumbersOfEntries($mytree, $images, $entries, $cid)
+    public static function getNumbersOfEntries($mytree, $images, $entries, $cid): int
     {
         $count = 0;
         if (\in_array($cid, $images)) {
@@ -217,7 +215,7 @@ class Utility
      * Add content as meta tag to template
      * @param $content
      */
-    public static function getMetaKeywords($content)
+    public static function getMetaKeywords($content): void
     {
         global $xoopsTpl, $xoTheme;
         $myts    = \MyTextSanitizer::getInstance();
@@ -233,7 +231,7 @@ class Utility
      * Add content as meta description to template
      * @param $content
      */
-    public static function getMetaDescription($content)
+    public static function getMetaDescription($content): void
     {
         global $xoopsTpl, $xoTheme;
         $myts    = \MyTextSanitizer::getInstance();
@@ -249,11 +247,11 @@ class Utility
      * Rewrite all url
      *
      * @param string $module module name
-     * @param array  $array  array
+     * @param array $array  array
      * @param string $type   type
      * @return null|string $type    string replacement for any blank case
      */
-    public static function rewriteUrl($module, $array, $type = 'content')
+    public static function rewriteUrl(string $module, array $array, string $type = 'content'): ?string
     {
         $comment = '';
         $helper = \XoopsModules\Wgtimelines\Helper::getInstance();
@@ -261,13 +259,11 @@ class Utility
         $lenght_id   = $helper->getConfig('lenght_id');
         $rewrite_url = $helper->getConfig('rewrite_url');
 
+        $id = $array['content_id'];
         if (0 !== $lenght_id) {
-            $id = $array['content_id'];
             while (\mb_strlen($id) < $lenght_id) {
                 $id = '0' . $id;
             }
-        } else {
-            $id = $array['content_id'];
         }
 
         if (isset($array['topic_alias']) && $array['topic_alias']) {
@@ -339,7 +335,7 @@ class Utility
      * @param string $module
      * @return string $url
      */
-    public static function getFilter($url, $type = '', $module = 'wggallery')
+    public static function getFilter(string $url, string $type = '', string $module = 'wggallery'): string
     {
         // Get regular expression from module setting. default setting is : `[^a-z0-9]`i
         $helper = \XoopsModules\Wgtimelines\Helper::getInstance();
@@ -352,8 +348,6 @@ class Utility
         $url = htmlentities($url, ENT_COMPAT, 'utf-8');
         $url = \preg_replace('`&([a-z])(acute|uml|circ|grave|ring|cedil|slash|tilde|caron|lig);`i', "\1", $url);
         $url = \preg_replace([$regular_expression, '`[-]+`'], '-', $url);
-        $url = ('' == $url) ? $type : \mb_strtolower(\trim($url, '-'));
-
-        return $url;
+        return ('' == $url) ? $type : \mb_strtolower(\trim($url, '-'));
     }
 }

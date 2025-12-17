@@ -25,7 +25,7 @@ class WgtimelinesCorePreload extends \XoopsPreloadItem
     /**
      * @param $args
      */
-    public static function eventCoreIncludeCommonEnd($args)
+    public static function eventCoreIncludeCommonEnd($args): void
     {
         require __DIR__ . '/autoloader.php';
     }

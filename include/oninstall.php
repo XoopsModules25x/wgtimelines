@@ -31,7 +31,7 @@ use XoopsModules\Wgtimelines\Common;
  * @param  \XoopsModule $module
  * @return bool
  */
-function xoops_module_pre_install_wgtimelines(\XoopsModule $module)
+function xoops_module_pre_install_wgtimelines(\XoopsModule $module): bool
 {
     require \dirname(__DIR__) . '/preloads/autoloader.php';
     $utility = new Wgtimelines\Utility();
@@ -53,11 +53,11 @@ function xoops_module_pre_install_wgtimelines(\XoopsModule $module)
 }
 
 /**
- * @param \XoopsModule $module
+ * @param XoopsModule $module
  *
  * @return bool|string
  */
-function xoops_module_install_wgtimelines(\XoopsModule $module)
+function xoops_module_install_wgtimelines(\XoopsModule $module): bool|string
 {
     require \dirname(__DIR__) . '/preloads/autoloader.php';
     

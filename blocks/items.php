@@ -29,7 +29,7 @@ use XoopsModules\Wgtimelines\Helper;
 include_once \XOOPS_ROOT_PATH.'/modules/wgtimelines/include/common.php';
 
 // Function show block
-function b_wgtimelines_items_show($options)
+function b_wgtimelines_items_show($options): array
 {
     include_once \XOOPS_ROOT_PATH.'/modules/wgtimelines/class/Items.php';
     $GLOBALS['xoopsTpl']->assign('wgtimelines_upload_url', \WGTIMELINES_UPLOAD_URL);
@@ -112,7 +112,7 @@ function limitLength($text, $lenghtTitle)
 }
 
 // Function edit block
-function b_wgtimelines_items_edit($options)
+function b_wgtimelines_items_edit($options): string
 {
     include_once \XOOPS_ROOT_PATH.'/modules/wgtimelines/class/items.php';
     $helper = Helper::getInstance();

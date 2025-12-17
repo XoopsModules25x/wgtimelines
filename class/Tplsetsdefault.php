@@ -36,8 +36,6 @@ class Tplsetsdefault extends \XoopsObject
 {
     /**
      * Constructor
-     *
-     * @param null
      */
     public function __construct()
     {
@@ -54,10 +52,8 @@ class Tplsetsdefault extends \XoopsObject
 
     /**
      * @static function &getInstance
-     *
-     * @param null
      */
-    public static function getInstance()
+    public static function getInstance(): void
     {
         static $instance = false;
         if (!$instance) {
@@ -72,7 +68,7 @@ class Tplsetsdefault extends \XoopsObject
      * @param null $maxDepth
      * @return array
      */
-    public function getValuesTplsetsdefault($keys = null, $format = null, $maxDepth = null)
+    public function getValuesTplsetsdefault($keys = null, $format = null, $maxDepth = null): array
     {
         $helper = \XoopsModules\Wgtimelines\Helper::getInstance();
         $ret = $this->getValues($keys, $format, $maxDepth);

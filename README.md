@@ -17,11 +17,11 @@ You can add descriptions and/or logos to your individual timelines, and for each
 Most of the templates on user side are fully responsive, but for proper displaying you must use a Bootstrap theme. Depending on the template you can select various options like colors, border styles, badges and many more.
                                                                                                                        
 ### Require:
-- XOOPS 2.5.11;
+- XOOPS 2.5.12;
 - XOOPS Admin 1.2;
-- PHP 7.4 or higher;
-- MySQL 5.5; -> Minimum Recommended Using InnoDB Version 5.1 or Later
-
+- PHP 8.4 or higher;
+- MySQL 5.7.8 or higher, 8.4.5+ recommended
+- 
 # Info
 
 **wgTimelines is ready for PHP 8.4**

@@ -37,8 +37,6 @@ class Templates extends \XoopsObject
 {
     /**
      * Constructor
-     *
-     * @param null
      */
     public function __construct()
     {
@@ -55,10 +53,8 @@ class Templates extends \XoopsObject
 
     /**
      * @static function &getInstance
-     *
-     * @param null
      */
-    public static function getInstance()
+    public static function getInstance(): void
     {
         static $instance = false;
         if (!$instance) {
@@ -80,14 +76,14 @@ class Templates extends \XoopsObject
      * @param mixed $action
      * @return \XoopsThemeForm
      */
-    public function getFormTemplates($action = false)
+    public function getFormTemplates(mixed $action = false): \XoopsThemeForm
     {
         $helper = \XoopsModules\Wgtimelines\Helper::getInstance();
         if ($action === false) {
             $action = $_SERVER['REQUEST_URI'];
         }
         // Title
-        $title = $this->isNew() ? \sprintf(\_AM_WGTIMELINES_TEMPLATE_ADD) : \sprintf(\_AM_WGTIMELINES_TEMPLATE_EDIT);
+        $title = $this->isNew() ? \_AM_WGTIMELINES_TEMPLATE_ADD : \_AM_WGTIMELINES_TEMPLATE_EDIT;
         // Get Theme Form
         \xoops_load('XoopsFormLoader');
         $form = new \XoopsThemeForm($title, 'form', $action, 'post', true);
@@ -450,14 +446,14 @@ class Templates extends \XoopsObject
      * @param mixed $action
      * @return \XoopsThemeForm
      */
-    public function getFormTemplatesMaster($action = false)
+    public function getFormTemplatesMaster(mixed $action = false): \XoopsThemeForm
     {
         $helper = \XoopsModules\Wgtimelines\Helper::getInstance();
         if ($action === false) {
             $action = $_SERVER['REQUEST_URI'];
         }
         // Title
-        $title = $this->isNew() ? \sprintf(\_AM_WGTIMELINES_TEMPLATE_ADD) : \sprintf(\_AM_WGTIMELINES_TEMPLATE_EDIT);
+        $title = $this->isNew() ? \_AM_WGTIMELINES_TEMPLATE_ADD : \_AM_WGTIMELINES_TEMPLATE_EDIT;
         // Get Theme Form
         \xoops_load('XoopsFormLoader');
         $form = new \XoopsThemeForm($title, 'form', $action, 'post', true);
@@ -526,7 +522,7 @@ class Templates extends \XoopsObject
      * @param null $maxDepth
      * @return array
      */
-    public function getValuesTemplates($keys = null, $format = null, $maxDepth = null)
+    public function getValuesTemplates($keys = null, $format = null, $maxDepth = null): array
     {
         $ret = $this->getValues($keys, $format, $maxDepth);
         $ret['id'] = $this->getVar('tpl_id');
@@ -547,7 +543,7 @@ class Templates extends \XoopsObject
      * @param $tpl_desc
      * @return string
      */
-    private function convertTplDesc($tpl_desc) 
+    private function convertTplDesc($tpl_desc): string
     {
         $desc_arr = \explode(' ', $tpl_desc);
         if (\defined($desc_arr[0])) {
@@ -570,7 +566,7 @@ class Templates extends \XoopsObject
      * @param null $maxDepth
      * @return array
      */
-    public function getValuesTemplatesAdmin($keys = null, $format = null, $maxDepth = null)
+    public function getValuesTemplatesAdmin($keys = null, $format = null, $maxDepth = null): array
     {
         $ret = $this->getValues($keys, $format, $maxDepth);
         $ret['id'] = $this->getVar('tpl_id');
@@ -583,117 +579,44 @@ class Templates extends \XoopsObject
 
         foreach ($options as $option) {
             // get proper option name
-            switch ($option['name']) {
-                case 'panel_pos':
-                    $title = \_AM_WGTIMELINES_TEMPLATE_IMGPOS;
-                break;
-                case 'tabletype':
-                    $title = \_AM_WGTIMELINES_TEMPLATE_TABLETYPE;
-                break;
-                case 'imgstyle':
-                    $title = \_AM_WGTIMELINES_TEMPLATE_IMGSTYLE;
-                break;
-                case 'bgcolor':
-                    $title = \_AM_WGTIMELINES_TEMPLATE_BGCOLOR;
-                break;
-                case 'bgcolor2':
-                    $title = \_AM_WGTIMELINES_TEMPLATE_BGCOLOR2;
-                break;
-                case 'bgcolor3':
-                    $title = \_AM_WGTIMELINES_TEMPLATE_BGCOLOR3;
-                break;
-                case 'bgcolor4':
-                    $title = \_AM_WGTIMELINES_TEMPLATE_BGCOLOR4;
-                break;
-                case 'fontcolor':
-                    $title = \_AM_WGTIMELINES_TEMPLATE_FONTCOLOR;
-                break;
-                case 'fontcolor2':
-                    $title = \_AM_WGTIMELINES_TEMPLATE_FONTCOLOR2;
-                break;
-                case 'fontcolor3':
-                    $title = \_AM_WGTIMELINES_TEMPLATE_FONTCOLOR3;
-                break;
-                case 'fontcolor4':
-                    $title = \_AM_WGTIMELINES_TEMPLATE_FONTCOLOR4;
-                break;
-                case 'panel_imgpos':
-                    $title = \_AM_WGTIMELINES_TEMPLATE_IMGPOS;
-                break;
-                case 'badgecolor':
-                    $title = \_AM_WGTIMELINES_TEMPLATE_BADGECOLOR;
-                break;
-                case 'badgefontcolor':
-                    $title = \_AM_WGTIMELINES_TEMPLATE_BADGEFONTCOLOR;
-                break;
-                case 'badgestyle':
-                    $title = \_AM_WGTIMELINES_TEMPLATE_BADGESTYLE;
-                break;
-                case 'linecolor':
-                    $title = \_AM_WGTIMELINES_TEMPLATE_LINECOLOR;
-                break;
-                case 'borderwidth':
-                    $title = \_AM_WGTIMELINES_TEMPLATE_BORDERWIDTH;
-                break;
-                case 'borderstyle':
-                    $title = \_AM_WGTIMELINES_TEMPLATE_BORDERSTYLE;
-                break;
-                case 'bordercolor':
-                    $title = \_AM_WGTIMELINES_TEMPLATE_BORDERCOLOR;
-                break;
-                case 'borderradius':
-                    $title = \_AM_WGTIMELINES_TEMPLATE_BORDERRADIUS;
-                break;
-                case 'boxshadow':
-                    $title = \_AM_WGTIMELINES_TEMPLATE_BOXSHADOW;
-                break;
-                case 'orientation':
-                    $title = \_AM_WGTIMELINES_TEMPLATE_ORIENTATION;
-                break;
-                case 'datesspeed':
-                    $title = \_AM_WGTIMELINES_TEMPLATE_DATESSPEED;
-                break;
-                case 'issuesspeed':
-                    $title = \_AM_WGTIMELINES_TEMPLATE_ISSUESSPEED;
-                break;
-                case 'issuestransparency':
-                    $title = \_AM_WGTIMELINES_TEMPLATE_ISSUESTRANSPARENCY;
-                break;case 'issuestransparencyspeed':
-                    $title = \_AM_WGTIMELINES_TEMPLATE_ISSUESTRANSPARENCYSPEED;
-                break;
-                case 'autoplay':
-                    $title = \_AM_WGTIMELINES_TEMPLATE_AUTOPLAY;
-                break;
-                case 'autoplaydirection':
-                    $title = \_AM_WGTIMELINES_TEMPLATE_AUTOPLAY_DIRECTION;
-                break;
-                case 'autoplaypause':
-                    $title = \_AM_WGTIMELINES_TEMPLATE_AUTOPLAY_PAUSE;
-                break;
-                case 'arrowkeys':
-                    $title = \_AM_WGTIMELINES_TEMPLATE_ARROWKEYS;
-                break;
-                case 'startat':
-                    $title = \_AM_WGTIMELINES_TEMPLATE_STARTAT;
-                break;
-                case 'fadein':
-                    $title = \_AM_WGTIMELINES_TEMPLATE_FADEIN;
-                break;
-                case 'panel_pos_single':
-                    $title = \_AM_WGTIMELINES_TEMPLATE_PANELPOS;
-                break;
-                case 'showyear':
-                    $title = \_AM_WGTIMELINES_TEMPLATE_SHOWYEAR;
-                break;
-                case 'badgecontent':
-                    $title = \_AM_WGTIMELINES_TEMPLATE_BADGECONTENT;
-                break;
-
-                case 'else':
-                default:
-                    $title = $option['name'];
-                break;
-            }
+            $title = match ($option['name']) {
+                'panel_pos' => \_AM_WGTIMELINES_TEMPLATE_IMGPOS,
+                'tabletype' => \_AM_WGTIMELINES_TEMPLATE_TABLETYPE,
+                'imgstyle' => \_AM_WGTIMELINES_TEMPLATE_IMGSTYLE,
+                'bgcolor' => \_AM_WGTIMELINES_TEMPLATE_BGCOLOR,
+                'bgcolor2' => \_AM_WGTIMELINES_TEMPLATE_BGCOLOR2,
+                'bgcolor3' => \_AM_WGTIMELINES_TEMPLATE_BGCOLOR3,
+                'bgcolor4' => \_AM_WGTIMELINES_TEMPLATE_BGCOLOR4,
+                'fontcolor' => \_AM_WGTIMELINES_TEMPLATE_FONTCOLOR,
+                'fontcolor2' => \_AM_WGTIMELINES_TEMPLATE_FONTCOLOR2,
+                'fontcolor3' => \_AM_WGTIMELINES_TEMPLATE_FONTCOLOR3,
+                'fontcolor4' => \_AM_WGTIMELINES_TEMPLATE_FONTCOLOR4,
+                'panel_imgpos' => \_AM_WGTIMELINES_TEMPLATE_IMGPOS,
+                'badgecolor' => \_AM_WGTIMELINES_TEMPLATE_BADGECOLOR,
+                'badgefontcolor' => \_AM_WGTIMELINES_TEMPLATE_BADGEFONTCOLOR,
+                'badgestyle' => \_AM_WGTIMELINES_TEMPLATE_BADGESTYLE,
+                'linecolor' => \_AM_WGTIMELINES_TEMPLATE_LINECOLOR,
+                'borderwidth' => \_AM_WGTIMELINES_TEMPLATE_BORDERWIDTH,
+                'borderstyle' => \_AM_WGTIMELINES_TEMPLATE_BORDERSTYLE,
+                'bordercolor' => \_AM_WGTIMELINES_TEMPLATE_BORDERCOLOR,
+                'borderradius' => \_AM_WGTIMELINES_TEMPLATE_BORDERRADIUS,
+                'boxshadow' => \_AM_WGTIMELINES_TEMPLATE_BOXSHADOW,
+                'orientation' => \_AM_WGTIMELINES_TEMPLATE_ORIENTATION,
+                'datesspeed' => \_AM_WGTIMELINES_TEMPLATE_DATESSPEED,
+                'issuesspeed' => \_AM_WGTIMELINES_TEMPLATE_ISSUESSPEED,
+                'issuestransparency' => \_AM_WGTIMELINES_TEMPLATE_ISSUESTRANSPARENCY,
+                'issuestransparencyspeed' => \_AM_WGTIMELINES_TEMPLATE_ISSUESTRANSPARENCYSPEED,
+                'autoplay' => \_AM_WGTIMELINES_TEMPLATE_AUTOPLAY,
+                'autoplaydirection' => \_AM_WGTIMELINES_TEMPLATE_AUTOPLAY_DIRECTION,
+                'autoplaypause' => \_AM_WGTIMELINES_TEMPLATE_AUTOPLAY_PAUSE,
+                'arrowkeys' => \_AM_WGTIMELINES_TEMPLATE_ARROWKEYS,
+                'startat' => \_AM_WGTIMELINES_TEMPLATE_STARTAT,
+                'fadein' => \_AM_WGTIMELINES_TEMPLATE_FADEIN,
+                'panel_pos_single' => \_AM_WGTIMELINES_TEMPLATE_PANELPOS,
+                'showyear' => \_AM_WGTIMELINES_TEMPLATE_SHOWYEAR,
+                'badgecontent' => \_AM_WGTIMELINES_TEMPLATE_BADGECONTENT,
+                default => $option['name'],
+            };
             // get proper option value
             $optval = $option['value'];
             if ($optval === 'none') {
@@ -791,7 +714,7 @@ class Templates extends \XoopsObject
      *
      * @return array
      */
-    public function toArrayTemplates()
+    public function toArrayTemplates(): array
     {
         $ret = [];
         $vars =& $this->getVars();

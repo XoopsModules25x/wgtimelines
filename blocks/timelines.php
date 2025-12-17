@@ -30,7 +30,7 @@ use XoopsModules\Wgtimelines\Helper;
 
 include_once \XOOPS_ROOT_PATH.'/modules/wgtimelines/include/common.php';
 // Function show block
-function b_wgtimelines_timelines_show($options)
+function b_wgtimelines_timelines_show($options): array
 {
     $helper = \XoopsModules\Wgtimelines\Helper::getInstance();
     include_once \XOOPS_ROOT_PATH.'/modules/wgtimelines/class/Timelines.php';
@@ -61,7 +61,7 @@ function b_wgtimelines_timelines_show($options)
 }
 
 // Function edit block
-function b_wgtimelines_timelines_edit($options)
+function b_wgtimelines_timelines_edit($options): string
 {
     include_once \XOOPS_ROOT_PATH.'/modules/wgtimelines/class/Timelines.php';
     $helper = \XoopsModules\Wgtimelines\Helper::getInstance();

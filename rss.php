@@ -85,7 +85,7 @@ if (!$tpl->is_cached('db:wgtimelines_rss.tpl', $cid)) {
     foreach (\array_keys($templatesArr) as $i) {
         $description = $templatesArr[$i]->getVar('description');
         //permet d'afficher uniquement la description courte
-        if (\strpos($description,'[pagebreak]')==false){
+        if (!\strpos($description, '[pagebreak]')){
             $description_short = $description;
         }else{
             $description_short = \substr($description,0,\strpos($description,'[pagebreak]'));

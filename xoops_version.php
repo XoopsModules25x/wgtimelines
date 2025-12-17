@@ -30,10 +30,10 @@ $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
 
 // ------------------- Informations ------------------- //
 $modversion['name']                = \_MI_WGTIMELINES_NAME;
-$modversion['version']             = '1.2.1';
-$modversion['module_status']       = 'Stable';
-$modversion['release']             = '07.06.2025';
-$modversion['release_date']        = '2025/06/07'; // yyyy/mm/dd
+$modversion['version']             = '1.2.2';
+$modversion['module_status']       = 'Beta';
+$modversion['release']             = '27.11.2025';
+$modversion['release_date']        = '2025/11/27'; // yyyy/mm/dd
 $modversion['description']         = \_MI_WGTIMELINES_DESC;
 $modversion['author']              = 'goffy (wedega.com)';
 $modversion['author_mail']         = 'webmaster@wedega.com';
@@ -47,10 +47,10 @@ $modversion['release_info']        = 'release_info';
 $modversion['release_file']        = \XOOPS_URL . '/modules/wgtimelines/docs/release_info file';
 $modversion['manual']              = 'link to manual file';
 $modversion['manual_file']         = \XOOPS_URL . '/modules/wgtimelines/docs/install.txt';
-$modversion['min_php']             = '7.4';
-$modversion['min_xoops']           = '2.5.11 Stable';
-$modversion['min_admin']           = '1.1';
-$modversion['min_db']              = ['mysql' => '5.1', 'mysqli' => '5.1'];
+$modversion['min_php']             = '8.4';
+$modversion['min_xoops']           = '2.5.12';
+$modversion['min_admin']           = '1.2';
+$modversion['min_db']              = ['mysql' => '5.7.8'];
 $modversion['image']               = 'assets/images/wgtimelines_logo.png';
 $modversion['dirname']             = $moduleDirName;
 $modversion['dirmoduleadmin']      = 'Frameworks/moduleclasses/moduleadmin';

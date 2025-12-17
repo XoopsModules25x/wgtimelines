@@ -46,11 +46,11 @@ class TimelinesHandler extends \XoopsPersistableObjectHandler
     }
 
     /**
-     * @param bool $isNew
+     * @param $isNew
      *
-     * @return XoopsObject
+     * @return Object
      */
-    public function create($isNew = true)
+    public function create($isNew = true): Object
     {
         return parent::create($isNew);
     }
@@ -58,12 +58,12 @@ class TimelinesHandler extends \XoopsPersistableObjectHandler
     /**
      * retrieve a field
      *
-     * @param int  $i field id
-     * @param null $fields
+     * @param $i field id
+     * @param $fields
      * @return mixed reference to the <a href='psi_element://Get'>Get</a> object
      *                object
      */
-    public function get($i = null, $fields = null)
+    public function get($i = null, $fields = null): mixed
     {
         return parent::get($i, $fields);
     }
@@ -71,23 +71,22 @@ class TimelinesHandler extends \XoopsPersistableObjectHandler
     /**
      * get inserted id
      *
-     * @param null
      * @return integer reference to the {@link Get} object
      */
-    public function getInsertId()
+    public function getInsertId(): int
     {
         return $this->db->getInsertId();
     }
 
     /**
      * Get Count Timelines in the database
-     * @param int    $start
-     * @param int    $limit
+     * @param int $start
+     * @param int $limit
      * @param string $sort
      * @param string $order
      * @return int
      */
-    public function getCountTimelines($start = 0, $limit = 0, $sort = 'tl_weight ASC, tl_id', $order = 'ASC')
+    public function getCountTimelines(int $start = 0, int $limit = 0, string $sort = 'tl_weight ASC, tl_id', string $order = 'ASC'): int
     {
         $crCountTimelines = new \CriteriaCompo();
         $crCountTimelines = $this->getTimelinesCriteria($crCountTimelines, $start, $limit, $sort, $order);
@@ -96,13 +95,13 @@ class TimelinesHandler extends \XoopsPersistableObjectHandler
 
     /**
      * Get All Timelines in the database
-     * @param int    $start
-     * @param int    $limit
+     * @param int $start
+     * @param int $limit
      * @param string $sort
      * @param string $order
      * @return array
      */
-    public function getAllTimelines($start = 0, $limit = 0, $sort = 'tl_weight ASC, tl_id', $order = 'ASC')
+    public function getAllTimelines(int $start = 0, int $limit = 0, string $sort = 'tl_weight ASC, tl_id', string $order = 'ASC'): array
     {
         $crAllTimelines = new \CriteriaCompo();
         $crAllTimelines = $this->getTimelinesCriteria($crAllTimelines, $start, $limit, $sort, $order);
@@ -118,7 +117,7 @@ class TimelinesHandler extends \XoopsPersistableObjectHandler
      * @param $order
      * @return mixed
      */
-    private function getTimelinesCriteria($crTimelines, $start, $limit, $sort, $order)
+    private function getTimelinesCriteria($crTimelines, $start, $limit, $sort, $order): mixed
     {
         if ($start > 0) {
             $crTimelines->setStart($start);
