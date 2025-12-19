@@ -67,6 +67,7 @@ trait VersionChecks
             $module = \XoopsModule::getByDirname($moduleDirName);
         }
         \xoops_loadLanguage('admin', $moduleDirName);
+        \xoops_loadLanguage('common', $moduleDirName);
         // check for minimum PHP version
         $success = true;
 
