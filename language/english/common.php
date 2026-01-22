@@ -51,3 +51,5 @@ $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
 //Latest Version Check
 \define('CO_' . $moduleDirNameUpper . '_' . 'NEW_VERSION', 'New Version: ');
 \define('CO_' . $moduleDirNameUpper . '_' . 'ERROR_BAD_XOOPS', 'You need minimul version %s (your current version is %s)');
+
+\define('CO_' . $moduleDirNameUpper . '_' . 'ERROR_BAD_PHP', 'This module requires PHP version %s+ (%s installed)');
