@@ -2,6 +2,7 @@
 
 namespace XoopsModules\Wgtimelines\Common;
 
+
 /*
  You may not change or alter any portion of this comment or credits
  of supporting developers from this source code or any supporting source code
@@ -24,10 +25,10 @@ trait VersionChecks
      * @static
      *
      * @param \XoopsModule|null $module
-     * @param string|null $requiredVer
+     * @param null|string $requiredVer
      * @return bool true if meets requirements, false if not
      */
-    public static function checkVerXoops(\XoopsModule $module = null, string $requiredVer = null): bool
+    public static function checkVerXoops(?\XoopsModule $module = null, $requiredVer = null)
     {
         $moduleDirName      = \basename(\dirname(__DIR__, 2));
         $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
@@ -40,7 +41,7 @@ trait VersionChecks
         //check for minimum XOOPS version
         $currentVer = \mb_substr(\XOOPS_VERSION, 6); // get the numeric part of string
         if (null === $requiredVer) {
-            $requiredVer = (string)$module->getInfo('min_xoops'); //making sure it's a string
+            $requiredVer = '' . $module->getInfo('min_xoops'); //making sure it's a string
         }
         $success = true;
 
