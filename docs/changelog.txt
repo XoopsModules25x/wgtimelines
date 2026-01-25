@@ -1,7 +1,7 @@
 <h5>1.2.2 Beta [2025/11/27]</h5>  Dev: XOOPS 2.5.12, PHP 8.4.0
  - move to PHP 8.4 (goffy)
  - code cleaning (goffy)
-
+ - fixed bug in search (goffy)
 
 <h5>1.2.1 stable</h5>  [2025/06/07]
  - moved to last stable for PHP 7 (goffy)

@@ -30,12 +30,15 @@ declare(strict_types=1);
  */
 
 // search callback functions
-function wgtimelines_search($queryarray, $andor, $limit, $offset, $userid): void
+function wgtimelines_search($queryarray, $andor, $limit, $offset, $userid): array
 {
     global $xoopsDB;
-    $sql = "SELECT 'tpl_id', 'tpl_name' FROM ".$xoopsDB->prefix('wgtimelines_templates') . ' WHERE tpl_id != 0';
+
+    $ret = [];
+
+    $sql = "SELECT tl_id, tl_name, tl_date_create FROM ".$xoopsDB->prefix('wgtimelines_timelines') . ' WHERE tl_id != 0';
     if ($userid !== 0) {
-        $sql .= ' AND tpl_submitter=' . (int)$userid;
+        $sql .= ' AND tl_submitter=' . (int)$userid;
     }
     if (\is_array($queryarray) && $count = \count($queryarray)) {
         $sql .= ' AND (';
@@ -45,14 +48,36 @@ function wgtimelines_search($queryarray, $andor, $limit, $offset, $userid): void
         }
         $sql .= ')';
     }
-    $sql .= " ORDER BY 'tpl_id' DESC";
+    $sql .= " ORDER BY tl_id DESC";
     $result = $xoopsDB->query($sql, $limit, $offset);
-    $ret = [];
     $i = 0;
     while ($myrow = $xoopsDB->fetchArray($result)) {
-        $ret[$i]['image'] = 'assets/icons/32/blank.gif';
-        $ret[$i]['link'] = 'templates.php?tpl_id='.$myrow['tpl_id'];
-        $ret[$i]['title'] = $myrow['tpl_name'];
+        $ret[$i]['image'] = 'assets/icons/32/timelines.png';
+        $ret[$i]['link']  = 'timelines.php?tl_id='.$myrow['tl_id'];
+        $ret[$i]['title'] = $myrow['tl_name'];
+        $ret[$i]['time']  = $myrow['tl_date_create'];
+        ++$i;
+    }
+
+    $sql = "SELECT item_id, item_title, item_date_create FROM ".$xoopsDB->prefix('wgtimelines_items') . ' WHERE item_id != 0';
+    if ($userid !== 0) {
+        $sql .= ' AND item_submitter=' . (int)$userid;
+    }
+    if (\is_array($queryarray) && $count = \count($queryarray)) {
+        $sql .= ' AND (';
+        for ($i = 1; $i < $count; ++$i) {
+            $sql .= " $andor ";
+            $sql .= '';
+        }
+        $sql .= ')';
+    }
+    $sql .= " ORDER BY item_id DESC";
+    $result = $xoopsDB->query($sql, $limit, $offset);
+    while ($myrow = $xoopsDB->fetchArray($result)) {
+        $ret[$i]['image'] = 'assets/icons/32/items.png';
+        $ret[$i]['link']  = 'items.php?item_id='.$myrow['item_id'];
+        $ret[$i]['title'] = $myrow['item_title'];
+        $ret[$i]['time']  = $myrow['item_date_create'];
         ++$i;
     }
     unset($i);
